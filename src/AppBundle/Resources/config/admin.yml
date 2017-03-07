@@ -1,0 +1,17 @@
+services:
+    admin.blog_post:
+        class: AppBundle\Admin\BlogPostAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "Content", label: "Post" }
+        arguments:
+            - ~
+            - AppBundle\Entity\BlogPost
+            - ~
+        calls:
+            - [ setTranslationDomain, [AppBundle]]
+
+    admin.category:
+            class: AppBundle\Admin\CategoryAdmin
+            arguments: [~, AppBundle\Entity\Category, ~]
+            tags:
+                - { name: sonata.admin, manager_type: orm, label: Category }

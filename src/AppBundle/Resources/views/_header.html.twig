@@ -1,0 +1,82 @@
+<!-- Fixed navbar -->
+{% trans_default_domain 'FOSUserBundle' %}
+<header id="header" class="container-fluid blue-travelleurs-bg " xmlns="http://www.w3.org/1999/html">
+
+    <!-- Logo -->
+    <div id="logo">
+        <h1>
+            <a href="{{ path('homepage') }}">
+                {% image '@AppBundle/Resources/public/images/logo-travelleurs-trans.png' %}
+                <img class="img-responsive" src="{{ asset_url }}" alt="Travelleurs.co" width="100" />
+                {% endimage %}
+            </a>
+        </h1>
+        <span>
+
+       </span>
+    </div>
+
+    <!-- Nav -->
+    <nav id="nav">
+        <ul>
+
+            <li class="current"><a href="{{ path('homepage') }}" class="fa fa-home fa-lg"></a></li>
+
+            <li><a href="#">Our Story <i class="fa fa-caret-down"></i></a>
+                <ul>
+                    <li>
+                        <a href="#">About us</a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            Contact Us
+                        </a>
+                    </li>
+                    <li>
+                        <a>
+                            FAQ
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li><a href="#">Exclusivities <i class="fa fa-caret-down"></i></a>
+                <ul>
+                    <li>
+                        <a href="#">Bons plans</a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            Market place
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a href="#">
+                    Blog
+                </a>
+            </li>
+            <li>
+                <a href="#" ><i class="fa fa-language"></i> Languages <i class="fa fa-caret-down"></i> </a>
+                <ul>
+                    <li> <a href="{{ path(app.request.get('_route'), app.request.get('_route_params')|merge({'_locale': 'fr'})) }}">
+                            {% image '@AppBundle/Resources/public/images/fr.png' %}
+                            <img class="featurette-image img-responsive"  src="{{ asset_url }}" alt="Français" title="Français"  />
+                            {% endimage %}
+                        </a>
+                    </li>
+                    <li><a href="{{  path(app.request.get('_route'), app.request.get('_route_params')|merge({'_locale': 'en'}))}}">
+                            {% image '@AppBundle/Resources/public/images/gb.png' %}
+                            <img class="featurette-image img-responsive"  src="{{ asset_url }}" alt="English" />
+                            {% endimage %}
+                        </a></li>
+                    <li>
+                </ul>
+            </li>
+            <li><a href="{{ path('fos_user_registration_register') }}">Sign Up</a></li>
+            <li><a href="{{ path('fos_user_security_login') }}">Login</a></li>
+
+        </ul>
+    </nav>
+
+</header>
