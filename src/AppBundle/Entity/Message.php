@@ -22,18 +22,39 @@ class Message
     private $id;
 
     /**
-     * @var int
+     * @var User
      *
-     * @ORM\Column(name="id_user_from", type="integer")
+     * @ORM\OneToOne(targetEntity="AppBundle\Entity\User",cascade={"persist"})
      */
-    private $idUserFrom;
+    private $sender;
 
     /**
-     * @var int
+     * @var User
      *
-     * @ORM\Column(name="id_user_to", type="integer")
+     * @ORM\OneToOne(targetEntity="AppBundle\Entity\User",cascade={"persist"})
      */
-    private $idUserTo;
+    private $receiver;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="createdOn", type="datetime")
+     */
+    private $createdOn;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="modifiedOn", type="datetime")
+     */
+    private $modifiedOn;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="readOn", type="datetime")
+     */
+    private $readOn;
 
     /**
      * @var string
@@ -56,6 +77,11 @@ class Message
      */
     private $published;
 
+    public function __construct()
+    {
+        $this->createdOn = new \DateTime();
+        $this->modifiedOn = new \DateTime();
+    }
 
     /**
      * Get id
@@ -186,5 +212,98 @@ class Message
     {
         return $this->published;
     }
+
+    /**
+     * @return User
+     */
+    public function getSender()
+    {
+        return $this->sender;
+    }
+
+    /**
+     * @param User $sender
+     * @return Message
+     */
+    public function setSender($sender)
+    {
+        $this->sender = $sender;
+        return $this;
+    }
+
+    /**
+     * @return int
+     */
+    public function getReceiver()
+    {
+        return $this->receiver;
+    }
+
+    /**
+     * @param int $receiver
+     * @return Message
+     */
+    public function setReceiver($receiver)
+    {
+        $this->receiver = $receiver;
+        return $this;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getCreatedOn()
+    {
+        return $this->createdOn;
+    }
+
+    /**
+     * @param \DateTime $createdOn
+     * @return Message
+     */
+    public function setCreatedOn($createdOn)
+    {
+        $this->createdOn = $createdOn;
+        return $this;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getModifiedOn()
+    {
+        return $this->modifiedOn;
+    }
+
+    /**
+     * @param \DateTime $modifiedOn
+     * @return Message
+     */
+    public function setModifiedOn($modifiedOn)
+    {
+        $this->modifiedOn = $modifiedOn;
+        return $this;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getReadOn()
+    {
+        return $this->readOn;
+    }
+
+    /**
+     * @param \DateTime $readOn
+     * @return Message
+     */
+    public function setReadOn($readOn)
+    {
+        $this->readOn = $readOn;
+        return $this;
+    }
+
+
+
 }
 

@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -29,18 +30,20 @@ class Etape
     private $status;
 
     /**
-     * @var int
+     * @var Voyage
      *
-     * @ORM\Column(name="id_voyage", type="integer", nullable=true)
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Voyage")
+     * @ORM\JoinColumn(nullable=false)
      */
-    private $idVoyage;
+    private $voyage;
 
     /**
-     * @var int
+     * @var niveau_confort
      *
-     * @ORM\Column(name="id_niveau_confort", type="integer")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\niveau_confort")
+     * @ORM\JoinColumn(nullable=false)
      */
-    private $idNiveauConfort;
+    private $niveauConfort;
 
     /**
      * @var int
@@ -63,6 +66,46 @@ class Etape
      */
     private $dateArrivee;
 
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="createdOn", type="datetime")
+     */
+    private $createdOn;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="modifiedOn", type="datetime")
+     */
+    private $modifiedOn;
+
+    /**
+     * @var User
+     *
+     * @ORM\OneToOne(targetEntity="AppBundle\Entity\User",cascade={"persist"})
+     */
+    private $creator;
+
+   
+
+
+
+    /**
+     * @var Theme
+     *
+     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Theme",cascade={"persist"})
+     */
+    private $themes;
+
+
+
+    public function __construct()
+    {
+        $this->themes   = new ArrayCollection();
+        $this->createdOn = new \DateTime();
+        $this->modifiedOn = new \DateTime();
+    }
 
     /**
      * Get id
@@ -96,54 +139,6 @@ class Etape
     public function getStatus()
     {
         return $this->status;
-    }
-
-    /**
-     * Set idVoyage
-     *
-     * @param integer $idVoyage
-     *
-     * @return Etape
-     */
-    public function setIdVoyage($idVoyage)
-    {
-        $this->idVoyage = $idVoyage;
-
-        return $this;
-    }
-
-    /**
-     * Get idVoyage
-     *
-     * @return int
-     */
-    public function getIdVoyage()
-    {
-        return $this->idVoyage;
-    }
-
-    /**
-     * Set idNiveauConfort
-     *
-     * @param integer $idNiveauConfort
-     *
-     * @return Etape
-     */
-    public function setIdNiveauConfort($idNiveauConfort)
-    {
-        $this->idNiveauConfort = $idNiveauConfort;
-
-        return $this;
-    }
-
-    /**
-     * Get idNiveauConfort
-     *
-     * @return int
-     */
-    public function getIdNiveauConfort()
-    {
-        return $this->idNiveauConfort;
     }
 
     /**
@@ -217,5 +212,138 @@ class Etape
     {
         return $this->dateArrivee;
     }
+
+
+    /**
+     * @return int
+     */
+    public function getVoyage()
+    {
+        return $this->voyage;
+    }
+
+    /**
+     * @param Voyage $voyage
+     * @return $this
+     */
+    public function setVoyage(Voyage $voyage)
+    {
+        $this->voyage = $voyage;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getNiveauConfort()
+    {
+        return $this->niveauConfort;
+    }
+
+    /**
+     * @param mixed $niveauConfort
+     * @return Etape
+     */
+    public function setNiveauConfort($niveauConfort)
+    {
+        $this->niveauConfort = $niveauConfort;
+        return $this;
+    }
+
+
+
+    /**
+     * @return User
+     */
+    public function getCreator()
+    {
+        return $this->creator;
+    }
+
+    /**
+     * @param User $creator
+     */
+    public function setCreator(User $creator)
+    {
+        $this->creator  = $creator;
+        
+        return $this;
+    }
+
+    /**
+     * @param User $user
+     * @return bool
+     */
+    public function isCreator(User $user){
+        return $this->creator->getId() == $user->getId();
+    }
+
+    /**
+     * @return Theme
+     */
+    public function getThemes()
+    {
+        return $this->themes;
+    }
+
+    public function addTheme(Theme $theme){
+
+        if(!$this->hasTheme($theme)) $this->themes[]     = $theme;
+
+        return $this;
+    }
+
+    public function removeTheme(Theme $theme){
+        $this->themes->removeElement($theme);
+
+        return $this;
+    }
+
+    /**
+     * @param Theme $theme
+     * @return bool
+     */
+    public function hasTheme(Theme $theme){
+        return $this->themes->exists($theme);
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getCreatedOn()
+    {
+        return $this->createdOn;
+    }
+
+    /**
+     * @param \DateTime $createdOn
+     * @return Etape
+     */
+    public function setCreatedOn($createdOn)
+    {
+        $this->createdOn = $createdOn;
+        return $this;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getModifiedOn()
+    {
+        return $this->modifiedOn;
+    }
+
+    /**
+     * @param \DateTime $modifiedOn
+     * @return Etape
+     */
+    public function setModifiedOn($modifiedOn)
+    {
+        $this->modifiedOn = $modifiedOn;
+        return $this;
+    }
+
+    
+
 }
 

@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -21,12 +22,6 @@ class UserData
      */
     private $id;
 
-    /**
-     * @var int
-     *
-     * @ORM\Column(name="id_user", type="integer")
-     */
-    private $idUser;
 
     /**
      * @var bool
@@ -43,9 +38,9 @@ class UserData
     private $bio;
 
     /**
-     * @var string
+     * @var Image
      *
-     * @ORM\Column(name="photo_profil", type="string", length=255)
+     * @ORM\OneToOne(targetEntity="AppBundle\Entity\Image",cascade={"persist"})
      */
     private $photoProfil;
 
@@ -63,6 +58,52 @@ class UserData
      */
     private $degreConversation;
 
+    /**
+     * @var ArrayCollection
+     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\ActivitesSportives", cascade={"persist"})
+     */
+    private $activities;
+
+    /**
+     * @var ArrayCollection
+     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\CausesSociales",cascade={"persist"})
+     */
+    private $causes_sociales;
+
+    /**
+     * @var ArrayCollection
+     *
+     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Hobbie",cascade={"persist"})
+     *
+     */
+    private $hobbies;
+
+    /**
+     * @var ArrayCollection
+     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Phobbie",cascade={"persist"})
+     */
+    private $phobbies;
+
+    /**
+     * @var ArrayCollection
+     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Langue",cascade={"persist"})
+     */
+    private $langues;
+
+    /**
+     *
+     * @ORM\OneToOne(targetEntity="AppBundle\Entity\User", cascade={"persist"})
+     */
+    private $user;
+
+    public function __construct()
+    {
+        $this->activities       = new ArrayCollection();
+        $this->causes_sociales  = new ArrayCollection();
+        $this->hobbies      = new ArrayCollection();
+        $this->phobbies     = new ArrayCollection();
+        $this->langues      = new ArrayCollection();
+    }
 
     /**
      * Get id
@@ -74,29 +115,6 @@ class UserData
         return $this->id;
     }
 
-    /**
-     * Set idUser
-     *
-     * @param integer $idUser
-     *
-     * @return UserData
-     */
-    public function setIdUser($idUser)
-    {
-        $this->idUser = $idUser;
-
-        return $this;
-    }
-
-    /**
-     * Get idUser
-     *
-     * @return int
-     */
-    public function getIdUser()
-    {
-        return $this->idUser;
-    }
 
     /**
      * Set fumeur
@@ -149,7 +167,7 @@ class UserData
     /**
      * Set photoProfil
      *
-     * @param string $photoProfil
+     * @param Image $photoProfil
      *
      * @return UserData
      */
@@ -163,7 +181,7 @@ class UserData
     /**
      * Get photoProfil
      *
-     * @return string
+     * @return Image
      */
     public function getPhotoProfil()
     {
@@ -217,5 +235,191 @@ class UserData
     {
         return $this->degreConversation;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getActivities()
+    {
+        return $this->activities;
+    }
+
+    /**
+     * @return User
+     */
+    public function addActivity(ActivitesSportives $activity)
+    {
+        $this->activities[] = $activity;
+        return $this;
+    }
+
+    public function removeActivity(ActivitesSportives $activity){
+        $this->activities->removeElement($activity);
+
+        return $this;
+    }
+
+    /**
+     * @param ActivitesSportives $activity
+     * @return bool
+     */
+    public function hasActivity(ActivitesSportives $activity){
+        return $this->activities->exists($activity);
+    }
+    /**
+     * @return mixed
+     */
+    public function getCausesSociales()
+    {
+        return $this->causes_sociales;
+    }
+
+
+    /**
+     * @param mixed $causes_sociales
+     * @return User
+     */
+    public function addCauseSociale(CausesSociales $cause_sociale)
+    {
+        $this->causes_sociales[] = $cause_sociale;
+        return $this;
+    }
+
+    public function removeCauseSociale(CausesSociales $cause_sociale){
+        $this->causes_sociales->removeElement($cause_sociale);
+
+        return $this;
+    }
+
+    /**
+     * @param CausesSociales $cause_sociale
+     * @return bool
+     */
+    public function hasCauseSociale(CausesSociales $cause_sociale){
+
+        return $this->causes_sociales->exists($cause_sociale);
+    }
+
+    /**
+     * @return ArrayCollection
+     */
+    public function getHobbies()
+    {
+        return $this->hobbies;
+    }
+
+    /**
+     * @param ArrayCollection $hobbies
+     * @return User
+     */
+    public function addHobbie(Hobbie $hobbie)
+    {
+        $this->hobbies[] = $hobbie;
+        return $this;
+    }
+
+    /**
+     * @param Hobbie $hobbie
+     * @return $this
+     */
+    public function removeHobbie(Hobbie $hobbie){
+        $this->hobbies->removeElement($hobbie);
+
+        return $this;
+    }
+
+    /**
+     * @param Hobbie $hobbie
+     * @return bool
+     */
+    public function hasHobbie(Hobbie $hobbie){
+        return $this->hobbies->exists($hobbie);
+    }
+    /**
+     * @return ArrayCollection
+     */
+    public function getPhobbies()
+    {
+        return $this->phobbies;
+    }
+
+    /**
+     * @param ArrayCollection $phobbies
+     * @return User
+     */
+    public function addPhobbie(Phobbie $phobbie)
+    {
+        $this->phobbies[] = $phobbie;
+        return $this;
+    }
+
+    public function removePhobbie(Phobbie $phobbie){
+        $this->phobbies->removeElement($phobbie);
+
+        return $this;
+    }
+
+    /**
+     * @param Phobbie $phobbie
+     * @return bool
+     */
+    public function hasPhobbie(Phobbie $phobbie){
+        return $this->phobbies->exists($phobbie);
+    }
+
+    /**
+     * @return ArrayCollection
+     */
+    public function getLangues()
+    {
+        return $this->langues;
+    }
+
+    /**
+     * @param ArrayCollection $langues
+     * @return User
+     */
+    public function addLangue(Langue $langue)
+    {
+        $this->langues[] = $langue;
+        return $this;
+    }
+
+    /**
+     * @param Langue $langue
+     * @return $this
+     */
+    public function removeLangue(Langue $langue){
+        $this->langues->removeElement($langue);
+
+        return $this;
+    }
+
+    /**
+     * @param Langue $langue
+     * @return bool
+     */
+    public function hasLangue(Langue $langue){
+        return $this->langues->exists($langue);
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
+
+    /**
+     * @param mixed $data
+     * @return User
+     */
+    public function setUser($user)
+    {
+        $this->user = $user;
+        return $this;
+    }
+
 }
 

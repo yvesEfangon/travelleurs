@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use FOS\UserBundle\Model\User as BaseUser;
 
@@ -37,8 +38,10 @@ class User extends BaseUser
      */
     private $firstname;
 
+    
 
-
+    
+    
 
     /**
      * Get id
@@ -95,5 +98,9 @@ class User extends BaseUser
     {
         return in_array($role, $this->getRoles());
     }
+
+   
+
+    
 
 }

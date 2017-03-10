@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -22,11 +23,18 @@ class Album
     private $id;
 
     /**
-     * @var int
+     * @var User
      *
-     * @ORM\Column(name="id_user", type="integer")
+     * @ORM\OneToOne(targetEntity="AppBundle\Entity\User",cascade={"persist"})
      */
-    private $idUser;
+    private $owner;
+
+    /**
+     * @var Image
+     *
+     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Image",cascade={"persist"})
+     */
+    private $images;
 
     /**
      * @var string
@@ -35,6 +43,26 @@ class Album
      */
     private $nomAlbum;
 
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="createdOn", type="datetime")
+     */
+    private $createdOn;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="modifiedOn", type="datetime")
+     */
+    private $modifiedOn;
+
+    public function __construct()
+    {
+        $this->createdOn = new \DateTime();
+        $this->modifiedOn = new \DateTime();
+        $this->images       = new ArrayCollection();
+    }
 
     /**
      * Get id
@@ -46,29 +74,7 @@ class Album
         return $this->id;
     }
 
-    /**
-     * Set idUser
-     *
-     * @param integer $idUser
-     *
-     * @return Album
-     */
-    public function setIdUser($idUser)
-    {
-        $this->idUser = $idUser;
 
-        return $this;
-    }
-
-    /**
-     * Get idUser
-     *
-     * @return int
-     */
-    public function getIdUser()
-    {
-        return $this->idUser;
-    }
 
     /**
      * Set nomAlbum
@@ -93,5 +99,85 @@ class Album
     {
         return $this->nomAlbum;
     }
+
+    /**
+     * @return User
+     */
+    public function getOwner()
+    {
+        return $this->owner;
+    }
+
+    /**
+     * @param User $owner
+     * @return Album
+     */
+    public function setOwner($owner)
+    {
+        $this->owner = $owner;
+        return $this;
+    }
+
+    /**
+     * @return Image
+     */
+    public function getImages()
+    {
+        return $this->images;
+    }
+
+    /**
+     * @param Image $image
+     * @return Album
+     */
+    public function addImage(Image $image)
+    {
+        $this->images[] = $image;
+        return $this;
+    }
+
+    public function removeImage(Image $image){
+        $this->images->removeElement($image);
+
+        return $this;
+    }
+    /**
+     * @return \DateTime
+     */
+    public function getCreatedOn()
+    {
+        return $this->createdOn;
+    }
+
+    /**
+     * @param \DateTime $createdOn
+     * @return Album
+     */
+    public function setCreatedOn($createdOn)
+    {
+        $this->createdOn = $createdOn;
+        return $this;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getModifiedOn()
+    {
+        return $this->modifiedOn;
+    }
+
+    /**
+     * @param \DateTime $modifiedOn
+     * @return Album
+     */
+    public function setModifiedOn($modifiedOn)
+    {
+        $this->modifiedOn = $modifiedOn;
+        return $this;
+    }
+
+
+
 }
 

@@ -22,26 +22,39 @@ class Avis
     private $id;
 
     /**
-     * @var int
+     * @var User
      *
-     * @ORM\Column(name="id_etape_user", type="integer")
+     * @ORM\OneToOne(targetEntity="AppBundle\Entity\User",cascade={"persist"})
      */
-    private $idEtapeUser;
+    private $creator;
+
 
     /**
-     * @var int
+     * @var Etape
      *
-     * @ORM\Column(name="id_user_from", type="integer")
+     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Etape",cascade={"persist"})
      */
-    private $idUserFrom;
+    private $etape;
 
     /**
-     * @var int
+     * @var \DateTime
      *
-     * @ORM\Column(name="id_user_to", type="integer")
+     * @ORM\Column(name="createdOn", type="datetime")
      */
-    private $idUserTo;
+    private $createdOn;
 
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="modifiedOn", type="datetime")
+     */
+    private $modifiedOn;
+
+    public function __construct()
+    {
+        $this->createdOn = new \DateTime();
+        $this->modifiedOn = new \DateTime();
+    }
 
     /**
      * Get id
@@ -54,75 +67,78 @@ class Avis
     }
 
     /**
-     * Set idEtapeUser
-     *
-     * @param integer $idEtapeUser
-     *
+     * @return User
+     */
+    public function getCreator()
+    {
+        return $this->creator;
+    }
+
+    /**
+     * @param User $creator
      * @return Avis
      */
-    public function setIdEtapeUser($idEtapeUser)
+    public function setCreator(User $creator)
     {
-        $this->idEtapeUser = $idEtapeUser;
-
+        $this->creator = $creator;
         return $this;
     }
 
     /**
-     * Get idEtapeUser
-     *
-     * @return int
+     * @return Etape
      */
-    public function getIdEtapeUser()
+    public function getEtape()
     {
-        return $this->idEtapeUser;
+        return $this->etape;
     }
 
     /**
-     * Set idUserFrom
-     *
-     * @param integer $idUserFrom
-     *
+     * @param Etape $etape
      * @return Avis
      */
-    public function setIdUserFrom($idUserFrom)
+    public function setEtape(Etape $etape)
     {
-        $this->idUserFrom = $idUserFrom;
-
+        $this->etape = $etape;
         return $this;
     }
 
     /**
-     * Get idUserFrom
-     *
-     * @return int
+     * @return \DateTime
      */
-    public function getIdUserFrom()
+    public function getCreatedOn()
     {
-        return $this->idUserFrom;
+        return $this->createdOn;
     }
 
     /**
-     * Set idUserTo
-     *
-     * @param integer $idUserTo
-     *
+     * @param \DateTime $createdOn
      * @return Avis
      */
-    public function setIdUserTo($idUserTo)
+    public function setCreatedOn($createdOn)
     {
-        $this->idUserTo = $idUserTo;
-
+        $this->createdOn = $createdOn;
         return $this;
     }
 
     /**
-     * Get idUserTo
-     *
-     * @return int
+     * @return \DateTime
      */
-    public function getIdUserTo()
+    public function getModifiedOn()
     {
-        return $this->idUserTo;
+        return $this->modifiedOn;
     }
+
+    /**
+     * @param \DateTime $modifiedOn
+     * @return Avis
+     */
+    public function setModifiedOn($modifiedOn)
+    {
+        $this->modifiedOn = $modifiedOn;
+        return $this;
+    }
+
+
+
 }
 
