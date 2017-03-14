@@ -30,7 +30,7 @@
         "white-october/pagerfanta-bundle": "^1.0",
         "twbs/bootstrap": "^3.3",
         "symfony/assetic-bundle": "v2.8.0",
-        "fortawesome/font-awesome": "v4.5.0",
+        "fortawesome/font-awesome": "v4.7.0",
         "components/jquery": "2.2.1",
         "friendsofsymfony/user-bundle": "2.0.x-dev",
         "sonata-project/easy-extends-bundle": "^2.1",

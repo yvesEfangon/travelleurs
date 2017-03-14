@@ -41,6 +41,8 @@ twig:
     strict_variables: "%kernel.debug%"
     form_themes:
         - 'bootstrap_3_horizontal_layout.html.twig'
+    globals:
+        locales: '%app.locales%'
 
 # Doctrine Configuration
 doctrine:
@@ -90,7 +92,27 @@ assetic:
     debug:          '%kernel.debug%'
     use_controller: false
     filters:
-        cssrewrite: ~
+      cssrewrite: ~
+    assets:
+      font-awesome-css:
+        inputs: '%kernel.root_dir%/../vendor/fortawesome/font-awesome/css/font-awesome.min.css'
+        outputs: 'fonts/FontAwesome.css'
+      font-awesome-otf:
+        inputs: '%kernel.root_dir%/../vendor/fortawesome/font-awesome/fonts/FontAwesome.otf'
+        output: 'fonts/FontAwesome.otf'
+      font-awesome-eot:
+          inputs: '%kernel.root_dir%/../vendor/fortawesome/font-awesome/fonts/fontawesome-webfont.eot'
+          output: 'fonts/fontawesome-webfont.eot'
+      font-awesome-svg:
+          inputs: '%kernel.root_dir%/../vendor/fortawesome/font-awesome/fonts/fontawesome-webfont.svg'
+          output: 'fonts/fontawesome-webfont.svg'
+      font-awesome-ttf:
+          inputs: '%kernel.root_dir%/../vendor/fortawesome/font-awesome/fonts/fontawesome-webfont.ttf'
+          output: 'fonts/fontawesome-webfont.ttf'
+      font-awesome-woff:
+          inputs: '%kernel.root_dir%/../vendor/fortawesome/font-awesome/fonts/fontawesome-webfont.woff'
+          output: 'fonts/fontawesome-webfont.woff'
+
 
 sonata_block:
     default_contexts: [cms]

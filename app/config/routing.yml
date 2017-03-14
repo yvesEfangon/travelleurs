@@ -12,3 +12,4 @@ _sonata_admin:
 sonata_cache_cache:
     resource: '@SonataCacheBundle/Resources/config/routing/cache.xml'
     prefix: /
+

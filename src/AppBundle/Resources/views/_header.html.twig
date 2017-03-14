@@ -1,82 +1,51 @@
-<!-- Fixed navbar -->
-{% trans_default_domain 'FOSUserBundle' %}
-<header id="header" class="container-fluid blue-travelleurs-bg " xmlns="http://www.w3.org/1999/html">
-
-    <!-- Logo -->
-    <div id="logo">
-        <h1>
-            <a href="{{ path('homepage') }}">
+<nav class="navbar navbar-default navbar-fixed-top blue-travelleurs-bg" id="trav-header">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a href="{{ path('homepage') }}" class="navbar-brand" >
                 {% image '@AppBundle/Resources/public/images/logo-travelleurs-trans.png' %}
-                <img class="img-responsive" src="{{ asset_url }}" alt="Travelleurs.co" width="100" />
+                <img class="img-responsive" src="{{ asset_url }}" alt="Travelleurs.co"  />
                 {% endimage %}
             </a>
-        </h1>
-        <span>
 
-       </span>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+
+                {% set current=app.request.get('_locale') %}
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+
+                        <img  src="{{ asset('/bundles/app/images/'~current~'.png') }}" alt="Français" title="Français"  />
+                         <span class="fa fa-caret-down pull-right"></span></a>
+                    <ul class="dropdown-menu">
+
+                        {% set langues = locales %}
+                        {% for lang in langues %}
+                            {% if lang != current %}
+                                <li><a href="{{  path(app.request.get('_route'), app.request.get('_route_params')|merge({'_locale': lang}))}}">
+
+                                    <img class="featurette-image img-responsive"  src="{{ asset('/bundles/app/images/')~lang~'.png' }}" alt="{{ lang }}" />
+
+                                    </a>
+                                </li>
+                            {% endif %}
+                        {% endfor %}
+                    </ul>
+                </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li class="current"><a href="{{ path('homepage') }}" class="fa fa-home fa-lg"></a></li>
+                <li><a href="../navbar-static-top/">Our story</a></li>
+                <li><a href="../navbar-static-top/">Exclusivities</a></li>
+                <li><a href="{{ path('fos_user_registration_register') }}">Sign Up</a></li>
+                <li><a href="{{ path('fos_user_security_login') }}">Login</a></li>
+            </ul>
+        </div><!--/.nav-collapse -->
     </div>
-
-    <!-- Nav -->
-    <nav id="nav">
-        <ul>
-
-            <li class="current"><a href="{{ path('homepage') }}" class="fa fa-home fa-lg"></a></li>
-
-            <li><a href="#">Our Story <i class="fa fa-caret-down"></i></a>
-                <ul>
-                    <li>
-                        <a href="#">About us</a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            Contact Us
-                        </a>
-                    </li>
-                    <li>
-                        <a>
-                            FAQ
-                        </a>
-                    </li>
-                </ul>
-            </li>
-            <li><a href="#">Exclusivities <i class="fa fa-caret-down"></i></a>
-                <ul>
-                    <li>
-                        <a href="#">Bons plans</a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            Market place
-                        </a>
-                    </li>
-                </ul>
-            </li>
-            <li>
-                <a href="#">
-                    Blog
-                </a>
-            </li>
-            <li>
-                <a href="#" ><i class="fa fa-language"></i> Languages <i class="fa fa-caret-down"></i> </a>
-                <ul>
-                    <li> <a href="{{ path(app.request.get('_route'), app.request.get('_route_params')|merge({'_locale': 'fr'})) }}">
-                            {% image '@AppBundle/Resources/public/images/fr.png' %}
-                            <img class="featurette-image img-responsive"  src="{{ asset_url }}" alt="Français" title="Français"  />
-                            {% endimage %}
-                        </a>
-                    </li>
-                    <li><a href="{{  path(app.request.get('_route'), app.request.get('_route_params')|merge({'_locale': 'en'}))}}">
-                            {% image '@AppBundle/Resources/public/images/gb.png' %}
-                            <img class="featurette-image img-responsive"  src="{{ asset_url }}" alt="English" />
-                            {% endimage %}
-                        </a></li>
-                    <li>
-                </ul>
-            </li>
-            <li><a href="{{ path('fos_user_registration_register') }}">Sign Up</a></li>
-            <li><a href="{{ path('fos_user_security_login') }}">Login</a></li>
-
-        </ul>
-    </nav>
-
-</header>
+</nav>

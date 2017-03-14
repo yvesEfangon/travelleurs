@@ -18,21 +18,16 @@
     <link rel="stylesheet" href="{{ asset_url }}">
     {% endstylesheets %}
 
-    {% stylesheets '@AppBundle/Resources/public/css/app/travelleurs-home.css' filter='cssrewrite' %}
-    <link rel="stylesheet" href="{{ asset_url }}">
-    {% endstylesheets %}
-
     {% stylesheets  filter='cssrewrite'
-    '@AppBundle/Resources/public/css/std/font-awesome/css/font-awesome.css'
+        '@font_awesome_css'
     %}
     <link rel="stylesheet" href="{{ asset_url }}">
     {% endstylesheets %}
 
-    <link href="{{ asset('bundles/app/css/main.css') }}" rel="stylesheet" type="text/css" />
-    {#
-    {% stylesheets '@AppBundle/Resources/public/css/app/*' filter='cssrewrite' %}
+    {% stylesheets '@AppBundle/Resources/public/css/app/travelleurs-home.css' filter='cssrewrite' %}
     <link rel="stylesheet" href="{{ asset_url }}">
-    {% endstylesheets %}#}
+    {% endstylesheets %}
+
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -79,9 +74,9 @@
 
         <!-- Banner -->
         {% block banner %}
-        <div id="banner-wrapper">
+        <!--div id="banner-wrapper"-->
             {{ include('AppBundle::_banner.html.twig') }}
-        </div>
+        <!--/div-->
         {% endblock %}
 
         <!-- Main -->
