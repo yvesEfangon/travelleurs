@@ -93,6 +93,9 @@ assetic:
     use_controller: false
     filters:
       cssrewrite: ~
+      less:
+         node: /usr/bin/node
+         node_paths: [/usr/local/lib/node, /usr/local/lib/node_modules]
     assets:
       font-awesome-css:
         inputs: '%kernel.root_dir%/../vendor/fortawesome/font-awesome/css/font-awesome.min.css'
@@ -173,3 +176,25 @@ sonata_seo:
             #'xmlns:fb':           "http://www.facebook.com/2008/fbml"
 #sonata_notification:
     #backend: sonata.notification.backend.runtime
+
+#hwi_oauth_redirect:
+#    resource: "@HWIOAuthBundle/Resources/config/routing/redirect.xml"
+#    prefix:   /connect
+#
+#hwi_oauth_connect:
+#    resource: "@HWIOAuthBundle/Resources/config/routing/connect.xml"
+#    prefix:   /connect
+#
+#hwi_oauth_login:
+#    resource: "@HWIOAuthBundle/Resources/config/routing/login.xml"
+#    prefix:   /login
+#
+#hwi_oauth:
+#    resource_owners:
+#        any_name:
+#            type:                facebook
+#            client_id:           <client_id>
+#            client_secret:       <client_secret>
+#            options:
+#                display: popup #dialog is optimized for popup window
+#                auth_type: rerequest # Re-asking for Declined Permissions

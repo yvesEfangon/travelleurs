@@ -14,7 +14,13 @@
 
     <!-- Bootstrap core CSS -->
 
-    {% stylesheets '@AppBundle/Resources/public/css/std/*' filter='cssrewrite' %}
+    {% stylesheets
+    '@AppBundle/Resources/public/css/std/bootstrap.min.css'
+    '@AppBundle/Resources/public/css/std/w3.css'
+    '@AppBundle/Resources/public/css/std/flag-icon.min.css'
+
+
+    filter='cssrewrite' %}
     <link rel="stylesheet" href="{{ asset_url }}">
     {% endstylesheets %}
 
@@ -24,9 +30,12 @@
     <link rel="stylesheet" href="{{ asset_url }}">
     {% endstylesheets %}
 
-    {% stylesheets '@AppBundle/Resources/public/css/app/travelleurs-home.css' filter='cssrewrite' %}
-    <link rel="stylesheet" href="{{ asset_url }}">
+
+    {% stylesheets '@AppBundle/Resources/public/css/app/travelleurs-home.css' filter='cssrewrite' output='css/__zyrkovx.css' %}
+    <link rel="stylesheet" href="{{ asset_url }}" media="screen" type="text/css">
     {% endstylesheets %}
+
+
 
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -72,16 +81,11 @@
             {{ include('AppBundle::_header.html.twig') }}
         </div>
 
-        <!-- Banner -->
-        {% block banner %}
-        <!--div id="banner-wrapper"-->
-            {{ include('AppBundle::_banner.html.twig') }}
-        <!--/div-->
-        {% endblock %}
 
         <!-- Main -->
 
         {% block content %}
+
 
         {% endblock %}
 
@@ -89,10 +93,10 @@
 
 
         <!-- Footer -->
-        <div id="footer-wrapper">
-            <footer id="footer" class="container">
-                <div class="row">
-                    <div class="3u 6u(medium) 12u$(small)">
+        <div id="row ">
+            <footer id="footer" class="row">
+                <div class="row w3-padding-medium">
+                    <div class="col-lg-3 col-sm-3 col-md-3 col-xs-6 3u 6u(medium) 12u$(small)">
 
                         <!-- Links -->
                         <section class="widget links">
@@ -107,7 +111,7 @@
                         </section>
 
                     </div>
-                    <div class="3u 6u$(medium) 12u$(small)">
+                    <div class="col-lg-3 col-sm-3 col-md-3 col-xs-6 3u 6u$(medium) 12u$(small)">
 
                         <!-- Links -->
                         <section class="widget links">
@@ -122,7 +126,7 @@
                         </section>
 
                     </div>
-                    <div class="3u 6u(medium) 12u$(small)">
+                    <div class="col-lg-3 col-sm-3 col-md-3 col-xs-6 3u 6u(medium) 12u$(small)">
 
                         <!-- Links -->
                         <section class="widget links">
@@ -137,17 +141,16 @@
                         </section>
 
                     </div>
-                    <div class="3u 6u$(medium) 12u$(small)">
+                    <div class="col-lg-3 col-sm-3 col-md-3 col-xs-6 3u 6u$(medium) 12u$(small)">
 
                         <!-- Contact -->
                         <section class="widget contact last">
                             <h3>Contact Us</h3>
                             <ul>
-                                <li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
-                                <li><a href="#" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
-                                <li><a href="#" class="icon fa-instagram"><span class="label">Instagram</span></a></li>
-                                <li><a href="#" class="icon fa-dribbble"><span class="label">Dribbble</span></a></li>
-                                <li><a href="#" class="icon fa-pinterest"><span class="label">Pinterest</span></a></li>
+                                <li><a href="#" class="btn classBtSB-icon classBtRStw"><span class="fa fa-twitter"></span></a></li>
+                                <li><a href="#" class="btn classBtSB-icon classBtRS1"><span class="fa fa-facebook"></span></a></li>
+                                <li><a href="#" class="btn classBtSB-icon classBtRSitg"><span class="fa fa-instagram"></span></a></li>
+                                <li><a href="#" class="btn classBtSB-icon classBtRSptr"><span class="fa fa-pinterest"></span></a></li>
                             </ul>
                             <p>1234 Fictional Road<br />
                                 Nashville, TN 00000<br />
@@ -156,7 +159,7 @@
 
                     </div>
                 </div>
-                <div class="row">
+                <div class="row w3-padding-medium">
                     <div class="12u">
                         <div id="copyright">
                             <ul class="menu">
@@ -188,11 +191,17 @@
     '@AppBundle/Resources/public/js/std/skel.min.js'
     '@AppBundle/Resources/public/js/std/util.js'
     '@AppBundle/Resources/public/js/std/main.js'
+    '@AppBundle/Resources/public/js/app/travelleurs-generic.js'
 
 %}
 <script src="{{ asset_url }}"></script>
 {% endjavascripts %}
 
+{% block inline_js %}
+    <script>
+        initJS();
+    </script>
+{% endblock %}
 </body>
 </html>
 

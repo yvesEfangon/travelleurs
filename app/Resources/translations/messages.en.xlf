@@ -6,6 +6,114 @@
                 <source>travellers.email</source>
                 <target>Email</target>
             </trans-unit>
+            <trans-unit id="trav_exclusivities">
+                <source>trav.exclusivities</source>
+                <target>Exclusivities</target>
+            </trans-unit>
+            <trans-unit id="trav_ourstory">
+                <source>trav.ourstory</source>
+                <target>Our Story</target>
+            </trans-unit>
+            <trans-unit id="trav_signup">
+                <source>trav.signup</source>
+                <target>Sign up</target>
+            </trans-unit>
+            <trans-unit id="trav_signin">
+                <source>trav.signin</source>
+                <target>Sign in</target>
+            </trans-unit>
+            <trans-unit id="trav_bonplan">
+                <source>trav.bonplan</source>
+                <target>Tips</target>
+            </trans-unit>
+            <trans-unit id="trav_marketplace">
+                <source>trav.marketplace</source>
+                <target>Market place</target>
+            </trans-unit>
+            <trans-unit id="trav_aboutus">
+                <source>trav.aboutus</source>
+                <target>About Us</target>
+            </trans-unit>
+            <trans-unit id="trav_contact">
+                <source>trav.contact</source>
+                <target>Contact</target>
+            </trans-unit>
+            <trans-unit id="trav_faq">
+                <source>trav.faq</source>
+                <target>FAQ</target>
+            </trans-unit>
+            <trans-unit id="trav_home">
+                <source>trav.home</source>
+                <target>Home</target>
+            </trans-unit>
+            <trans-unit id="trav_Find_your_next_travel_partner">
+                <source>trav.Find.your.next.travel.partner</source>
+                <target>Find your next travel partner</target>
+            </trans-unit>
+            <trans-unit id="trav_where_you_go">
+                <source>trav.where.you.go</source>
+                <target>Where would you like to go ?</target>
+            </trans-unit>
+            <trans-unit id="trav_security_login_email">
+                <source>trav.security.login.email</source>
+                <target>Your Email</target>
+            </trans-unit>
+            <trans-unit id="trav_security_login_password">
+                <source>trav.security.login.password</source>
+                <target>Your Password</target>
+            </trans-unit>
+            <trans-unit id="trav_security_login_remember_me">
+                <source>trav.security.login.remember_me</source>
+                <target>Remember me</target>
+            </trans-unit>
+            <trans-unit id="trav_security_login_submit">
+                <source>trav.security.login.submit</source>
+                <target>Login</target>
+            </trans-unit>
+            <trans-unit id="trav_security_login_with_social">
+                <source>trav.security.login.with.social</source>
+                <target>Connection with social networks</target>
+            </trans-unit>
+            <trans-unit id="trav_security_please_signin">
+                <source>trav.security.please.signin</source>
+                <target>Please Sign in</target>
+            </trans-unit>
+            <trans-unit id="trav_password_forgotten">
+                <source>trav.password_forgotten</source>
+                <target>Have you forgotten your password ?</target>
+            </trans-unit>
+            <trans-unit id="trav_form_firstname">
+                <source>trav.form.firstname</source>
+                <target>Your Firstname</target>
+            </trans-unit>
+            <trans-unit id="trav_form_username">
+                <source>trav.form.username</source>
+                <target>Your Username</target>
+            </trans-unit>
+            <trans-unit id="trav_join_us_with">
+                <source>trav.join.us.with</source>
+                <target>Join us with</target>
+            </trans-unit>
+            <trans-unit id="trav_word_or">
+                <source>trav.word.or</source>
+                <target>Or</target>
+            </trans-unit>
+            <trans-unit id="trav_say_hello">
+                <source>trav.say.hello</source>
+                <target>Hello</target>
+            </trans-unit>
+            <trans-unit id="trav_my_profile">
+                <source>trav.my.profile</source>
+                <target>My profile</target>
+            </trans-unit>
+            <trans-unit id="trav_logout">
+                <source>trav.logout</source>
+                <target>Logout</target>
+            </trans-unit>
+            <trans-unit id="trav_registration_submit">
+                <source>trav.registration.submit</source>
+                <target>Register</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

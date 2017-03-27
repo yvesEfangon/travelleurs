@@ -1,41 +1,94 @@
 {% extends "FOSUserBundle::layout.html.twig" %}
-
 {% trans_default_domain 'FOSUserBundle' %}
-
-{% block title %}Connexion - {{ parent() }}{% endblock %}
+{% block title %}{{ 'security.login.submit'|trans }} - {{ parent() }}{% endblock %}
 
 {% block fos_user_content %}
-<div class="container w3-row">
-    <h1 class="text-center text-primary w3-text-dark-grey">Veuillez saisir vos identifiants </h1>
-{% if error %}
-    <p class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</p>
-{% endif %}
-</div>
-<div class="text-center w3-center w3-margin-top row" style="width: 50%; margin: auto;">
-<form action="{{ path("fos_user_security_check") }}" method="post" class="form-signin">
-    <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
-        <div class="form-group">
-            <label class="sr-only" for="username">{{ 'security.login.email'|trans }}</label>
-            <input class="form-control" type="text" id="username" placeholder="{{ 'security.login.email'|trans }}" name="_username" value="{{ last_username }}" required="required" />
-        </div>
-        <div class="form-group">
-        <label class="sr-only" for="password">{{ 'security.login.password'|trans }}</label>
-        <input class="form-control" type="password" id="password" name="_password" placeholder="{{ 'security.login.password'|trans }}" required="required" />
+
+
+<div class="text-center w3-center w3-padding-32 w3-padding-left w3-padding-right w3-margin-top w3-card-8  container"  >
+    <div class="row">
+    <div class="col-lg-4 col-md-4 w3-rightbar">
+        <div class="row center-block w3-row w3-margin-top ">
+            <h1 class="text-center trav-primary-color">{{ 'security.login.submit'|trans }} </h1>
         </div>
 
-        <label>
-            <input type="checkbox" id="remember_me" name="_remember_me" value="on" /> {{ 'security.login.remember_me'|trans }}
-        </label>
+        {% if error %}
+            <p class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</p>
+        {% endif %}
+        <form action="{{ path("fos_user_security_check") }}" method="post" class="form-signin ">
+            <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
+                <div class="row w3-margin-4">
+                    <label class="sr-only" for="username">{{ 'form.email'|trans({},'FOSUserBundle') }}</label>
+                    <input class="form-control" type="text" id="username" placeholder="{{ 'form.email'|trans({},'FOSUserBundle') }}" name="_username" value="{{ last_username }}" required="required" />
+                </div>
+                <div class="row w3-margin-4">
+                <label class="sr-only" for="password">{{ 'security.login.password'|trans }}</label>
+                <input class="form-control" type="password" id="password" name="_password" placeholder="{{ 'security.login.password'|trans }}" required="required" />
+                </div>
 
-    <input class="w3-center" type="submit" id="_submit" name="_submit" value="{{ 'security.login.submit'|trans }}" />
-</form>
-</div>
-    <div class="row w3-margin-top w3-center center-block">
-        <ul class="icons">
-            <li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
-            <li><a href="#" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
-            <li><a href="#" class="icon fa-instagram"><span class="label">Instagram</span></a></li>
-            <li><a href="#" class="icon fa-google-plus"><span class="label">Google+</span></a></li>
-        </ul>
+                <!--label>
+                    <input type="checkbox" id="remember_me" name="_remember_me" value="on" /> {{ 'security.login.remember_me'|trans }}
+                </label-->
+                <div class="row w3-right-align w3-padding-right">
+                <a href="{{ path('fos_user_resetting_request') }}">{{ 'trav.password_forgotten'|trans({},'messages') }}</a>
+                </div>
+            <input class="w3-center btn btn-lg trav-primary-bg-color w3-text-white" type="submit" id="_submit" name="_submit" value="{{ 'security.login.submit'|trans({},'FOSUserBundle') }}" />
+        </form>
     </div>
+
+    <div class="col-lg-8 col-md-8">
+        <div class="row center-block w3-row w3-margin-top ">
+            <h1 class="text-center trav-secondary-color">{{ 'registration.submit'|trans }} </h1>
+        </div>
+
+        {{ form_start(register_form,{'method': 'post', 'action': path('fos_user_registration_register'), 'attr': {'class': 'fos_user_registration_register'}}) }}
+
+        {{ form_errors(register_form) }}
+
+        <div class="row w3-margin-4">
+            <div class=" col-sm-6 col-lg-6 col-md-6 col-xs-12">
+                {{ form_widget(register_form.email,{ 'attr': {'placeholder':  'form.email' }}) }}
+            </div>
+            <div class="col-sm-6 col-lg-6 col-md-6 col-xs-12">
+                {{ form_widget(register_form.username,{ 'attr': {'placeholder':  'trav.form.username'|trans({},'messages') }}) }}
+            </div>
+        </div>
+        <div class="row w3-margin-4">
+            {% for passwordField in register_form.plainPassword %}
+                <div class="col-sm-6 col-md-6 col-lg-6 col-xs-12">
+                    {% if loop.index == 1 %}
+                        {{ form_widget(passwordField,{ 'attr': {'placeholder':  'form.password' }}) }}
+                    {% else %}
+                        {{ form_widget(passwordField,{ 'attr': {'placeholder':  'form.password_confirmation' }}) }}
+                    {% endif %}
+                </div>
+            {% endfor %}
+        </div>
+        <div class="row w3-margin-64 w3-center">
+
+            <input class="w3-center btn btn-lg trav-secondary-bg-color w3-text-white" type="submit" value="{{ 'registration.submit'|trans }}" />
+
+        </div>
+        <div style="display:none">
+            {{ form_rest(register_form) }}
+        </div>
+
+        {{ form_end(register_form) }}
+
+    </div>
+    </div>
+    <div class="row">
+        <div class="w3-container  w3-center">
+
+                <h1 class="w3-opacity blue-travelleurs-text">{{ 'trav.word.or'|trans({},'messages') }}</h1>
+                <span class="flag-icon flag-icon-ad"></span>
+                <a href="#" class="btn btn-lg classBtSB classBtRS1"><span class="fa fa-facebook fa-3x "></span> {{ 'trav.join.us.with'|trans({},'messages') }} Facebook</a>
+                <!--a href="#" class="btn btn-social-con btn-instagram"><i  class="fa fa-instagram fa-3x "></i></a>
+                <a href="#" class="btn btn-social-con btn-google"><i class="fa fa-google-plus fa-3x"></i></a-->
+
+
+        </div>
+    </div>
+</div>
+
 {% endblock fos_user_content %}

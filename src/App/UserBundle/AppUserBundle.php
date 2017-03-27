@@ -6,7 +6,7 @@
  * Time: 14:29
  */
 
-namespace App\AppUserBundle;
+namespace App\UserBundle;
 
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 

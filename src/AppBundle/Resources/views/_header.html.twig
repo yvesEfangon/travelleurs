@@ -1,4 +1,6 @@
-<nav class="navbar navbar-default navbar-fixed-top blue-travelleurs-bg" id="trav-header">
+{% set current=app.request.get('_locale') %}
+
+<nav class="navbar navbar-default navbar-fixed-top blue-travelleurs-bg center-block" id="trav-header">
     <div class="container">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
@@ -7,7 +9,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a href="{{ path('homepage') }}" class="navbar-brand" >
+            <a href="{{ path('homepage',{'_locale': current}) }}" class="navbar-brand" >
                 {% image '@AppBundle/Resources/public/images/logo-travelleurs-trans.png' %}
                 <img class="img-responsive" src="{{ asset_url }}" alt="Travelleurs.co"  />
                 {% endimage %}
@@ -17,19 +19,18 @@
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
 
-                {% set current=app.request.get('_locale') %}
+
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-
+                        <span class="{{  'flag-icon flag-icon-'~current}}"></span>
                         <img  src="{{ asset('/bundles/app/images/'~current~'.png') }}" alt="Français" title="Français"  />
-                         <span class="fa fa-caret-down pull-right"></span></a>
+                         <i class="fa fa-caret-down pull-right"></i></a>
                     <ul class="dropdown-menu">
 
                         {% set langues = locales %}
                         {% for lang in langues %}
                             {% if lang != current %}
                                 <li><a href="{{  path(app.request.get('_route'), app.request.get('_route_params')|merge({'_locale': lang}))}}">
-
                                     <img class="featurette-image img-responsive"  src="{{ asset('/bundles/app/images/')~lang~'.png' }}" alt="{{ lang }}" />
 
                                     </a>
@@ -40,12 +41,64 @@
                 </li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <li class="current"><a href="{{ path('homepage') }}" class="fa fa-home fa-lg"></a></li>
-                <li><a href="">Our story</a></li>
-                <li><a href="../navbar-static-top/">Exclusivities</a></li>
-                <li><a href="{{ path('fos_user_registration_register') }}">Sign Up</a></li>
-                <li><a href="{{ path('fos_user_security_login') }}">Login</a></li>
+                <li><a href="{{ path('homepage',{'_locale': current}) }}" class="fa fa-home fa-lg"></a></li>
+                <li><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                        {{ 'trav.ourstory'|trans }}&nbsp;<i class="fa fa-caret-down"></i>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a href="{{ path('trav_aboutus') }}">{{ 'trav.aboutus'|trans }}</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('trav_contact',{'_locale': current}) }}">
+                                {{ 'trav.contact'|trans }}
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ path('trav_faq',{'_locale': current}) }}">
+                                {{ 'trav.faq'|trans }}
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                        {{ 'trav.exclusivities'|trans }}&nbsp;<i class="fa fa-caret-down"></i>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a href="{{ path('trav_bonplan',{'_locale': current}) }}">{{ 'trav.bonplan'|trans }}</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('trav_marketplace',{'_locale': current}) }}">
+                                {{ 'trav.marketplace'|trans }}
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+
+                    <li><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                            {{ 'trav.say.hello'|trans }} {{ app.user.username }} &nbsp;<i class="fa fa-caret-down"></i>
+                        </a>
+                        <ul class="dropdown-menu">
+
+                            <li>
+                                <a href="{{ path('fos_user_security_logout',{'_locale': current}) }}">
+                                    <i class="fa fa-sign-out"></i>{{ 'trav.logout'|trans }}
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="{{ path('trav_mypage',{'_locale': current}) }}">{{ 'trav.my.profile'|trans }}</a>
+                    </li>
+                {% else %}
+                    <li class="w3-red w3-border w3-border-white"><a href="{{ path('fos_user_security_login',{'_locale': current}) }}">{{ 'trav.signin'|trans }}</a></li>
+                {% endif %}
             </ul>
         </div><!--/.nav-collapse -->
     </div>
 </nav>
+<div id="modal">
+
+</div>

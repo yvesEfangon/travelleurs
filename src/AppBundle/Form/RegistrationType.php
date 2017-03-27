@@ -3,24 +3,19 @@
 namespace AppBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class RegistrationType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('name',TextType::class,
-            array(
-                'label'=>'sano.name',
-                'required'=>true
-            ))
+        /*$builder
             ->add('firstname',TextType::class,
                 array(
-                    'label'=>'sano.firstname',
-                    'required'=>true
-                ));
+                    'label'=>'trav.form.firstname',
+                    'required'=>true,
+                    'attr'=>array('placeholder'=>'trav.form.firstname','class'=>'form-control')
+                ));*/
     }
 
     public function getParent()

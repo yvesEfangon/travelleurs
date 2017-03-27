@@ -2,69 +2,117 @@
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
     <file source-language="en" target-language="en" datatype="plaintext" original="file.ext">
         <body>
-            <trans-unit id="title_post_list">
-                <source>title.post_list</source>
-                <target>Liste d'articles</target>
-            </trans-unit>
-            <trans-unit id="travellers_menu_solutions">
-                <source>travellers.menu_solutions</source>
-                <target>Nos Solutions</target>
-            </trans-unit>
-            <trans-unit id="travellers_menu_vision">
-                <source>travellers.menu_vision</source>
-                <target>Notre Vision</target>
-            </trans-unit>
-            <trans-unit id="travellers_menu_context">
-                <source>travellers.menu_context</source>
-                <target>Le context</target>
-            </trans-unit>
-            <trans-unit id="travellers_menu_partenaires">
-                <source>travellers.menu_partenaires</source>
-                <target>Nos partenaires</target>
-            </trans-unit>
-            <trans-unit id="travellers_menu_contact">
-                <source>travellers.menu_contact</source>
-                <target>Contact</target>
-            </trans-unit>
-            <trans-unit id="travellers_menu_medias">
-                <source>travellers.menu_medias</source>
-                <target>Médias</target>
-            </trans-unit>
-            <trans-unit id="travellers_signup">
-                <source>travellers.signup</source>
-                <target>Rejoignez-nous</target>
-            </trans-unit>
-            <trans-unit id="travellers_login">
-                <source>travellers.login</source>
-                <target>Connexion</target>
-            </trans-unit>
-            <trans-unit id="travellers_hello">
-                <source>travellers.hello</source>
-                <target>Bonjour</target>
-            </trans-unit>
-            <trans-unit id="travellers_name">
-                <source>travellers.name</source>
-                <target>Nom</target>
-            </trans-unit>
-            <trans-unit id="travellers_firtsname">
-                <source>travellers.firstname</source>
-                <target>Prénom</target>
-            </trans-unit>
             <trans-unit id="travellers_email">
                 <source>travellers.email</source>
                 <target>Email</target>
             </trans-unit>
-            <trans-unit id="travellers_password">
-                <source>travellers.password</source>
+            <trans-unit id="trav_exclusivities">
+                <source>trav.exclusivities</source>
+                <target>Exclusivités</target>
+            </trans-unit>
+            <trans-unit id="trav_ourstory">
+                <source>trav.ourstory</source>
+                <target>Notre Story</target>
+            </trans-unit>
+            <trans-unit id="trav_signup">
+                <source>trav.signup</source>
+                <target>S'inscrire</target>
+            </trans-unit>
+            <trans-unit id="trav_signin">
+                <source>trav.signin</source>
+                <target>Connexion</target>
+            </trans-unit>
+            <trans-unit id="trav_bonplan">
+                <source>trav.bonplan</source>
+                <target>Bons plans</target>
+            </trans-unit>
+            <trans-unit id="trav_marketplace">
+                <source>trav.marketplace</source>
+                <target>Market place</target>
+            </trans-unit>
+            <trans-unit id="trav_aboutus">
+                <source>trav.aboutus</source>
+                <target>Qui sommes-nous</target>
+            </trans-unit>
+            <trans-unit id="trav_contact">
+                <source>trav.contact</source>
+                <target>Contact</target>
+            </trans-unit>
+            <trans-unit id="trav_faq">
+                <source>trav.faq</source>
+                <target>FAQ</target>
+            </trans-unit>
+            <trans-unit id="trav_home">
+                <source>trav.home</source>
+                <target>Accueil</target>
+            </trans-unit>
+            <trans-unit id="trav_Find_your_next_travel_partner">
+                <source>trav.Find.your.next.travel.partner</source>
+                <target>Trouver votre prochain covoyageur</target>
+            </trans-unit>
+            <trans-unit id="trav_where_you_go">
+                <source>trav.where.you.go</source>
+                <target>Où aimeriez-vous partir ?</target>
+            </trans-unit>
+            <trans-unit id="trav_security_login_email">
+                <source>trav.security.login.email</source>
+                <target>Votre Email</target>
+            </trans-unit>
+            <trans-unit id="trav_security_login_password">
+                <source>trav.security.login.password</source>
                 <target>Mot de passe</target>
             </trans-unit>
-            <trans-unit id="travellers_confirme">
-                <source>travellers.confirme</source>
-                <target>Confirmer</target>
+            <trans-unit id="trav_security_login_remember_me">
+                <source>trav.security.login.remember_me</source>
+                <target>Se souvenir de moi</target>
             </trans-unit>
-            <trans-unit id="travellers_login_name">
-                <source>travellers.login_name</source>
-                <target>Pseudo</target>
+            <trans-unit id="trav_security_login_submit">
+                <source>trav.security.login.submit</source>
+                <target>Connexion</target>
+            </trans-unit>
+             <trans-unit id="trav_security_login_with_social">
+                <source>trav.security.login.with.social</source>
+                <target>Connexion avec les réseaux sociaux</target>
+            </trans-unit>
+            <trans-unit id="trav_security_please_signin">
+                <source>trav.security.please.signin</source>
+                <target>Veuillez vous connecter</target>
+            </trans-unit>
+             <trans-unit id="trav_password_forgotten">
+                <source>trav.password_forgotten</source>
+                <target>Mot de passe oublié ?</target>
+            </trans-unit>
+            <trans-unit id="trav_form_firstname">
+                <source>trav.form.firstname</source>
+                <target>Votre prénom</target>
+            </trans-unit>
+            <trans-unit id="trav_form_username">
+                <source>trav.form.username</source>
+                <target>Votre pseudo</target>
+            </trans-unit>
+            <trans-unit id="trav_join_us_with">
+                <source>trav.join.us.with</source>
+                <target>Connectez-vous avec</target>
+            </trans-unit>
+             <trans-unit id="trav_word_or">
+                <source>trav.word.or</source>
+                <target>Ou</target>
+            </trans-unit>
+            <trans-unit id="trav_say_hello">
+                <source>trav.say.hello</source>
+                <target>Bonjour</target>
+            </trans-unit>
+            <trans-unit id="trav_my_profile">
+                <source>trav.my.profile</source>
+                <target>Mon Compte</target>
+            </trans-unit>
+            <trans-unit id="trav_logout">
+                <source>trav.logout</source>
+                <target>Déconnexion</target>
+            </trans-unit>
+             <trans-unit id="trav_registration_submit">
+                <source>trav.registration.submit</source>
+                <target>Créer un Compte</target>
             </trans-unit>
         </body>
     </file>

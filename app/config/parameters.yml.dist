@@ -18,6 +18,7 @@ parameters:
     # A secret key that's used to generate certain security-related tokens
     secret:            gjKeBFAhC5j6TX0qP6Il
     locale:  fr
+    regex.local: fr|en
     app.locales:
             - fr
             - en
