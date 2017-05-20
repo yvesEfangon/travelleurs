@@ -55,3 +55,7 @@ trav_mypage:
         _locale: '%locale%'
     requirements:
         _locale: '%regex.local%'
+root:
+    path: /
+    defaults:
+        _controller: AppBundle:Default:index
