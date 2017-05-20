@@ -30,12 +30,23 @@ class DefaultController extends Controller
         ]);
     }
 
+    /**
+     * @param Request $request
+     */
     public function searchAction(Request $request){
 
     }
+
+    /**
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
    public function ourstoryAction(){
         return $this->render('AppBundle:Default:ourstory.html.twig');
    }
+
+    /**
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
     public function marketplaceAction(){
         return $this->render('AppBundle:Default:marketplace.html.twig');
     }
