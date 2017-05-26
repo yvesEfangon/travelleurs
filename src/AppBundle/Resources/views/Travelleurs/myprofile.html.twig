@@ -1,0 +1,32 @@
+{% extends 'AppBundle::base.html.twig' %}
+{% block title %}{{ 'trav.my.profile'|trans }} - {{ parent() }} {% endblock %}
+{%  block content %}
+<div class="clearfix container-fluid center-block w3-margin-64">
+<div class="row center-block">
+    <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+        {% include 'AppBundle:Default:searchform.profile.html.twig' %}
+    </div>
+    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+        <i class="fa fa-commenting"></i>
+        <i class="fa fa-user-plus"></i>
+        <i class="fa fa-flag"></i>
+        <i class="fa fa-gear"></i>
+    </div>
+</div>
+</div>
+<div class="row w3-margin-48">
+    <div class="col-lg-3 col-md-3 col-xs-3">
+        Mes voyages
+        Mes activites
+        Trip planner
+    </div>
+    <div class="col-lg-6 col-md-6 col-xs-6">
+        Mon profil
+    </div>
+    <div class="col-lg-3 col-md-3 col-xs-3">
+        Mes favoris
+    </div>
+</div>
+{% endblock %}
+
+{% block inline_js %} {{ parent() }} {% endblock %}

@@ -9,7 +9,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
 
 class TravelleursController extends Controller
 {
-    public function mypageAction()
+    public function myprofileAction()
     {
         $user = $this->getUser();
         if (!is_object($user) || !$user instanceof UserInterface) {
@@ -23,7 +23,7 @@ class TravelleursController extends Controller
             'attr'=> ['class'=>'form-horizontal']
         ]);
 
-        return $this->render('AppBundle:Travelleurs:mypage.html.twig',
+        return $this->render('AppBundle:Travelleurs:myprofile.html.twig',
             [
                 'form_search'=>$form->createView(),
                 'user'=>$user

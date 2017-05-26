@@ -48,10 +48,10 @@ trav_search_form:
         _locale: '%locale%'
     requirements:
         _locale: '%regex.local%'
-trav_mypage:
-    path: /{_locale}/mypage/
+trav_myprofile:
+    path: /{_locale}/myprofile/
     defaults:
-        _controller: AppBundle:Travelleurs:mypage
+        _controller: AppBundle:Travelleurs:myprofile
         _locale: '%locale%'
     requirements:
         _locale: '%regex.local%'

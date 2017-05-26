@@ -90,7 +90,7 @@
                         </ul>
                     </li>
                     <li>
-                        <a href="{{ path('trav_mypage',{'_locale': current}) }}">{{ 'trav.my.profile'|trans }}</a>
+                        <a href="{{ path('trav_myprofile',{'_locale': current}) }}">{{ 'trav.my.profile'|trans }}</a>
                     </li>
                 {% else %}
                     <li class="w3-red w3-border w3-border-white"><a href="{{ path('fos_user_security_login',{'_locale': current}) }}">{{ 'trav.signin'|trans }}</a></li>
