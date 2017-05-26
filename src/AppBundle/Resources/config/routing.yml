@@ -4,7 +4,7 @@ homepage:
         _controller: AppBundle:Default:index
         _locale: "%locale%"
     requirements:
-        _locale: en|fr
+        _locale: '%regex.local%'
 
 trav_contact:
     path: /{_locale}/ourstory/contact/
@@ -56,6 +56,9 @@ trav_mypage:
     requirements:
         _locale: '%regex.local%'
 root:
-    path: /
+    path: /{_locale}
     defaults:
         _controller: AppBundle:Default:index
+        _locale: '%locale%'
+    requirements:
+        _locale: '%regex.local%'
