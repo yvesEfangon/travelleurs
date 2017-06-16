@@ -46,6 +46,22 @@
                 <source>trav.home</source>
                 <target>Home</target>
             </trans-unit>
+            <trans-unit id="trav_country">
+                <source>trav.country</source>
+                <target>Country</target>
+            </trans-unit>
+            <trans-unit id="trav_city">
+                <source>trav.city</source>
+                <target>City</target>
+            </trans-unit>
+            <trans-unit id="trav_my_age">
+                <source>trav.my.age</source>
+                <target>My age</target>
+            </trans-unit>
+            <trans-unit id="trav_member_since">
+                <source>trav.memeber.since</source>
+                <target>Member since</target>
+            </trans-unit>
             <trans-unit id="trav_Find_your_next_travel_partner">
                 <source>trav.Find.your.next.travel.partner</source>
                 <target>Find your next travel partner</target>

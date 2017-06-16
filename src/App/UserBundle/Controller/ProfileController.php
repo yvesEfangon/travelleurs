@@ -12,6 +12,7 @@
 namespace App\UserBundle\Controller;
 
 
+use AppBundle\Form\AddressType;
 use FOS\UserBundle\FOSUserEvents;
 use FOS\UserBundle\Event\FormEvent;
 use FOS\UserBundle\Event\FilterUserResponseEvent;
@@ -90,9 +91,18 @@ class ProfileController extends BaseController
 
             return $response;
         }
+        
+        $address_form = $this->createForm(AddressType::class,null,[
+            'action'=> $this->generateUrl('trav_edit_address',['user'=>$user->getId()]),
+            'method'=> 'POST',
+            'attr'=> ['class'=>'form-horizontal']
+        ]);
+        
+        $address_form->get('user')->setData($user);
 
         return $this->render('FOSUserBundle:Profile:edit.html.twig', array(
-            'form' => $form->createView()
+            'form' => $form->createView(),
+            'address_form'=>$address_form->createView()
         ));
     }
 }

@@ -55,6 +55,14 @@ trav_myprofile:
         _locale: '%locale%'
     requirements:
         _locale: '%regex.local%'
+trav_edit_address:
+    path: /{_locale}/address/edit/{user}
+    defaults:
+        _controller: AppBundle:Default:editaddress
+        _locale: '%locale%'
+    requirements:
+        _locale: '%regex.local%'
+        user: '\d+'
 root:
     path: /{_locale}
     defaults:

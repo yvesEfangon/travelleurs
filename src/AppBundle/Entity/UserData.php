@@ -89,12 +89,7 @@ class UserData
      * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Langue",cascade={"persist"})
      */
     private $langues;
-
-    /**
-     *
-     * @ORM\OneToOne(targetEntity="AppBundle\Entity\User", cascade={"persist"})
-     */
-    private $user;
+    
 
     public function __construct()
     {

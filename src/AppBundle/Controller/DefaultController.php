@@ -2,6 +2,7 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Entity\User;
 use AppBundle\Form\SearchVoyageIndexType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -65,5 +66,9 @@ class DefaultController extends Controller
 
     public function contactAction(){
         return $this->render('AppBundle:Default:contact.html.twig');
+    }
+
+    public function editaddressAction(Request $request, User $user){
+        
     }
 }

@@ -23,10 +23,14 @@ class TravelleursController extends Controller
             'attr'=> ['class'=>'form-horizontal']
         ]);
 
+        //Get the default address of the user
+        $address    = $this->get('trav.repository.address')->findBy(array("user"=>$user,"name"=>'default'));
+
         return $this->render('AppBundle:Travelleurs:myprofile.html.twig',
             [
                 'form_search'=>$form->createView(),
-                'user'=>$user
+                'user'=>$user,
+                'address' => $address
             ]);
     }
 }

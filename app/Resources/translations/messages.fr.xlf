@@ -106,6 +106,22 @@
                 <source>trav.my.profile</source>
                 <target>Mon Compte</target>
             </trans-unit>
+            <trans-unit id="trav_country">
+                <source>trav.country</source>
+                <target>Pays</target>
+            </trans-unit>
+            <trans-unit id="trav_city">
+                <source>trav.city</source>
+                <target>Ville</target>
+            </trans-unit>
+            <trans-unit id="trav_my_age">
+                <source>trav.my.age</source>
+                <target>Mon Age</target>
+            </trans-unit>
+            <trans-unit id="trav_member_since">
+                <source>trav.memeber.since</source>
+                <target>Membre depuis</target>
+            </trans-unit>
             <trans-unit id="trav_logout">
                 <source>trav.logout</source>
                 <target>Déconnexion</target>

@@ -10,6 +10,12 @@ services:
         tags:
             - { name: form.type, alias: app_user_registration }
 
+    app.form.profile:
+        class: AppBundle\Form\ProfileType
+        arguments: [%fos_user.model.user.class%]
+        tags:
+            - {name: form.type, alias: app_user_profile}
+
 
     app.mailer.notification:
         class: AppBundle\Mailer\NotificationMailer
@@ -20,17 +26,13 @@ services:
             - '@mailer'
 
     # Repositories
-    app.repository.track:
-        class: AppBundle\Repository\TrackRepository
+    trav.repository.address:
+        class: AppBundle\Repository\AddressRepository
         factory: ['@doctrine', 'getRepository']
-        arguments: ['AppBundle:Track']
+        arguments: ['AppBundle:Address']
 
-    app.repository.artist:
-        class: AppBundle\Repository\ArtistRepository
+    trav.repository.userdata:
+        class: AppBundle\Repository\UserDataRepository
         factory: ['@doctrine', 'getRepository']
-        arguments: ['AppBundle:Artist']
+        arguments: ['AppBundle:UserData']
 
-    app.repository.playlist:
-        class: AppBundle\Repository\PlaylistRepository
-        factory: ['@doctrine', 'getRepository']
-        arguments: ['AppBundle:Playlist']

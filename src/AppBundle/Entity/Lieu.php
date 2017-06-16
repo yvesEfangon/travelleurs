@@ -32,7 +32,7 @@ class Lieu
     /**
      * @var
      *
-     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\TagLieu",cascade={"persist"})
+     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Tag",cascade={"persist"})
      */
     private $tags;
 
@@ -139,14 +139,14 @@ class Lieu
     /**
      * @param mixed $tags
      */
-    public function addTag(TagLieu $tag)
+    public function addTag(Tag $tag)
     {
         $this->tags[] = $tag;
 
         return $this;
     }
 
-    public function removeTag(TagLieu $tag){
+    public function removeTag(Tag $tag){
         $this->tags->removeElement($tag);
 
         return $this;

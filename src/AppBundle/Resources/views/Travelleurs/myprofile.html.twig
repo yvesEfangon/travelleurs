@@ -21,7 +21,21 @@
         Trip planner
     </div>
     <div class="col-lg-6 col-md-6 col-xs-6">
-        Mon profil
+        <div class="row w3-margin-bottom text-center">{{ 'trav.my.profile'|trans|upper }}</div>
+        <div class="row">
+            <div class="col-lg-4 col-md-4 col-xs-4">
+                Photo
+            </div>
+            <div class="col-lg-8 col-md-8 col-xs-8">
+                <ul class="list-group">
+                    <li class="list-group-item">{{ 'trav.country'|trans }}: </li>
+                    <li class="list-group-item">{{ 'trav.city'|trans }}</li>
+                    <li class="list-group-item">{{ 'trav.my.age'|trans }}</li>
+                </ul>
+            </div>
+            <div class="row w3-margin-top text-right"><a href="{{ path('fos_user_profile_edit') }}"><i class="fa fa-pencil-square fa-2x"></i></a></div>
+        </div>
+       {{ dump(user) }}
     </div>
     <div class="col-lg-3 col-md-3 col-xs-3">
         Mes favoris

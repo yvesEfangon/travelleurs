@@ -7,10 +7,10 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * TagLieu
  *
- * @ORM\Table(name="tag_lieu")
- * @ORM\Entity(repositoryClass="AppBundle\Repository\TagLieuRepository")
+ * @ORM\Table(name="tag")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\TagRepository")
  */
-class TagLieu
+class Tag
 {
     /**
      * @var int

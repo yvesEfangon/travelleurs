@@ -39,9 +39,13 @@ class User extends BaseUser
     private $firstname;
 
     
-
+    /**
+     *
+     * @ORM\OneToOne(targetEntity="AppBundle\Entity\UserData", cascade={"persist"})
+     */
+    private $userData;
     
-    
+        
 
     /**
      * Get id
@@ -94,12 +98,31 @@ class User extends BaseUser
         return $this;
     }
 
+    /**
+     * @param $role
+     * @return bool
+     */
     public function isGranted($role)
     {
         return in_array($role, $this->getRoles());
     }
 
-   
+    /**
+     * @return mixed
+     */
+    public function getUserData()
+    {
+        return $this->userData;
+    }
+
+    /**
+     * @param mixed $userData
+     */
+    public function setUserData($userData)
+    {
+        $this->userData = $userData;
+    }
+
 
     
 
