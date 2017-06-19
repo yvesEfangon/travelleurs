@@ -65,6 +65,13 @@ class Address
     private $street;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="zipcode", type="string", length=255, nullable=true)
+     */
+    private $zipCode;
+
+    /**
      * @var
      *
      * @ORM\Column(name="latitude",type="float",nullable=true)
@@ -209,6 +216,7 @@ class Address
     public function setStreet($street)
     {
         $this->street = $street;
+
         return $this;
     }
 
@@ -227,6 +235,7 @@ class Address
     public function setLatitude($latitude)
     {
         $this->latitude = $latitude;
+
         return $this;
     }
 
@@ -245,6 +254,7 @@ class Address
     public function setLongitude($longitude)
     {
         $this->longitude = $longitude;
+
         return $this;
     }
 
@@ -263,6 +273,7 @@ class Address
     public function setAltitude($altitude)
     {
         $this->altitude = $altitude;
+
         return $this;
     }
 
@@ -281,6 +292,26 @@ class Address
     public function setUser($user)
     {
         $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getZipCode()
+    {
+        return $this->zipCode;
+    }
+
+    /**
+     * @param string $zipCode
+     * @return Address
+     */
+    public function setZipCode($zipCode)
+    {
+        $this->zipCode = $zipCode;
+
         return $this;
     }
 

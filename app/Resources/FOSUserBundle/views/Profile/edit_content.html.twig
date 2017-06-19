@@ -1,14 +1,109 @@
 {% trans_default_domain 'FOSUserBundle' %}
 
-{{ form_start(form, { 'action': path('fos_user_profile_edit'), 'attr': { 'class': 'fos_user_profile_edit' } }) }}
-    {{ form_widget(form) }}
-    <div>
-        <input type="submit" value="{{ 'profile.edit.submit'|trans }}" />
+<div class="panel panel-default" >
+    <div class="panel-heading">Personal informations</div>
+    <div class="panel-body">
+        {{ form_start(form, { 'action': path('fos_user_profile_edit'), 'attr': { 'class': 'fos_user_profile_edit' } }) }}
+        <div class="w3-padding row">
+            <div class="col-lg-6 col-md-6 col-xs-6">
+                <div  class="col-lg-3 col-md-3 col-xs-6">
+                    {{ form_label(form.username) }}
+                </div>
+                <div class="col-lg-9 col-md-9 col-xs-6">
+                    {{ form_widget(form.username) }}
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-6 col-xs-6">
+                <div  class="col-lg-3 col-md-3 col-xs-6">
+                    {{ form_label(form.email) }}
+                </div>
+                <div class="col-lg-9 col-md-9 col-xs-6">
+                    {{ form_widget(form.email) }}
+                </div>
+            </div>
+        </div>
+        <div class="w3-padding row">
+            <div class="col-lg-6 col-md-6 col-xs-6">
+                <div  class="col-lg-3 col-md-3 col-xs-6">
+                    {{ form_label(form.firstname) }}
+                </div>
+                <div class="col-lg-9 col-md-9 col-xs-6">
+                    {{ form_widget(form.firstname) }}
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-6 col-xs-6">
+                <div  class="col-lg-3 col-md-3 col-xs-6">
+                    {{ form_label(form.name) }}
+                </div>
+                <div class="col-lg-9 col-md-9 col-xs-6">
+                    {{ form_widget(form.name) }}
+                </div>
+            </div>
+        </div>
+        <div class="w3-padding row">
+            <div class="col-lg-6 col-md-6 col-xs-6">
+                <div  class="col-lg-3 col-md-3 col-xs-6">
+                    {{ form_label(form.birthdate) }}
+                </div>
+                <div class="col-lg-9 col-md-9 col-xs-6">
+                {{ form_widget(form.birthdate) }}
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-6 col-xs-6">
+                <div  class="col-lg-3 col-md-3 col-xs-6">
+                    {{ form_label(form.current_password) }}
+                </div>
+                <div class="col-lg-9 col-md-9 col-xs-6">
+                    {{ form_widget(form.current_password) }}
+                </div>
+            </div>
+        </div>
+        <div class="w3-padding row center-block">
+            <input class="btn btn-primary" type="submit" value="{{ 'profile.edit.submit'|trans }}" />
+        </div>
+        {{ form_end(form) }}
     </div>
-{{ form_end(form) }}
+</div>
 
 {{ form_start(address_form) }}
-
-{{ form_widget(address_form) }}
+<div class="w3-padding row">
+    <div class="col-lg-6 col-md-6 col-xs-6">
+        <div  class="col-lg-3 col-md-3 col-xs-6">
+            {{ form_label(address_form.country) }}
+        </div>
+        <div class="col-lg-9 col-md-9 col-xs-6">
+            {{ form_widget(address_form.country) }}
+        </div>
+    </div>
+    <div class="col-lg-6 col-md-6 col-xs-6">
+        <div  class="col-lg-3 col-md-3 col-xs-6">
+            {{ form_label(address_form.city) }}
+        </div>
+        <div class="col-lg-9 col-md-9 col-xs-6">
+            {{ form_widget(address_form.city) }}
+        </div>
+    </div>
+</div>
+<div class="w3-padding row">
+    <div class="col-lg-6 col-md-6 col-xs-6">
+        <div  class="col-lg-3 col-md-3 col-xs-6">
+            {{ form_label(address_form.street) }}
+        </div>
+        <div class="col-lg-9 col-md-9 col-xs-6">
+            {{ form_widget(address_form.street) }}
+        </div>
+    </div>
+    <div class="col-lg-6 col-md-6 col-xs-6">
+        <div  class="col-lg-3 col-md-3 col-xs-6">
+            {{ form_label(address_form.zipCode) }}
+        </div>
+        <div class="col-lg-9 col-md-9 col-xs-6">
+            {{ form_widget(address_form.zipCode) }}
+        </div>
+    </div>
+</div>
+<div class="w3-padding row center-block">
+    {{ form_widget(address_form.submit) }}
+</div>
 
 {{ form_end(address_form) }}

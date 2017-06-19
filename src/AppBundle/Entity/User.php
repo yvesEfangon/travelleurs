@@ -2,7 +2,6 @@
 
 namespace AppBundle\Entity;
 
-use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use FOS\UserBundle\Model\User as BaseUser;
 
@@ -38,6 +37,12 @@ class User extends BaseUser
      */
     private $firstname;
 
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="birthdate", type="datetime", unique=false, nullable=true)
+     */
+    private $birthdate;
     
     /**
      *
@@ -121,6 +126,25 @@ class User extends BaseUser
     public function setUserData($userData)
     {
         $this->userData = $userData;
+    }
+
+    /**
+     * @return string
+     */
+    public function getBirthdate()
+    {
+        return $this->birthdate;
+    }
+
+    /**
+     * @param string $birthdate
+     * @return User
+     */
+    public function setBirthdate($birthdate)
+    {
+        $this->birthdate = $birthdate;
+
+        return $this;
     }
 
 

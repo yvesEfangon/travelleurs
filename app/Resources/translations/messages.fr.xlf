@@ -48,7 +48,7 @@
             </trans-unit>
             <trans-unit id="trav_Find_your_next_travel_partner">
                 <source>trav.Find.your.next.travel.partner</source>
-                <target>Trouver votre prochain covoyageur</target>
+                <target>Trouvez votre prochain covoyageur</target>
             </trans-unit>
             <trans-unit id="trav_where_you_go">
                 <source>trav.where.you.go</source>
@@ -84,11 +84,15 @@
             </trans-unit>
             <trans-unit id="trav_form_firstname">
                 <source>trav.form.firstname</source>
-                <target>Votre prénom</target>
+                <target>Prénom</target>
+            </trans-unit>
+            <trans-unit id="trav_form_lastname">
+                <source>trav.form.lastname</source>
+                <target>Nom</target>
             </trans-unit>
             <trans-unit id="trav_form_username">
                 <source>trav.form.username</source>
-                <target>Votre pseudo</target>
+                <target>Pseudo</target>
             </trans-unit>
             <trans-unit id="trav_join_us_with">
                 <source>trav.join.us.with</source>
@@ -113,6 +117,14 @@
             <trans-unit id="trav_city">
                 <source>trav.city</source>
                 <target>Ville</target>
+            </trans-unit>
+            <trans-unit id="trav_street">
+                <source>trav.street</source>
+                <target>Rue</target>
+            </trans-unit>
+            <trans-unit id="trav_zipcode">
+                <source>trav.zipcode</source>
+                <target>Code postal</target>
             </trans-unit>
             <trans-unit id="trav_my_age">
                 <source>trav.my.age</source>

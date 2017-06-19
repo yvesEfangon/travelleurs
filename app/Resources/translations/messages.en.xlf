@@ -54,6 +54,14 @@
                 <source>trav.city</source>
                 <target>City</target>
             </trans-unit>
+            <trans-unit id="trav_street">
+                <source>trav.street</source>
+                <target>Street</target>
+            </trans-unit>
+            <trans-unit id="trav_zipcode">
+                <source>trav.zipcode</source>
+                <target>Zip code</target>
+            </trans-unit>
             <trans-unit id="trav_my_age">
                 <source>trav.my.age</source>
                 <target>My age</target>
@@ -72,11 +80,11 @@
             </trans-unit>
             <trans-unit id="trav_security_login_email">
                 <source>trav.security.login.email</source>
-                <target>Your Email</target>
+                <target>Email</target>
             </trans-unit>
             <trans-unit id="trav_security_login_password">
                 <source>trav.security.login.password</source>
-                <target>Your Password</target>
+                <target>Password</target>
             </trans-unit>
             <trans-unit id="trav_security_login_remember_me">
                 <source>trav.security.login.remember_me</source>
@@ -100,11 +108,15 @@
             </trans-unit>
             <trans-unit id="trav_form_firstname">
                 <source>trav.form.firstname</source>
-                <target>Your Firstname</target>
+                <target>Firstname</target>
+            </trans-unit>
+            <trans-unit id="trav_form_lastname">
+                <source>trav.form.lastname</source>
+                <target>Lastname</target>
             </trans-unit>
             <trans-unit id="trav_form_username">
                 <source>trav.form.username</source>
-                <target>Your Username</target>
+                <target>Username</target>
             </trans-unit>
             <trans-unit id="trav_join_us_with">
                 <source>trav.join.us.with</source>

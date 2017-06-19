@@ -16,14 +16,8 @@ services:
         tags:
             - {name: form.type, alias: app_user_profile}
 
-
-    app.mailer.notification:
-        class: AppBundle\Mailer\NotificationMailer
-        arguments:
-            - 'Spotizer'
-            - 'spotizer@clever-age.com'
-            - '@templating'
-            - '@mailer'
+    trav.fileuploader:
+        class: AppBundle\Service\FileUploader
 
     # Repositories
     trav.repository.address:

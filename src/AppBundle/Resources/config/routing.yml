@@ -63,6 +63,12 @@ trav_edit_address:
     requirements:
         _locale: '%regex.local%'
         user: '\d+'
+trav_add_profile_image:
+    path: /ajax/profile/image/send/{user}
+    defaults:
+        _controller: AppBundle:Default:addProfileImage
+    requirements:
+        user: '\d+'
 root:
     path: /{_locale}
     defaults:

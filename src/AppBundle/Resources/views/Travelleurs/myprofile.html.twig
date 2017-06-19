@@ -24,7 +24,8 @@
         <div class="row w3-margin-bottom text-center">{{ 'trav.my.profile'|trans|upper }}</div>
         <div class="row">
             <div class="col-lg-4 col-md-4 col-xs-4">
-                Photo
+                <div class="dropzone my-dropzone" id="form_snippet_image" action="{{path('trav_add_profile_image',{'user':user.id})}}">
+                </div>
             </div>
             <div class="col-lg-8 col-md-8 col-xs-8">
                 <ul class="list-group">
@@ -35,7 +36,7 @@
             </div>
             <div class="row w3-margin-top text-right"><a href="{{ path('fos_user_profile_edit') }}"><i class="fa fa-pencil-square fa-2x"></i></a></div>
         </div>
-       {{ dump(user) }}
+
     </div>
     <div class="col-lg-3 col-md-3 col-xs-3">
         Mes favoris

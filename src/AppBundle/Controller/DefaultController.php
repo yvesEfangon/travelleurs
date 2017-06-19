@@ -71,4 +71,9 @@ class DefaultController extends Controller
     public function editaddressAction(Request $request, User $user){
         
     }
+
+    public function addProfileImageAction(Request $request,User $user)
+    {
+
+    }
 }

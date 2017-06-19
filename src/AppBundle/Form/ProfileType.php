@@ -3,6 +3,7 @@
 namespace AppBundle\Form;
 
 use FOS\UserBundle\Form\Type\ProfileFormType as BaseType;
+use Symfony\Component\Form\Extension\Core\Type\BirthdayType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 
@@ -20,8 +21,16 @@ class ProfileType extends BaseType
             'label'=>'trav.form.firstname'
         ])
         ->add('name',TextType::class,[
-            'label'=>'trav.form.name'
+            'label'=>'trav.form.lastname'
         ])
+        ->add(
+            'birthdate',
+            BirthdayType::class,
+            [
+                'label'=>'trav.birthdate',
+                'required'=>true
+            ]
+        )
         ;
     }
 
