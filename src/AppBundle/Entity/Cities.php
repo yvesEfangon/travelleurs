@@ -15,7 +15,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @package AppBundle\Entity
  *
  * @ORM\Entity(repositoryClass="AppBundle\Repository\CitiesRepository")
- * @ORM\Table(name="cities")
+ * @ORM\Table(name="cities", indexes={@ORM\Index(name="serach_idx",columns={"country_code","city_code","city"})})
  */
 class Cities
 {
@@ -33,14 +33,39 @@ class Cities
     private $countryCode;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="country_name", length=255, nullable=false)
+     */
+    private $countryName;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="state_code", length=10)
+     */
+    private $stateCode;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="state_name", length=255)
+     */
+    private $stateName;
+
+    /**
      * @ORM\Column(name="city_code", type="string", nullable=true)
      */
     private $cityCode;
+
+
 
     /**
      * @ORM\Column(name="city", type="string", nullable=false)
      */
     private $city;
+
+
 
     /**
      * @ORM\Column(name="region", type="string")
@@ -188,6 +213,60 @@ class Cities
     {
         $this->region = $region;
         
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getCountryName()
+    {
+        return $this->countryName;
+    }
+
+    /**
+     * @param string $countryName
+     * @return Cities
+     */
+    public function setCountryName($countryName)
+    {
+        $this->countryName = $countryName;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getStateCode()
+    {
+        return $this->stateCode;
+    }
+
+    /**
+     * @param string $stateCode
+     * @return Cities
+     */
+    public function setStateCode($stateCode)
+    {
+        $this->stateCode = $stateCode;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getStateName()
+    {
+        return $this->stateName;
+    }
+
+    /**
+     * @param string $stateName
+     * @return Cities
+     */
+    public function setStateName($stateName)
+    {
+        $this->stateName = $stateName;
         return $this;
     }
 

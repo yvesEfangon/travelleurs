@@ -81,14 +81,26 @@ class Etape
     private $modifiedOn;
 
     /**
-     * @var User
+     * @var double
      *
-     * @ORM\OneToOne(targetEntity="AppBundle\Entity\User",cascade={"persist"})
+     * @ORM\Column(name="budget", type="float")
      */
-    private $creator;
+    private $budget;
 
-   
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="currency", type="string", length=10, nullable=true)
+     */
+    private $currency;
 
+
+    /**
+     *
+     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Tag", cascade={"persist"})
+     *
+     */
+    private $tag;
 
 
     /**
@@ -98,11 +110,35 @@ class Etape
      */
     private $themes;
 
+    /**
+     *
+     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\CentreInteret", cascade={"persist"})
+     *
+     */
+    private $centreInteret;
 
+    /**
+     * @var Cities
+     * 
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Cities")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $villeDepart;
 
+    /**
+     * @var Cities
+     *
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Cities")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $villeArrivee;
+    
+    
     public function __construct()
     {
         $this->themes   = new ArrayCollection();
+        $this->tag      = new ArrayCollection();
+        $this->centreInteret    = new ArrayCollection();
         $this->createdOn = new \DateTime();
         $this->modifiedOn = new \DateTime();
     }
@@ -251,33 +287,6 @@ class Etape
     }
 
 
-
-    /**
-     * @return User
-     */
-    public function getCreator()
-    {
-        return $this->creator;
-    }
-
-    /**
-     * @param User $creator
-     */
-    public function setCreator(User $creator)
-    {
-        $this->creator  = $creator;
-        
-        return $this;
-    }
-
-    /**
-     * @param User $user
-     * @return bool
-     */
-    public function isCreator(User $user){
-        return $this->creator->getId() == $user->getId();
-    }
-
     /**
      * @return Theme
      */
@@ -299,6 +308,7 @@ class Etape
         return $this;
     }
 
+
     /**
      * @param Theme $theme
      * @return bool
@@ -306,6 +316,48 @@ class Etape
     public function hasTheme(Theme $theme){
         return $this->themes->exists($theme);
     }
+
+    /**
+     * @return mixed
+     */
+    public function getTag()
+    {
+        return $this->tag;
+    }
+
+    /**
+     * @param mixed $tag
+     * @return Voyage
+     */
+    public function setTag($tag)
+    {
+        $this->tag = $tag;
+        return $this;
+    }
+
+    /**
+     * @param Tag $tag
+     * @return $this
+     */
+    public function addTag(Tag $tag){
+        if(!$this->hasTag($tag)) $this->tag[]    = $tag;
+
+        return $this;
+    }
+
+    public function hasTag(Tag $tag){
+        return $this->tag->exists($tag);
+    }
+    /**
+     * @param Tag $tag
+     * @return $this
+     */
+    public function removeTag(Tag $tag){
+        $this->tag->removeElement($tag);
+
+        return $this;
+    }
+
 
     /**
      * @return \DateTime
@@ -343,7 +395,115 @@ class Etape
         return $this;
     }
 
-    
+    /**
+     * @return mixed
+     */
+    public function getCentreInteret()
+    {
+        return $this->centreInteret;
+    }
+
+    /**
+     * @param mixed $centreInteret
+     * @return Etape
+     */
+    public function setCentreInteret($centreInteret)
+    {
+        $this->centreInteret = $centreInteret;
+        return $this;
+    }
+
+    public function hasCentreInteret(CentreInteret $centreInteret)
+    {
+        return $this->centreInteret->exists($centreInteret);
+    }
+
+    public function removeCentreInteret(CentreInteret$centreInteret)
+    {
+        $this->centreInteret->removeElement($centreInteret);
+
+        return $this;
+    }
+
+    public function addCentreInteret(CentreInteret $centreInteret){
+        if(!$this->hasCentreInteret($centreInteret)) $this->centreInteret[] = $centreInteret;
+
+        return $this;
+    }
+
+    /**
+     * @return Cities
+     */
+    public function getVilleDepart()
+    {
+        return $this->villeDepart;
+    }
+
+    /**
+     * @param Cities $villeDepart
+     * @return Etape
+     */
+    public function setVilleDepart($villeDepart)
+    {
+        $this->villeDepart = $villeDepart;
+        return $this;
+    }
+
+    /**
+     * @return Cities
+     */
+    public function getVilleArrivee()
+    {
+        return $this->villeArrivee;
+    }
+
+    /**
+     * @param Cities $villeArrivee
+     * @return Etape
+     */
+    public function setVilleArrivee($villeArrivee)
+    {
+        $this->villeArrivee = $villeArrivee;
+        return $this;
+    }
+
+    /**
+     * @return float
+     */
+    public function getBudget()
+    {
+        return $this->budget;
+    }
+
+    /**
+     * @param float $budget
+     * @return Voyage
+     */
+    public function setBudget($budget)
+    {
+        $this->budget = $budget;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getCurrency()
+    {
+        return $this->currency;
+    }
+
+    /**
+     * @param $currency
+     * @return $this
+     */
+    public function setCurrency($currency)
+    {
+        $this->currency = $currency;
+
+        return $this;
+    }
+
 
 }
 

@@ -68,15 +68,63 @@ class Voyage
     /**
      * @var string
      *
-     * @ORM\Column(name="status", type="string", nullable=true)
+     * @ORM\Column(name="status", type="string",length=10, nullable=true)
      */
     private $status;
 
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="number_of_participants", type="integer", nullable=true)
+     */
+    private $numberOfParticipants;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="owner_is_alone", type="string",length=20, nullable=true)
+     */
+    private $ownerIsAlone;
+
+    /**
+     * @var string
+     *
+     * @ORM\OneToOne(targetEntity="AppBundle\Entity\Genre", cascade={"persist"})
+     */
+    private $genreVoyageurs;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="smocker_allowed", type="boolean")
+     */
+    private $smockerAllowed;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="type_de_voyage", type="string", length=20)
+     */
+    private $typeDeVoyage;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="strict_criteria", type="boolean")
+     */
+    private $strict_criteria;
+
+    
 
 
+
+    /**
+     * Voyage constructor.
+     */
     public function __construct()
     {
         $this->participants     = new ArrayCollection();
+
         $this->createdOn        = new \DateTime();
     }
 
@@ -160,6 +208,14 @@ class Voyage
     }
 
     /**
+     * @param User $user
+     * @return bool
+     */
+    public function isOwner(User $user){
+        
+        return ($this->owner->getId() == $user->getId());
+    }
+    /**
      * @return ArrayCollection
      */
     public function getParticipants()
@@ -180,7 +236,7 @@ class Voyage
 
     public function addParticipant(User $participant)
     {
-        $this->participants[]   = $participant;
+        if(!$this->hasParticipant($participant)) $this->participants[]   = $participant;
 
         return $this;
     }
@@ -192,6 +248,14 @@ class Voyage
         $this->participants->removeElement($participant);
     }
 
+    /**
+     * @param User $participant
+     * @return bool
+     */
+    public function hasParticipant(User $participant)
+    {
+        return $this->participants->exists($participant);
+    }
     /**
      * @return \DateTime
      */
@@ -247,6 +311,114 @@ class Voyage
         return $this;
     }
 
+    /**
+     * @return int
+     */
+    public function getNumberOfParticipants()
+    {
+        return $this->numberOfParticipants;
+    }
+
+    /**
+     * @param int $numberOfParticipants
+     * @return Voyage
+     */
+    public function setNumberOfParticipants($numberOfParticipants)
+    {
+        $this->numberOfParticipants = $numberOfParticipants;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getOwnerIsAlone()
+    {
+        return $this->ownerIsAlone;
+    }
+
+    /**
+     * @param string $ownerIsAlone
+     * @return Voyage
+     */
+    public function setOwnerIsAlone($ownerIsAlone)
+    {
+        $this->ownerIsAlone = $ownerIsAlone;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getGenreVoyageurs()
+    {
+        return $this->genreVoyageurs;
+    }
+
+    /**
+     * @param string $genreVoyageurs
+     * @return Voyage
+     */
+    public function setGenreVoyageurs($genreVoyageurs)
+    {
+        $this->genreVoyageurs = $genreVoyageurs;
+        return $this;
+    }
+
+    /**
+     * @return boolean
+     */
+    public function isSmockerAllowed()
+    {
+        return $this->smockerAllowed;
+    }
+
+    /**
+     * @param boolean $smockerAllowed
+     * @return Voyage
+     */
+    public function setSmockerAllowed($smockerAllowed)
+    {
+        $this->smockerAllowed = $smockerAllowed;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getTypeDeVoyage()
+    {
+        return $this->typeDeVoyage;
+    }
+
+    /**
+     * @param string $typeDeVoyage
+     * @return Voyage
+     */
+    public function setTypeDeVoyage($typeDeVoyage)
+    {
+        $this->typeDeVoyage = $typeDeVoyage;
+        return $this;
+    }
+
+    /**
+     * @return boolean
+     */
+    public function isStrictCriteria()
+    {
+        return $this->strict_criteria;
+    }
+
+    /**
+     * @param boolean $strict_criteria
+     * @return Voyage
+     */
+    public function setStrictCriteria($strict_criteria)
+    {
+        $this->strict_criteria = $strict_criteria;
+        return $this;
+    }
+     
 
 
 
