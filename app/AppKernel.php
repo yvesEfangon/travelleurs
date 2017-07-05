@@ -28,8 +28,9 @@ class AppKernel extends Kernel
             new Sonata\CacheBundle\SonataCacheBundle(),
             new Sonata\SeoBundle\SonataSeoBundle(),
             new App\UserBundle\AppUserBundle(),
-            //new Sonata\NotificationBundle\SonataNotificationBundle(),
-            //new Application\Sonata\NotificationBundle\ApplicationSonataNotificationBundle(),
+            new FOS\JsRoutingBundle\FOSJsRoutingBundle(),
+            new FOS\RestBundle\FOSRestBundle(),
+            new JMS\SerializerBundle\JMSSerializerBundle(),
         );
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {

@@ -12,6 +12,7 @@
 namespace App\UserBundle\Controller;
 
 
+use AppBundle\Entity\Address;
 use AppBundle\Form\AddressType;
 use FOS\UserBundle\FOSUserEvents;
 use FOS\UserBundle\Event\FormEvent;
@@ -91,18 +92,37 @@ class ProfileController extends BaseController
 
             return $response;
         }
-        
-        $address_form = $this->createForm(AddressType::class,null,[
-            'action'=> $this->generateUrl('trav_edit_address',['user'=>$user->getId()]),
-            'method'=> 'POST',
-            'attr'=> ['class'=>'form-horizontal']
-        ]);
-        
-        $address_form->get('user')->setData($user);
+
+        $address = new Address();
+
+        /*$address_form = $this->get('form.factory')->create('app.form.address',$address,
+            [
+                'entity_manager' => $this->get('doctrine.orm.entity_manager'),
+                'action' => $this->generateUrl('trav_edit_address',['user' => $user->getId()]),
+                'method' => 'POST',
+                'attr' => ['class' => 'form-horizontal']
+            ]
+            );*/
+
+        $address_form = $this->createForm(
+           AddressType::class,
+            $address,
+            [
+                'data' => array('country_id'=>null),
+                'entity_manager' => $this->get('doctrine.orm.entity_manager'),
+                'action' => $this->generateUrl('trav_edit_address',['user' => $user->getId()]),
+                'method' => 'POST',
+                'attr' => ['class' => 'form-horizontal']
+            ]
+        );
+
+
+        //$address_form->get('user')->setData($user); 'address_form'=>$address_form->createView()
 
         return $this->render('FOSUserBundle:Profile:edit.html.twig', array(
             'form' => $form->createView(),
-            'address_form'=>$address_form->createView()
+            'address_form' => $address_form->createView(),
+            'user' => $user
         ));
     }
 

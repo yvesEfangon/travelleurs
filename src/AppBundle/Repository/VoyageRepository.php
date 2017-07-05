@@ -1,6 +1,8 @@
 <?php
 
 namespace AppBundle\Repository;
+use AppBundle\Entity\User;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * VoyageRepository
@@ -10,4 +12,35 @@ namespace AppBundle\Repository;
  */
 class VoyageRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function findVoyageUsersById(array $criteria){
+
+        if(!isset($criteria['user']) && !isset($criteria['voyage'])) return array();
+
+        $query  = $this->createQueryBuilder('v');
+        $query->join('v.participants','p');
+
+        if(isset($criteria['user']) && $criteria['user'] != ''){
+            $user   = $criteria['user'];
+
+            if(!is_object($user) || !$user instanceof UserInterface) return null;
+
+            $query->where('p.id = :user_id');
+            $query->setParameter('user_id',$user->getId());
+        }elseif(isset($criteria['voyage']) && $criteria['voyage'] != ''){
+
+            $voyage = $criteria['voyage'];
+
+            if(!is_object($voyage)) return null;
+
+            $query->where('v.id = :voyage_id');
+            $query->setParameter('voyage_id',$voyage->getId());
+        }else
+        {
+            return array();
+        }
+
+        return $query->getQuery()->getArrayResult();
+
+
+    }
 }

@@ -40,20 +40,20 @@ class Address
     /**
      * @var string
      *
-     * @ORM\Column(name="country", type="string", length=255)
+     * @ORM\OneToOne(targetEntity="AppBundle\Entity\Countries")
      */
     private $country;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="county", type="string", length=255)
+     * @ORM\OneToOne(targetEntity="AppBundle\Entity\States")
      */
-    private $county;
+    private $state;
     /**
      * @var string
      *
-     * @ORM\Column(name="city", type="string", length=255, nullable=true)
+     * @ORM\OneToOne(targetEntity="AppBundle\Entity\Cities")
      */
     private $city;
 
@@ -70,27 +70,6 @@ class Address
      * @ORM\Column(name="zipcode", type="string", length=255, nullable=true)
      */
     private $zipCode;
-
-    /**
-     * @var
-     *
-     * @ORM\Column(name="latitude",type="float",nullable=true)
-     */
-    private $latitude;
-
-    /**
-     * @var
-     *
-     * @ORM\Column(name="longitude",type="float",nullable=true)
-     */
-    private $longitude;
-
-    /**
-     * @var
-     *
-     * @ORM\Column(name="altitude",type="float",nullable=true)
-     */
-    private $altitude;
 
 
 
@@ -168,20 +147,23 @@ class Address
     /**
      * @return string
      */
-    public function getCounty()
+    public function getState()
     {
-        return $this->county;
+        return $this->state;
     }
 
     /**
-     * @param string $county
+     * @param string $state
      * @return Address
      */
-    public function setCounty($county)
+    public function setState($state)
     {
-        $this->county = $county;
+        $this->state = $state;
+
         return $this;
     }
+
+
 
     /**
      * @return string
@@ -220,62 +202,6 @@ class Address
         return $this;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getLatitude()
-    {
-        return $this->latitude;
-    }
-
-    /**
-     * @param mixed $latitude
-     * @return Address
-     */
-    public function setLatitude($latitude)
-    {
-        $this->latitude = $latitude;
-
-        return $this;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getLongitude()
-    {
-        return $this->longitude;
-    }
-
-    /**
-     * @param mixed $longitude
-     * @return Address
-     */
-    public function setLongitude($longitude)
-    {
-        $this->longitude = $longitude;
-
-        return $this;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getAltitude()
-    {
-        return $this->altitude;
-    }
-
-    /**
-     * @param mixed $altitude
-     * @return Address
-     */
-    public function setAltitude($altitude)
-    {
-        $this->altitude = $altitude;
-
-        return $this;
-    }
 
     /**
      * @return User

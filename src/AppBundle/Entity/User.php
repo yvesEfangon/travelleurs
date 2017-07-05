@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity;
 
+use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\Mapping as ORM;
 use FOS\UserBundle\Model\User as BaseUser;
 
@@ -43,14 +44,41 @@ class User extends BaseUser
      * @ORM\Column(name="birthdate", type="datetime", unique=false, nullable=true)
      */
     private $birthdate;
-    
+
     /**
+     * @var string
      *
-     * @ORM\OneToOne(targetEntity="AppBundle\Entity\UserData", cascade={"persist"})
+     * @ORM\Column(name="country", type="string", unique=false, nullable=true)
      */
-    private $userData;
-    
-        
+    private $country;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="state", type="string", unique=false, nullable=true)
+     */
+    private $state;
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="city", type="string", unique=false, nullable=true)
+     */
+    private $city;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="latitude", type="string", length=20, unique=false, nullable=true)
+     */
+    private $latitude;
+
+    /**
+     * @var string
+     *
+     *  @ORM\Column(name="longitude", type="string",length=20, unique=false, nullable=true)
+     */
+    private $longitude;
+
 
     /**
      * Get id
@@ -147,6 +175,95 @@ class User extends BaseUser
         return $this;
     }
 
+    /**
+     * @return string
+     */
+    public function getCountry()
+    {
+        return $this->country;
+    }
+
+    /**
+     * @param string $country
+     * @return User
+     */
+    public function setCountry($country)
+    {
+        $this->country = $country;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getState()
+    {
+        return $this->state;
+    }
+
+    /**
+     * @param string $state
+     * @return User
+     */
+    public function setState($state)
+    {
+        $this->state = $state;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getCity()
+    {
+        return $this->city;
+    }
+
+    /**
+     * @param string $city
+     * @return User
+     */
+    public function setCity($city)
+    {
+        $this->city = $city;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getLatitude()
+    {
+        return $this->latitude;
+    }
+
+    /**
+     * @param string $latitude
+     * @return User
+     */
+    public function setLatitude($latitude)
+    {
+        $this->latitude = $latitude;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getLongitude()
+    {
+        return $this->longitude;
+    }
+
+    /**
+     * @param string $longitude
+     * @return User
+     */
+    public function setLongitude($longitude)
+    {
+        $this->longitude = $longitude;
+        return $this;
+    }
 
     
 

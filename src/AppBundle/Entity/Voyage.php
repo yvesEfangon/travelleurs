@@ -2,6 +2,8 @@
 
 namespace AppBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -22,12 +24,19 @@ class Voyage
     private $id;
 
     /**
-     * @var int
+     * @var User
      *
-     * @ORM\Column(name="user_id", type="integer")
+     * @ORM\OneToOne(targetEntity="AppBundle\Entity\User")
+     * @ORM\JoinColumn(nullable=false)
      */
-    private $userId;
+    private $owner;
 
+    /**
+     *
+     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\User", cascade={"persist"})
+     *
+     */
+    private $participants;
     /**
      * @var string
      *
@@ -43,19 +52,33 @@ class Voyage
     private $annonce;
 
     /**
-     * @var string
+     * @var \DateTime
      *
-     * @ORM\Column(name="profil_organisateur", type="string", length=50, nullable=true)
+     * @ORM\Column(name="created_on", type="datetime", nullable=false)
      */
-    private $profilOrganisateur;
+    private $createdOn;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="published", type="boolean", nullable=false)
+     */
+    private $published;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="profil_covoyageur", type="string", length=50, nullable=true)
+     * @ORM\Column(name="status", type="string", nullable=true)
      */
-    private $profilCovoyageur;
+    private $status;
 
+
+
+    public function __construct()
+    {
+        $this->participants     = new ArrayCollection();
+        $this->createdOn        = new \DateTime();
+    }
 
     /**
      * Get id
@@ -67,29 +90,6 @@ class Voyage
         return $this->id;
     }
 
-    /**
-     * Set userId
-     *
-     * @param integer $userId
-     *
-     * @return Voyage
-     */
-    public function setUserId($userId)
-    {
-        $this->userId = $userId;
-
-        return $this;
-    }
-
-    /**
-     * Get userId
-     *
-     * @return int
-     */
-    public function getUserId()
-    {
-        return $this->userId;
-    }
 
     /**
      * Set photo
@@ -139,52 +139,116 @@ class Voyage
         return $this->annonce;
     }
 
+
     /**
-     * Set profilOrganisateur
-     *
-     * @param string $profilOrganisateur
-     *
+     * @return User
+     */
+    public function getOwner()
+    {
+        return $this->owner;
+    }
+
+    /**
+     * @param User $owner
      * @return Voyage
      */
-    public function setProfilOrganisateur($profilOrganisateur)
+    public function setOwner($owner)
     {
-        $this->profilOrganisateur = $profilOrganisateur;
+        $this->owner = $owner;
 
         return $this;
     }
 
     /**
-     * Get profilOrganisateur
-     *
-     * @return string
+     * @return ArrayCollection
      */
-    public function getProfilOrganisateur()
+    public function getParticipants()
     {
-        return $this->profilOrganisateur;
+        return $this->participants;
     }
 
     /**
-     * Set profilCovoyageur
-     *
-     * @param string $profilCovoyageur
-     *
+     * @param ArrayCollection $participants
      * @return Voyage
      */
-    public function setProfilCovoyageur($profilCovoyageur)
+    public function setParticipants(ArrayCollection $participants)
     {
-        $this->profilCovoyageur = $profilCovoyageur;
+        $this->participants = $participants;
 
         return $this;
     }
 
+    public function addParticipant(User $participant)
+    {
+        $this->participants[]   = $participant;
+
+        return $this;
+    }
     /**
-     * Get profilCovoyageur
-     *
+     * @param User $participant
+     */
+    public function removeParticipant(User $participant)
+    {
+        $this->participants->removeElement($participant);
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getCreatedOn()
+    {
+        return $this->createdOn;
+    }
+
+    /**
+     * @param \DateTime $createdOn
+     * @return Voyage
+     */
+    public function setCreatedOn($createdOn)
+    {
+        $this->createdOn = $createdOn;
+        return $this;
+    }
+
+    /**
+     * @return boolean
+     */
+    public function isPublished()
+    {
+        return $this->published;
+    }
+
+    /**
+     * @param boolean $published
+     * @return Voyage
+     */
+    public function setPublished($published)
+    {
+        $this->published = $published;
+        return $this;
+    }
+
+    /**
      * @return string
      */
-    public function getProfilCovoyageur()
+    public function getStatus()
     {
-        return $this->profilCovoyageur;
+        return $this->status;
     }
+
+    /**
+     * @param string $status
+     * @return Voyage
+     */
+    public function setStatus($status)
+    {
+        $this->status = $status;
+
+        return $this;
+    }
+
+
+
+
 }
 

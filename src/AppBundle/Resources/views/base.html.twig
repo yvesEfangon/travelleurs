@@ -184,6 +184,7 @@
 
 {% javascripts
     '@AppBundle/Resources/public/js/std/jquery-2.0.0.min.js'
+    '@AppBundle/Resources/public/vendor/jquery-ui/jquery-ui.min.js'
     '@AppBundle/Resources/public/js/std/jquery.dropotron.min.js'
     '@AppBundle/Resources/public/js/std/bootstrap.min.js'
     '@AppBundle/Resources/public/js/std/underscore-min.js'
@@ -196,6 +197,9 @@
 %}
 <script src="{{ asset_url }}"></script>
 {% endjavascripts %}
+
+<script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
+<script src="{{ path('fos_js_routing_js', { callback: 'fos.Router.setData' }) }}"></script>
 
 {% block inline_js %}
     <script>

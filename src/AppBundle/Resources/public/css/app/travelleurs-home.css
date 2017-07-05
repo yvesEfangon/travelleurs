@@ -186,6 +186,10 @@ height: auto;
     background: #fff;
     color: #351c75;
 }
+.pimp_my_menu div a.current {
+    background: #351c75;
+    color: #ffffff;
+}
 
 .navbar-default .navbar-nav > li > a:focus, .navbar-default .navbar-nav > li > a:hover{
     color: #ffffff ;

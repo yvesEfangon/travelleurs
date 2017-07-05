@@ -142,6 +142,22 @@
                 <source>trav.registration.submit</source>
                 <target>Créer un Compte</target>
             </trans-unit>
+            <trans-unit id="trav_my_actions">
+                <source>trav.my.actions</source>
+                <target>Mes actions</target>
+            </trans-unit>
+            <trans-unit id="trav_my_favourites">
+                <source>trav.my.favourites</source>
+                <target>Mes Favouris</target>
+            </trans-unit>
+            <trans-unit id="trav_mytravels">
+                <source>trav.mytravels</source>
+                <target>Mes Voyages</target>
+            </trans-unit>
+            <trans-unit id="trav_myactivities">
+                <source>trav.myactivities</source>
+                <target>Mes Activités</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

@@ -69,6 +69,15 @@ trav_add_profile_image:
         _controller: AppBundle:Default:addProfileImage
     requirements:
         user: '\d+'
+
+trav_add_voyage:
+    path: /{_locale}/voyage/add
+    defaults:
+        _controller: AppBundle:Voyage:add
+trav_index_voyage:
+    path: /{_locale}/voyage/list
+    defaults:
+        _controller: AppBundle:Voyage:index
 root:
     path: /{_locale}
     defaults:

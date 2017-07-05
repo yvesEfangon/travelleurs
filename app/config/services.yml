@@ -29,4 +29,8 @@ services:
         class: AppBundle\Repository\UserDataRepository
         factory: ['@doctrine', 'getRepository']
         arguments: ['AppBundle:UserData']
+    trav.repository.country:
+        class: AppBundle\Repository\CountriesRepository
+        factory: ['@doctrine', 'getRepository']
+        arguments: ['AppBundle:Countries']
 

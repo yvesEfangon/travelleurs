@@ -45,7 +45,11 @@
         "liip/monitor-bundle": "^2.3",
         "symfony/validator": "^3.2",
         "oyejorge/less.php": "^1.7",
-        "hwi/oauth-bundle": "^0.5.3"
+        "hwi/oauth-bundle": "^0.5.3",
+        "sylius/addressing": "0.*",
+        "friendsofsymfony/jsrouting-bundle": "1.*",
+        "friendsofsymfony/rest-bundle": "^2.2"
+
     },
     "require-dev": {
         "sensio/generator-bundle": "^3.0",

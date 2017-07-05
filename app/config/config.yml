@@ -21,7 +21,8 @@ framework:
     form:            ~
     csrf_protection: ~
     validation:      { enable_annotations: true }
-    #serializer:      { enable_annotations: true }
+    serializer:
+        enabled: true
     templating:
         engines: ['twig']
     default_locale:  "%locale%"
@@ -182,6 +183,10 @@ sonata_seo:
         head:
             'xmlns':              http://www.w3.org/1999/xhtml
             'xmlns:og':           http://opengraphprotocol.org/schema/
+
+fos_js_routing:
+    routes_to_expose: [ get_countries ]
+
             #'xmlns:fb':           "http://www.facebook.com/2008/fbml"
 #sonata_notification:
     #backend: sonata.notification.backend.runtime

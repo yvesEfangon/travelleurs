@@ -3,7 +3,9 @@
 namespace AppBundle\Form;
 
 use FOS\UserBundle\Form\Type\ProfileFormType as BaseType;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\Extension\Core\Type\BirthdayType;
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 
@@ -31,7 +33,30 @@ class ProfileType extends BaseType
                 'required'=>true
             ]
         )
+        ->add('city',
+            TextType::class,
+            [
+                'label' => 'trav.city'
+            ])
+        ->add('country',
+            TextType::class,
+            [
+                'label' => 'trav.country',
+                'attr' => ['class' => 'auto_country']
+            ]
+        )
+        ->add('state',
+            TextType::class,
+            [
+                'label' => 'trav.state'
+            ]
+        )
+        ->add('latitude',HiddenType::class)
+        ->add('longitude',HiddenType::class)
         ;
+        
+        
+        
     }
 
 

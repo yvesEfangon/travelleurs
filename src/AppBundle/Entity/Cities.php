@@ -14,7 +14,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Class Cities
  * @package AppBundle\Entity
  *
- * @ORM\Entity(repositoryClass="AppBundle\Entity\CitiesRepository")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\CitiesRepository")
  * @ORM\Table(name="cities")
  */
 class Cities
@@ -33,7 +33,7 @@ class Cities
     private $countryCode;
 
     /**
-     * @ORM\Column(name="city_code", type="string", nullable=false)
+     * @ORM\Column(name="city_code", type="string", nullable=true)
      */
     private $cityCode;
 
@@ -43,9 +43,20 @@ class Cities
     private $city;
 
     /**
-     * @ORM\Column(name="coordinates", type="string")
+     * @ORM\Column(name="region", type="string")
      */
-    private $coordinates;
+    private $region;
+
+    /**
+     * @ORM\Column(name="longitude", type="string")
+     */
+    private $longitude;
+
+    /**
+     * @ORM\Column(name="latitude", type="string")
+     */
+    private $latitude;
+
 
     /**
      * @return mixed
@@ -126,24 +137,59 @@ class Cities
     /**
      * @return mixed
      */
-    public function getCoordinates()
+    public function getLongitude()
     {
-        return $this->coordinates;
+        return $this->longitude;
     }
 
     /**
-     * @param mixed $coordinates
+     * @param $longitude
      * @return Cities
      */
-    public function setCoordinates($coordinates)
+    public function setLongitude($longitude)
     {
-        $this->coordinates = $coordinates;
+        $this->longitude = $longitude;
 
         return $this;
     }
 
+    /**
+     * @return mixed
+     */
+    public function getLatitude()
+    {
+        return $this->latitude;
+    }
 
+    /**
+     * @param $latitude
+     * @return Cities
+     */
+    public function setLatitude($latitude)
+    {
+        $this->latitude = $latitude;
 
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getRegion()
+    {
+        return $this->region;
+    }
+
+    /**
+     * @param mixed $region
+     * @return Cities
+     */
+    public function setRegion($region)
+    {
+        $this->region = $region;
+        
+        return $this;
+    }
 
 
 
