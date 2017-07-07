@@ -36,3 +36,4 @@ security:
         - { path: ^/voyage/, role: ROLE_USER }
         - { path: ^/myprofile/, role: ROLE_USER }
         - { path: ^/admin/, role: ROLE_ADMIN }
+        - { path: ^/readapi, role: ROLE_USER }
