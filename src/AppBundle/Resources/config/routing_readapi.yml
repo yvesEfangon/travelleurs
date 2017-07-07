@@ -1,7 +1,7 @@
 api_rest :
     type: rest
     prefix: /v1
-    resource: "@AppBundle/Controller/RestController.php"
+    resource: "@AppBundle/Controller/JsonController.php"
     name_prefix:  api_1_
     methods: [GET|POST|DELETE]
 
