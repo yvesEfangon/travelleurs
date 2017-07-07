@@ -158,6 +158,78 @@
                 <source>trav.myactivities</source>
                 <target>Mes Activités</target>
             </trans-unit>
+            <trans-unit id="trav_how_will_you_travel">
+                <source>trav_how_will_you_travel</source>
+                <target>Comment allez-vous voyager ?</target>
+            </trans-unit>
+             <trans-unit id="trav_yes">
+                <source>trav.yes</source>
+                <target>Oui</target>
+            </trans-unit>
+            <trans-unit id="trav_no">
+                <source>trav.no</source>
+                <target>Non</target>
+            </trans-unit>
+            <trans-unit id="trav_female">
+                <source>trav.female</source>
+                <target>Femminin</target>
+            </trans-unit>
+            <trans-unit id="trav_male">
+                <source>trav.male</source>
+                <target>Masculin</target>
+            </trans-unit>
+            <trans-unit id="trav_mixte">
+                <source>trav.mixte</source>
+                <target>Mixte</target>
+            </trans-unit>
+            <trans-unit id="trav_alone">
+                <source>trav.alone</source>
+                <target>Seul</target>
+            </trans-unit>
+            <trans-unit id="trav_couple">
+                <source>trav.couple</source>
+                <target>En Couple</target>
+            </trans-unit>
+            <trans-unit id="trav_friends">
+                <source>trav.friends</source>
+                <target>Avec des amis</target>
+            </trans-unit>
+            <trans-unit id="trav_travelers_genre">
+                <source>trav.travelers.genre</source>
+                <target>Le sexe de vos co-travelers</target>
+            </trans-unit>
+            <trans-unit id="trav_smocker_allowed">
+                <source>trav.smocker.allowed</source>
+                <target>Fumeurs autorisés ?</target>
+            </trans-unit>
+             <trans-unit id="trav_show_to_perfect_match">
+                <source>trav.show.to.perfect.match</source>
+                <target>Tous ces critères sont obligatoires </target>
+            </trans-unit>
+            <trans-unit id="trav_estimated_budget">
+                <source>trav.estimated.budget</source>
+                <target>Budget prévisionnel </target>
+            </trans-unit>
+            <trans-unit id="trav_currency">
+                <source>trav.currency</source>
+                <target>Devise</target>
+            </trans-unit>
+            <trans-unit id="trav_creation">
+                <source>trav.creation</source>
+                <target>Création</target>
+            </trans-unit>
+            <trans-unit id="trav_detail">
+                <source>trav.details</source>
+                <target>Détails</target>
+            </trans-unit>
+            <trans-unit id="trav_publication">
+                <source>trav.publication</source>
+                <target>Publication</target>
+            </trans-unit>
+            <trans-unit id="trav_save_action">
+                <source>trav.save.action</source>
+                <target>Enregistrer</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

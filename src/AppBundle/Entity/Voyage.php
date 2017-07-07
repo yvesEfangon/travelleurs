@@ -114,9 +114,19 @@ class Voyage
      */
     private $strict_criteria;
 
-    
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="currency", type="string", length=20)
+     */
+    private $currency;
 
-
+    /**
+     * @var double
+     *
+     * @ORM\Column(name="budget", type="float")
+     */
+    private $budget;
 
     /**
      * Voyage constructor.
@@ -418,8 +428,44 @@ class Voyage
         $this->strict_criteria = $strict_criteria;
         return $this;
     }
-     
 
+
+    /**
+     * @return string
+     */
+    public function getCurrency()
+    {
+        return $this->currency;
+    }
+
+    /**
+     * @param $currency
+     * @return $this
+     */
+    public function setCurrency($currency)
+    {
+        $this->currency = $currency;
+
+        return $this;
+    }
+
+    /**
+     * @return float
+     */
+    public function getBudget()
+    {
+        return $this->budget;
+    }
+
+    /**
+     * @param float $budget
+     * @return Voyage
+     */
+    public function setBudget($budget)
+    {
+        $this->budget = $budget;
+        return $this;
+    }
 
 
 }

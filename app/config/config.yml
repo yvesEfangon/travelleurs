@@ -204,7 +204,7 @@ fos_rest:
         include_format: false
     disable_csrf_role: ROLE_API
 fos_js_routing:
-    routes_to_expose: [ get_countries ]
+    routes_to_expose: [ api_1_getcountrylistContry,api_1_getcitylistCities ]
 
             #'xmlns:fb':           "http://www.facebook.com/2008/fbml"
 #sonata_notification:

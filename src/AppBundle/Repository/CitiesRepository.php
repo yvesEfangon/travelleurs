@@ -12,4 +12,17 @@ use Doctrine\ORM\EntityRepository;
  */
 class CitiesRepository extends EntityRepository
 {
+
+    public function findCityByTerm($term){
+        $queryBuilder   = $this->createQueryBuilder('c')
+            ->where('c.city LIKE :city')
+            ->orWhere('c.countryName LIKE :country')
+            ->orWhere('c.stateName LIKE :state')
+            ->setParameters(['city' => '%'.$term.'%', 'country' => '%'.$term.'%', 'state' => '%'.$term.'%']);
+
+        return $queryBuilder->getQuery()->getScalarResult();
+
+
+
+    }
 }

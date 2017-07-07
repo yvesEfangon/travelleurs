@@ -32,7 +32,7 @@ function autocompleteCountry(){
     jQuery( ".auto_country" ).autocomplete({
         source:function( request, response ) {
             $.ajax({
-                url: Routing.generate('get_countries',this.value),
+                url: Routing.generate('api_1_getcitylistCities',{'term':this.value},true),
                 dataType: "jsonp",
                 success: function (data) {
                     response(data);
@@ -57,4 +57,39 @@ function autocompleteCountry(){
 function log( message ) {
     jQuery( "<div>" ).text( message ).prependTo( "#log" );
     $( "#log" ).scrollTop( 0 );
+}
+
+function resetActive(event, percent, step) {
+    $(".progress-bar").css("width", percent + "%").attr("aria-valuenow", percent);
+    $(".progress-completed").text(percent + "%");
+
+    $("div").each(function () {
+        if ($(this).hasClass("activestep")) {
+            $(this).removeClass("activestep");
+        }
+    });
+
+    if (event.target.className == "col-md-2") {
+        $(event.target).addClass("activestep");
+    }
+    else {
+        $(event.target.parentNode).addClass("activestep");
+    }
+
+    hideSteps();
+    showCurrentStepInfo(step);
+}
+
+function hideSteps() {
+    $("div").each(function () {
+        if ($(this).hasClass("activeStepInfo")) {
+            $(this).removeClass("activeStepInfo");
+            $(this).addClass("hiddenStepInfo");
+        }
+    });
+}
+
+function showCurrentStepInfo(step) {
+    var id = "#" + step;
+    $(id).addClass("activeStepInfo");
 }

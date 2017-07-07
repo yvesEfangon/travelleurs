@@ -80,20 +80,6 @@ class Etape
      */
     private $modifiedOn;
 
-    /**
-     * @var double
-     *
-     * @ORM\Column(name="budget", type="float")
-     */
-    private $budget;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="currency", type="string", length=10, nullable=true)
-     */
-    private $currency;
-
 
     /**
      *
@@ -466,44 +452,6 @@ class Etape
         $this->villeArrivee = $villeArrivee;
         return $this;
     }
-
-    /**
-     * @return float
-     */
-    public function getBudget()
-    {
-        return $this->budget;
-    }
-
-    /**
-     * @param float $budget
-     * @return Voyage
-     */
-    public function setBudget($budget)
-    {
-        $this->budget = $budget;
-        return $this;
-    }
-
-    /**
-     * @return string
-     */
-    public function getCurrency()
-    {
-        return $this->currency;
-    }
-
-    /**
-     * @param $currency
-     * @return $this
-     */
-    public function setCurrency($currency)
-    {
-        $this->currency = $currency;
-
-        return $this;
-    }
-
 
 }
 

@@ -15,7 +15,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @package AppBundle\Entity
  *
  * @ORM\Table(name="genre")
- * @ORM\Entity(repositoryClass="AppBundle\Entity\GenreRepository")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\GenreRepository")
  */
 class Genre
 {

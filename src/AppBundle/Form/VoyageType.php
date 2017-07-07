@@ -6,6 +6,7 @@ use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\CurrencyType;
+use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -16,8 +17,13 @@ class VoyageType extends AbstractType
     {
         $builder->add(
             'ownerIsAlone',
-            TextType::class,
+            ChoiceType::class,
             [
+                'choices' => [
+                    'trav.alone' => 'ALONE',
+                    'trav.couple' => 'COUPLE',
+                    'trav.friends' => 'FRIENDS'
+                ],
                 'label' => 'trav_how_will_you_travel'
             ]
         )
@@ -34,10 +40,13 @@ class VoyageType extends AbstractType
                 )
             ->add(
                 'genreVoyageurs',
-                EntityType::class,
+                ChoiceType::class,
                 [
-                    'class' => 'AppBundle\Entity\Genre',
-                    'choice_label' => 'genre',
+                    'choices' => [
+                        'trav.female' => 'FEMALE',
+                        'trav.male' => 'MALE',
+                        'trav.mixte' => 'MIXTE'
+                    ],
                     'label' => 'trav.travelers.genre'
                 ]
 
@@ -47,13 +56,20 @@ class VoyageType extends AbstractType
                 ChoiceType::class,
                 [
                     'choices' => [
-                        'trav_yes' => 1,
-                        'trav_no' => 0,
+                        'trav.yes' => 1,
+                        'trav.no' => 0,
                     ],
                     'placeholder' => false,
                     'label' => 'trav.show.to.perfect.match'
                 ]
             )
+            ->add(
+                'budget',
+                NumberType::class,
+                [
+                    'label' => 'trav.estimated.budget'
+                ]
+                )
             ->add(
                 'currency',
                 CurrencyType::class,

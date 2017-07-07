@@ -48,7 +48,12 @@ class VoyageController extends Controller
                 
             }
         }
-        return $this->render('AppBundle:Voyage:add.html.twig');
+        return $this->render(
+            'AppBundle:Voyage:add.step1.html.twig',
+            [
+                'formCreation' => $form->createView()
+            ]
+            );
     }
 
     

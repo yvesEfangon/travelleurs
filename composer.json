@@ -47,6 +47,7 @@
         "oyejorge/less.php": "^1.7",
         "hwi/oauth-bundle": "^0.5.3",
         "sylius/addressing": "0.*",
+        "jms/serializer-bundle":"^1.0",
         "friendsofsymfony/jsrouting-bundle": "1.*",
         "friendsofsymfony/rest-bundle": "^2.2"
 

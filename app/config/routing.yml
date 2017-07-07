@@ -8,6 +8,10 @@ fos_user_resetting:
     prefix: /{_locale}/resetting
 fos_js_routing:
     resource: "@FOSJsRoutingBundle/Resources/config/routing/routing.xml"
+rest :
+    type : rest
+    resource : "@AppBundle/Resources/config/routing_rest.yml"
+    prefix : /api
 admin_area:
     resource: "@SonataAdminBundle/Resources/config/routing/sonata_admin.xml"
     prefix: /admin
