@@ -2,7 +2,9 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Entity\Etape;
 use AppBundle\Entity\Voyage;
+use AppBundle\Form\VoyageType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -28,6 +30,7 @@ class VoyageController extends Controller
     }
 
     public function addAction(Request $request){
+        $this->get('session')->getFlashBag()->clear();
 
         $voyage = new Voyage();
 
@@ -45,7 +48,14 @@ class VoyageController extends Controller
 
             //Pour chaque soumission du formulaire:
             if($form->isValid()){
-                
+                $_em    = $this->getDoctrine()->getManager();
+                $_em->persist($form->getData());
+
+                if($_em->flush()){
+                   return $this->redirect($this->generateUrl('trav_edit_voyage',['id' => $voyage->getId()]));
+                }else{
+                    $this->get('session')->getFlashBag()->add('danger', $this->get('translator')->trans('trav.saved.error'));
+                }
             }
         }
         return $this->render(
@@ -56,5 +66,19 @@ class VoyageController extends Controller
             );
     }
 
+    public function editAction(Voyage $voyage){
+
+        $formVoygae2    = $this->createForm(
+            'AppBundle\Form\VoyageType',
+            $voyage,
+            [
+                'action' => $this->generateUrl('trav_edit_voyage'),
+                'method' => 'POST'
+            ]
+            );
+
+        $etape  = new Etape();
+        $etape->setVoyage($voyage);
+    }
     
 }

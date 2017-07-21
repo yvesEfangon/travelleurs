@@ -230,6 +230,10 @@
                 <source>trav.save.action</source>
                 <target>Enregistrer</target>
             </trans-unit>
+            <trans-unit id="trav_save_error">
+                <source>trav.save.error</source>
+                <target>Erreur lors de l'écriture en base de données, veuillez renouveller votre demande plustard</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

@@ -3,10 +3,10 @@
 {%  block central_voyage %}
 
     {{ form_start(formCreation) }}
-    <ul class="nav nav-tabs nav-justified">
-        <li class="active"><a href="#trav-creation">{{ 'trav.creation'|trans }} <i class="fa fa-pencil-square"></i></a></li>
-        <li><a href="#">{{ 'trav.details'|trans }} <i class="fa fa-list"></i></a></li>
-        <li><a href="#">{{ 'trav.publication'|trans }} <i class="fa fa-cloud-upload"></i></a></li>
+    <ul class="nav nav-tabs nav-justified trav-secondary-border">
+        <li class="active"><a href="#trav-creation"><span class="pull-left badge">1</span>{{ 'trav.creation'|trans }} <i class="fa fa-pencil-square pull-right"></i></a></li>
+        <li><a href="#"><span class="pull-left badge badge-success">2</span>{{ 'trav.details'|trans }} <i class="fa fa-list pull-right"></i></a></li>
+        <li><a href="#"><span class="pull-left badge">3</span>{{ 'trav.publication'|trans }} <i class="fa fa-cloud-upload pull-right"></i></a></li>
     </ul>
     <div id="trav-creation">
         <div class="row">

@@ -234,6 +234,10 @@
                 <source>trav.save.action</source>
                 <target>Save</target>
             </trans-unit>
+            <trans-unit id="trav_save_error">
+                <source>trav.save.error</source>
+                <target>An error occurs while saving, please try again</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

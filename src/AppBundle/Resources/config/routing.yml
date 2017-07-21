@@ -70,10 +70,21 @@ trav_add_profile_image:
     requirements:
         user: '\d+'
 
+trav_edit_voyage:
+    path: /{_locale}/voyage/edit/{id}
+    defaults:
+        _controller: AppBundle:Voyage:edit
+    requirements:
+        id: '\d+'
+        _locale: '%regex.local%'
+
 trav_add_voyage:
     path: /{_locale}/voyage/add
     defaults:
         _controller: AppBundle:Voyage:add
+    requirements:
+        _locale: '%regex.local%'
+
 trav_index_voyage:
     path: /{_locale}/voyage/list
     defaults:
