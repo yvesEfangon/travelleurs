@@ -186,8 +186,8 @@ height: auto;
     background: #fff;
     color: #351c75;
 }
-.pimp_my_menu div a.current {
-    background: #351c75;
+._menu-insite-active li a.current {
+    background: #DF5D3A;
     color: #ffffff;
 }
 
@@ -213,6 +213,19 @@ height: auto;
     margin-left: -1px;
 }
 
+.dropdown-menu-insite {
+    background: #DF5D3A !important;
+    letter-spacing: 0.025em;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 6px;
+    padding: 0.75em 0;
+    min-width: 15em;
+    box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.1), 0 0.25em 0.25em 0.1em rgba(0, 0, 0, 0.025);
+    margin-top: calc(-0.75em + 1px);
+    margin-left: -1px;
+    width: 100%;
+}
 .dropdown-menu li {
     border-top: solid 1px #eee;
     line-height: 3em;

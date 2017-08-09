@@ -13,44 +13,77 @@
         <i class="fa fa-gear"></i>
     </div>
 </div>
+    {#{{ path('trav_index_voyage',{'_locale': app.request.locale}) }}#}
 </div>
 <div class="row w3-margin-48">
     <div class="col-lg-3 col-md-3 col-xs-3">
-        <div class="list-group">
-            <a href="#" class="list-group-item active">
-               {{ 'trav.my.actions'|trans }}
-            </a>
-            <a href="{{ path('trav_index_voyage',{'_locale': app.request.locale}) }}" class="list-group-item">
-                <span class="badge"><i class="fa fa-plane"></i></span>
-                {{ 'trav.mytravels'|trans }}
-            </a>
-            <a href="#" class="list-group-item">
-                <span class="badge"><i class="fa fa-gears"></i></span>
-                {{ 'trav.myactivities'|trans }}
-            </a>
-            <a href="#" class="list-group-item">
-                <span class="badge"><i class="fa fa-map"></i></span>
-                {{ 'Trip planner' }}
-            </a>
-        </div>
+        <ul class="nav nav-stacked _menu-insite-active">
+            <li role="presentation" class="active">
+               <a href="{{ path('trav_myprofile') }}" class="trav-secondary-color">
+                   <span class="badge"><i class="fa fa-user"></i></span>
+                   {{ 'trav.my.profile'|trans }}
+                </a>
+            </li>
+            <li role="presentation" class="dropdown">
+                <a class="dropdown-toggle trav-primary-color" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+
+                    <span class="badge"><i class="fa fa-plane"></i></span>
+                    {{ 'trav.mytravels'|trans }} <span class="fa fa-caret-down pull-right"></span>
+                </a>
+                <ul class="dropdown-menu dropdown-menu-insite">
+                   <li>
+                       <a href="{{ path('trav_index_voyage') }}">
+                           <i class="fa fa-plane"></i>&nbsp;
+                           {{ 'trav.mytravels'|trans }}
+                       </a>
+                   </li>
+                    <li>
+                        <a href="{{ path('trav_add_voyage') }}" >
+                            <i class="fa fa-plus-square-o"></i>&nbsp;
+                            {{ 'trav.add.travel'|trans }}
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <i class="fa fa-search"></i>&nbsp;
+                            {{ 'trav.search.travels'|trans }}
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li role="presentation">
+                <a href="#" class="trav-primary-color">
+                    <span class="badge"><i class="fa fa-gears"></i></span>
+                    {{ 'trav.myactivities'|trans }}
+                </a>
+            </li>
+           <li role="presentation">
+               <a href="#" class="trav-primary-color">
+                   <span class="badge"><i class="fa fa-map"></i></span>
+                   {{ 'Trip planner' }}
+               </a>
+           </li>
+
+        </ul>
     </div>
     <div class="col-lg-6 col-md-6 col-xs-6">
-        <div class="row w3-margin-bottom text-center">{{ 'trav.my.profile'|trans|upper }}</div>
-        <div class="row">
-            <div class="col-lg-4 col-md-4 col-xs-4">
-                <div class="dropzone my-dropzone" id="form_snippet_image" action="{{path('trav_add_profile_image',{'user':user.id})}}">
+        {% block central_myuprofile %}
+            <div class="row w3-margin-bottom text-center">{{ 'trav.my.profile'|trans|upper }}</div>
+            <div class="row">
+                <div class="col-lg-4 col-md-4 col-xs-4">
+                    <div class="dropzone my-dropzone" id="form_snippet_image" action="{{path('trav_add_profile_image',{'user':user.id})}}">
+                    </div>
                 </div>
-            </div>
-            <div class="col-lg-8 col-md-8 col-xs-8">
-                <div class="list-group">
-                    <a class="list-group-item">{{ 'trav.country'|trans }}: </a>
-                    <a class="list-group-item">{{ 'trav.city'|trans }}</a>
-                    <a class="list-group-item">{{ 'trav.my.age'|trans }}</a>
+                <div class="col-lg-8 col-md-8 col-xs-8">
+                    <div class="list-group">
+                        <a class="list-group-item">{{ 'trav.country'|trans }}: </a>
+                        <a class="list-group-item">{{ 'trav.city'|trans }}</a>
+                        <a class="list-group-item">{{ 'trav.my.age'|trans }}</a>
+                    </div>
                 </div>
+                <div class="row w3-margin-top text-right"><a href="{{ path('fos_user_profile_edit') }}"><i class="fa fa-pencil-square fa-2x"></i></a></div>
             </div>
-            <div class="row w3-margin-top text-right"><a href="{{ path('fos_user_profile_edit') }}"><i class="fa fa-pencil-square fa-2x"></i></a></div>
-        </div>
-
+        {% endblock %}
     </div>
     <div class="col-lg-3 col-md-3 col-xs-3">
         <div class="list-group">
