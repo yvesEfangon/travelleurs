@@ -60,22 +60,14 @@ class VoyageController extends Controller
             }
         }
         //Formulaire de recherche
-        $form   = $this->createForm(SearchVoyageIndexType::class,null,[
+        $form   = $this->createForm(VoyageType::class,null,[
             'action'=> $this->generateUrl('trav_search_form'),
             'method'=> 'POST',
             'attr'=> ['class'=>'form-horizontal']
         ]);
-        $user = $this->getUser();
-        //Get the default address of the user
-        $address    = $this->get('trav.repository.address')->findBy(array("user"=>$user,"name"=>'default'));
-        /*
-         * 'form_search'=>$form->createView(),
-                'user'=>$user,
-                'address' => $address
-         */
 
         return $this->render(
-            'AppBundle:Travelleurs:add.step1.html.twig',
+            'AppBundle:Voyage:add.step1.html.twig',
             [
                 'formCreation' => $form->createView(),
 

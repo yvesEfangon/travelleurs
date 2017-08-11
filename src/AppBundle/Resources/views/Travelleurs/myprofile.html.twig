@@ -19,7 +19,7 @@
     <div class="col-lg-3 col-md-3 col-xs-3">
         <ul class="nav nav-stacked _menu-insite-active">
             <li role="presentation" class="active">
-               <a href="{{ path('trav_myprofile') }}" class="trav-secondary-color">
+               <a href="{{ path('trav_showmyprofile') }}" target="central-profile-frame" class="trav-secondary-color">
                    <span class="badge"><i class="fa fa-user"></i></span>
                    {{ 'trav.my.profile'|trans }}
                 </a>
@@ -32,13 +32,13 @@
                 </a>
                 <ul class="dropdown-menu dropdown-menu-insite">
                    <li>
-                       <a href="{{ path('trav_index_voyage') }}">
+                       <a href="{{ path('trav_index_voyage') }}" target="central-profile-frame">
                            <i class="fa fa-plane"></i>&nbsp;
                            {{ 'trav.mytravels'|trans }}
                        </a>
                    </li>
                     <li>
-                        <a href="{{ path('trav_add_voyage') }}" >
+                        <a href="{{ path('trav_add_voyage') }}" target="central-profile-frame">
                             <i class="fa fa-plus-square-o"></i>&nbsp;
                             {{ 'trav.add.travel'|trans }}
                         </a>
@@ -66,26 +66,10 @@
 
         </ul>
     </div>
-    <div class="col-lg-6 col-md-6 col-xs-6">
-        {% block central_myuprofile %}
-            <div class="row w3-margin-bottom text-center">{{ 'trav.my.profile'|trans|upper }}</div>
-            <div class="row">
-                <div class="col-lg-4 col-md-4 col-xs-4">
-                    <div class="dropzone my-dropzone" id="form_snippet_image" action="{{path('trav_add_profile_image',{'user':user.id})}}">
-                    </div>
-                </div>
-                <div class="col-lg-8 col-md-8 col-xs-8">
-                    <div class="list-group">
-                        <a class="list-group-item">{{ 'trav.country'|trans }}: </a>
-                        <a class="list-group-item">{{ 'trav.city'|trans }}</a>
-                        <a class="list-group-item">{{ 'trav.my.age'|trans }}</a>
-                    </div>
-                </div>
-                <div class="row w3-margin-top text-right"><a href="{{ path('fos_user_profile_edit') }}"><i class="fa fa-pencil-square fa-2x"></i></a></div>
-            </div>
-        {% endblock %}
+    <div class="col-lg-9 col-md-9 col-xs-9 embed-responsive embed-responsive-16by9">
+        <iframe src="{{ path('trav_showmyprofile') }}" name="central-profile-frame" id="central-profile-frame" class="embed-responsive-item"></iframe>
     </div>
-    <div class="col-lg-3 col-md-3 col-xs-3">
+   {# <div class="col-lg-2 col-md-2 col-xs-2">
         <div class="list-group">
             <a href="#" class="list-group-item active">
                 {{ 'trav.my.favourites'|trans|upper }}
@@ -94,7 +78,7 @@
             <a href="#" class="list-group-item">{{ 'trav.myactivities'|trans }}</a>
             <a href="#" class="list-group-item">Trip planner</a>
         </div>
-    </div>
+    </div>#}
 </div>
 {% endblock %}
 

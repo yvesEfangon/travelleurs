@@ -1,40 +1,37 @@
-{% extends 'AppBundle:Travelleurs:myprofile.html.twig' %}
-{% block title %}{{ 'trav.add.travel'|trans }} - {{ parent() }} {% endblock %}
-{%  block central_myuprofile %}
 
     {{ form_start(formCreation) }}
-    <ul class="nav nav-tabs nav-justified trav-secondary-border">
-        <li class="active"><a href="#trav-creation"><span class="pull-left badge">1</span>{{ 'trav.creation'|trans }} <i class="fa fa-pencil-square pull-right"></i></a></li>
-        <li><a href="#"><span class="pull-left badge badge-success">2</span>{{ 'trav.details'|trans }} <i class="fa fa-list pull-right"></i></a></li>
-        <li><a href="#"><span class="pull-left badge">3</span>{{ 'trav.publication'|trans }} <i class="fa fa-cloud-upload pull-right"></i></a></li>
-    </ul>
+    <div class="row trav-secondary-border">
+        <div class="col-lg-4 col-md-4 col-xs-4 border border-primary"><span class="pull-left badge">1</span>{{ 'trav.creation'|trans }} <i class="fa fa-pencil-square pull-right"></i></div>
+        <div class="col-lg-4 col-md-4 col-xs-4"><span class="pull-left badge badge-success">2</span>{{ 'trav.details'|trans }} <i class="fa fa-list pull-right"></i></div>
+        <div class="col-lg-4 col-md-4 col-xs-4"><span class="pull-left badge">3</span>{{ 'trav.publication'|trans }} <i class="fa fa-cloud-upload pull-right"></i></div>
+    </div>
     <div id="trav-creation">
         <div class="row">
-            <div class="col-lg-6 col-md-6 col-xs-12">
+            <div class="col-lg-6 col-md-6 col-xs-6">
                 {{ 'trav_how_will_you_travel'|trans }}
                 {{ form_widget(formCreation.ownerIsAlone) }}
             </div>
-            <div class="col-lg-6 col-md-6 col-xs-12">
+            <div class="col-lg-6 col-md-6 col-xs-6">
                 {{ 'trav.travelers.genre'|trans }}
                 {{ form_widget(formCreation.genreVoyageurs) }}
             </div>
         </div>
         <div class="row">
-            <div class="col-lg-6 col-md-6 col-xs-12">
+            <div class="col-lg-6 col-md-6 col-xs-6">
                 {{ 'trav.smocker.allowed'|trans }}
                 {{ form_widget(formCreation.smockerAllowed) }}
             </div>
-            <div class="col-lg-6 col-md-6 col-xs-12">
+            <div class="col-lg-6 col-md-6 col-xs-6">
                 {{ 'trav.show.to.perfect.match'|trans }}
                 {{ form_widget(formCreation.strict_criteria) }}
             </div>
         </div>
         <div class="row">
-            <div class="col-lg-6 col-md-6 col-xs-12">
+            <div class="col-lg-6 col-md-6 col-xs-6">
                 {{ 'trav.estimated.budget'|trans }}
                 {{ form_widget(formCreation.budget) }}
             </div>
-            <div class="col-lg-6 col-md-6 col-xs-12">
+            <div class="col-lg-6 col-md-6 col-xs-6">
                 {{ 'trav.currency'|trans }}
                 {{ form_widget(formCreation.currency) }}
             </div>
@@ -44,4 +41,5 @@
         </div>
     </div>
     {{ form_end(formCreation) }}
-{% endblock %}
+
+{{ include('AppBundle::default-scripts.js.twig') }}

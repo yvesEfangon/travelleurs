@@ -55,6 +55,13 @@ trav_myprofile:
         _locale: '%locale%'
     requirements:
         _locale: '%regex.local%'
+trav_showmyprofile:
+    path: /{_locale}/showmyprofile/
+    defaults:
+        _controller: AppBundle:Travelleurs:showmyprofile
+        _locale: '%locale%'
+    requirements:
+        _locale: '%regex.local%'
 trav_edit_address:
     path: /{_locale}/address/edit/{user}
     defaults:

@@ -1,29 +1,6 @@
-{% extends 'AppBundle::base.html.twig' %}
-{% block title %}{{ 'trav.mytravels'|trans }} - {{ parent() }} {% endblock %}
-{%  block content %}
-
 <div class="clearfix container-fluid center-block w3-margin-64">
-    <div class="row">
-        <div class="col-lg-4 col-md-4 col-xs-6 pimp_my_menu">
-            <div class="list-group">
-                <a href="{{ path('trav_index_voyage') }}" class="list-group-item">
-                    <i class="fa fa-plane"></i>&nbsp;
-                    {{ 'trav.mytravels'|trans }}
-                </a>
-                <a href="{{ path('trav_add_voyage') }}" class="list-group-item">
-                    <i class="fa fa-plus-square-o"></i>&nbsp;
-                    {{ 'trav.add.travel'|trans }}
-                </a>
-                <a href="#" class="list-group-item">
-                    <i class="fa fa-search"></i>&nbsp;
-                    {{ 'trav.search.travels'|trans }}
-                </a>
-            </div>
-        </div>
-
-        <div class="col-lg-8 col-md-8 col-xs-6 well">
-            {% block central_voyage %}
-                {% if voyages is defined and voyages is not null and voyages|length>0 %}
+    <div class="row text-center center-block">
+               {% if voyages is defined and voyages is not null and voyages|length>0 %}
                     <div class="panel panel-default">
                         <div class="panel-heading">{{ dump(voyages) }}</div>
 
@@ -34,8 +11,8 @@
                 {% else %}
                     <p class="alert alert-success center-block">{{ 'You.dont.have.any.scheduled.travel'|trans }}</p>
                 {% endif %}
-            {% endblock %}
+
         </div>
     </div>
 </div>
-{% endblock %}
+{{ include('AppBundle::default-scripts.js.twig') }}

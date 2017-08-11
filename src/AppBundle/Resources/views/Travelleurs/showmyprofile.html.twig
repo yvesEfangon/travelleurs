@@ -1,0 +1,17 @@
+<div class="row w3-margin-bottom text-center">{{ 'trav.my.profile'|trans|upper }}</div>
+<div class="row">
+    <div class="col-lg-4 col-md-4 col-xs-4">
+        <div class="dropzone my-dropzone" id="form_snippet_image" action="{{path('trav_add_profile_image',{'user':user.id})}}">
+        </div>
+    </div>
+    <div class="col-lg-8 col-md-8 col-xs-8">
+        <div class="list-group">
+            <a class="list-group-item">{{ 'trav.country'|trans }}: </a>
+            <a class="list-group-item">{{ 'trav.city'|trans }}</a>
+            <a class="list-group-item">{{ 'trav.my.age'|trans }}</a>
+        </div>
+    </div>
+    <div class="row w3-margin-top text-right"><a href="{{ path('fos_user_profile_edit') }}"><i class="fa fa-pencil-square fa-2x"></i></a></div>
+</div>
+
+{{ include('AppBundle::default-scripts.js.twig') }}
