@@ -22,3 +22,4 @@ parameters:
     app.locales:
             - fr
             - en
+    maps_api_key: AIzaSyAkM9_ELuAEpPxkBDkp7utOWXiaQ5U9HKM

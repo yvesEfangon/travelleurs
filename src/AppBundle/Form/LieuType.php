@@ -8,19 +8,19 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class SearchVoyageIndexType extends AbstractType
+class LieuType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+
         $builder
-            ->add('address',TextType::class,
+            ->add(
+                'address',
+                TextType::class,
                 [
-                    'label'=>'trav.where.you.go',
-                    'attr'=>[
-                        'class'=>'form-control input-lg js-address',
-                        'placeholder'=>'trav.where.you.go'
-                    ]
-                ])
+                    'label' => 'trav.location'
+                ]
+            )
             ->add(
                 'lat',
                 HiddenType::class,
@@ -62,17 +62,22 @@ class SearchVoyageIndexType extends AbstractType
                 [
                     'attr' => ['class' => 'js-gmaps-placeId']
                 ]
-            )
-        ;
+            );
+
     }
 
     public function configureOptions(OptionsResolver $resolver)
     {
-        
+
+        $resolver->setDefaults(
+            [
+                'data_class' => 'AppBundle\Entity\Lieu'
+            ]
+        );
     }
 
-    public function getName()
+    public function getBlockPrefix()
     {
-        return 'app_bundle_search_voyage_type';
+        return 'app_bundle_lieu_type';
     }
 }

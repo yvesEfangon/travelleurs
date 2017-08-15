@@ -35,14 +35,11 @@ class TravelleursController extends Controller
             throw new AccessDeniedException('This user does not have access to this section.');
         }
 
-        //Get the default address of the user
-        $address    = $this->get('trav.repository.address')->findBy(array("user"=>$user,"name"=>'default'));
-
         return $this->render(
             'AppBundle:Travelleurs:showmyprofile.html.twig',
             [
                 'user'=>$user,
-                'address' => $address
+
             ]
             );
     }

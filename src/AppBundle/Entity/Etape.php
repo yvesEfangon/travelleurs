@@ -74,6 +74,19 @@ class Etape
     private $createdOn;
 
     /**
+     * @var Lieu
+     *
+     * @ORM\OneToOne(targetEntity="AppBundle\Entity\Lieu", cascade={"persist"})
+     */
+    private $lieuDepart;
+
+    /**
+     * @var Lieu
+     *
+     * @ORM\OneToOne(targetEntity="AppBundle\Entity\Lieu", cascade={"persist"})
+     */
+    private $lieuArrivee;
+    /**
      * @var \DateTime
      *
      * @ORM\Column(name="modifiedOn", type="datetime")
@@ -103,21 +116,7 @@ class Etape
      */
     private $centreInteret;
 
-    /**
-     * @var Cities
-     * 
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Cities")
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private $villeDepart;
 
-    /**
-     * @var Cities
-     *
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Cities")
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private $villeArrivee;
     
     
     public function __construct()
@@ -127,6 +126,8 @@ class Etape
         $this->centreInteret    = new ArrayCollection();
         $this->createdOn = new \DateTime();
         $this->modifiedOn = new \DateTime();
+        $this->lieuArrivee  = new Lieu();
+        $this->lieuDepart   = new Lieu();
     }
 
     /**
@@ -418,40 +419,43 @@ class Etape
     }
 
     /**
-     * @return Cities
+     * @return Lieu
      */
-    public function getVilleDepart()
+    public function getLieuDepart()
     {
-        return $this->villeDepart;
+        return $this->lieuDepart;
     }
 
     /**
-     * @param Cities $villeDepart
+     * @param Lieu $lieuDepart
      * @return Etape
      */
-    public function setVilleDepart($villeDepart)
+    public function setLieuDepart($lieuDepart)
     {
-        $this->villeDepart = $villeDepart;
+        $this->lieuDepart = $lieuDepart;
+
         return $this;
     }
 
     /**
-     * @return Cities
+     * @return Lieu
      */
-    public function getVilleArrivee()
+    public function getLieuArrivee()
     {
-        return $this->villeArrivee;
+        return $this->lieuArrivee;
     }
 
     /**
-     * @param Cities $villeArrivee
+     * @param Lieu $lieuArrivee
      * @return Etape
      */
-    public function setVilleArrivee($villeArrivee)
+    public function setLieuArrivee($lieuArrivee)
     {
-        $this->villeArrivee = $villeArrivee;
+        $this->lieuArrivee = $lieuArrivee;
+
         return $this;
     }
 
-}
+
+   }
 

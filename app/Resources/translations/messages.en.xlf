@@ -222,6 +222,14 @@
                 <source>trav.creation</source>
                 <target>Creation</target>
             </trans-unit>
+            <trans-unit id="trav_created_on">
+                <source>trav.created.on</source>
+                <target>Created On</target>
+            </trans-unit>
+            <trans-unit id="trav_travels_list">
+                <source>trav.travels.list</source>
+                <target>My travels list</target>
+            </trans-unit>
             <trans-unit id="trav_detail">
                 <source>trav.details</source>
                 <target>Details</target>
@@ -237,6 +245,18 @@
             <trans-unit id="trav_save_error">
                 <source>trav.save.error</source>
                 <target>An error occurs while saving, please try again</target>
+            </trans-unit>
+            <trans-unit id="trav_edit">
+                <source>trav.edit</source>
+                <target>Edit</target>
+            </trans-unit>
+            <trans-unit id="trav_show">
+                <source>trav.show</source>
+                <target>Show</target>
+            </trans-unit>
+            <trans-unit id="female">
+                <source>FEMALE</source>
+                <target>FEMALE</target>
             </trans-unit>
         </body>
     </file>

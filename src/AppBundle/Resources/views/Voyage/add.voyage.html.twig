@@ -1,9 +1,16 @@
-
+<div class="well well-sm">
     {{ form_start(formCreation) }}
-    <div class="row trav-secondary-border">
-        <div class="col-lg-4 col-md-4 col-xs-4 border border-primary"><span class="pull-left badge">1</span>{{ 'trav.creation'|trans }} <i class="fa fa-pencil-square pull-right"></i></div>
+    <!--div class="row trav-secondary-border">
+        <div class="col-lg-4 col-md-4 col-xs-4 border border-primary"><span class="pull-left badge">1</span> </div>
         <div class="col-lg-4 col-md-4 col-xs-4"><span class="pull-left badge badge-success">2</span>{{ 'trav.details'|trans }} <i class="fa fa-list pull-right"></i></div>
         <div class="col-lg-4 col-md-4 col-xs-4"><span class="pull-left badge">3</span>{{ 'trav.publication'|trans }} <i class="fa fa-cloud-upload pull-right"></i></div>
+    </div-->
+    <div class="row">
+        <div class="col-lg-4 col-md-4 col-xs-4"><span class="w3-badge w3-jumbo trav-secondary-bg-color w3-padding">1</span></div>
+        <div class="col-lg-4 col-md-4 col-xs-4 center-block"><p class="text-center">{{ 'trav.creation'|trans }}</p></div>
+        <div class="col-lg-4 col-md-4 col-xs-4">
+            <i class="fa fa-pencil-square fa-3x pull-right"></i>
+        </div>
     </div>
     <div id="trav-creation">
         <div class="row">
@@ -41,5 +48,5 @@
         </div>
     </div>
     {{ form_end(formCreation) }}
-
+</div>
 {{ include('AppBundle::default-scripts.js.twig') }}

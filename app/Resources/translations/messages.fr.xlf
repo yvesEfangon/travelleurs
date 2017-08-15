@@ -196,7 +196,7 @@
             </trans-unit>
             <trans-unit id="trav_travelers_genre">
                 <source>trav.travelers.genre</source>
-                <target>Le sexe de vos co-travelers</target>
+                <target>Le genre des travelleurs</target>
             </trans-unit>
             <trans-unit id="trav_smocker_allowed">
                 <source>trav.smocker.allowed</source>
@@ -218,6 +218,14 @@
                 <source>trav.creation</source>
                 <target>Création</target>
             </trans-unit>
+            <trans-unit id="trav_created_on">
+                <source>trav.created.on</source>
+                <target>Créé le</target>
+            </trans-unit>
+            <trans-unit id="trav_travels_list">
+                <source>trav.travels.list</source>
+                <target>Mes voyages</target>
+            </trans-unit>
             <trans-unit id="trav_detail">
                 <source>trav.details</source>
                 <target>Détails</target>
@@ -233,6 +241,34 @@
             <trans-unit id="trav_save_error">
                 <source>trav.save.error</source>
                 <target>Erreur lors de l'écriture en base de données, veuillez renouveller votre demande plustard</target>
+            </trans-unit>
+             <trans-unit id="trav_edit">
+                <source>trav.edit</source>
+                <target>Modifier</target>
+            </trans-unit>
+            <trans-unit id="trav_show">
+                <source>trav.show</source>
+                <target>Voir</target>
+            </trans-unit>
+             <trans-unit id="female">
+                <source>FEMALE</source>
+                <target>FEMININ</target>
+            </trans-unit>
+            <trans-unit id="male">
+                <source>MALE</source>
+                <target>MASCULIN</target>
+            </trans-unit>
+            <trans-unit id="alone">
+                <source>ALONE</source>
+                <target>SEUL</target>
+            </trans-unit>
+             <trans-unit id="yes">
+                <source>YES</source>
+                <target>OUI</target>
+            </trans-unit>
+            <trans-unit id="no">
+                <source>NO</source>
+                <target>NON</target>
             </trans-unit>
         </body>
     </file>

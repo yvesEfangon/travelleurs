@@ -3,7 +3,8 @@
  */
 
 
-function initJS(){
+    function initJS (){
+
     jQuery(document).ready(function(){
 
         
@@ -21,38 +22,11 @@ function initJS(){
             }
         });
 
-        autocompleteCountry();
+
     })
 
 }
 
-
-
-function autocompleteCountry(){
-    jQuery( ".auto_country" ).autocomplete({
-        source:function( request, response ) {
-            $.ajax({
-                url: Routing.generate('api_1_getcitylistCities',{'term':this.value},true),
-                dataType: "jsonp",
-                success: function (data) {
-                    response(data);
-                }
-            });
-        },
-        minLength: 3,
-        select: function( event, ui ) {
-            log( ui.item ?
-            "Selected: " + ui.item.label :
-            "Nothing selected, input was " + this.value);
-        },
-        open: function() {
-            $( this ).removeClass( "ui-corner-all" ).addClass( "ui-corner-top" );
-        },
-        close: function() {
-            $( this ).removeClass( "ui-corner-top" ).addClass( "ui-corner-all" );
-        }
-    });
-}
 
 function log( message ) {
     jQuery( "<div>" ).text( message ).prependTo( "#log" );
@@ -93,3 +67,4 @@ function showCurrentStepInfo(step) {
     var id = "#" + step;
     $(id).addClass("activeStepInfo");
 }
+

@@ -16,13 +16,23 @@
     {#{{ path('trav_index_voyage',{'_locale': app.request.locale}) }}#}
 </div>
 <div class="row w3-margin-48">
-    <div class="col-lg-3 col-md-3 col-xs-3">
+    <div class="col-lg-3 col-md-3 col-xs-3 well well-sm">
         <ul class="nav nav-stacked _menu-insite-active">
             <li role="presentation" class="active">
-               <a href="{{ path('trav_showmyprofile') }}" target="central-profile-frame" class="trav-secondary-color">
+               <a href="{{ path('trav_showmyprofile') }}" target="central-profile-frame" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" class="dropdown-toggle trav-secondary-color">
                    <span class="badge"><i class="fa fa-user"></i></span>
-                   {{ 'trav.my.profile'|trans }}
+                   {{ 'trav.my.profile'|trans }} <span class="fa fa-caret-down pull-right"></span>
                 </a>
+                <ul class="dropdown-menu dropdown-menu-insite">
+                    <li>
+                        <a href="{{ path('trav_showmyprofile') }}" target="central-profile-frame" >
+                            <i class="fa fa-eye"></i> {{ 'trav.show'|trans }}
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ path('fos_user_profile_edit') }}" target="central-profile-frame" ><i class="fa fa-pencil"></i> {{ 'trav.edit'|trans }}</a>
+                    </li>
+                </ul>
             </li>
             <li role="presentation" class="dropdown">
                 <a class="dropdown-toggle trav-primary-color" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
@@ -82,4 +92,6 @@
 </div>
 {% endblock %}
 
-{% block inline_js %} {{ parent() }} {% endblock %}
+{% block inline_js %}
+    {{ parent() }}
+{% endblock %}

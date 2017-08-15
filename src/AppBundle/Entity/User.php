@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity;
 
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\Mapping as ORM;
 use FOS\UserBundle\Model\User as BaseUser;
@@ -48,37 +49,51 @@ class User extends BaseUser
     /**
      * @var string
      *
-     * @ORM\Column(name="country", type="string", unique=false, nullable=true)
+     * @ORM\Column(name="address", type="string", length=255, nullable=true)
+     */
+    private $address;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="locality", type="string", length=255, nullable=true)
+     */
+    private $locality;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="administrative_area", type="string", length=255, nullable=true)
+     */
+    private $administrativeArea;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="country", type="string", length=255, nullable=true)
      */
     private $country;
 
     /**
-     * @var string
+     * @var float     Latitude of the position
      *
-     * @ORM\Column(name="state", type="string", unique=false, nullable=true)
+     * @ORM\Column(name="lat", type="float", nullable=true)
      */
-    private $state;
+    private $lat;
+
     /**
-     * @var string
+     * @var float     Longitude of the position
      *
-     * @ORM\Column(name="city", type="string", unique=false, nullable=true)
+     * @ORM\Column(name="lng", type="float", nullable=true)
      */
-    private $city;
+    private $lng;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="latitude", type="string", length=20, unique=false, nullable=true)
+     * @ORM\Column(name="place_id", type="string", nullable=false)
      */
-    private $latitude;
-
-    /**
-     * @var string
-     *
-     *  @ORM\Column(name="longitude", type="string",length=20, unique=false, nullable=true)
-     */
-    private $longitude;
-
+    private $placeId;
 
     /**
      * Get id
@@ -178,6 +193,44 @@ class User extends BaseUser
     /**
      * @return string
      */
+    public function getAddress()
+    {
+        return $this->address;
+    }
+
+    /**
+     * @param string $address
+     * @return User
+     */
+    public function setAddress($address)
+    {
+        $this->address = $address;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getAdministrativeArea()
+    {
+        return $this->administrativeArea;
+    }
+
+    /**
+     * @param string $administrativeArea
+     * @return User
+     */
+    public function setAdministrativeArea($administrativeArea)
+    {
+        $this->administrativeArea = $administrativeArea;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
     public function getCountry()
     {
         return $this->country;
@@ -190,81 +243,86 @@ class User extends BaseUser
     public function setCountry($country)
     {
         $this->country = $country;
+
         return $this;
     }
 
     /**
      * @return string
      */
-    public function getState()
+    public function getLocality()
     {
-        return $this->state;
+        return $this->locality;
     }
 
     /**
-     * @param string $state
+     * @param string $locality
      * @return User
      */
-    public function setState($state)
+    public function setLocality($locality)
     {
-        $this->state = $state;
+        $this->locality = $locality;
+
+        return $this;
+    }
+
+    /**
+     * @return float
+     */
+    public function getLat()
+    {
+        return $this->lat;
+    }
+
+    /**
+     * @param float $lat
+     * @return User
+     */
+    public function setLat($lat)
+    {
+        $this->lat = $lat;
+
+        return $this;
+    }
+
+    /**
+     * @return float
+     */
+    public function getLng()
+    {
+        return $this->lng;
+    }
+
+    /**
+     * @param float $lng
+     * @return User
+     */
+    public function setLng($lng)
+    {
+        $this->lng = $lng;
+
         return $this;
     }
 
     /**
      * @return string
      */
-    public function getCity()
+    public function getPlaceId()
     {
-        return $this->city;
+        return $this->placeId;
     }
 
     /**
-     * @param string $city
+     * @param string $placeId
      * @return User
      */
-    public function setCity($city)
+    public function setPlaceId($placeId)
     {
-        $this->city = $city;
+        $this->placeId = $placeId;
+
         return $this;
     }
 
-    /**
-     * @return string
-     */
-    public function getLatitude()
-    {
-        return $this->latitude;
-    }
 
-    /**
-     * @param string $latitude
-     * @return User
-     */
-    public function setLatitude($latitude)
-    {
-        $this->latitude = $latitude;
-        return $this;
-    }
-
-    /**
-     * @return string
-     */
-    public function getLongitude()
-    {
-        return $this->longitude;
-    }
-
-    /**
-     * @param string $longitude
-     * @return User
-     */
-    public function setLongitude($longitude)
-    {
-        $this->longitude = $longitude;
-        return $this;
-    }
-
-    
 
 }

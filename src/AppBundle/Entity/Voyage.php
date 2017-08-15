@@ -89,7 +89,7 @@ class Voyage
     /**
      * @var string
      *
-     * @ORM\OneToOne(targetEntity="AppBundle\Entity\Genre", cascade={"persist"})
+     * @ORM\Column(name="genre_voyageurs", type="string", length=20)
      */
     private $genreVoyageurs;
 
@@ -103,7 +103,7 @@ class Voyage
     /**
      * @var string
      *
-     * @ORM\Column(name="type_de_voyage", type="string", length=20)
+     * @ORM\Column(name="type_de_voyage", type="string", length=20, nullable=true)
      */
     private $typeDeVoyage;
 
@@ -136,6 +136,7 @@ class Voyage
         $this->participants     = new ArrayCollection();
 
         $this->createdOn        = new \DateTime();
+        $this->published        = 0;
     }
 
     /**

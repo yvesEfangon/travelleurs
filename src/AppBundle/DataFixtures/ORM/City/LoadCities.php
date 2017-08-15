@@ -21,7 +21,7 @@ class LoadCities implements FixtureInterface
     {
         $manager->getConnection()->getConfiguration()->setSQLLogger(null);
 
-        $csv = fopen(dirname(__DIR__).'/ORM/Cities.txt', 'r');
+        $csv = fopen(dirname(__DIR__).'/City/Cities.txt', 'r');
 
         $i = 0;
 
@@ -34,6 +34,7 @@ class LoadCities implements FixtureInterface
 
                 $city->setCountryCode(strtoupper($line[0]));
                 $city->setCity(ucfirst($line[1]));
+                $city->setCityAccent(ucfirst($line[2]));
                 $city->setRegion(strtoupper($line[3]));
                 $city->setLatitude($line[5]);
                 $city->setLongitude($line[6]);

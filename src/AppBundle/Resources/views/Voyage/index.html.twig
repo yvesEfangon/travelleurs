@@ -1,11 +1,60 @@
 <div class="clearfix container-fluid center-block w3-margin-64">
     <div class="row text-center center-block">
                {% if voyages is defined and voyages is not null and voyages|length>0 %}
-                    <div class="panel panel-default">
-                        <div class="panel-heading">{{ dump(voyages) }}</div>
+                    <div class="panel panel-danger">
+                        <div class="panel-heading">{{ 'trav.travels.list'|trans }}</div>
 
-                        <table class="table">
-
+                        <table class="table table-bordered">
+                            <tr>
+                                <th>
+                                    {{ 'trav.created.on'|trans }}
+                                </th>
+                                <th>
+                                    {{ 'trav_how_will_you_travel'|trans }}
+                                </th>
+                                <th>
+                                    {{ 'trav.travelers.genre'|trans }}
+                                </th>
+                                <th>
+                                    {{ 'trav.smocker.allowed'|trans }}
+                                </th>
+                                <th>
+                                    {{ 'trav.estimated.budget'|trans }}
+                                </th>
+                                <th>
+                                    {{ 'trav.publication'|trans }}
+                                </th>
+                            </tr>
+                            {% for v in voyages %}
+                                <tr>
+                                    <td>
+                                        <a href="{{ path('trav_edit_voyage',{'id': v.id}) }}" target="_self">{{ v.createdOn|date('Y-m-d h:m:s') }}&nbsp;<i class="fa fa-external-link"></i></a>
+                                    </td>
+                                    <td>
+                                        {{ v.ownerIsAlone|trans }}
+                                    </td>
+                                    <td>
+                                        {{ v.genreVoyageurs|trans }}
+                                    </td>
+                                    <td>
+                                        {% if v.smockerAllowed == 1 %}
+                                            {{ 'YES'|trans }}
+                                        {% else %}
+                                            {{ 'NO'|trans }}
+                                        {% endif %}
+                                    </td>
+                                    <td>
+                                        {{ v.budget }}&nbsp;{{ v.currency }}
+                                    </td>
+                                    <td>
+                                        {% if v.published == 1 %}
+                                            <i class="text-success fa fa-check-circle fa-lg"></i>
+                                        {% else %}
+                                            <i class="text-danger fa fa-ban fa-lg"></i>
+                                        {% endif %}
+                                    </td>
+                                </tr>
+                            {% endfor %}
                         </table>
                     </div>
                 {% else %}

@@ -34,3 +34,6 @@ services:
         factory: ['@doctrine', 'getRepository']
         arguments: ['AppBundle:Countries']
 
+    trav.repo.address.manipulator:
+            class: AppBundle\RepositoryManipulat\AddressRepoManipulator
+            arguments: ['@service_container']

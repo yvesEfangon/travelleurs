@@ -3,6 +3,7 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Etape;
+use AppBundle\Entity\Lieu;
 use AppBundle\Entity\Voyage;
 use AppBundle\Form\SearchVoyageIndexType;
 use AppBundle\Form\VoyageType;
@@ -34,60 +35,154 @@ class VoyageController extends Controller
         $this->get('session')->getFlashBag()->clear();
 
         $voyage = new Voyage();
-
-        $form   = $this->createForm(
-            'AppBundle\Form\VoyageType',
-            $voyage,
-            [
-                'action' => $this->generateUrl('trav_add_voyage'),
-                'method' => 'POST'
-            ]
-            );
+        $form   = $this->getVoyageForm($voyage);
 
         if($request->isMethod('POST')){
             $form->handleRequest($request);
 
             //Pour chaque soumission du formulaire:
             if($form->isValid()){
-                $_em    = $this->getDoctrine()->getManager();
-                $_em->persist($form->getData());
+                $voyageData = $form->getData();
+                $voyageData->setOwner($this->getUser());
 
-                if($_em->flush()){
-                   return $this->redirect($this->generateUrl('trav_edit_voyage',['id' => $voyage->getId()]));
-                }else{
+                $_em    = $this->getDoctrine()->getManager();
+                $_em->persist($voyageData);
+
+                if(!$_em->flush()){
                     $this->get('session')->getFlashBag()->add('danger', $this->get('translator')->trans('trav.saved.error'));
+                }else{
+                    $this->redirect(
+                        $this->generateUrl('trav_edit_voyage',
+                            ['id' => $voyageData->getId()]
+                            )
+                    );
                 }
             }
         }
-        //Formulaire de recherche
-        $form   = $this->createForm(VoyageType::class,null,[
-            'action'=> $this->generateUrl('trav_search_form'),
-            'method'=> 'POST',
-            'attr'=> ['class'=>'form-horizontal']
-        ]);
 
         return $this->render(
-            'AppBundle:Voyage:add.step1.html.twig',
+            'AppBundle:Voyage:add.voyage.html.twig',
             [
                 'formCreation' => $form->createView(),
-
             ]
             );
     }
 
-    public function editAction(Voyage $voyage){
+     /**
+     * @param Etape $etape
+     * @return \Symfony\Component\Form\Form
+     */
+    private function getEtapeForm(Etape $etape, $route='trav_add_voyage'){
+        $formEtape  = $this->createForm(
+            'AppBundle\Form\EtapeType',
+            $etape,
+            [
+                'action' => $this->generateUrl($route),
+                'method' => 'POST'
+            ]
+        );
 
-        $formVoygae2    = $this->createForm(
+        return $formEtape;
+    }
+
+    /**
+     * @param Etape $etape
+     * @param $voyageId
+     * @return \Symfony\Component\Form\Form
+     */
+    private function getEtapeEditForm(Etape $etape, $voyageId){
+        $formEtape  = $this->createForm(
+            'AppBundle\Form\EtapeType',
+            $etape,
+            [
+                'action' => $this->generateUrl('trav_edit_voyage', ['id' => $voyageId]),
+                'method' => 'POST'
+            ]
+        );
+
+        return $formEtape;
+    }
+
+    /**
+     * @param Voyage $voyage
+     * @return \Symfony\Component\Form\Form
+     */
+    private function getVoyageForm(Voyage $voyage, $route='trav_add_voyage')
+    {
+        $form   = $this->createForm(
             'AppBundle\Form\VoyageType',
             $voyage,
             [
-                'action' => $this->generateUrl('trav_edit_voyage'),
+                'action' => $this->generateUrl($route),
                 'method' => 'POST'
             ]
-            );
+        );
+
+        return $form;
+    }
+
+    /**
+     * @param Voyage $voyage
+     * @return \Symfony\Component\Form\Form
+     */
+    private function getVoyageEditForm(Voyage $voyage)
+    {
+        $form   = $this->createForm(
+            'AppBundle\Form\VoyageType',
+            $voyage,
+            [
+                'action' => $this->generateUrl('trav_edit_voyage',['id' => $voyage->getId()]),
+                'method' => 'POST'
+            ]
+        );
+
+        return $form;
+    }
+
+    /**
+     * @param $id
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function editAction(Voyage $voyage, Request $request){
+
+        $formVoyage    = $this->getVoyageEditForm($voyage);
+        $repo           = $this->getDoctrine()->getRepository('AppBundle:Etape');
+        $checkEtape     = $repo->findBy(['voyage' => $voyage]);
 
         $etape  = new Etape();
         $etape->setVoyage($voyage);
+
+        $lieuDepart     = new Lieu();
+        $lieuArrivee    = new Lieu();
+        $etape->setLieuDepart($lieuDepart);
+        $etape->setLieuArrivee($lieuArrivee);
+
+        $formEtape      = $this->getEtapeEditForm($etape,$voyage->getId());
+
+        if($request->isMethod('POST')){
+            $_em    = $this->getDoctrine()->getManager();
+
+            if($formVoyage->isValid()){
+                $_em->persist($voyage);
+            }
+
+            if($formEtape->isValid()){
+                $_em->persist($formEtape);
+            }
+
+            if(!$_em->flush()){
+                $this->get('session')->getFlashBag()->add('danger', $this->get('translator')->trans('trav.saved.error'));
+            }
+        }
+
+        return $this->render(
+            'AppBundle:Voyage:edit.voyage.html.twig',
+            [
+                'formVoyage' => $formVoyage->createView(),
+                'formEtape' => $formEtape->createView()
+            ]
+        );
     }
     
 }

@@ -26,44 +26,26 @@
         </div>
 
         <div class="w3-padding row">
-            <div  class="col-lg-4 col-md-4 col-xs-6">
-                {{ form_label(form.country) }}
-                {{ form_widget(form.country) }}
+            <div  class="col-lg-6 col-md-6 col-xs-6">
+                {{ 'trav.location'|trans }}
+                {{ form_widget(form.address) }}
             </div>
-            <div class="col-lg-4 col-md-4 col-xs-6">
-                {{ form_label(form.state) }}
-                {{ form_widget(form.state) }}
+            <div class="col-lg-3 col-md-3 col-xs-6">
+                {{ 'trav.birthdate'|trans }}
+                {{ form_widget(form.birthdate) }}
             </div>
-            <div  class="col-lg-4 col-md-4 col-xs-6">
-                {{ form_label(form.city) }}
-                {{ form_widget(form.city) }}
+            <div class="col-lg-3 col-md-3 col-xs-6">
+                {{ 'trav.current.password'|trans }}
+                {{ form_widget(form.current_password) }}
             </div>
         </div>
 
-        <div class="w3-padding row">
-            <div class="col-lg-6 col-md-6 col-xs-6">
-                <div  class="col-lg-3 col-md-3 col-xs-6">
-                    {{ form_label(form.birthdate) }}
-                </div>
-                <div class="col-lg-9 col-md-9 col-xs-6">
-                {{ form_widget(form.birthdate) }}
-                </div>
-            </div>
-            <div class="col-lg-6 col-md-6 col-xs-6">
-                <div  class="col-lg-3 col-md-3 col-xs-6">
-                    {{ form_label(form.current_password) }}
-                </div>
-                <div class="col-lg-9 col-md-9 col-xs-6">
-                    {{ form_widget(form.current_password) }}
-                </div>
-            </div>
-        </div>
         <div class="w3-padding row center-block">
             <input class="btn btn-primary" type="submit" value="{{ 'profile.edit.submit'|trans }}" />
         </div>
-        {{ form_widget(form.latitude) }}
-        {{ form_widget(form.longitude) }}
-
+       <div class="hidden">
+           {{ form_rest(form) }}
+       </div>
         {{ form_end(form) }}
     </div>
 </div>

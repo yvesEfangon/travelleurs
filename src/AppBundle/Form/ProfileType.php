@@ -33,27 +33,55 @@ class ProfileType extends BaseType
                 'required'=>true
             ]
         )
-        ->add('city',
+        ->add(
+            'address',
             TextType::class,
             [
-                'label' => 'trav.city'
-            ])
-        ->add('country',
-            TextType::class,
-            [
-                'label' => 'trav.country',
-                'attr' => ['class' => 'auto_country']
+                'attr' => ['class' => 'js-address', 'onFocus' => 'geolocateProfil()']
             ]
-        )
-        ->add('state',
-            TextType::class,
-            [
-                'label' => 'trav.state'
-            ]
-        )
-        ->add('latitude',HiddenType::class)
-        ->add('longitude',HiddenType::class)
-        ;
+            )
+            ->add(
+                'lat',
+                HiddenType::class,
+                [
+                    'attr' => ['class' => 'js-gmaps-lat']
+                ]
+            )
+            ->add(
+                'lng',
+                HiddenType::class,
+                [
+                    'attr' => ['class' => 'js-gmaps-lng']
+                ]
+            )
+            ->add(
+                'locality',
+                HiddenType::class,
+                [
+                    'attr' => ['class' => 'js-gmaps-locality']
+                ]
+            )
+            ->add(
+                'administrative_area',
+                HiddenType::class,
+                [
+                    'attr' => ['class' => 'js-gmaps-administrative_area']
+                ]
+            )
+            ->add(
+                'country',
+                HiddenType::class,
+                [
+                    'attr' => ['class' => 'js-gmaps-country']
+                ]
+            )
+            ->add(
+                'placeId',
+                HiddenType::class,
+                [
+                    'attr' => ['class' => 'js-gmaps-placeId']
+                ]
+            );
         
         
         

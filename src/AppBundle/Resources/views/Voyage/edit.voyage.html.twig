@@ -1,0 +1,91 @@
+<div class="well well-sm">
+    {{ form_start(formVoyage) }}
+
+    <div class="row">
+        <div class="col-lg-4 col-md-4 col-xs-4"><span class="w3-badge w3-jumbo w3-padding trav-secondary-bg-color">1</span></div>
+        <div class="col-lg-4 col-md-4 col-xs-4 center-block"><p class="text-center">{{ 'trav.creation'|trans }}</p></div>
+        <div class="col-lg-4 col-md-4 col-xs-4">
+            <i class="fa fa-pencil-square fa-3x pull-right"></i>
+        </div>
+    </div>
+    <div id="trav-creation">
+        <div class="row">
+            <div class="col-lg-6 col-md-6 col-xs-6">
+                {{ 'trav_how_will_you_travel'|trans }}
+                {{ form_widget(formVoyage.ownerIsAlone) }}
+            </div>
+            <div class="col-lg-6 col-md-6 col-xs-6">
+                {{ 'trav.travelers.genre'|trans }}
+                {{ form_widget(formVoyage.genreVoyageurs) }}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-6 col-md-6 col-xs-6">
+                {{ 'trav.smocker.allowed'|trans }}
+                {{ form_widget(formVoyage.smockerAllowed) }}
+            </div>
+            <div class="col-lg-6 col-md-6 col-xs-6">
+                {{ 'trav.show.to.perfect.match'|trans }}
+                {{ form_widget(formVoyage.strict_criteria) }}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-6 col-md-6 col-xs-6">
+                {{ 'trav.estimated.budget'|trans }}
+                {{ form_widget(formVoyage.budget) }}
+            </div>
+            <div class="col-lg-6 col-md-6 col-xs-6">
+                {{ 'trav.currency'|trans }}
+                {{ form_widget(formVoyage.currency) }}
+            </div>
+        </div>
+        <div class="row w3-margin-12 w3-center">
+            <input class="w3-center btn btn-lg trav-secondary-bg-color w3-text-white" type="submit" value="{{ 'trav.save.action'|trans }}">
+        </div>
+    </div>
+    {{ form_end(formVoyage) }}
+</div>
+
+<div class="well well-sm">
+    <div class="row">
+        <div class="col-lg-4 col-md-4 col-xs-4"><span class="w3-badge w3-jumbo w3-padding trav-secondary-bg-color">2</span></div>
+        <div class="col-lg-4 col-md-4 col-xs-4 center-block"><p class="text-center">{{ 'trav.details'|trans }}</p></div>
+        <div class="col-lg-4 col-md-4 col-xs-4">
+            <i class="fa fa-list fa-3x pull-right"></i>
+        </div>
+    </div>
+    {{ form_start(formEtape) }}
+    <div class="row">
+        <div class="col-lg-6 col-md-6 col-xs-6">
+            {{ 'trav.departure.city'|trans }}
+            {{ form_widget(formEtape.lieuDepart.address) }}
+        </div>
+        <div class="col-lg-6 col-md-6 col-xs-6">
+            {{ 'trav.arrival.city'|trans }}
+            {{ form_widget(formEtape.lieuArrivee.address) }}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-6 col-md-6 col-xs-6">
+            {{ 'trav.departure.date'|trans }}
+            {{ form_widget(formEtape.dateDepart) }}
+        </div>
+        <div class="col-lg-6 col-md-6 col-xs-6">
+            {{ 'trav.arrival.date'|trans }}
+            {{ form_widget(formEtape.dateArrivee) }}
+        </div>
+    </div>
+    <div class="row w3-margin-12 w3-center">
+        <input class="w3-center btn btn-lg trav-secondary-bg-color w3-text-white" type="submit" value="{{ 'trav.add.action'|trans }}">
+    </div>
+   <div class="hidden">
+       {{ form_rest(formEtape) }}
+   </div>
+    {{ form_end(formEtape) }}
+</div>
+
+{{ include('AppBundle::default-scripts.js.twig') }}
+
+<script>
+
+</script>
