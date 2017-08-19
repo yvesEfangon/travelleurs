@@ -38,14 +38,6 @@ class Etape
     private $voyage;
 
     /**
-     * @var niveau_confort
-     *
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\niveau_confort")
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private $niveauConfort;
-
-    /**
      * @var int
      *
      * @ORM\Column(name="nbre_covoyageurs", type="integer", nullable=true)
@@ -128,6 +120,7 @@ class Etape
         $this->modifiedOn = new \DateTime();
         $this->lieuArrivee  = new Lieu();
         $this->lieuDepart   = new Lieu();
+        $this->status       = 'OPEN';
     }
 
     /**

@@ -2,6 +2,7 @@
 
 namespace AppBundle\Repository;
 use AppBundle\Entity\User;
+use AppBundle\Entity\Voyage;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
@@ -43,4 +44,11 @@ class VoyageRepository extends \Doctrine\ORM\EntityRepository
 
 
     }
+
+
+    public function searchVoyagesByAddress($request){
+
+    }
+
+
 }

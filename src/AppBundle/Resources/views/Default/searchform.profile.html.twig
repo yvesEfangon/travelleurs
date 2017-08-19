@@ -15,10 +15,11 @@
         {{ form_rest(form_search) }}
     </div>
     <script type="application/javascript">
+        var autocompleteProfile;
     function initAutocompleteSearch() {
     // Create the autocomplete object, restricting the search to geographical
     // location types.
-    autocomplete = new google.maps.places.Autocomplete(
+        autocompleteProfile = new google.maps.places.Autocomplete(
     /** @type {!HTMLInputElement} */(document.getElementsByClassName('js-address')[0]),
     {types: ['geocode']});
 

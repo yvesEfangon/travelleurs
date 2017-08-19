@@ -10,4 +10,5 @@ namespace AppBundle\Repository;
  */
 class EtapeRepository extends \Doctrine\ORM\EntityRepository
 {
+
 }

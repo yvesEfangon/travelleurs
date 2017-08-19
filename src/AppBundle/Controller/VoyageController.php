@@ -48,15 +48,15 @@ class VoyageController extends Controller
                 $_em    = $this->getDoctrine()->getManager();
                 $_em->persist($voyageData);
 
-                if(!$_em->flush()){
-                    $this->get('session')->getFlashBag()->add('danger', $this->get('translator')->trans('trav.saved.error'));
-                }else{
-                    $this->redirect(
-                        $this->generateUrl('trav_edit_voyage',
-                            ['id' => $voyageData->getId()]
-                            )
-                    );
-                }
+               $_em->flush();
+
+                return $this->redirect(
+                    $this->generateUrl(
+                        'trav_edit_voyage',
+                        ['id' => $voyageData->getId()]
+                        )
+                );
+
             }
         }
 
@@ -146,43 +146,99 @@ class VoyageController extends Controller
      */
     public function editAction(Voyage $voyage, Request $request){
 
+        $this->get('session')->getFlashBag()->clear();
+
         $formVoyage    = $this->getVoyageEditForm($voyage);
         $repo           = $this->getDoctrine()->getRepository('AppBundle:Etape');
-        $checkEtape     = $repo->findBy(['voyage' => $voyage]);
 
         $etape  = new Etape();
         $etape->setVoyage($voyage);
-
-        $lieuDepart     = new Lieu();
-        $lieuArrivee    = new Lieu();
-        $etape->setLieuDepart($lieuDepart);
-        $etape->setLieuArrivee($lieuArrivee);
-
         $formEtape      = $this->getEtapeEditForm($etape,$voyage->getId());
 
+        $_em    = $this->getDoctrine()->getManager();
+
         if($request->isMethod('POST')){
-            $_em    = $this->getDoctrine()->getManager();
 
-            if($formVoyage->isValid()){
-                $_em->persist($voyage);
+            if ($request->request->has($formEtape->getName())) {
+                // handle the first form
+                $formEtape->handleRequest($request);
+
+                if($formEtape->isValid()){
+                    $dataEtape  = $formEtape->getData();
+                    $dataEtape->setVoyage($voyage);
+
+                    $lieuArrivee    = $dataEtape->getLieuArrivee();
+
+                    $_em->persist($lieuArrivee);
+                    $lieuDepart     = $dataEtape->getLieuDepart();
+                    $_em->persist($lieuDepart);
+                    $_em->persist($dataEtape);
+                }
             }
 
-            if($formEtape->isValid()){
-                $_em->persist($formEtape);
+            if ($request->request->has($formVoyage->getName())) {
+                // handle the first form
+                $formVoyage->handleRequest($request);
+                if($formVoyage->isValid()){
+                    $_em->persist($voyage);
+                }
             }
 
-            if(!$_em->flush()){
-                $this->get('session')->getFlashBag()->add('danger', $this->get('translator')->trans('trav.saved.error'));
-            }
+
+            $_em->flush();
+
+            return $this->redirect(
+                $this->generateUrl('trav_edit_voyage', ['id' => $voyage->getId()])
+            );
+
         }
+
+        $ExistingEtapes     = $repo->findBy(['voyage' => $voyage]);
 
         return $this->render(
             'AppBundle:Voyage:edit.voyage.html.twig',
             [
                 'formVoyage' => $formVoyage->createView(),
-                'formEtape' => $formEtape->createView()
+                'formEtape' => $formEtape->createView(),
+                'ExistingEtapes' => $ExistingEtapes
             ]
         );
     }
-    
+
+
+    public function removeetapeAction(Etape $etape){
+        $_em    = $this->getDoctrine()->getManager();
+
+      $voyage = $etape->getVoyage();
+
+        $_em->remove($etape);
+        $_em->flush();
+
+        return $this->redirect(
+            $this->generateUrl('trav_edit_voyage', ['id' => $voyage->getId()])
+        );
+
+    }
+
+    public function removevoyageAction(Voyage $voyage){
+        $_em            = $this->getDoctrine()->getManager();
+        $repo           = $this->getDoctrine()->getRepository('AppBundle:Etape');
+
+
+        $ExistingEtapes     = $repo->findBy(['voyage' => $voyage]);
+        foreach ($ExistingEtapes as $etape){
+            $_em->remove($etape);
+        }
+
+        $_em->remove($voyage);
+        $_em->flush();
+
+        return $this->redirect(
+            $this->generateUrl('trav_index_voyage')
+        );
+    }
+
+    public function searchAction(Request $request){
+
+    }
 }

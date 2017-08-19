@@ -26,7 +26,7 @@ class Voyage
     /**
      * @var User
      *
-     * @ORM\OneToOne(targetEntity="AppBundle\Entity\User")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User")
      * @ORM\JoinColumn(nullable=false)
      */
     private $owner;

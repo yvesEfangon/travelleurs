@@ -30,7 +30,8 @@ class ProfileType extends BaseType
             BirthdayType::class,
             [
                 'label'=>'trav.birthdate',
-                'required'=>true
+                'required'=>true,
+                'years' => range(date('Y')-80, date('Y')-16)
             ]
         )
         ->add(

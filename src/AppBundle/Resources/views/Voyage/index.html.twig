@@ -24,6 +24,9 @@
                                 <th>
                                     {{ 'trav.publication'|trans }}
                                 </th>
+                                <th>
+
+                                </th>
                             </tr>
                             {% for v in voyages %}
                                 <tr>
@@ -52,6 +55,9 @@
                                         {% else %}
                                             <i class="text-danger fa fa-ban fa-lg"></i>
                                         {% endif %}
+                                    </td>
+                                    <td>
+                                        <a href="{{ path('trav_remove_voyage', {'id':v.id}) }}"><i class="text-danger fa fa-times-circle"></i></a>
                                     </td>
                                 </tr>
                             {% endfor %}

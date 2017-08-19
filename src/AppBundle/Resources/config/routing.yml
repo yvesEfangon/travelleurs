@@ -91,7 +91,20 @@ trav_add_voyage:
         _controller: AppBundle:Voyage:add
     requirements:
         _locale: '%regex.local%'
-
+trav_remove_etape:
+    path: /{_locale}/voyage/etape/remove/{id}
+    defaults:
+        _controller: AppBundle:Voyage:removeetape
+    requirements:
+        _locale: '%regex.local%'
+        id: '\d+'
+trav_remove_voyage:
+    path: /{_locale}/voyage/remove/{id}
+    defaults:
+        _controller: AppBundle:Voyage:removevoyage
+    requirements:
+        _locale: '%regex.local%'
+        id: '\d+'
 trav_index_voyage:
     path: /{_locale}/voyage/list
     defaults:
