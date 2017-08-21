@@ -240,5 +240,6 @@ class VoyageController extends Controller
 
     public function searchAction(Request $request){
 
+
     }
 }

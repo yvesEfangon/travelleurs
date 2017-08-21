@@ -2,14 +2,24 @@
 <div class="row w3-margin-bottom text-center">{{ 'trav.my.profile'|trans|upper }}</div>
 <div class="row">
     <div class="col-lg-4 col-md-4 col-xs-4">
-        <div class="dropzone my-dropzone" id="form_snippet_image" action="{{path('trav_add_profile_image',{'user':user.id})}}">
+        {% if user.photoProfile is not defined or user.photoProfile is null %}
+        <a href="{{path('trav_add_image')}}" target="_self" class="btn btn-default">
+            <i class="fa fa-camera"></i> Add a profile image
+        </a>
+        {% else %}
+        <img src="{{ vich_uploader_asset(user.photoProfile,'imageFile') }}" alt="{{ user.username }}" class="w3-border w3-padding"  style="width:100%;max-width:200px">
+        <div class="w3-container">
+            <a href="{{path('trav_add_image')}}" target="_self" class="btn btn-default">
+                <i class="fa fa-refresh"></i> Change my profile avatar
+            </a>
         </div>
+        {% endif %}
     </div>
     <div class="col-lg-8 col-md-8 col-xs-8">
         <div class="list-group">
-            <a class="list-group-item">{{ 'trav.country'|trans }}: </a>
+            <a class="list-group-item">{{ 'trav.address'|trans }}: {{ user.address }} </a>
             <a class="list-group-item">{{ 'trav.city'|trans }}</a>
-            <a class="list-group-item">{{ 'trav.my.age'|trans }}</a>
+            <a class="list-group-item">{{ 'trav.my.age'|trans }}: {{ user.birthdate|date('Y/m/d') }}</a>
         </div>
     </div>
 </div>

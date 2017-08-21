@@ -352,3 +352,25 @@ height: auto;
 .classBtRSggl:active,.classBtRSggl.active,.open>.dropdown-toggle.classBtRSggl{background-image:none}
 .classBtRSggl.disabled:hover,.classBtRSggl[disabled]:hover,fieldset[disabled] .classBtRSggl:hover,.classBtRSggl.disabled:focus,.classBtRSggl[disabled]:focus,fieldset[disabled] .classBtRSggl:focus,.classBtRSggl.disabled.focus,.classBtRSggl[disabled].focus,fieldset[disabled] .classBtRSggl.focus{background-color:#dd4b39;border-color:rgba(0,0,0,0.2)}
 .classBtRSggl .badge{color:#dd4b39;background-color:#fff}
+
+
+div.gallery {
+    margin: 5px;
+    border: 1px solid #ccc;
+    float: left;
+    width: 180px;
+}
+
+div.gallery:hover {
+    border: 1px solid #777;
+}
+
+div.gallery img {
+    width: 100%;
+    height: 100px;
+}
+
+div.desc {
+    padding: 15px;
+    text-align: center;
+}

@@ -1,0 +1,54 @@
+{% for type, flashes in app.session.flashBag.all() %}
+    {% for flash in flashes %}
+        <div class="alert alert-{{ type }}">
+            {{ flash }}
+        </div>
+    {% endfor %}
+{% endfor %}
+
+<div class="well well-sm">
+<div class="row w3-margin-bottom text-center">{{ 'trav.my.profile'|trans|upper }}</div>
+<div class="row">
+    <div class="col-lg-3 col-md-3 col-xs-3">
+       {{ form_start(form) }}
+       <div class="row">
+           {{ form_widget(form.imageFile) }}
+       </div>
+        <div>
+            {{ form_widget(form.submit) }}
+        </div>
+        <div class="hidden">{{ form_rest(form) }}</div>
+
+        {{ form_end(form) }}
+    </div>
+    <div class="col-lg-9 col-md-9 col-xs-9">
+        {% if albums is defined and albums|length>0 %}
+            {% for album in albums %}
+                {% for img in album.images  %}
+                    <div class="gallery" onclick="document.getElementById({{ img.id }}).style.display='block'">
+                        <img src="{{ vich_uploader_asset(img,'imageFile') }}" alt="{{ img.image }}" class="w3-border w3-padding onclick-evt"  width="300" height="200">
+                    </div>
+
+                    <div id="{{ img.id }}" class="w3-modal">
+                        <div class="w3-modal-content">
+                            <header class="w3-container w3-teal">
+                               <span onclick="document.getElementById({{ img.id }}).style.display='none'"
+                                     class="w3-button w3-display-topright"><i class="text-danger fa fa-close fa-lg"></i></span>
+                                <h2>Modal Header</h2>
+                            </header>
+                            <div class="w3-container">
+                                <img src="{{ vich_uploader_asset(img,'imageFile') }}" alt="{{ img.image }}" class="w3-opacity-min" >
+
+                            </div>
+                            <footer class="w3-container w3-teal">
+                                <a href="{{ path('trav_add_profile_image',{'id':img.id}) }}">Set Profile img</a>
+                            </footer>
+                        </div>
+                    </div>
+                {% endfor %}
+            {% endfor %}
+        {% endif %}
+    </div>
+</div>
+</div>
+{{ include('AppBundle::default-scripts.js.twig') }}

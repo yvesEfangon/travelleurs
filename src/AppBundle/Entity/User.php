@@ -3,7 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\Common\Collections\Collection;
-use Doctrine\ORM\EntityManager;
+use FOS\MessageBundle\Model\ParticipantInterface;
 use Doctrine\ORM\Mapping as ORM;
 use FOS\UserBundle\Model\User as BaseUser;
 
@@ -14,7 +14,7 @@ use FOS\UserBundle\Model\User as BaseUser;
  * @ORM\Entity(repositoryClass="AppBundle\Repository\UserRepository")
  * use Symfony\Component\Security\Core\User\UserInterface
  */
-class User extends BaseUser
+class User extends BaseUser implements ParticipantInterface
 {
     /**
      * @var int
@@ -95,6 +95,12 @@ class User extends BaseUser
      */
     private $placeId;
 
+    /**
+     * @var string
+     *
+     *@ORM\OneToOne(targetEntity="AppBundle\Entity\Image",cascade={"persist"})
+     */
+    private $photoProfile;
     /**
      * Get id
      *
@@ -322,6 +328,26 @@ class User extends BaseUser
 
         return $this;
     }
+
+    /**
+     * @return string
+     */
+    public function getPhotoProfile()
+    {
+        return $this->photoProfile;
+    }
+
+    /**
+     * @param Image $photoProfile
+     * @return User
+     */
+    public function setPhotoProfile(Image $photoProfile)
+    {
+        $this->photoProfile = $photoProfile;
+
+        return $this;
+    }
+
 
 
 

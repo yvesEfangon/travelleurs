@@ -22,4 +22,6 @@ _sonata_admin:
 sonata_cache_cache:
     resource: '@SonataCacheBundle/Resources/config/routing/cache.xml'
     prefix: /
-
+#fos_message:
+    #resource: "@FOSMessageBundle/Resources/config/routing.xml"
+    #prefix: /optional_routing_prefix

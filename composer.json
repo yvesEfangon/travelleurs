@@ -51,8 +51,9 @@
         "friendsofsymfony/jsrouting-bundle": "1.*",
         "friendsofsymfony/rest-bundle": "^2.2",
         "knplabs/knp-paginator-bundle":"2.5.4",
-        "egeloen/google-map-bundle":"3.*"
-
+        "friendsofsymfony/message-bundle":"1.*",
+        "gregwar/image-bundle": "dev-master",
+        "vich/uploader-bundle": "^1.4"
     },
     "require-dev": {
         "sensio/generator-bundle": "^3.0",

@@ -39,10 +39,16 @@ class Album
     /**
      * @var string
      *
-     * @ORM\Column(name="nom_album", type="string", length=255)
+     * @ORM\Column(name="nom_album", type="string", length=100, nullable=false, unique=true)
      */
     private $nomAlbum;
 
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="description", type="text", nullable=true)
+     */
+    private $description;
     /**
      * @var \DateTime
      *
@@ -61,6 +67,7 @@ class Album
     {
         $this->createdOn = new \DateTime();
         $this->modifiedOn = new \DateTime();
+        $this->nomAlbum     = 'Default';
         $this->images       = new ArrayCollection();
     }
 
@@ -174,6 +181,25 @@ class Album
     public function setModifiedOn($modifiedOn)
     {
         $this->modifiedOn = $modifiedOn;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getDescription()
+    {
+        return $this->description;
+    }
+
+    /**
+     * @param string $description
+     * @return Album
+     */
+    public function setDescription($description)
+    {
+        $this->description = $description;
+
         return $this;
     }
 

@@ -71,11 +71,13 @@ trav_edit_address:
         _locale: '%regex.local%'
         user: '\d+'
 trav_add_profile_image:
-    path: /ajax/profile/image/send/{user}
+    path: /{_locale}/travelleurs/add/profilephoto/{id}
     defaults:
-        _controller: AppBundle:Default:addProfileImage
+        _controller: AppBundle:Image:imageprofile
+        _locale: '%locale%'
     requirements:
-        user: '\d+'
+        id: '\d+'
+        _locale: '%regex.local%'
 
 trav_edit_voyage:
     path: /{_locale}/voyage/edit/{id}
@@ -102,6 +104,7 @@ trav_remove_voyage:
     path: /{_locale}/voyage/remove/{id}
     defaults:
         _controller: AppBundle:Voyage:removevoyage
+        _locale: '%locale%'
     requirements:
         _locale: '%regex.local%'
         id: '\d+'
@@ -109,6 +112,13 @@ trav_index_voyage:
     path: /{_locale}/voyage/list
     defaults:
         _controller: AppBundle:Voyage:index
+        _locale: '%locale%'
+trav_add_image:
+    path: /{_locale}/image/add
+    defaults:
+        _controller: AppBundle:Image:add
+    requirements:
+        _locale: '%regex.local%'
 root:
     path: /{_locale}
     defaults:

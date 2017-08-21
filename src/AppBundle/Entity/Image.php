@@ -3,14 +3,18 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Symfony\Component\Validator\Constraints as Assert;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
+
 
 /**
  * Image
  *
  * @ORM\Table(name="image")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\ImageRepository")
+ * @Vich\Uploadable
  */
 class Image
 {
@@ -27,24 +31,35 @@ class Image
     /**
      * @var string
      *
-     * @ORM\Column(name="url", type="string", length=255)
+     * @ORM\Column(name="image", type="string", length=255)
      */
-    private $url;
+    private $image;
 
     /**
-     * UploadedFile $file
-     *
-     * @Assert\File(maxSize="6000000")
+     * @Vich\UploadableField(mapping="user_images", fileNameProperty="image")
+     * @var File
      */
-    private $file;
+    private $imageFile;
+
+    /**
+     * @ORM\Column(type="datetime")
+     * @var \DateTime
+     */
+    private $updatedAt;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="alt", type="string", length=255)
+     * @ORM\Column(name="alt", type="string", length=255, nullable=true)
      */
     private $alt;
 
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="description", type="text", nullable=true)
+     */
+    private $decription;
 
     /**
      * Get id
@@ -57,29 +72,24 @@ class Image
     }
 
     /**
-     * Set url
-     *
-     * @param string $url
-     *
-     * @return Image
+     * @param File|null $image
      */
-    public function setUrl($url)
+    public function setImageFile(File $image = null)
     {
-        $this->url = $url;
+        $this->imageFile = $image;
 
-        return $this;
+        // VERY IMPORTANT:
+        // It is required that at least one field changes if you are using Doctrine,
+        // otherwise the event listeners won't be called and the file is lost
+        if ($image instanceof UploadedFile) {
+            // if 'updatedAt' is not defined in your entity, use another property
+            $this->updatedAt = new \DateTime('now');
+        }
     }
 
-    /**
-     * Get url
-     *
-     * @return string
-     */
-    public function getUrl()
-    {
-        return $this->url;
+    public function getImageFile(){
+        return $this->imageFile;
     }
-
     /**
      * Set alt
      *
@@ -105,104 +115,64 @@ class Image
     }
 
     /**
-     * Sets file.
-     *
-     * @param UploadedFile $file
+     * @return string
      */
-    public function setFile(UploadedFile $file = null)
+    public function getImage()
     {
-        $this->file = $file;
-        // check if we have an old image path
-        if (isset($this->url)) {
-            // store the old name to delete after the update
-            $this->temp = $this->url;
-            $this->url = null;
-        } else {
-            $this->url = 'initial';
-        }
+        return $this->image;
     }
 
     /**
-     * Get file.
-     *
-     * @return UploadedFile
+     * @param string $image
+     * @return Image
      */
-    public function getFile()
+    public function setImage($image)
     {
-        return $this->file;
-    }
+        $this->image = $image;
 
-    public function getAbsoluteUrl()
-    {
-        return null === $this->url
-            ? null
-            : $this->getUploadRootDir().'/'.$this->url;
-    }
-
-    public function getWebUrl()
-    {
-        return null === $this->url
-            ? null
-            : $this->getUploadDir().'/'.$this->url;
-    }
-
-    protected function getUploadRootDir()
-    {
-        // the absolute directory path where uploaded
-        // documents should be saved
-        return __DIR__.'/../../../../web/'.$this->getUploadDir();
-    }
-
-    protected function getUploadDir()
-    {
-        // get rid of the __DIR__ so it doesn't screw up
-        // when displaying uploaded doc/image in the view.
-        return 'uploads/images';
+        return $this;
     }
 
     /**
-     * @ORM\PrePersist()
-     * @ORM\PreUpdate()
+     * @return mixed
      */
-    public function preUpload()
+    public function getUpdatedAt()
     {
-        // la propriété « file » peut être vide si le champ n'est pas requis
-        if (null === $this->file) {
-            return;
-        }
-
-        if ($this->url != $this->file->getClientOriginalName()) {
-            $this->url = $this->file->getClientOriginalName();
-        }
+        return $this->updatedAt;
     }
 
     /**
-     * @ORM\PostPersist()
-     * @ORM\PostUpdate()
+     * @param mixed $updatedAt
+     * @return Image
      */
-    public function upload()
+    public function setUpdatedAt($updatedAt)
     {
-        // la propriété « file » peut être vide si le champ n'est pas requis
-        if (null === $this->file) {
-            return;
-        }
+        $this->updatedAt = $updatedAt;
 
-        //$file_name = $this->file->getClientOriginalName();
-        $file_name        = md5(uniqid()).$this->file->guessExtension();
-
-        // la méthode « move » prend comme arguments le répertoire cible et
-        // le nom de fichier cible où le fichier doit être déplacé
-        if (!file_exists($this->getUploadRootDir())) {
-            mkdir($this->getUploadRootDir(), 0775, true);
-        }
-
-        $this->file->move(
-            $this->getUploadRootDir(),
-            $file_name
-        );
-
-        $this->file = null;
+        return $this;
     }
+
+    /**
+     * @return string
+     */
+    public function getDecription()
+    {
+        return $this->decription;
+    }
+
+    /**
+     * @param string $decription
+     * @return Image
+     */
+    public function setDecription($decription)
+    {
+        $this->decription = $decription;
+
+        return $this;
+    }
+
+
+
 
 }
 
