@@ -101,11 +101,12 @@ class Voyage
     private $smockerAllowed;
 
     /**
-     * @var string
+     * @var Collection
      *
-     * @ORM\Column(name="type_de_voyage", type="string", length=20, nullable=true)
+     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Theme", cascade={"persist"})
      */
-    private $typeDeVoyage;
+    private $themes;
+
 
     /**
      * @var boolean
@@ -129,12 +130,20 @@ class Voyage
     private $budget;
 
     /**
+     * @var Collection
+     *
+     * @ORM\ManyToMany(targetEntity ="AppBundle\Entity\Langue", cascade={"persist"})
+     */
+    private $spokenLanguages;
+
+    /**
      * Voyage constructor.
      */
     public function __construct()
     {
         $this->participants     = new ArrayCollection();
-
+        $this->themes           = new ArrayCollection();
+        $this->spokenLanguages = new ArrayCollection();
         $this->createdOn        = new \DateTime();
         $this->published        = 0;
     }
@@ -395,22 +404,48 @@ class Voyage
     }
 
     /**
-     * @return string
+     * @return Collection
      */
-    public function getTypeDeVoyage()
+    public function getThemes()
     {
-        return $this->typeDeVoyage;
+        return $this->themes;
     }
 
     /**
-     * @param string $typeDeVoyage
+     * @param Collection $themes
      * @return Voyage
      */
-    public function setTypeDeVoyage($typeDeVoyage)
+    public function setThemes($themes)
     {
-        $this->typeDeVoyage = $typeDeVoyage;
+        $this->themes = $themes;
+
         return $this;
     }
+
+    public function removeTheme(Theme $theme)
+    {
+        $this->themes->removeElement($theme);
+    }
+
+    /**
+     * @param Theme $theme
+     * @return bool
+     */
+    public function hasTheme(Theme $theme)
+    {
+        return $this->themes->exists($theme);
+    }
+
+    /**
+     * @param $theme
+     * @return Voyage
+     */
+   public function addTheme($theme)
+   {
+        if(!$this->hasTheme($theme)) $this->themes[] = $theme;
+
+        return $this;
+   }
 
     /**
      * @return boolean
@@ -465,6 +500,43 @@ class Voyage
     public function setBudget($budget)
     {
         $this->budget = $budget;
+        return $this;
+    }
+
+    public function hasSpokenLanguage(Langue $langue)
+    {
+        return $this->spokenLanguages->contains($langue);
+    }
+
+    public function addSpokenLanguage(Langue $langue)
+    {
+        if(!$this->hasSpokenLanguage($langue)) $this->spokenLanguages[] = $langue;
+
+        return $this;
+    }
+
+    public function removeSpokenLanguage(Langue $langue){
+        if($this->hasSpokenLanguage($langue)) $this->spokenLanguages->removeElement($langue);
+
+        return $this;
+    }
+
+    /**
+     * @return Collection
+     */
+    public function getSpokenLanguages()
+    {
+        return $this->spokenLanguages;
+    }
+
+    /**
+     * @param Collection $spokenLanguages
+     * @return Voyage
+     */
+    public function setSpokenLanguages($spokenLanguages)
+    {
+        $this->spokenLanguages = $spokenLanguages;
+
         return $this;
     }
 

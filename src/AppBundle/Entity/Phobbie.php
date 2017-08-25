@@ -31,7 +31,7 @@ class Phobbie
     /**
      * @var string
      *
-     * @ORM\Column(name="intesite", type="string", length=100)
+     * @ORM\Column(name="intesite", type="string", length=100, nullable=true)
      */
     private $intesite;
 

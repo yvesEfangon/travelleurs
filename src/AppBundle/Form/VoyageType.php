@@ -28,18 +28,21 @@ class VoyageType extends AbstractType
             ]
         )
             ->add(
-                'smockerAllowed',
-                ChoiceType::class,
+                'themes',
+                ThemeType::class,
                 [
-                    'choices' => [
-                        'trav.yes' => 1,
-                        'trav.no' => 0
-                    ],
-                    'label' => 'trav_smocker_allowed'
+                    'label' => 'Themes'
                 ]
                 )
             ->add(
-                'genreVoyageurs',
+                'spokenLanguages',
+                LangueType::class,
+                [
+                    'label' => 'trav.spoken.languages'
+                ]
+            )
+            ->add(
+                'typeDeVoyage',
                 ChoiceType::class,
                 [
                     'choices' => [

@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use FOS\MessageBundle\Model\ParticipantInterface;
 use Doctrine\ORM\Mapping as ORM;
@@ -101,6 +102,77 @@ class User extends BaseUser implements ParticipantInterface
      *@ORM\OneToOne(targetEntity="AppBundle\Entity\Image",cascade={"persist"})
      */
     private $photoProfile;
+
+    /**
+     * @var Collection
+     *
+     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Langue", cascade={"persist"})
+     */
+    private $languages;
+
+    /**
+     * @var bool
+     *
+     * @ORM\Column(name="fumeur", type="boolean")
+     */
+    private $fumeur;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="bio", type="text")
+     */
+    private $bio;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="marital_status", type="string", length=100)
+     */
+    private $maritalStatus;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="degre_conversation", type="string", length=100)
+     */
+    private $degreConversation;
+
+    /**
+     * @var ArrayCollection
+     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\ActivitesSportives", cascade={"persist"})
+     */
+    private $sportActivities;
+
+    /**
+     * @var ArrayCollection
+     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\CausesSociales",cascade={"persist"})
+     */
+    private $causesSociales;
+
+    /**
+     * @var ArrayCollection
+     *
+     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Hobbie",cascade={"persist"})
+     *
+     */
+    private $hobbies;
+
+    /**
+     * @var ArrayCollection
+     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Phobbie",cascade={"persist"})
+     */
+    private $phobbies;
+
+    public function __construct()
+    {
+        $this->languages    = new ArrayCollection();
+        $this->phobbies     = new ArrayCollection();
+        $this->hobbies      = new ArrayCollection();
+        $this->causesSociales   = new ArrayCollection();
+        $this->sportActivities  = new ArrayCollection();
+    }
+
     /**
      * Get id
      *
@@ -348,6 +420,287 @@ class User extends BaseUser implements ParticipantInterface
         return $this;
     }
 
+    /**
+     * @return Collection
+     */
+    public function getLanguages()
+    {
+        return $this->languages;
+    }
+
+    /**
+     * @param Collection $languages
+     * @return User
+     */
+    public function setLanguages($languages)
+    {
+        $this->languages = $languages;
+
+        return $this;
+    }
+
+    /**
+     * @param Langue $langue
+     * @return bool
+     */
+    public function hasLanguage(Langue $langue){
+        return $this->languages->contains($langue);
+    }
+
+    /**
+     * @param Langue $langue
+     * @return $this
+     */
+    public function addLanguage(Langue $langue){
+        if(!$this->hasLanguage($langue)) $this->languages[]   = $langue;
+
+        return $this;
+    }
+
+    /**
+     * @param Langue $langue
+     * @return $this
+     */
+    public function removeLangue(Langue $langue){
+        if($this->hasLanguage($langue)) $this->languages->removeElement($langue);
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getBio()
+    {
+        return $this->bio;
+    }
+
+    /**
+     * @param string $bio
+     * @return User
+     */
+    public function setBio($bio)
+    {
+        $this->bio = $bio;
+
+        return $this;
+    }
+
+    /**
+     * @return ArrayCollection
+     */
+    public function getCausesSociales()
+    {
+        return $this->causesSociales;
+    }
+
+    /**
+     * @param ArrayCollection $causesSociales
+     * @return User
+     */
+    public function setCausesSociales($causesSociales)
+    {
+        $this->causesSociales = $causesSociales;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getDegreConversation()
+    {
+        return $this->degreConversation;
+    }
+
+    /**
+     * @param string $degreConversation
+     * @return User
+     */
+    public function setDegreConversation($degreConversation)
+    {
+        $this->degreConversation = $degreConversation;
+
+        return $this;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isFumeur()
+    {
+        return $this->fumeur;
+    }
+
+    /**
+     * @param bool $fumeur
+     * @return User
+     */
+    public function setFumeur($fumeur)
+    {
+        $this->fumeur = $fumeur;
+
+        return $this;
+    }
+    public function hasElement(ArrayCollection $Object, $elt){
+        return $Object->contains($elt);
+    }
+
+    public function addElement(ArrayCollection $Object, $elt)
+    {
+        if(!$this->hasElement($Object,$elt)) $Object[]  = $elt;
+
+        return $this;
+    }
+
+    public function removeElement(ArrayCollection $Object,$elt){
+        if(!$this->hasElement($Object,$elt)) $Object->removeElement($elt);
+
+        return $this;
+    }
+    /**
+     * @return ArrayCollection
+     */
+    public function getHobbies()
+    {
+        return $this->hobbies;
+    }
+
+    /**
+     * @param ArrayCollection $hobbies
+     * @return User
+     */
+    public function setHobbies($hobbies)
+    {
+        $this->hobbies = $hobbies;
+
+        return $this;
+    }
+
+    /**
+     * @param Hobbie $hobbie
+     * @return User
+     */
+    public function addHobbie(Hobbie $hobbie){
+      return $this->addElement($this->hobbies,$hobbie);
+    }
+
+    /**
+     * @param Hobbie $hobbie
+     * @return User
+     */
+    public function removeHobbie(Hobbie $hobbie){
+        return $this->removeElement($this->hobbies, $hobbie);
+    }
+
+    /**
+     * @param Phobbie $phobbie
+     * @return User
+     */
+    public function addPhobbie(Phobbie $phobbie){
+        return $this->addElement($this->phobbies, $phobbie);
+    }
+
+    /**
+     * @param Phobbie $phobbie
+     * @return User
+     */
+    public function removePhobbie(Phobbie $phobbie)
+    {
+        return $this->removeElement($this->phobbies, $phobbie);
+    }
+
+    /**
+     * @param CausesSociales $causesSociale
+     * @return User
+     */
+    public function addCauseSociale(CausesSociales $causesSociale)
+    {
+        return $this->addElement($this->causesSociales, $causesSociale);
+    }
+
+    /**
+     * @param CausesSociales $causeSociale
+     * @return User
+     */
+    public function removeCauseSociale(CausesSociales $causeSociale)
+    {
+        return $this->removeElement($this->causesSociales, $causeSociale);
+    }
+
+    /**
+     * @param ActivitesSportives $act
+     * @return User
+     */
+    public function addSportActivity(ActivitesSportives $act)
+    {
+        return $this->addElement($this->sportActivities,$act);
+    }
+
+    /**
+     * @param ActivitesSportives $act
+     * @return User
+     */
+    public function removeSportActivity(ActivitesSportives $act)
+    {
+        return $this->removeElement($this->sportActivities, $act);
+    }
+    /**
+     * @return string
+     */
+    public function getMaritalStatus()
+    {
+        return $this->maritalStatus;
+    }
+
+    /**
+     * @param string $maritalStatus
+     * @return User
+     */
+    public function setMaritalStatus($maritalStatus)
+    {
+        $this->maritalStatus = $maritalStatus;
+
+        return $this;
+    }
+
+    /**
+     * @return ArrayCollection
+     */
+    public function getPhobbies()
+    {
+        return $this->phobbies;
+    }
+
+    /**
+     * @param ArrayCollection $phobbies
+     * @return User
+     */
+    public function setPhobbies($phobbies)
+    {
+        $this->phobbies = $phobbies;
+
+        return $this;
+    }
+
+    /**
+     * @return ArrayCollection
+     */
+    public function getSportActivities()
+    {
+        return $this->sportActivities;
+    }
+
+    /**
+     * @param ArrayCollection $sportActivities
+     * @return User
+     */
+    public function setSportActivities($sportActivities)
+    {
+        $this->sportActivities = $sportActivities;
+
+        return $this;
+    }
 
 
 
