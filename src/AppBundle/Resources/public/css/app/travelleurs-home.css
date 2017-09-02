@@ -161,6 +161,11 @@ footer {
 max-width: 100%;
 height: auto;
 }
+
+.set-responsive{
+width: 100% !important;
+height: auto;
+}
 .trav-primary-color{color:#351c75;}
 .trav-primary-bg-color{background-color:#351c75;}
 .trav-secondary-color{color: #DF5D3A;}
@@ -180,11 +185,13 @@ height: auto;
 #trav-header ul li:hover a:hover, #nav ul li:hover span {
     background: #fff ;
     color: #351c75;
+    height: 55px;
 }
 
 #trav-header ul li.current a {
     background: #fff;
     color: #351c75;
+    height: 55px;
 }
 ._menu-insite-active li a.current {
     background: #DF5D3A;
@@ -373,4 +380,13 @@ div.gallery img {
 div.desc {
     padding: 15px;
     text-align: center;
+}
+
+.layer {
+    background-color: rgba(248, 247, 216, 0.7);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
 }

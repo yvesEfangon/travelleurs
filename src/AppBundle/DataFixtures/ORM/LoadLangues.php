@@ -13,7 +13,7 @@ use Doctrine\Common\DataFixtures\FixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 
 
-class LoadStates implements FixtureInterface
+class LoadLangues implements FixtureInterface
 {
 
     public function load(ObjectManager $manager)
@@ -21,9 +21,9 @@ class LoadStates implements FixtureInterface
         $manager->getConnection()->getConfiguration()->setSQLLogger(null);
 
        $languages  = [
-                    'trav.lang.punjabi', 'trav.lang.french', 'trav.lang.portuguese',
-                    'trav.lang.bengali', 'trav.lang.russian', 'trav.lang.hindi',
-                    'trav.lang.arabic', 'trav.lang.spanish', 'trav.lang.english', 'trav.lang.chinese'
+                    'Punjabi', 'French', 'Portuguese',
+                    'Bengali', 'Russian', 'Hindi',
+                    'Arabic', 'Spanish', 'English', 'Chinese'
                     ];
 
         foreach ($languages as $i => $language) {

@@ -1,7 +1,27 @@
 {% extends 'AppBundle::base.html.twig' %}
 {% block title %}{{ 'trav.my.search'|trans }} - {{ parent() }} {% endblock %}
 {%  block content %}
+    <div class="row w3-margin-64 w3-border">
+        {{ form_start(form) }}
+            <div class="row">
+                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
+                    {{ form_widget(form.address) }}
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-6">
+                  {{ form_widget(form.genreVoyageurs) }}
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
+                    {{ form_widget(form.smockerAllowed) }}
+                </div>
+            </div>
+        {{ form_end(form) }}
+    </div>
 
+    {{ dump(test.search_voyage_index) }}
+{% endblock %}
 
+{% block secondMenu %}
+{% endblock %}
 
+{% block secondContent %}
 {% endblock %}

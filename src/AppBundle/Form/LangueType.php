@@ -2,6 +2,7 @@
 
 namespace AppBundle\Form;
 
+use AppBundle\Entity\Langue;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -26,7 +27,7 @@ class LangueType extends AbstractType
     {
             $resolver->setDefaults(
                 [
-                    'data_class' => 'AppBundle\Entity\Langue'
+                    'data_class' => Langue::class
                 ]
             );
     }

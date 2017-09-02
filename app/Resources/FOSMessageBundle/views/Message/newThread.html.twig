@@ -1,0 +1,28 @@
+{#{% extends 'FOSMessageBundle::layout.html.twig' %}
+
+{% block fos_message_content %}#}
+<div class="panel">
+    <h2 class="panel-heading trav-primary-bg-color w3-text-white">{% trans from 'FOSMessageBundle' %}send_new{% endtrans %}</h2>
+    <div class="panel-body ">
+    <form action="{{ url('fos_message_thread_new') }}" method="post" class="form-inline w3-center w3-padding-12">
+        <div class="row">
+            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">{{ form_label(form.recipient) }}</div>
+            <div class="col-lg-9 col-md-9 col-sm-9 col-xs-6">{{ form_widget(form.recipient, {'attr':{'class':'set-responsive'}}) }}</div>
+        </div>
+        <div class="row w3-margin-4">
+            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">{{ form_label(form.subject) }}</div>
+            <div class="col-lg-9 col-md-9 col-sm-9 col-xs-6">{{ form_widget(form.subject,{'attr':{'class':'set-responsive'}}) }}</div>
+        </div>
+        <div class="row w3-margin-4">
+            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">{{ form_label(form.body) }}</div>
+            <div class="col-lg-9 col-md-9 col-sm-9 col-xs-6">{{ form_widget(form.body,{'attr':{'class':'set-responsive'}}) }}</div>
+        </div>
+        <div class="row center-block w3-margin-12">
+            <input class="btn btn-lg trav-secondary-bg-color w3-text-white" type="submit" />
+        </div>
+
+    </form>
+    </div>
+
+</div>
+{#{% endblock %}#}

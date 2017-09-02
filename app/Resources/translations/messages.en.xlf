@@ -200,11 +200,11 @@
             </trans-unit>
             <trans-unit id="trav_travelers_genre">
                 <source>trav.travelers.genre</source>
-                <target>The sex of your co-travelers</target>
+                <target>Travelers gender</target>
             </trans-unit>
              <trans-unit id="trav_smocker_allowed">
                 <source>trav.smocker.allowed</source>
-                <target>Smocking allowed ?</target>
+                <target>Smocker allowed ?</target>
             </trans-unit>
             <trans-unit id="trav_show_to_perfect_match">
                 <source>trav.show.to.perfect.match</source>
@@ -236,7 +236,7 @@
             </trans-unit>
             <trans-unit id="trav_publication">
                 <source>trav.publication</source>
-                <target>Publication</target>
+                <target>Published</target>
             </trans-unit>
              <trans-unit id="trav_save_action">
                 <source>trav.save.action</source>
@@ -254,9 +254,25 @@
                 <source>trav.show</source>
                 <target>Show</target>
             </trans-unit>
-            <trans-unit id="female">
-                <source>FEMALE</source>
+            <trans-unit id="trav_genre_female">
+                <source>trav.genre.female</source>
                 <target>FEMALE</target>
+            </trans-unit>
+            <trans-unit id="trav_genre_male">
+                <source>trav.genre.male</source>
+                <target>MALE</target>
+            </trans-unit>
+            <trans-unit id="trav_genre_mixte">
+                <source>trav.genre.mixte</source>
+                <target>MIXTE</target>
+            </trans-unit>
+            <trans-unit id="trav_please_select">
+                <source>trav.please.select</source>
+                <target>Please Select</target>
+            </trans-unit>
+             <trans-unit id="trav_your_location">
+                <source>trav.your.location</source>
+                <target>Your location</target>
             </trans-unit>
         </body>
     </file>

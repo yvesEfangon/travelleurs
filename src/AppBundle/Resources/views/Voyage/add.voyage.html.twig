@@ -1,60 +1,152 @@
-{% for type, flashes in app.session.flashBag.all() %}
-    {% for flash in flashes %}
-        <div class="alert alert-{{ type }}">
-            {{ flash }}
-        </div>
-    {% endfor %}
-{% endfor %}
 
-<div class="well well-sm">
-    {{ form_start(formCreation) }}
-    <!--div class="row trav-secondary-border">
-        <div class="col-lg-4 col-md-4 col-xs-4 border border-primary"><span class="pull-left badge">1</span> </div>
-        <div class="col-lg-4 col-md-4 col-xs-4"><span class="pull-left badge badge-success">2</span>{{ 'trav.details'|trans }} <i class="fa fa-list pull-right"></i></div>
-        <div class="col-lg-4 col-md-4 col-xs-4"><span class="pull-left badge">3</span>{{ 'trav.publication'|trans }} <i class="fa fa-cloud-upload pull-right"></i></div>
-    </div-->
-    <div class="row">
-        <div class="col-lg-4 col-md-4 col-xs-4"><span class="w3-badge w3-jumbo trav-secondary-bg-color w3-padding">1</span></div>
-        <div class="col-lg-4 col-md-4 col-xs-4 center-block"><p class="text-center">{{ 'trav.creation'|trans }}</p></div>
-        <div class="col-lg-4 col-md-4 col-xs-4">
-            <i class="fa fa-pencil-square fa-3x pull-right"></i>
+{% extends "AppBundle:Travelleurs:myprofile.html.twig" %}
+
+{% block secondContent %}
+
+<div class="panel" >
+<h2 class="panel-heading trav-secondary-bg-color w3-text-white">{{ 'trav.travels.add'|trans|upper }}</h2>
+<div class="panel-body">
+    <div class="well well-sm">
+        {{ form_start(formCreation) }}
+        <div class="row">
+            <div class="col-lg-4 col-md-4 col-xs-4"><span class="w3-badge w3-jumbo trav-secondary-bg-color w3-padding">1</span></div>
+            <div class="col-lg-4 col-md-4 col-xs-4 center-block"><p class="text-center">{{ 'trav.creation'|trans }}</p></div>
+            <div class="col-lg-4 col-md-4 col-xs-4">
+                <i class="fa fa-pencil-square fa-3x pull-right"></i>
+            </div>
+        </div>
+        <div id="trav-creation" class="w3-padding-12 w3-padding-left w3-padding-right">
+            <div class="row w3-border-4 w3-border-blue">
+                <div class="col-lg-3 col-md-3 col-xs-6">
+                    {{ 'trav_how_will_you_travel'|trans }}
+                    {{ form_widget(formCreation.ownerIsAlone) }}
+                </div>
+                <div class="col-lg-3 col-md-3 col-xs-6">
+                    {{ 'trav.voyage.themes'|trans }}
+                    {{ form_widget(formCreation.themes) }}
+                </div>
+                <div class="col-lg-3 col-md-3 col-xs-6">
+                    {{ 'trav.spoken.languages'|trans }}
+
+                    {{ form_widget(formCreation.spokenLanguages) }}
+
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-3 col-md-3 col-xs-6">
+                    {{ 'trav.estimated.budget'|trans }}
+                    {{ form_widget(formCreation.budget) }}
+                </div>
+                <div class="col-lg-2 col-md-2 col-xs-6">
+                    {{ 'trav.currency'|trans }}
+                    {{ form_widget(formCreation.currency) }}
+                </div>
+                <div class="col-lg-3 col-lg-3 col-xs-6">
+                    {{ 'trav.show.to.perfect.match'|trans }}
+                    {{ form_widget(formCreation.strict_criteria) }}
+                </div>
+                <div class="col-lg-4 col-md-4 col-xs-6 w3-padding-32">
+                    <input class="btn btn-lg btn-block trav-secondary-bg-color w3-text-white" type="submit" value="{{ 'trav.save.action'|trans }}">
+                </div>
+            </div>
+        {{ form_end(formCreation) }}
         </div>
     </div>
-    <div id="trav-creation">
+
+    <div class="well well-sm">
         <div class="row">
-            <div class="col-lg-6 col-md-6 col-xs-6">
-                {{ 'trav_how_will_you_travel'|trans }}
-                {{ form_widget(formCreation.ownerIsAlone) }}
-            </div>
-            <div class="col-lg-6 col-md-6 col-xs-6">
-                {{ 'trav.travelers.genre'|trans }}
-                {{ form_widget(formCreation.genreVoyageurs) }}
+            <div class="col-lg-4 col-md-4 col-xs-4"><span class="w3-badge w3-jumbo w3-padding trav-secondary-bg-color">2</span></div>
+            <div class="col-lg-4 col-md-4 col-xs-4 center-block"><p class="text-center">Details</p></div>
+            <div class="col-lg-4 col-md-4 col-xs-4">
+                <i class="fa fa-list fa-3x pull-right"></i>
             </div>
         </div>
         <div class="row">
-            <div class="col-lg-6 col-md-6 col-xs-6">
-                {{ 'trav.voyage.themes'|trans }}
-                {{ form_widget(formCreation.themes.libelle) }}
-            </div>
-            <div class="col-lg-6 col-md-6 col-xs-6">
-                {{ 'trav.show.to.perfect.match'|trans }}
-                {{ form_widget(formCreation.strict_criteria) }}
-            </div>
         </div>
-        <div class="row">
-            <div class="col-lg-6 col-md-6 col-xs-6">
-                {{ 'trav.estimated.budget'|trans }}
-                {{ form_widget(formCreation.budget) }}
+        <form name="" method="post" action="" class="form-horizontal">
+            <div class="row">
+                <div class="col-lg-6 col-md-6 col-xs-6">
+                    {{ 'trav.departure.city'|trans }}
+                    <input id="" name="" required="required" class="form-control" placeholder="" autocomplete="off" type="text" disabled="disabled">
+                </div>
+                <div class="col-lg-6 col-md-6 col-xs-6">
+                    {{ 'trav.arrival.city'|trans }}
+                    <input class="form-control" placeholder="" autocomplete="off" type="text" disabled="disabled">
+                </div>
             </div>
-            <div class="col-lg-6 col-md-6 col-xs-6">
-                {{ 'trav.currency'|trans }}
-                {{ form_widget(formCreation.currency) }}
+            <div class="row">
+                <div class="col-lg-6 col-md-6 col-xs-6">
+                    trav.departure.date
+                    <div id="" class="form-inline"><select id="" name="" class="form-control" disabled="disabled"><option value="2017">2017</option><option value="2018">2018</option><option value="2019">2019</option><option value="2020">2020</option><option value="2021">2021</option><option value="2022">2022</option><option value="2023">2023</option><option value="2024">2024</option><option value="2025">2025</option><option value="2026">2026</option><option value="2027">2027</option><option value="2028">2028</option><option value="2029">2029</option><option value="2030">2030</option><option value="2031">2031</option><option value="2032">2032</option><option value="2033">2033</option><option value="2034">2034</option><option value="2035">2035</option><option value="2036">2036</option><option value="2037">2037</option></select><select disabled class="form-control"><option value="1">Jan</option><option value="2">Feb</option><option value="3">Mar</option><option value="4">Apr</option><option value="5">May</option><option value="6">Jun</option><option value="7">Jul</option><option value="8">Aug</option><option value="9">Sep</option><option value="10">Oct</option><option value="11">Nov</option><option value="12">Dec</option></select><select disabled class="form-control"><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option><option value="13">13</option><option value="14">14</option><option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">18</option><option value="19">19</option><option value="20">20</option><option value="21">21</option><option value="22">22</option><option value="23">23</option><option value="24">24</option><option value="25">25</option><option value="26">26</option><option value="27">27</option><option value="28">28</option><option value="29">29</option><option value="30">30</option><option value="31">31</option></select></div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-xs-6">
+                    trav.arrival.date
+                    <div id="" class="form-inline"><select id="" name="" class="form-control" disabled="disabled"><option value="2017">2017</option><option value="2018">2018</option><option value="2019">2019</option><option value="2020">2020</option><option value="2021">2021</option><option value="2022">2022</option><option value="2023">2023</option><option value="2024">2024</option><option value="2025">2025</option><option value="2026">2026</option><option value="2027">2027</option><option value="2028">2028</option><option value="2029">2029</option><option value="2030">2030</option><option value="2031">2031</option><option value="2032">2032</option><option value="2033">2033</option><option value="2034">2034</option><option value="2035">2035</option><option value="2036">2036</option><option value="2037">2037</option></select><select disabled class="form-control"><option value="1">Jan</option><option value="2">Feb</option><option value="3">Mar</option><option value="4">Apr</option><option value="5">May</option><option value="6">Jun</option><option value="7">Jul</option><option value="8">Aug</option><option value="9">Sep</option><option value="10">Oct</option><option value="11">Nov</option><option value="12">Dec</option></select><select disabled class="form-control"><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option><option value="13">13</option><option value="14">14</option><option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">18</option><option value="19">19</option><option value="20">20</option><option value="21">21</option><option value="22">22</option><option value="23">23</option><option value="24">24</option><option value="25">25</option><option value="26">26</option><option value="27">27</option><option value="28">28</option><option value="29">29</option><option value="30">30</option><option value="31">31</option></select></div>
+                </div>
             </div>
-        </div>
-        <div class="row w3-margin-12 w3-center">
-            <input class="w3-center btn btn-lg trav-secondary-bg-color w3-text-white" type="submit" value="{{ 'trav.save.action'|trans }}">
-        </div>
+            <div class="row">
+                <div class="col-lg-4 col-md-4 col-xs-6 w3-padding-32 pull-right">
+                    <input class="w3-center btn btn-lg btn-block trav-secondary-bg-color w3-text-white" value="Save" type="submit" disabled="disabled">
+                </div>
+            </div>
+
+        </form>
     </div>
-    {{ form_end(formCreation) }}
+
+    <div class="well well-sm">
+        <div class="row">
+            <div class="col-lg-4 col-md-4 col-xs-4"><span class="w3-badge w3-jumbo w3-padding trav-secondary-bg-color">3</span></div>
+            <div class="col-lg-4 col-md-4 col-xs-4 center-block"><p class="text-center">Details</p></div>
+            <div class="col-lg-4 col-md-4 col-xs-4">
+                <i class="fa fa-list fa-3x pull-right"></i>
+            </div>
+        </div>
+        <form  method="post"  action="" class="form-horizontal">
+            <div class="row">
+                <div class="col-lg-2 col-md-2 col-xs-3">
+                    {{ 'trav.travelers.genre'|trans }}
+                    <select  required="required" class="form-control" disabled="disabled"><option value="">Please Select</option><option >{{ 'trav.female'|trans }}</option><option value="2">{{ 'trav.male'|trans }}</option><option selected="selected">{{ 'trav.genre.mixte'|trans }}</option></select>
+                </div>
+                <div class="col-lg-2 col-md-2 col-xs-3">
+                    {{ 'trav.smocker.allowed'|trans }}
+                    <select  class="form-control" disabled="disabled"><option value="">Please Select</option><option value="1" selected="selected">{{ 'trav.yes'|trans }}</option><option value="0">{{ 'trav.no'|trans }}</option></select>
+                </div>
+                <div class="col-lg-3 col-md-3 col-xs-6">
+                    {{ 'trav.travelers.agerange'|trans }}
+                    <div id="slider-range" class="row trav-secondary-bg-color ui-slider ui-corner-all ui-slider-horizontal ui-widget ui-widget-content"> <div class="ui-slider-range ui-corner-all ui-widget-header" style="left: 0%; width: 13.4146%;"></div><span tabindex="0" class="ui-slider-handle ui-corner-all ui-state-default" style="left: 0%;"></span><span tabindex="0" class="ui-slider-handle ui-corner-all ui-state-default" style="left: 13.4146%;"></span></div>
+                    <div class="row w3-margin-top">
+                        <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
+                            <input id="" name="" required="required" readonly="readonly" class="trav-secondary-color form-control form-control" value="18" type="text" disabled="disabled">
+                        </div>
+
+                        <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
+                            <input required="required" readonly="readonly" class="trav-secondary-color form-control form-control" value="100" type="text" disabled="disabled">
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-lg-5 col-md-5 col-xs-6">
+                    {{ 'trav.annonce.description'|trans }}
+                    <textarea id="" name="" required="required" class="trav-secondary-color form-control form-control" disabled="disabled"></textarea>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-4 col-md-4 col-xs-6 w3-padding-32 pull-right">
+                    <input class="w3-center btn btn-lg btn-block trav-secondary-bg-color w3-text-white" value="Save" type="submit" disabled="disabled">
+                </div>
+            </div>
+
+        </form>
+
+    </div>
 </div>
-{{ include('AppBundle::default-scripts.js.twig') }}
+</div>
+{% endblock %}
+
+{% block inline_js %}
+    {{ parent() }}
+    <script>
+        disableAll("#disabled-form1");
+        disableAll("#disabled-form2");
+    </script>
+{% endblock %}

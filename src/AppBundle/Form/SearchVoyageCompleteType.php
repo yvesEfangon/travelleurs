@@ -2,6 +2,8 @@
 
 namespace AppBundle\Form;
 
+use AppBundle\Entity\Voyage;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
@@ -11,12 +13,25 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class SearchVoyageCompleteType extends AbstractType
 {
+    private $container;
+
+    /**
+     * SearchVoyageCompleteType constructor.
+     * @param $container
+     */
+    public function __construct(ContainerInterface $container)
+    {
+        $this->container = $container;
+    }
+
+
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+        $genres = $this->container->get('trav.form.methods')->getGenres();
+
         $builder
             ->add('address',TextType::class,
                 [
-                    'label'=>'trav.where.you.go',
                     'attr'=>[
                         'class'=>'form-control input-lg js-address',
                         'placeholder'=>'trav.where.you.go'
@@ -65,15 +80,16 @@ class SearchVoyageCompleteType extends AbstractType
                 ]
             )
             ->add(
-                'genre_voyageurs',
+                'genreVoyageurs',
                 ChoiceType::class,
                 [
-                    'choices' => [
-                        'trav.alone' => 'ALONE',
-                        'trav.couple' => 'COUPLE',
-                        'trav.friends' => 'FRIENDS'
-                    ],
-                    'label' => 'trav_how_will_you_travel'
+                    'choices' => $genres,
+                    'placeholder' => 'trav.travelers.genre',
+                    'expanded' => false,
+                    'multiple' => false,
+                    'required' => true,
+                    'translation_domain' => 'messages',
+                    'choice_translation_domain' => 'messages'
                 ]
             )
             ->add(
@@ -84,28 +100,15 @@ class SearchVoyageCompleteType extends AbstractType
                         'trav.yes' => 1,
                         'trav.no' => 0
                     ],
-                    'label' => 'trav_smocker_allowed'
+                    'placeholder' => 'trav_smocker_allowed',
                 ]
-            )
-            ->add(
-                'genreVoyageurs',
-                ChoiceType::class,
-                [
-                    'choices' => [
-                        'trav.female' => 'FEMALE',
-                        'trav.male' => 'MALE',
-                        'trav.mixte' => 'MIXTE'
-                    ],
-                    'label' => 'trav.travelers.genre'
-                ]
-
             )
         ;
     }
 
     public function configureOptions(OptionsResolver $resolver)
     {
-        
+
     }
 
     public function getName()

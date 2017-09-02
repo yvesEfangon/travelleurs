@@ -42,7 +42,7 @@
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="{{ path('homepage',{'_locale': current}) }}" class="fa fa-home fa-lg"></a></li>
-                <li><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                <!--li><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                         {{ 'trav.ourstory'|trans }}&nbsp;<i class="fa fa-caret-down"></i>
                     </a>
                     <ul class="dropdown-menu">
@@ -74,24 +74,36 @@
                             </a>
                         </li>
                     </ul>
-                </li>
+                </li-->
                 {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                    <li>
+                        <a href="{{ path('fos_message_inbox') }}"><i class="fa fa-envelope-o fa-lg w3-circle"></i></a>
+                    </li>
+                    <li>
+                        <a href="{{ path('trav_myprofile',{'_locale': current}) }}">
+                            {% if app.user.photoProfile is defined and app.user.photoProfile is not null %}
+                                <img src="{{ vich_uploader_asset(app.user.photoProfile,'imageFile') }}" alt="{{ app.user.username }}" class="w3-border w3-circle"  style="width:100%;max-width:20px">
+                            {% else %}
+                                <i class="fa fa-user fa-lg"></i>
+                            {% endif %}
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ path('fos_user_security_logout',{'_locale': current}) }}">
+                            <i class="fa fa-sign-out fa-lg"></i>
+                        </a>
+                    </li>
+                    <!--li><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
 
-                    <li><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                            {{ 'trav.say.hello'|trans }} {{ app.user.username }} &nbsp;<i class="fa fa-caret-down"></i>
+                            &nbsp;<i class="fa fa-caret-down"></i>
                         </a>
                         <ul class="dropdown-menu">
 
-                            <li>
-                                <a href="{{ path('fos_user_security_logout',{'_locale': current}) }}">
-                                    <i class="fa fa-sign-out"></i>{{ 'trav.logout'|trans }}
-                                </a>
-                            </li>
+
+
                         </ul>
-                    </li>
-                    <li>
-                        <a href="{{ path('trav_myprofile',{'_locale': current}) }}">{{ 'trav.my.profile'|trans }}</a>
-                    </li>
+                    </li-->
+
                 {% else %}
                     <li class="w3-red w3-border w3-border-white"><a href="{{ path('fos_user_security_login',{'_locale': current}) }}">{{ 'trav.signin'|trans }}</a></li>
                 {% endif %}

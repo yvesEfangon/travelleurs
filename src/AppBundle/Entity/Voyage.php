@@ -87,16 +87,16 @@ class Voyage
     private $ownerIsAlone;
 
     /**
-     * @var string
+     * @var integer
      *
-     * @ORM\Column(name="genre_voyageurs", type="string", length=20)
+     * @ORM\Column(name="genre_voyageur", type="integer", nullable=true)
      */
     private $genreVoyageurs;
 
     /**
      * @var boolean
      *
-     * @ORM\Column(name="smocker_allowed", type="boolean")
+     * @ORM\Column(name="smocker_allowed", type="boolean", nullable=true)
      */
     private $smockerAllowed;
 
@@ -111,21 +111,21 @@ class Voyage
     /**
      * @var boolean
      *
-     * @ORM\Column(name="strict_criteria", type="boolean")
+     * @ORM\Column(name="strict_criteria", type="boolean", nullable=true)
      */
     private $strict_criteria;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="currency", type="string", length=20)
+     * @ORM\Column(name="currency", type="string", length=20, nullable=true)
      */
     private $currency;
 
     /**
      * @var double
      *
-     * @ORM\Column(name="budget", type="float")
+     * @ORM\Column(name="budget", type="float", nullable=true)
      */
     private $budget;
 
@@ -137,6 +137,19 @@ class Voyage
     private $spokenLanguages;
 
     /**
+     * @var integer
+     *
+     * @ORM\Column(name="age_maxi", type="integer", nullable=true)
+     */
+    private $ageMax;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="age_min", type="integer", nullable=true)
+     */
+    private $ageMin;
+    /**
      * Voyage constructor.
      */
     public function __construct()
@@ -146,6 +159,8 @@ class Voyage
         $this->spokenLanguages = new ArrayCollection();
         $this->createdOn        = new \DateTime();
         $this->published        = 0;
+        $this->ageMax           = 70;
+        $this->ageMin           = 18;
     }
 
     /**
@@ -368,7 +383,7 @@ class Voyage
     }
 
     /**
-     * @return string
+     * @return integer
      */
     public function getGenreVoyageurs()
     {
@@ -376,7 +391,7 @@ class Voyage
     }
 
     /**
-     * @param string $genreVoyageurs
+     * @param integer $genreVoyageurs
      * @return Voyage
      */
     public function setGenreVoyageurs($genreVoyageurs)
@@ -539,6 +554,45 @@ class Voyage
 
         return $this;
     }
+
+    /**
+     * @return int
+     */
+    public function getAgeMax()
+    {
+        return $this->ageMax;
+    }
+
+    /**
+     * @param int $ageMax
+     * @return Voyage
+     */
+    public function setAgeMax($ageMax)
+    {
+        $this->ageMax = $ageMax;
+
+        return $this;
+    }
+
+    /**
+     * @return int
+     */
+    public function getAgeMin()
+    {
+        return $this->ageMin;
+    }
+
+    /**
+     * @param int $ageMin
+     * @return Voyage
+     */
+    public function setAgeMin($ageMin)
+    {
+        $this->ageMin = $ageMin;
+
+        return $this;
+    }
+
 
 
 }

@@ -1,27 +1,23 @@
-{% for type, flashes in app.session.flashBag.all() %}
-    {% for flash in flashes %}
-        <div class="alert alert-{{ type }}">
-            {{ flash }}
-        </div>
-    {% endfor %}
-{% endfor %}
 
-<div class="well well-sm">
-<div class="row w3-margin-bottom text-center">{{ 'trav.my.profile'|trans|upper }}</div>
-<div class="row">
-    <div class="col-lg-3 col-md-3 col-xs-3">
+{% extends "AppBundle:Travelleurs:myprofile.html.twig" %}
+
+{% block secondContent %}
+    <div class="panel" >
+    <h2 class="panel-heading trav-secondary-bg-color w3-text-white">{{ 'trav.my.pictures'|trans|upper }}</h2>
+    <div class="panel-body">
+    <div class="row w3-padding-12 w3-margin-12 w3-border">
        {{ form_start(form) }}
-       <div class="row">
+       <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
            {{ form_widget(form.imageFile) }}
        </div>
-        <div>
-            {{ form_widget(form.submit) }}
+        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+            {{ form_widget(form.submit,{'attr': {'class': 'trav-secondary-bg-color btn btn-lg btn-block w3-text-white'}}) }}
         </div>
         <div class="hidden">{{ form_rest(form) }}</div>
 
         {{ form_end(form) }}
     </div>
-    <div class="col-lg-9 col-md-9 col-xs-9">
+    <div class="row w3-padding-12 w3-margin-12 w3-border">
         {% if albums is defined and albums|length>0 %}
             {% for album in albums %}
                 {% for img in album.images  %}
@@ -31,17 +27,17 @@
 
                     <div id="{{ img.id }}" class="w3-modal">
                         <div class="w3-modal-content">
-                            <header class="w3-container w3-teal">
+                            <header class="w3-container trav-secondary-bg-color w3-text-white">
                                <span onclick="document.getElementById({{ img.id }}).style.display='none'"
                                      class="w3-button w3-display-topright"><i class="text-danger fa fa-close fa-lg"></i></span>
-                                <h2>Modal Header</h2>
+                                <h2>{{ 'trav.set.profile.picture'|trans }}</h2>
                             </header>
                             <div class="w3-container">
                                 <img src="{{ vich_uploader_asset(img,'imageFile') }}" alt="{{ img.image }}" class="w3-opacity-min" >
 
                             </div>
-                            <footer class="w3-container w3-teal">
-                                <a href="{{ path('trav_add_profile_image',{'id':img.id}) }}">Set Profile img</a>
+                            <footer class="w3-container trav-secondary-bg-color w3-text-white">
+                                <a href="{{ path('trav_add_profile_image',{'id':img.id}) }}" class="btn btn-default">{{ 'trav.select.this'|trans }}</a>
                             </footer>
                         </div>
                     </div>
@@ -49,6 +45,7 @@
             {% endfor %}
         {% endif %}
     </div>
+    </div>
 </div>
-</div>
-{{ include('AppBundle::default-scripts.js.twig') }}
+
+{% endblock %}

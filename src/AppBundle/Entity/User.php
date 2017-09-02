@@ -28,6 +28,12 @@ class User extends BaseUser implements ParticipantInterface
 
     /**
      * @var string
+     *  @ORM\Column(name="genre", type="integer", nullable=true)
+     */
+    private $genre;
+
+    /**
+     * @var string
      *
      * @ORM\Column(name="name", type="string", length=255, nullable=true)
      */
@@ -92,7 +98,7 @@ class User extends BaseUser implements ParticipantInterface
     /**
      * @var string
      *
-     * @ORM\Column(name="place_id", type="string", nullable=false)
+     * @ORM\Column(name="place_id", type="string", nullable=true)
      */
     private $placeId;
 
@@ -113,28 +119,28 @@ class User extends BaseUser implements ParticipantInterface
     /**
      * @var bool
      *
-     * @ORM\Column(name="fumeur", type="boolean")
+     * @ORM\Column(name="fumeur", type="boolean", nullable=true)
      */
     private $fumeur;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="bio", type="text")
+     * @ORM\Column(name="bio", type="text", nullable=true)
      */
     private $bio;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="marital_status", type="string", length=100)
+     * @ORM\Column(name="marital_status", type="string", length=100, nullable=true)
      */
     private $maritalStatus;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="degre_conversation", type="string", length=100)
+     * @ORM\Column(name="degre_conversation", type="string", length=100, nullable=true)
      */
     private $degreConversation;
 
@@ -171,6 +177,7 @@ class User extends BaseUser implements ParticipantInterface
         $this->hobbies      = new ArrayCollection();
         $this->causesSociales   = new ArrayCollection();
         $this->sportActivities  = new ArrayCollection();
+
     }
 
     /**
@@ -182,6 +189,27 @@ class User extends BaseUser implements ParticipantInterface
     {
         return $this->id;
     }
+
+    /**
+     * @return integer
+     */
+    public function getGenre()
+    {
+        return $this->genre;
+    }
+
+
+    /**
+     * @param integer $genre
+     * @return User
+     */
+    public function setGenre($genre)
+    {
+        $this->genre    = $genre;
+
+        return $this;
+    }
+
 
     /**
      * Set name
@@ -233,21 +261,6 @@ class User extends BaseUser implements ParticipantInterface
         return in_array($role, $this->getRoles());
     }
 
-    /**
-     * @return mixed
-     */
-    public function getUserData()
-    {
-        return $this->userData;
-    }
-
-    /**
-     * @param mixed $userData
-     */
-    public function setUserData($userData)
-    {
-        $this->userData = $userData;
-    }
 
     /**
      * @return string

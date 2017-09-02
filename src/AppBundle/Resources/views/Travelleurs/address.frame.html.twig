@@ -1,4 +1,7 @@
 
+{% extends "AppBundle:Travelleurs:myprofile.html.twig" %}
+
+{% block secondContent %}
 {{ form_start(address_form) }}
 <div class="w3-padding row">
     <div class="col-lg-6 col-md-6 col-xs-6">
@@ -34,3 +37,4 @@
 </div>
 
 {{ form_end(address_form) }}
+{% endblock %}

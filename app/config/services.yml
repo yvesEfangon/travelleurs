@@ -12,12 +12,30 @@ services:
 
     app.form.profile:
         class: AppBundle\Form\ProfileType
-        arguments: [%fos_user.model.user.class%]
+        arguments: [%fos_user.model.user.class%,'@service_container']
         tags:
             - {name: form.type, alias: app_user_profile}
+    app.form.voyage:
+        class: AppBundle\Form\VoyageType
+        arguments: ['@service_container']
+        tags:
+            - {name: form.type, alias: voyage_form}
+    app.form.voyage2:
+        class: AppBundle\Form\VoyagePart2Type
+        arguments: ['@service_container']
+        tags:
+            - {name: form.type, alias: voyage_form2}
+    app.form.search.voyage:
+        class: AppBundle\Form\SearchVoyageCompleteType
+        arguments: ['@service_container']
+        tags:
+            - {name: form.type, alias: search_voyage}
 
     trav.fileuploader:
         class: AppBundle\Service\FileUploader
+    trav.form.methods:
+        class: AppBundle\Service\FormServices
+        arguments: ['@service_container']
 
     # Repositories
     trav.repository.address:
@@ -37,3 +55,8 @@ services:
     trav.repo.address.manipulator:
             class: AppBundle\RepositoryManipulat\AddressRepoManipulator
             arguments: ['@service_container']
+    trav.repository.genre:
+        class: AppBundle\Repository\GenreRepository
+        factory: ['@doctrine', 'getRepository']
+        arguments: ['AppBundle:Genre']
+

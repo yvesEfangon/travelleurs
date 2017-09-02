@@ -2,8 +2,10 @@
 
 namespace AppBundle\Form;
 
+use AppBundle\Entity\Genre;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -14,9 +16,10 @@ class GenreType extends AbstractType
         $builder
             ->add(
                 'genre',
-                EntityType::class,
+                ChoiceType::class,
                 [
-                    'class' => 'AppBundle\Entity\Genre'
+                    'class' => 'AppBundle\Entity\Genre',
+                    'choice_label' => 'genre'
                 ]
             );
     }
@@ -25,7 +28,7 @@ class GenreType extends AbstractType
     {
         $resolver->setDefaults(
             [
-                'data_class' => 'AppBundle\Entity\Genre'
+                'data_class' => Genre::class
             ]
         );
     }

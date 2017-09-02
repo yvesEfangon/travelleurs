@@ -182,6 +182,18 @@
                 <source>trav.mixte</source>
                 <target>Mixte</target>
             </trans-unit>
+            <trans-unit id="trav_genre_female">
+                <source>trav.genre.female</source>
+                <target>FEMININ</target>
+            </trans-unit>
+            <trans-unit id="trav_genre_male">
+                <source>trav.genre.male</source>
+                <target>MASCULIN</target>
+            </trans-unit>
+            <trans-unit id="trav_genre_mixte">
+                <source>trav.genre.mixte</source>
+                <target>MIXTE</target>
+            </trans-unit>
             <trans-unit id="trav_alone">
                 <source>trav.alone</source>
                 <target>Seul</target>
@@ -232,7 +244,7 @@
             </trans-unit>
             <trans-unit id="trav_publication">
                 <source>trav.publication</source>
-                <target>Publication</target>
+                <target>Publié</target>
             </trans-unit>
             <trans-unit id="trav_save_action">
                 <source>trav.save.action</source>
@@ -269,6 +281,14 @@
             <trans-unit id="no">
                 <source>NO</source>
                 <target>NON</target>
+            </trans-unit>
+            <trans-unit id="trav_please_select">
+                <source>trav.please.select</source>
+                <target>Selectionner</target>
+            </trans-unit>
+            <trans-unit id="trav_your_location">
+                <source>trav.your.location</source>
+                <target>Votre localisation</target>
             </trans-unit>
         </body>
     </file>

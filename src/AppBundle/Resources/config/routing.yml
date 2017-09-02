@@ -42,9 +42,9 @@ trav_faq:
     requirements:
         _locale: '%regex.local%'
 trav_search_form:
-    path: /{_locale}/search/
+    path: /{_locale}/voyage/search
     defaults:
-        _controller: AppBundle:Default:search
+        _controller: AppBundle:Voyage:search
         _locale: '%locale%'
     requirements:
         _locale: '%regex.local%'
@@ -80,7 +80,7 @@ trav_add_profile_image:
         _locale: '%regex.local%'
 
 trav_edit_voyage:
-    path: /{_locale}/voyage/edit/{id}
+    path: /{_locale}/myprofile/voyage/edit/{id}
     defaults:
         _controller: AppBundle:Voyage:edit
     requirements:
@@ -88,7 +88,7 @@ trav_edit_voyage:
         _locale: '%regex.local%'
 
 trav_add_voyage:
-    path: /{_locale}/voyage/add
+    path: /{_locale}/myprofile/voyage/add
     defaults:
         _controller: AppBundle:Voyage:add
     requirements:
@@ -109,16 +109,18 @@ trav_remove_voyage:
         _locale: '%regex.local%'
         id: '\d+'
 trav_index_voyage:
-    path: /{_locale}/voyage/list
+    path: /{_locale}/myprofile/voyage/list
     defaults:
         _controller: AppBundle:Voyage:index
         _locale: '%locale%'
 trav_add_image:
-    path: /{_locale}/image/add
+    path: /{_locale}/myprofile/image/add
     defaults:
         _controller: AppBundle:Image:add
+        _locale: '%locale%'
     requirements:
         _locale: '%regex.local%'
+
 root:
     path: /{_locale}
     defaults:

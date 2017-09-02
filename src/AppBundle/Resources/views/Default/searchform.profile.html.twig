@@ -1,93 +1,22 @@
 
-    {{ form_start(form_search) }}
+<form class="form-horizontal form-horizontal" name="search_voyage_index" method="post" action="{{ path('trav_search_form') }}">
     <div class="container row text-center center-block">
         <div class="row">
             <div class="col-lg-9 col-md-9 col-xs-9 w3-right-align">
-                {{ form_widget(form_search.address,{'attr': {'onFocus':'geolocate()'} })  }}
+                <input id="search_voyage_index_address" class="form-control input-lg js-address form-control" name="search_voyage_index[address]" required="required" placeholder="Where would you like to go ?" onfocus="geolocate()" autocomplete="off" type="text">
             </div>
             <div class="col-lg-1 col-md-1 col-xs-1 w3-left-align" style="left: 0;">
-                <input class="btn btn-lg w3-red" type="submit" value="GO">
+                <input class="btn btn-lg w3-red" value="GO" type="submit">
             </div>
         </div>
-
     </div>
     <div class="hidden">
-        {{ form_rest(form_search) }}
+        <input id="search_voyage_index_lat" class="js-gmaps-lat" name="search_voyage_index[lat]" type="hidden">
+        <input id="search_voyage_index_lng" class="js-gmaps-lng" name="search_voyage_index[lng]" type="hidden">
+        <input id="search_voyage_index_locality" class="js-gmaps-locality" name="search_voyage_index[locality]" type="hidden">
+        <input id="search_voyage_index_administrative_area" class="js-gmaps-administrative_area" name="search_voyage_index[administrative_area]" type="hidden">
+        <input id="search_voyage_index_country" class="js-gmaps-country" name="search_voyage_index[country]" type="hidden">
+        <input id="search_voyage_index_placeId" class="js-gmaps-placeId" name="search_voyage_index[placeId]" type="hidden">
+        <input id="search_voyage_index__token" name="search_voyage_index[_token]" value="nOS4XjeZUXsLqWfeSgRaeUfZQNBw-pcWTmufSSSfzCQ" type="hidden">
     </div>
-    <script type="application/javascript">
-        var autocompleteProfile;
-    function initAutocompleteSearch() {
-    // Create the autocomplete object, restricting the search to geographical
-    // location types.
-        autocompleteProfile = new google.maps.places.Autocomplete(
-    /** @type {!HTMLInputElement} */(document.getElementsByClassName('js-address')[0]),
-    {types: ['geocode']});
-
-    // When the user selects an address from the dropdown, populate the address
-    // fields in the form.
-    autocomplete.addListener('place_changed', fillInAddressSearch);
-    }
-
-    function fillInAddressSearch() {
-        // Get the place details from the autocompleteProfile object.
-        var place = autocompleteProfile.getPlace();
-        //console.log(autocompleteProfile);
-        if(place){
-
-            document.getElementsByClassName('js-gmaps-lat')[0].value= place.geometry.location.lat();
-            document.getElementsByClassName('js-gmaps-lng')[0].value = place.geometry.location.lng();
-
-            if(place.place_id)
-                document.getElementsByClassName('js-gmaps-placeId')[0].value    = place.place_id;
-
-            var addressComponent    = place.address_components;
-            var locality,administrative_area,country;
-
-            for (var i = 0; i < addressComponent.length; i++){
-                var value = addressComponent[i];
-                var types = value.types;
-                var type0 = types[0];
-                switch (type0){
-                    case 'locality':
-                        locality = value.long_name;
-                        break;
-                    case 'administrative_area_level_1':
-                        administrative_area = value.long_name;
-                        break;
-                    case 'country':
-                        country = value.long_name;
-                        break;
-                }
-
-            }
-
-            document.getElementsByClassName('js-gmaps-locality')[0].value = locality;
-            document.getElementsByClassName('js-gmaps-administrative_area')[0].value =administrative_area;
-            document.getElementsByClassName('js-gmaps-country')[0].value = country;
-
-
-        }else{
-            window.alert("No details available for input: '" + place.name + "'");
-            return;
-        }
-    }
-
-    // Bias the autocomplete object to the user's geographical location,
-    // as supplied by the browser's 'navigator.geolocation' object.
-    function geolocate() {
-    if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(function(position) {
-    var geolocation = {
-    lat: position.coords.latitude,
-    lng: position.coords.longitude
-    };
-    var circle = new google.maps.Circle({
-    center: geolocation,
-    radius: position.coords.accuracy
-    });
-    autocomplete.setBounds(circle.getBounds());
-    });
-    }
-    }
-    </script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBYZqbrjgb550hqzFuZT0I5v5IFaZ4ouKw&libraries=places&callback=initAutocompleteSearch"    async defer></script>
+</form>

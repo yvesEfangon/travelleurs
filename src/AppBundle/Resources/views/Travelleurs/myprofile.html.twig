@@ -1,10 +1,18 @@
 {% extends 'AppBundle::base.html.twig' %}
 {% block title %}{{ 'trav.my.profile'|trans }} - {{ parent() }} {% endblock %}
 {%  block content %}
+
+    {% for type, flashes in app.session.flashBag.all() %}
+        {% for flash in flashes %}
+            <div class="alert alert-{{ type }}">
+                {{ flash }}
+            </div>
+        {% endfor %}
+    {% endfor %}
 <div class="clearfix container-fluid center-block w3-margin-64">
 <div class="row center-block">
     <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
-        {% include 'AppBundle:Default:searchform.profile.html.twig' %}
+     {% include 'AppBundle:Default:searchform.profile.html.twig' %}
     </div>
     <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
         <i class="fa fa-commenting"></i>
@@ -13,24 +21,25 @@
         <i class="fa fa-gear"></i>
     </div>
 </div>
+
     {#{{ path('trav_index_voyage',{'_locale': app.request.locale}) }}#}
 </div>
-<div class="row w3-margin-48">
-    <div class="col-lg-3 col-md-3 col-xs-3 well well-sm">
-        <ul class="nav nav-stacked _menu-insite-active">
+{% endblock %}
+{% block secondMenu %}
+        <ul class="nav nav-stacked _menu-insite-active well well-lg">
             <li role="presentation" class="active">
-               <a href="{{ path('trav_showmyprofile') }}" target="central-profile-frame" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" class="dropdown-toggle trav-secondary-color">
+               <a href="{{ path('trav_myprofile') }}"  data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" class="dropdown-toggle trav-secondary-color">
                    <span class="badge"><i class="fa fa-user"></i></span>
                    {{ 'trav.my.profile'|trans }} <span class="fa fa-caret-down pull-right"></span>
                 </a>
                 <ul class="dropdown-menu dropdown-menu-insite">
                     <li>
-                        <a href="{{ path('trav_showmyprofile') }}" target="central-profile-frame" >
+                        <a href="{{ path('trav_myprofile') }}"  >
                             <i class="fa fa-eye"></i> {{ 'trav.show'|trans }}
                         </a>
                     </li>
                     <li>
-                        <a href="{{ path('fos_user_profile_edit') }}" target="central-profile-frame" ><i class="fa fa-pencil"></i> {{ 'trav.edit'|trans }}</a>
+                        <a href="{{ path('fos_user_profile_edit') }}"  ><i class="fa fa-pencil"></i> {{ 'trav.edit'|trans }}</a>
                     </li>
                 </ul>
             </li>
@@ -42,13 +51,13 @@
                 </a>
                 <ul class="dropdown-menu dropdown-menu-insite">
                    <li>
-                       <a href="{{ path('trav_index_voyage') }}" target="central-profile-frame">
+                       <a href="{{ path('trav_index_voyage') }}" >
                            <i class="fa fa-plane"></i>&nbsp;
                            {{ 'trav.mytravels'|trans }}
                        </a>
                    </li>
                     <li>
-                        <a href="{{ path('trav_add_voyage') }}" target="central-profile-frame">
+                        <a href="{{ path('trav_add_voyage') }}" >
                             <i class="fa fa-plus-square-o"></i>&nbsp;
                             {{ 'trav.add.travel'|trans }}
                         </a>
@@ -75,22 +84,39 @@
            </li>
 
         </ul>
-    </div>
-    <div class="col-lg-9 col-md-9 col-xs-9 embed-responsive embed-responsive-16by9">
-        <iframe src="{{ path('trav_showmyprofile') }}" name="central-profile-frame" id="central-profile-frame" class="embed-responsive-item"></iframe>
-    </div>
-   {# <div class="col-lg-2 col-md-2 col-xs-2">
-        <div class="list-group">
-            <a href="#" class="list-group-item active">
-                {{ 'trav.my.favourites'|trans|upper }}
-            </a>
-            <a href="{{ path('trav_index_voyage') }}" class="list-group-item">{{ 'trav.mytravels'|trans }}</a>
-            <a href="#" class="list-group-item">{{ 'trav.myactivities'|trans }}</a>
-            <a href="#" class="list-group-item">Trip planner</a>
+  {% endblock %}
+{% block secondContent %}
+    <div class="panel" >
+        <h2 class="panel-heading trav-secondary-bg-color w3-text-white">{{ 'trav.my.profile'|trans|upper }}</h2>
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-lg-4 col-md-4 col-xs-4">
+                    {% if user.photoProfile is not defined or user.photoProfile is null %}
+                        <a href="{{path('trav_add_image')}}" target="_self" class="btn btn-default">
+                            <i class="fa fa-camera"></i> Add a profile image
+                        </a>
+                    {% else %}
+                        <img src="{{ vich_uploader_asset(user.photoProfile,'imageFile') }}" alt="{{ user.username }}" class="w3-border w3-padding"  style="width:100%;max-width:200px">
+                        <div class="w3-container">
+                            <a href="{{path('trav_add_image')}}" target="_self" class="btn btn-default">
+                                <i class="fa fa-refresh"></i> Change my profile avatar
+                            </a>
+                        </div>
+                    {% endif %}
+                </div>
+                <div class="col-lg-8 col-md-8 col-xs-8">
+                    <div class="list-group">
+                        <a class="list-group-item">{{ 'trav.address'|trans }}: {{ user.address }} </a>
+                        <a class="list-group-item">{{ 'trav.city'|trans }}</a>
+                        <a class="list-group-item">{{ 'trav.my.age'|trans }}: {{ user.birthdate|date('Y/m/d') }}</a>
+                    </div>
+                </div>
+            </div>
         </div>
-    </div>#}
-</div>
-{% endblock %}
+        </div>
+   {% endblock %}
+
+
 
 {% block inline_js %}
     {{ parent() }}

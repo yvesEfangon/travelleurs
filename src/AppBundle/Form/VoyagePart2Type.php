@@ -2,16 +2,32 @@
 
 namespace AppBundle\Form;
 
-use Sonata\AdminBundle\Form\Type\Filter\ChoiceType;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
+use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class VoyagePart2Type extends AbstractType
 {
+    private $container;
+
+    /**
+     * VoyagePart2Type constructor.
+     * @param $container
+     */
+    public function __construct(ContainerInterface $container)
+    {
+        $this->container = $container;
+    }
+
+
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+        $genres = $this->container->get('trav.form.methods')->getGenres();
         $builder
             ->add(
                 'annonce',
@@ -35,15 +51,31 @@ class VoyagePart2Type extends AbstractType
                 'genreVoyageurs',
                 ChoiceType::class,
                 [
-                    'choices' => [
-                        'trav.female' => 'FEMALE',
-                        'trav.male' => 'MALE',
-                        'trav.mixte' => 'MIXTE'
-                    ],
-                    'label' => 'trav.travelers.genre'
+                    'choices' => $genres,
+                    'placeholder' => 'trav.please.select',
+                    'expanded' => false,
+                    'multiple' => false,
+                    'required' => true,
+                    'translation_domain' => 'messages',
+                    'choice_translation_domain' => 'messages'
+                ]
+            )
+            ->add(
+                'ageMax',
+                NumberType::class,
+                [
+                    'attr' => ['readonly' => true]
                 ]
 
-            );
+            )
+            ->add(
+                'ageMin',
+                NumberType::class,
+                [
+                    'attr' => ['readonly' => true]
+                ]
+            )
+        ;
 
     }
 

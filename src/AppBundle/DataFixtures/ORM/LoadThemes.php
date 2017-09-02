@@ -13,7 +13,7 @@ use Doctrine\Common\DataFixtures\FixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 
 
-class LoadStates implements FixtureInterface
+class LoadThemes implements FixtureInterface
 {
 
     public function load(ObjectManager $manager)
@@ -22,9 +22,9 @@ class LoadStates implements FixtureInterface
 
        $themes  = ['trav.theme.detente', 'trav.theme.sport', 'trav.theme.luxe'];
 
-        foreach ($themes as $i => $theme) {
+        foreach ($themes as $i => $th) {
             $theme  = new Theme();
-            $theme->setLibelle($theme);
+            $theme->setLibelle($th);
 
             $manager->persist($theme);
 

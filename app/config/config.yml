@@ -77,8 +77,11 @@ doctrine:
         entity_managers:
             default:
                 connection: default
+                naming_strategy: doctrine.orm.naming_strategy.underscore
+                auto_mapping: true
                 mappings:
                     AppBundle: ~
+
                    # SonataNotificationBundle: ~
                     #ApplicationSonataNotificationBundle: ~
 
@@ -95,6 +98,11 @@ fos_user:
     from_email:
         address:        noreply@travelleurs.com
         sender_name:    Travelleurs
+fos_message:
+    db_driver: orm
+    thread_class: AppBundle\Entity\Thread
+    message_class: AppBundle\Entity\Message
+
 # Swiftmailer Configuration
 swiftmailer:
     transport: "%mailer_transport%"

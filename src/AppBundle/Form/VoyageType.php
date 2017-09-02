@@ -2,19 +2,33 @@
 
 namespace AppBundle\Form;
 
+use AppBundle\Entity\Voyage;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\CurrencyType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class VoyageType extends AbstractType
 {
+    private $container;
+
+    /**
+     * VoyageType constructor.
+     * @param $container
+     */
+    public function __construct(ContainerInterface $container)
+    {
+        $this->container = $container;
+    }
+
+
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+
         $builder->add(
             'ownerIsAlone',
             ChoiceType::class,
@@ -27,33 +41,28 @@ class VoyageType extends AbstractType
                 'label' => 'trav_how_will_you_travel'
             ]
         )
-            ->add(
-                'themes',
-                ThemeType::class,
+            ->add('themes', EntityType::class,
                 [
-                    'label' => 'Themes'
-                ]
-                )
+                    'class'=>'AppBundle\Entity\Theme',
+                    'choice_label' => 'libelle',
+                    'expanded' => false,
+                    'multiple' => true,
+                    'required' => true,
+                    'translation_domain' => 'messages',
+                    'choice_translation_domain' => 'messages'
+                ])
             ->add(
                 'spokenLanguages',
-                LangueType::class,
+                EntityType::class,
                 [
-                    'label' => 'trav.spoken.languages'
+                    'class' => 'AppBundle\Entity\Langue',
+                    'choice_label' => 'code',
+                    'expanded' => false,
+                    'multiple' => true,
+                    'required' => true
                 ]
             )
-            ->add(
-                'typeDeVoyage',
-                ChoiceType::class,
-                [
-                    'choices' => [
-                        'trav.female' => 'FEMALE',
-                        'trav.male' => 'MALE',
-                        'trav.mixte' => 'MIXTE'
-                    ],
-                    'label' => 'trav.travelers.genre'
-                ]
 
-                )
             ->add(
                 'strict_criteria',
                 ChoiceType::class,
@@ -87,7 +96,7 @@ class VoyageType extends AbstractType
     {
        $resolver->setDefaults(
            [
-               'data_class' => 'AppBundle\Entity\Voyage'
+               'data_class' => Voyage::class
            ]
        );
     }
