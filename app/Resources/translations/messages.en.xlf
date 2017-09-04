@@ -158,10 +158,7 @@
                 <source>trav.myactivities</source>
                 <target>My Activities</target>
             </trans-unit>
-            <trans-unit id="trav_add_travel">
-                <source>trav.add.travel</source>
-                <target>New Travel</target>
-            </trans-unit>
+
             <trans-unit id="trav_how_will_you_travel">
                 <source>trav_how_will_you_travel</source>
                 <target>How will you travel ?</target>
@@ -273,6 +270,46 @@
              <trans-unit id="trav_your_location">
                 <source>trav.your.location</source>
                 <target>Your location</target>
+            </trans-unit>
+            <trans-unit id="trav_from">
+                <source>trav.from</source>
+                <target>From</target>
+            </trans-unit>
+            <trans-unit id="trav_to">
+                <source>trav.to</source>
+                <target>To</target>
+            </trans-unit>
+            <trans-unit id="trav_on">
+                <source>trav.on</source>
+                <target>On</target>
+            </trans-unit>
+            <trans-unit id="trav_departure_city">
+                <source>trav.departure.city</source>
+                <target>Departure</target>
+            </trans-unit>
+            <trans-unit id="trav_arrival_city">
+                <source>trav.arrival.city</source>
+                <target>Arrival</target>
+            </trans-unit>
+            <trans-unit id="trav_arrival_date">
+                <source>trav.arrival.date</source>
+                <target>Arrival Date</target>
+            </trans-unit>
+            <trans-unit id="trav_departure_date">
+                <source>trav.departure.date</source>
+                <target>Departure Date</target>
+            </trans-unit>
+            <trans-unit id="trav_publish">
+                <source>trav.publish</source>
+                <target>Publish</target>
+            </trans-unit>
+            <trans-unit id="trav_add_action">
+                <source>trav.add.action</source>
+                <target>Add</target>
+            </trans-unit>
+            <trans-unit id="trav_add_travel">
+                <source>trav.add.travel</source>
+                <target>Add a travel</target>
             </trans-unit>
         </body>
     </file>

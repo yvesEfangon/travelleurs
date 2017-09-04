@@ -70,6 +70,19 @@ function disableAll(obj) {
     jQuery("obj :select").attr("disabled", true);
     jQuery("obj :textarea").attr("disabled", true);
 }
+function openOneTab(obj_btn){
+
+    var btn = jQuery(obj_btn);
+    var $div = btn.find('.manage_arrow').eq(0);
+    if ($div.hasClass("fa-arrow-circle-left") ) {
+
+        $div.removeClass('fa-arrow-circle-left').addClass('fa-arrow-circle-down');
+
+    } else {
+
+        $div.removeClass('fa-arrow-circle-down').addClass('fa-arrow-circle-left');
+    }
+}
 
 function showCurrentStepInfo(step) {
     var id = "#" + step;

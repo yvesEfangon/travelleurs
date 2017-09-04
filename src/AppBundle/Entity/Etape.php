@@ -61,6 +61,12 @@ class Etape
     /**
      * @var \DateTime
      *
+     * @ORM\Column(name="date_fin_sejour", type="datetime", nullable=true)
+     */
+    private $dateFinSejour;
+    /**
+     * @var \DateTime
+     *
      * @ORM\Column(name="createdOn", type="datetime")
      */
     private $createdOn;
@@ -448,6 +454,26 @@ class Etape
 
         return $this;
     }
+
+    /**
+     * @return \DateTime
+     */
+    public function getDateFinSejour()
+    {
+        return $this->dateFinSejour;
+    }
+
+    /**
+     * @param \DateTime $dateFinSejour
+     * @return Etape
+     */
+    public function setDateFinSejour($dateFinSejour)
+    {
+        $this->dateFinSejour = $dateFinSejour;
+
+        return $this;
+    }
+
 
 
    }
