@@ -33,6 +33,8 @@ class AppKernel extends Kernel
             new JMS\SerializerBundle\JMSSerializerBundle(),
             new Vich\UploaderBundle\VichUploaderBundle(),
             new FOS\MessageBundle\FOSMessageBundle(),
+            new HWI\Bundle\OAuthBundle\HWIOAuthBundle(),
+            new Knp\Bundle\PaginatorBundle\KnpPaginatorBundle(),
 
         );
 

@@ -59,4 +59,11 @@ services:
         class: AppBundle\Repository\GenreRepository
         factory: ['@doctrine', 'getRepository']
         arguments: ['AppBundle:Genre']
+    hwi_oauth.user.provider.entity:
+            class: HWI\Bundle\OAuthBundle\Security\Core\User\OAuthUserProvider
 
+    my.oauth_aware.user_provider.service:
+        class: HWI\Bundle\OAuthBundle\Security\Core\User\FOSUBUserProvider
+        arguments:
+            - '@fos_user.user_manager'
+            - ['pass properties as array']

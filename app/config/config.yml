@@ -81,6 +81,22 @@ doctrine:
                 auto_mapping: true
                 mappings:
                     AppBundle: ~
+                dql:
+                    datetime_functions:
+                        WEEK: AppBundle\DQL\DateTime\Week
+                        MONTH: AppBundle\DQL\DateTime\Month
+                        MONTHNAME: AppBundle\DQL\DateTime\MonthName
+                        YEAR: AppBundle\DQL\DateTime\Year
+                        TO_DAYS: AppBundle\DQL\DateTime\ToDays
+                    string_functions:
+                        TRUNCATE: AppBundle\DQL\String\Truncate
+                    numeric_functions:
+                        MAX: AppBundle\DQL\Numeric\MAX
+                        MIN: AppBundle\DQL\Numeric\MIN
+                        ACOS: AppBundle\DQL\Numeric\ACOS
+                        COS: AppBundle\DQL\Numeric\COS
+                        SIN: AppBundle\DQL\Numeric\SIN
+                        RADIANS: AppBundle\DQL\Numeric\RADIANS
 
                    # SonataNotificationBundle: ~
                     #ApplicationSonataNotificationBundle: ~
@@ -227,29 +243,25 @@ vich_uploader:
             delete_on_update:   true
             delete_on_remove:   true
             namer: vich_uploader.namer_uniqid
+hwi_oauth:
+    # list of names of the firewalls in which this bundle is active, this setting MUST be set
+    firewall_names: [secured_area]
+    resource_owners:
+        facebook:
+            type:          facebook
+            client_id:     <client_id>
+            client_secret: <client_secret>
+            scope:         "email"
+            options:
+                display: popup #dialog is optimized for popup window
 
-            #'xmlns:fb':           "http://www.facebook.com/2008/fbml"
-#sonata_notification:
-    #backend: sonata.notification.backend.runtime
-
-#hwi_oauth_redirect:
-#    resource: "@HWIOAuthBundle/Resources/config/routing/redirect.xml"
-#    prefix:   /connect
-#
-#hwi_oauth_connect:
-#    resource: "@HWIOAuthBundle/Resources/config/routing/connect.xml"
-#    prefix:   /connect
-#
-#hwi_oauth_login:
-#    resource: "@HWIOAuthBundle/Resources/config/routing/login.xml"
-#    prefix:   /login
-#
-#hwi_oauth:
-#    resource_owners:
-#        any_name:
-#            type:                facebook
-#            client_id:           <client_id>
-#            client_secret:       <client_secret>
-#            options:
-#                display: popup #dialog is optimized for popup window
-#                auth_type: rerequest # Re-asking for Declined Permissions
+knp_paginator:
+    page_range: 5                      # default page range used in pagination control
+    default_options:
+        page_name: page                # page query parameter name
+        sort_field_name: sort          # sort field query parameter name
+        sort_direction_name: direction # sort direction query parameter name
+        distinct: true                 # ensure distinct results, useful when ORM queries are using GROUP BY statements
+    template:
+        pagination: 'KnpPaginatorBundle:Pagination:sliding.html.twig'     # sliding pagination controls template
+        sortable: 'KnpPaginatorBundle:Pagination:sortable_link.html.twig' # sort link template

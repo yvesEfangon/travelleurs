@@ -25,3 +25,9 @@ sonata_cache_cache:
 fos_message:
     resource: "@FOSMessageBundle/Resources/config/routing.xml"
     prefix: /{_locale}/message
+hwi_oauth_redirect:
+    resource: "@HWIOAuthBundle/Resources/config/routing/redirect.xml"
+    prefix:   /{_locale}/secured/connect
+
+facebook_login:
+    path: /{_locale}/secured/login_facebook

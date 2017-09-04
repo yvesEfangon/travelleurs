@@ -50,7 +50,7 @@
         "jms/serializer-bundle":"^1.0",
         "friendsofsymfony/jsrouting-bundle": "1.*",
         "friendsofsymfony/rest-bundle": "^2.2",
-        "knplabs/knp-paginator-bundle":"2.5.4",
+        "knplabs/knp-paginator-bundle":"^2.6",
         "friendsofsymfony/message-bundle":"1.*",
         "gregwar/image-bundle": "dev-master",
         "vich/uploader-bundle": "^1.4",

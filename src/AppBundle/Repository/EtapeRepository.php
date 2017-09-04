@@ -11,4 +11,22 @@ namespace AppBundle\Repository;
 class EtapeRepository extends \Doctrine\ORM\EntityRepository
 {
 
+
+    public function searchVoyagesByAddress($request){
+
+        $query  = $this->createQueryBuilder('e')
+            ->join('e.lieuArrivee','lieuArrivee')
+            ->join('e.lieuDepart','lieuDepart')
+            ->join('e.voyage','voyage');
+
+        $address        = @$request['address'];
+        $locality       = @$request['locality'];
+        $lat            = @$request['lat'];
+        $lng            = @$request['lng'];
+        $adminArea      = @$request['administrative_area_3'];
+        $country        = @$request['country'];
+        $ageMaxi        = @$request['ageMaxi'];
+        $ageMini        = @$request['ageMini'];
+
+    }
 }
