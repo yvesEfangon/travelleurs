@@ -36,7 +36,7 @@ class EtapeType extends AbstractType
                     'label' => 'trav.departure.date',
                     'required' => true,
                     'widget' => 'choice',
-                    'years' => range(date('Y'), date('Y')+100)
+                    'years' => range(date('Y'), date('Y')+5)
                 ]
             )
             ->add(
@@ -45,7 +45,16 @@ class EtapeType extends AbstractType
                 [
                     'required' => true,
                     'widget' => 'choice',
-                    'years' => range(date('Y'), date('Y')+100)
+                    'years' => range(date('Y'), date('Y')+5)
+                ]
+            )
+            ->add(
+                'dateFinSejour',
+                DateType::class,
+                [
+                    'required' => true,
+                    'widget' => 'choice',
+                    'years' => range(date('Y'), date('Y')+5)
                 ]
             )
         ;

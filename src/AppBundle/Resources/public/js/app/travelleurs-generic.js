@@ -138,7 +138,7 @@ function initAutoCompleteMaps(){
 
     /*Edit profile */
     autocompleteProfile = new google.maps.places.Autocomplete(
-     (document.getElementsByClassName('js-address')[0]),
+     (document.getElementById('fos_user_profile_form_address')),
         {types: ['geocode']});
 
     autocompleteProfile.addListener('place_changed',fillInAddressProfile);
@@ -288,11 +288,11 @@ function fillInAddressProfile() {
     //console.log(autocompleteProfile);
     if(place){
 
-        document.getElementsByClassName('js-gmaps-lat')[0].value= place.geometry.location.lat();
-        document.getElementsByClassName('js-gmaps-lng')[0].value = place.geometry.location.lng();
+        document.getElementById('fos_user_profile_form_lat').value= place.geometry.location.lat();
+        document.getElementById('fos_user_profile_form_lng').value = place.geometry.location.lng();
 
         if(place.place_id)
-            document.getElementsByClassName('js-gmaps-placeId')[0].value    = place.place_id;
+            document.getElementsById('fos_user_profile_form_placeId').value    = place.place_id;
 
         var addressComponent    = place.address_components;
         var locality,administrative_area,country;
@@ -315,9 +315,9 @@ function fillInAddressProfile() {
 
         }
 
-        document.getElementsByClassName('js-gmaps-locality')[0].value = locality;
-        document.getElementsByClassName('js-gmaps-administrative_area')[0].value =administrative_area;
-        document.getElementsByClassName('js-gmaps-country')[0].value = country;
+        document.getElementById('fos_user_profile_form_locality').value = locality;
+        document.getElementById('fos_user_profile_form_administrative_area').value =administrative_area;
+        document.getElementById('fos_user_profile_form_country').value = country;
 
 
     }else{

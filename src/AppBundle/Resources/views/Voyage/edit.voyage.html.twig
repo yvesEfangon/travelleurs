@@ -3,7 +3,7 @@
 
 {% block secondContent %}
  <div class="panel" >
-        <h2 class="panel-heading trav-secondary-bg-color w3-text-white">{{ 'trav.add.travel'|trans|upper }}</h2>
+        <h4 class="panel-heading trav-secondary-bg-color w3-text-white">{{ 'trav.add.travel'|trans|upper }}</h4>
         <div class="panel-body">
 <div class="well well-sm">
     {{ form_start(formVoyage) }}
@@ -93,11 +93,11 @@
                     <div id="{{ etape.id }}" class="collapse row w3-padding-left w3-padding-right w3-padding-12">
                          <div class="col-lg-5 col-md-5 col-sm-5">
                             <p>{{ 'trav.from'|trans }}:  {{ etape.lieuDepart.address }}<br>
-                            <small class="text-success">{{ 'trav.on'|trans }}: {{ etape.dateDepart|date('Y/m/d') }}</small></p>
+                            <small class="text-success">{{ 'trav.on'|trans }}: {{ etape.dateDepart|date('Y/m/d') }} </small></p>
                         </div>
                         <div class="col-lg-5 col-md-5 col-sm-5">
                             <p>{{ 'trav.to'|trans }}:  {{ etape.lieuArrivee.address }}<br>
-                            <small class="text-success">{{ 'trav.on'|trans }}: {{ etape.dateArrivee|date('Y/m/d') }}</small></p>
+                            <small class="text-success">{{ 'trav.on'|trans }}: {{ etape.dateArrivee|date('Y/m/d') }}, {{ 'trav.leaving.on'|trans }}: {{ etape.dateFinSejour|date('Y/m/d') }}</small></p>
                         </div>
                         <div class="col-lg-2 col-md-2 col-sm-2">
                               <a title="Delete" href="{{ path('trav_remove_etape',{'id':etape.id}) }}" class="btn btn-block btn-danger"><i class="fa fa-times-circle"></i></a>
@@ -111,23 +111,29 @@
     </div>
     {{ form_start(formEtape) }}
     <div class="row">
-        <div class="col-lg-6 col-md-6 col-xs-6">
+        <div class="col-lg-4 col-md-4 col-xs-4">
             {{ 'trav.departure.city'|trans }}
             {{ form_widget(formEtape.lieuDepart.address) }}
         </div>
-        <div class="col-lg-6 col-md-6 col-xs-6">
+        <div class="col-lg-8 col-md-8 col-xs-8 col-sm-8">
             {{ 'trav.arrival.city'|trans }}
             {{ form_widget(formEtape.lieuArrivee.address) }}
         </div>
     </div>
     <div class="row">
-        <div class="col-lg-6 col-md-6 col-xs-6">
+        <div class="col-lg-4 col-md-4 col-xs-4">
             {{ 'trav.departure.date'|trans }}
             {{ form_widget(formEtape.dateDepart) }}
         </div>
-        <div class="col-lg-6 col-md-6 col-xs-6">
+        <div class="col-lg-8 col-md-8 col-xs-8">
+            <div class="col-lg-6 col-md-6 col-xs-6">
             {{ 'trav.arrival.date'|trans }}
             {{ form_widget(formEtape.dateArrivee) }}
+            </div>
+            <div class="col-lg-6 col-md-6 col-xs-6">
+            {{ 'trav.leaving.date'|trans }}
+            {{ form_widget(formEtape.dateFinSejour) }}
+            </div>
         </div>
     </div>
     <div class="row">
@@ -148,9 +154,9 @@
 <div class="well well-sm">
     <div class="row">
         <div class="col-lg-4 col-md-4 col-xs-4"><span class="w3-badge w3-jumbo w3-padding trav-secondary-bg-color">3</span></div>
-        <div class="col-lg-4 col-md-4 col-xs-4 center-block"><p class="text-center">{{ 'trav.details'|trans }}</p></div>
+        <div class="col-lg-4 col-md-4 col-xs-4 center-block"><p class="text-center">{{ 'trav.publication'|trans }}</p></div>
         <div class="col-lg-4 col-md-4 col-xs-4">
-            <i class="fa fa-list fa-3x pull-right"></i>
+            <i class="fa fa-share-alt-square fa-3x pull-right"></i>
         </div>
     </div>
     {{ form_start(formVoyage2) }}

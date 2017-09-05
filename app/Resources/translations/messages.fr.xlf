@@ -244,7 +244,7 @@
             </trans-unit>
             <trans-unit id="trav_publication">
                 <source>trav.publication</source>
-                <target>Publié</target>
+                <target>Publication</target>
             </trans-unit>
             <trans-unit id="trav_save_action">
                 <source>trav.save.action</source>
@@ -289,6 +289,58 @@
             <trans-unit id="trav_your_location">
                 <source>trav.your.location</source>
                 <target>Votre localisation</target>
+            </trans-unit>
+            <trans-unit id="trav_from">
+                <source>trav.from</source>
+                <target>De</target>
+            </trans-unit>
+            <trans-unit id="trav_to">
+                <source>trav.to</source>
+                <target>à</target>
+            </trans-unit>
+            <trans-unit id="trav_on">
+                <source>trav.on</source>
+                <target>Le</target>
+            </trans-unit>
+            <trans-unit id="trav_departure_city">
+                <source>trav.departure.city</source>
+                <target>Depart</target>
+            </trans-unit>
+            <trans-unit id="trav_arrival_city">
+                <source>trav.arrival.city</source>
+                <target>Arrivée</target>
+            </trans-unit>
+            <trans-unit id="trav_arrival_date">
+                <source>trav.arrival.date</source>
+                <target>Date d'arrivée</target>
+            </trans-unit>
+            <trans-unit id="trav_departure_date">
+                <source>trav.departure.date</source>
+                <target>Date de départ</target>
+            </trans-unit>
+            <trans-unit id="trav_publish">
+                <source>trav.publish</source>
+                <target>Publier</target>
+            </trans-unit>
+            <trans-unit id="trav_add_action">
+                <source>trav.add.action</source>
+                <target>Ajouter</target>
+            </trans-unit>
+            <trans-unit id="trav_add_travel">
+                <source>trav.add.travel</source>
+                <target>Ajouter un voyage</target>
+            </trans-unit>
+            <trans-unit id="trav_leaving_date">
+                <source>trav.leaving.date</source>
+                <target>Fin de séjour</target>
+            </trans-unit>
+            <trans-unit id="trav_leaving_on">
+                <source>trav.leaving.on</source>
+                <target>Jusqu'au</target>
+            </trans-unit>
+             <trans-unit id="trav_travelers_agerange">
+                <source>trav.travelers.agerange</source>
+                <target>Age des travelleurs (years)</target>
             </trans-unit>
         </body>
     </file>

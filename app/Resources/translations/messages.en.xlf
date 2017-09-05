@@ -233,7 +233,7 @@
             </trans-unit>
             <trans-unit id="trav_publication">
                 <source>trav.publication</source>
-                <target>Published</target>
+                <target>Publishing</target>
             </trans-unit>
              <trans-unit id="trav_save_action">
                 <source>trav.save.action</source>
@@ -310,6 +310,18 @@
             <trans-unit id="trav_add_travel">
                 <source>trav.add.travel</source>
                 <target>Add a travel</target>
+            </trans-unit>
+            <trans-unit id="trav_leaving_date">
+                <source>trav.leaving.date</source>
+                <target>Leaving date</target>
+            </trans-unit>
+             <trans-unit id="trav_leaving_on">
+                <source>trav.leaving.on</source>
+                <target>Leaving on</target>
+            </trans-unit>
+            <trans-unit id="trav_travelers_agerange">
+                <source>trav.travelers.agerange</source>
+                <target>Travelers age</target>
             </trans-unit>
         </body>
     </file>

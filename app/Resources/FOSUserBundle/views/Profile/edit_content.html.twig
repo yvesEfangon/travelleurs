@@ -1,7 +1,7 @@
 {% trans_default_domain 'FOSUserBundle' %}
 
 <div class="panel" >
-    <h2 class="panel-heading trav-secondary-bg-color w3-text-white">{{ 'trav.personal.info'|trans|upper }}</h2>
+    <h4 class="panel-heading trav-secondary-bg-color w3-text-white">{{ 'trav.personal.info'|trans|upper }}</h4>
     <div class="panel-body">
         {{ form_start(form, { 'action': path('fos_user_profile_edit'), 'attr': { 'class': 'fos_user_profile_edit' } }) }}
         <div class="w3-padding row">

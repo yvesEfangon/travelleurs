@@ -3,7 +3,7 @@
 
 {% block fos_message_content %}
 <div class="panel">
-    <h2 class="panel-heading trav-secondary-bg-color w3-text-white">{% trans from 'FOSMessageBundle' %}INBOX{% endtrans %}</h2>
+    <h4 class="panel-heading trav-secondary-bg-color w3-text-white">{% trans from 'FOSMessageBundle' %}INBOX{% endtrans %}</h4>
     <div class="panel-body">
 
         <a data-toggle="modal" href="{{ url('fos_message_thread_new' )}}" data-target="#myModal" class="btn btn-primary"><i class="fa fa-pencil"></i> {% trans from 'FOSMessageBundle' %}send_new{% endtrans %}</a>
