@@ -42,12 +42,14 @@ trav_faq:
     requirements:
         _locale: '%regex.local%'
 trav_search_form:
-    path: /{_locale}/voyage/search
+    path: /{_locale}/voyage/search/{page}
     defaults:
         _controller: AppBundle:Voyage:search
         _locale: '%locale%'
+        page: 1
     requirements:
         _locale: '%regex.local%'
+        page: '\d+'
 trav_myprofile:
     path: /{_locale}/myprofile/
     defaults:

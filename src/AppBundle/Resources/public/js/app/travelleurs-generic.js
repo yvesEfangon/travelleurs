@@ -25,6 +25,8 @@
         jQuery("#central-profile-frame").load(function () {
             $(this).contents().find('body').append('<scr' + 'ipt type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></scr' + 'ipt>');
         });
+
+        jQuery(".trav-datepicker").datepicker({dateFormat: 'yy-mm-dd'});
     })
 
 }
@@ -90,10 +92,10 @@ function showCurrentStepInfo(step) {
 }
 
 
-function sliderMontant(Vmin, Vmax){
+function sliderAgeRange(Vmin, Vmax,idMax,idMin){
 
-    var read_max = jQuery( "#app_bundle_voyage_part2type_ageMax" ).val();
-    var read_min = jQuery( "#app_bundle_voyage_part2type_ageMin" ).val();
+    var read_max = jQuery( idMax ).val();
+    var read_min = jQuery( idMin ).val();
     
     if(read_max!='' && typeof read_max != 'undefined' && !isNaN(read_max)) Vmax = read_max;
     if(read_min!='' && typeof read_min != 'undefined' && !isNaN(read_min)) Vmin = read_min;
@@ -107,12 +109,12 @@ function sliderMontant(Vmin, Vmax){
         max: 100,
         values: [ Vmin, Vmax],
         slide: function( event, ui ) {
-            jQuery( "#app_bundle_voyage_part2type_ageMin" ).val( ui.values[ 0 ]);
-            jQuery("#app_bundle_voyage_part2type_ageMax").val(ui.values[ 1 ] );
+            jQuery( idMin ).val( ui.values[ 0 ]);
+            jQuery(idMax).val(ui.values[ 1 ] );
         }
     });
-    jQuery( "#app_bundle_voyage_part2type_ageMin" ).val( jQuery( "#slider-range" ).slider( "values", 0 ) );
-    jQuery("#app_bundle_voyage_part2type_ageMax").val(jQuery( "#slider-range" ).slider( "values", 1 ) );
+    jQuery( idMin ).val( jQuery( "#slider-range" ).slider( "values", 0 ) );
+    jQuery(idMax).val(jQuery( "#slider-range" ).slider( "values", 1 ) );
 
 }
 
@@ -121,6 +123,8 @@ var autocompleteEdit1;
 var autocompleteEdit2;
 var autocompleteProfile;
 var autocompleteSearch;
+var autocompleteIndexSearch;
+
 function initAutoCompleteMaps(){
 
     /*Template edit.voyage */
@@ -145,22 +149,29 @@ function initAutoCompleteMaps(){
 
     /*Search form */
     autocompleteSearch = new google.maps.places.Autocomplete(
-       (document.getElementsByClassName('js-address')[0]),
+       (document.getElementById('search_voyage_complete_address')),
         {types: ['geocode']});
 
-    autocompleteSearch.addListener('place_changed', fillInAddressSearch);
+    autocompleteSearch.addListener('place_changed', fillInSearch);
+
+    autocompleteIndexSearch = new google.maps.places.Autocomplete(
+       (document.getElementById('search_voyage_index_address')),
+        {types: ['geocode']});
+
+    autocompleteIndexSearch.addListener('place_changed', fillInSearchIndex);
 }
-function fillInAddressSearch() {
+
+function fillInSearch() {
     // Get the place details from the autocompleteProfile object.
-    var place = autocompleteProfile.getPlace();
+    var place = autocompleteSearch.getPlace();
     //console.log(autocompleteProfile);
     if(place){
 
-        document.getElementsByClassName('js-gmaps-lat')[0].value= place.geometry.location.lat();
-        document.getElementsByClassName('js-gmaps-lng')[0].value = place.geometry.location.lng();
+        document.getElementById('search_voyage_complete_lat').value= place.geometry.location.lat();
+        document.getElementById('search_voyage_complete_lng').value = place.geometry.location.lng();
 
         if(place.place_id)
-            document.getElementsByClassName('js-gmaps-placeId')[0].value    = place.place_id;
+            document.getElementById('search_voyage_complete_placeId').value    = place.place_id;
 
         var addressComponent    = place.address_components;
         var locality,administrative_area,country;
@@ -183,9 +194,53 @@ function fillInAddressSearch() {
 
         }
 
-        document.getElementsByClassName('js-gmaps-locality')[0].value = locality;
-        document.getElementsByClassName('js-gmaps-administrative_area')[0].value =administrative_area;
-        document.getElementsByClassName('js-gmaps-country')[0].value = country;
+        document.getElementById('search_voyage_complete_locality').value = locality;
+        document.getElementById('search_voyage_complete_administrative_area').value =administrative_area;
+        document.getElementById('search_voyage_complete_country').value = country;
+
+
+    }else{
+        window.alert("No details available for input: '" + place.name + "'");
+        return;
+    }
+}
+
+function fillInSearchIndex() {
+    // Get the place details from the autocompleteProfile object.
+    var place = autocompleteIndexSearch.getPlace();
+    //console.log(autocompleteProfile);
+    if(place){
+
+        document.getElementById('search_voyage_index_lat').value= place.geometry.location.lat();
+        document.getElementById('search_voyage_index_lng').value = place.geometry.location.lng();
+
+        if(place.place_id)
+            document.getElementById('search_voyage_index_placeId').value    = place.place_id;
+
+        var addressComponent    = place.address_components;
+        var locality,administrative_area,country;
+
+        for (var i = 0; i < addressComponent.length; i++){
+            var value = addressComponent[i];
+            var types = value.types;
+            var type0 = types[0];
+            switch (type0){
+                case 'locality':
+                    locality = value.long_name;
+                    break;
+                case 'administrative_area_level_1':
+                    administrative_area = value.long_name;
+                    break;
+                case 'country':
+                    country = value.long_name;
+                    break;
+            }
+
+        }
+
+        document.getElementById('search_voyage_index_locality').value = locality;
+        document.getElementById('search_voyage_index_administrative_area').value =administrative_area;
+        document.getElementById('search_voyage_index_country').value = country;
 
 
     }else{

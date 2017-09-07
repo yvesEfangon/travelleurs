@@ -24,3 +24,4 @@ parameters:
             - en
     maps_api_key: AIzaSyAkM9_ELuAEpPxkBDkp7utOWXiaQ5U9HKM
     MESSAGES_PER_PAGE: 5
+    limit_per_page: 10

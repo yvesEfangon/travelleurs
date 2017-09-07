@@ -26,17 +26,18 @@ class EtapeType extends AbstractType
                 'lieuArrivee',
                 LieuType::class,
                 [
-                    'label' => 'trav.arrival'
+                    'label' => 'trav.arrival',
+                    'required' => true
                 ]
             )
             ->add(
                 'dateDepart',
                 DateType::class,
                 [
-                    'label' => 'trav.departure.date',
                     'required' => true,
-                    'widget' => 'choice',
-                    'years' => range(date('Y'), date('Y')+5)
+                    'widget' => 'single_text',
+                    'html5' => false,
+                    'attr' => ['class' => 'trav-datepicker']
                 ]
             )
             ->add(
@@ -44,8 +45,9 @@ class EtapeType extends AbstractType
                 DateType::class,
                 [
                     'required' => true,
-                    'widget' => 'choice',
-                    'years' => range(date('Y'), date('Y')+5)
+                    'widget' => 'single_text',
+                    'html5' => false,
+                    'attr' => ['class' => 'trav-datepicker']
                 ]
             )
             ->add(
@@ -53,8 +55,9 @@ class EtapeType extends AbstractType
                 DateType::class,
                 [
                     'required' => true,
-                    'widget' => 'choice',
-                    'years' => range(date('Y'), date('Y')+5)
+                    'widget' => 'single_text',
+                    'html5' => false,
+                    'attr' => ['class' => 'trav-datepicker']
                 ]
             )
         ;

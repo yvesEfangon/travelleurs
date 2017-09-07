@@ -273,7 +273,7 @@ private function getVoyageEditForm2(Voyage $voyage)
         );
     }
 
-    public function searchAction(Request $request){
+    public function searchAction(Request $request, $page){
 
         //Formulaire de recherche
         $form   = $this->createForm(
@@ -285,27 +285,50 @@ private function getVoyageEditForm2(Voyage $voyage)
         $reqData   = $request->request;
         $form->handleRequest($request);
 
+        $paginator      = $this->get('knp_paginator');
+        $sort = 'distance'; // set default sort
+        $direction = 'asc';  // set default direction
+
         if($form->isSubmitted())
         {
             if($form->isValid()){
                 $data   = $form->getData();
-                $add = $request->get('address');
-                $data['address']    = $add;
-                $form->setData($data);
+
+                if ($request->request->get('sort') && $request->request->get('direction')) {
+                    $sort = $request->request->get('sort');
+                    $direction = $request->request->get('direction');
+                }
             }
         }else{
             $data = $reqData->all();
             $data    = @$data['search_voyage_index'];
-            $etape    = new Etape();
-            //$voy->
+
             $form->setData($data);
+        }
+
+        $searchQuery    = $this->get('trav.repo.etape.manipulator')->searchVoyagesByAddress
+        (
+            $data,
+            $sort,
+            $direction
+        );
+        //var_dump($searchQuery->getDQL());die();
+        $pagination = null;
+
+        if(null != $searchQuery) {
+            $pagination = $paginator->paginate(
+                $searchQuery->getQuery()->getScalarResult(),
+                $request->request->getInt('page', $page),
+                $this->getParameter('limit_per_page'),
+                array('distinct' => true)
+            );
         }
 
         return $this->render(
             'AppBundle:Voyage:search.voyage.html.twig',
             [
                 'form' => $form->createView(),
-                'test' => $reqData->all()
+                'voyages' => $pagination
             ]
         );
 

@@ -323,6 +323,38 @@
                 <source>trav.travelers.agerange</source>
                 <target>Travelers age</target>
             </trans-unit>
+            <trans-unit id="trav_km_around">
+                <source>trav.km.around</source>
+                <target>Km(s) around</target>
+            </trans-unit>
+            <trans-unit id="trav_showall">
+                <source>trav.showall</source>
+                <target>--Show All--</target>
+            </trans-unit>
+            <trans-unit id="trav_organised_by">
+                <source>trav.organised.by</source>
+                <target>Organised by</target>
+            </trans-unit>
+            <trans-unit id="trav_living_in">
+                <source>trav.living.in</source>
+                <target>Living in</target>
+            </trans-unit>
+             <trans-unit id="trav_yourself">
+                <source>trav.yourself</source>
+                <target>You</target>
+            </trans-unit>
+            <trans-unit id="trav_destination">
+                <source>trav.destination</source>
+                <target>Destination</target>
+            </trans-unit>
+            <trans-unit id="trav_no_item_found">
+                <source>trav.no.item.found</source>
+                <target>No result found</target>
+            </trans-unit>
+             <trans-unit id="trav_results">
+                <source>trav.results</source>
+                <target>Result(s)</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

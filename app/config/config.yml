@@ -64,6 +64,10 @@ doctrine:
             collate: utf8mb4_unicode_ci
         types:
             json: Sonata\Doctrine\Types\JsonType
+            geography: Jsor\Doctrine\PostGIS\Types\GeographyType
+            geometry: Jsor\Doctrine\PostGIS\Types\GeometryType
+            raster: Jsor\Doctrine\PostGIS\Types\RasterType
+        logging: true
         # if using pdo_sqlite as your database driver:
         #   1. add the path in parameters.yml
         #     e.g. database_path: "%kernel.root_dir%/data/data.db3"
@@ -90,6 +94,9 @@ doctrine:
                         TO_DAYS: AppBundle\DQL\DateTime\ToDays
                     string_functions:
                         TRUNCATE: AppBundle\DQL\String\Truncate
+                        POINT: AppBundle\DQL\String\POINT
+                        ST_Distance: Jsor\Doctrine\PostGIS\Functions\ST_Distance
+                        ST_GeogFromText: Jsor\Doctrine\PostGIS\Functions\ST_GeogFromText
                     numeric_functions:
                         MAX: AppBundle\DQL\Numeric\MAX
                         MIN: AppBundle\DQL\Numeric\MIN
@@ -97,6 +104,8 @@ doctrine:
                         COS: AppBundle\DQL\Numeric\COS
                         SIN: AppBundle\DQL\Numeric\SIN
                         RADIANS: AppBundle\DQL\Numeric\RADIANS
+                        ROUND: AppBundle\DQL\Numeric\ROUND
+
 
                    # SonataNotificationBundle: ~
                     #ApplicationSonataNotificationBundle: ~
@@ -249,8 +258,8 @@ hwi_oauth:
     resource_owners:
         facebook:
             type:          facebook
-            client_id:     <client_id>
-            client_secret: <client_secret>
+            client_id:     1947126122172534
+            client_secret: 527e29f1e220e359bad65e71dfefc53c
             scope:         "email"
             options:
                 display: popup #dialog is optimized for popup window
@@ -263,5 +272,5 @@ knp_paginator:
         sort_direction_name: direction # sort direction query parameter name
         distinct: true                 # ensure distinct results, useful when ORM queries are using GROUP BY statements
     template:
-        pagination: 'KnpPaginatorBundle:Pagination:sliding.html.twig'     # sliding pagination controls template
-        sortable: 'KnpPaginatorBundle:Pagination:sortable_link.html.twig' # sort link template
+        pagination: AppBundle:Default:pagination.sliding.html.twig     # KnpPaginatorBundle:Pagination:sliding.html.twig sliding pagination controls template
+        sortable: KnpPaginatorBundle:Pagination:sortable_link.html.twig # sort link template

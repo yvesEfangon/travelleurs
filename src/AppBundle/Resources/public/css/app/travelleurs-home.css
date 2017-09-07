@@ -161,7 +161,7 @@ footer {
 max-width: 100%;
 height: auto;
 }
-
+#navbar>ul>li{height: 55px;}
 .set-responsive{
 width: 100% !important;
 height: auto;
@@ -309,7 +309,7 @@ height: auto;
     text-shadow: 1px 1px 2px #000000;
 
 }
-
+.slider-range-class{width: 100%;}
 .form-control::-webkit-input-placeholder { color: #351c75;font-weight: bold; }
 .form-control:-moz-placeholder { color: #351c75; }
 .form-control::-moz-placeholder { color: #351c75; }

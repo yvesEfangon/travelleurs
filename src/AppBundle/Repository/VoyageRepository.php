@@ -46,11 +46,5 @@ class VoyageRepository extends \Doctrine\ORM\EntityRepository
     }
 
 
-    public function searchVoyagesByAddress($request){
-
-        $query  = $this->createQueryBuilder('v')
-            ->join('v.et');
-    }
-
 
 }

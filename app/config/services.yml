@@ -36,12 +36,18 @@ services:
     trav.form.methods:
         class: AppBundle\Service\FormServices
         arguments: ['@service_container']
-
+    trav.utilities:
+        class: AppBundle\Service\TravUtilities
     # Repositories
     trav.repository.address:
         class: AppBundle\Repository\AddressRepository
         factory: ['@doctrine', 'getRepository']
         arguments: ['AppBundle:Address']
+
+    trav.repository.etape:
+        class: AppBundle\Repository\EtapeRepository
+        factory: ['@doctrine', 'getRepository']
+        arguments: ['AppBundle:Etape']
 
     trav.repository.userdata:
         class: AppBundle\Repository\UserDataRepository
@@ -55,6 +61,11 @@ services:
     trav.repo.address.manipulator:
             class: AppBundle\RepositoryManipulat\AddressRepoManipulator
             arguments: ['@service_container']
+
+    trav.repo.etape.manipulator:
+            class: AppBundle\RepositoryManipulator\EtapeRepoManipulator
+            arguments: ['@service_container']
+
     trav.repository.genre:
         class: AppBundle\Repository\GenreRepository
         factory: ['@doctrine', 'getRepository']
