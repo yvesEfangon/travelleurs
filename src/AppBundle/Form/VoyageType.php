@@ -79,7 +79,8 @@ class VoyageType extends AbstractType
                 'budget',
                 NumberType::class,
                 [
-                    'label' => 'trav.estimated.budget'
+                    'label' => 'trav.estimated.budget',
+
                 ]
                 )
             ->add(
@@ -89,6 +90,13 @@ class VoyageType extends AbstractType
                     'placeholder' => false
                 ]
                 )
+            ->add(
+                'numberOfParticipants',
+                NumberType::class,
+                [
+                    'required' => false
+                ]
+            )
         ;
     }
 

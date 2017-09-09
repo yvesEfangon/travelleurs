@@ -31,3 +31,6 @@ hwi_oauth_redirect:
 
 facebook_login:
     path: /{_locale}/secured/login_facebook
+
+_bazinga_jstranslation:
+    resource: "@BazingaJsTranslationBundle/Resources/config/routing/routing.yml"

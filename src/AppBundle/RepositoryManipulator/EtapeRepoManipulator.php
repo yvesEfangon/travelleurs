@@ -37,6 +37,8 @@ class EtapeRepoManipulator
         $genreVoyageurs = @$request['genreVoyageurs'];
         $distance       = @$request['distance'];
 
+        if($distance =='' || is_null($distance)) $distance = 500;
+
         $parameters     = [];
 
         if($lat == '' || $lng== '') return null;

@@ -10,7 +10,7 @@
 
     <div class="row">
         <div class="col-lg-4 col-md-4 col-xs-4"><span class="w3-badge w3-jumbo w3-padding trav-secondary-bg-color">1</span></div>
-        <div class="col-lg-4 col-md-4 col-xs-4 center-block"><p class="text-center">{{ 'trav.creation'|trans }}</p></div>
+        <div class="col-lg-4 col-md-4 col-xs-4 center-block"><h4 class="trav-primary-color text-center">{{ 'trav.creation'|trans }}</h4></div>
         <div class="col-lg-4 col-md-4 col-xs-4">
             <i class="fa fa-pencil-square fa-3x pull-right"></i>
         </div>
@@ -18,30 +18,34 @@
     <div id="trav-creation">
         <div class="row">
             <div class="col-lg-3 col-md-3 col-xs-6">
-                {{ 'trav_how_will_you_travel'|trans }}
+                <h6>{{ 'trav_how_will_you_travel'|trans }}</h6>
                 {{ form_widget(formVoyage.ownerIsAlone) }}
             </div>
 
-            <div class="col-lg-3 col-md-3 col-xs-6">
-                {{ 'trav.voyage.themes'|trans }}
+            <div  class="col-lg-3 col-md-3 col-xs-6">
+               <h6> {{ 'trav.voyage.themes'|trans }}</h6>
                 {{ form_widget(formVoyage.themes) }}
             </div>
             <div class="col-lg-3 col-md-3 col-xs-6">
-                {{ 'trav.spoken.languages'|trans }}
+                <h6>{{ 'trav.spoken.languages'|trans }}</h6>
                 {{ form_widget(formVoyage.spokenLanguages) }}
             </div>
-        </div>
-        <div class="row">
             <div class="col-lg-3 col-md-3 col-xs-6">
-                {{ 'trav.estimated.budget'|trans }}
+                <h6>{{ 'trav.numberof.travelers'|trans }}</h6>
+                {{ form_widget(formVoyage.numberOfParticipants) }}
+            </div>
+        </div>
+        <div class="row w3-margin-12">
+            <div class="col-lg-3 col-md-3 col-xs-6">
+                <h6>{{ 'trav.estimated.budget'|trans }}</h6>
                 {{ form_widget(formVoyage.budget) }}
             </div>
             <div class="col-lg-2 col-md-2 col-xs-6">
-                {{ 'trav.currency'|trans }}
+                <h6>{{ 'trav.currency'|trans }}</h6>
                 {{ form_widget(formVoyage.currency) }}
             </div>
             <div class="col-lg-3 col-lg-3 col-xs-6">
-                {{ 'trav.show.to.perfect.match'|trans }}
+                <h6>{{ 'trav.show.to.perfect.match'|trans }}</h6>
                 {{ form_widget(formVoyage.strict_criteria) }}
             </div>
             <div class="col-lg-4 col-md-4 col-xs-6 w3-padding-32">
@@ -56,7 +60,7 @@
 <div class="well well-sm">
     <div class="row">
         <div class="col-lg-4 col-md-4 col-xs-4"><span class="w3-badge w3-jumbo w3-padding trav-secondary-bg-color">2</span></div>
-        <div class="col-lg-4 col-md-4 col-xs-4 center-block"><p class="text-center">{{ 'trav.details'|trans }}</p></div>
+        <div class="col-lg-4 col-md-4 col-xs-4 center-block"><h4 class="trav-primary-color text-center">{{ 'trav.destination'|trans }}s</h4></div>
         <div class="col-lg-4 col-md-4 col-xs-4">
             <i class="fa fa-list fa-3x pull-right"></i>
         </div>
@@ -64,20 +68,6 @@
     <div class="row">
         {% if ExistingEtapes is defined and ExistingEtapes|length>0 %}
 
-            <!--table class="table">
-                <thead class="thead-inverse">
-                    <tr>
-                        <th>
-                            {{ 'trav.departure'|trans }}
-                        </th>
-                        <th>
-                            {{ 'trav.arrival'|trans }}
-                        </th>
-                        <th>
-
-                        </th>
-                    </tr>
-                </thead-->
                 {% set i=1 %}
             {% for etape in ExistingEtapes %}
                  <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12 w3-margin-top w3-margin-left">
@@ -110,28 +100,28 @@
         {% endif %}
     </div>
     {{ form_start(formEtape) }}
-    <div class="row">
+    <div class="row w3-margin-12">
         <div class="col-lg-4 col-md-4 col-xs-4">
-            {{ 'trav.departure.city'|trans }}
+            <h6>{{ 'trav.departure.city'|trans }}</h6>
             {{ form_widget(formEtape.lieuDepart.address) }}
         </div>
         <div class="col-lg-8 col-md-8 col-xs-8 col-sm-8">
-            {{ 'trav.arrival.city'|trans }}
+            <h6>{{ 'trav.arrival.city'|trans }}</h6>
             {{ form_widget(formEtape.lieuArrivee.address) }}
         </div>
     </div>
     <div class="row">
         <div class="col-lg-4 col-md-4 col-xs-4">
-            {{ 'trav.departure.date'|trans }}
+            <h6>{{ 'trav.departure.date'|trans }}</h6>
             {{ form_widget(formEtape.dateDepart) }}
         </div>
         <div class="col-lg-8 col-md-8 col-xs-8">
             <div class="col-lg-6 col-md-6 col-xs-6">
-            {{ 'trav.arrival.date'|trans }}
+            <h6>{{ 'trav.arrival.date'|trans }}</h6>
             {{ form_widget(formEtape.dateArrivee) }}
             </div>
             <div class="col-lg-6 col-md-6 col-xs-6">
-            {{ 'trav.leaving.date'|trans }}
+            <h6>{{ 'trav.leaving.date'|trans }}</h6>
             {{ form_widget(formEtape.dateFinSejour) }}
             </div>
         </div>
@@ -154,7 +144,7 @@
 <div class="well well-sm">
     <div class="row">
         <div class="col-lg-4 col-md-4 col-xs-4"><span class="w3-badge w3-jumbo w3-padding trav-secondary-bg-color">3</span></div>
-        <div class="col-lg-4 col-md-4 col-xs-4 center-block"><p class="text-center">{{ 'trav.publication'|trans }}</p></div>
+        <div class="col-lg-4 col-md-4 col-xs-4 center-block"><h4 class="trav-primary-color text-center">{{ 'trav.publication'|trans }}</h4></div>
         <div class="col-lg-4 col-md-4 col-xs-4">
             <i class="fa fa-share-alt-square fa-3x pull-right"></i>
         </div>
@@ -162,15 +152,15 @@
     {{ form_start(formVoyage2) }}
     <div class="row">
         <div class="col-lg-2 col-md-2 col-xs-3">
-            {{ 'trav.travelers.genre'|trans }}
+            <h6>{{ 'trav.travelers.genre'|trans }}</h6>
             {{ form_widget(formVoyage2.genreVoyageurs) }}
         </div>
         <div class="col-lg-2 col-md-2 col-xs-3">
-            {{ 'trav.smocker.allowed'|trans }}
+            <h6>{{ 'trav.smocker.allowed'|trans }}</h6>
             {{ form_widget(formVoyage2.smockerAllowed) }}
         </div>
         <div class="col-lg-3 col-md-3 col-xs-6">
-            {{ 'trav.travelers.agerange'|trans }}
+            <h6>{{ 'trav.travelers.agerange'|trans }}</h6>
             <div id="slider-range" class="row trav-secondary-bg-color"> </div>
             <div class="row w3-margin-top">
                 <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
@@ -184,7 +174,7 @@
 
         </div>
     <div class="col-lg-5 col-md-5 col-xs-6">
-        {{ 'trav.annonce.description'|trans }}
+        <h6>{{ 'trav.annonce.description'|trans }}</h6>
         {{ form_widget(formVoyage2.annonce,{ 'attr' : {'class': 'trav-secondary-color form-control'} }) }}
     </div>
     </div>

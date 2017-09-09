@@ -31,6 +31,7 @@ profile:
         birthdate: 'Votre date de naissance'
         gender: 'Genre'
         languages: 'Langues parlées'
+        personal_info: 'Informations personnelles'
 change_password:
     submit: 'Modifier le mot de passe'
     flash:

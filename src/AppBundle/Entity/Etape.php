@@ -114,6 +114,12 @@ class Etape
      */
     private $centreInteret;
 
+    /**
+     * @var ArrayCollection
+     *
+     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\User", cascade={"persist"})
+     */
+    private $users;
 
     
     
@@ -121,6 +127,7 @@ class Etape
     {
         $this->themes   = new ArrayCollection();
         $this->tag      = new ArrayCollection();
+        $this->users    = new ArrayCollection();
         $this->centreInteret    = new ArrayCollection();
         $this->createdOn = new \DateTime();
         $this->modifiedOn = new \DateTime();
@@ -300,7 +307,7 @@ class Etape
      * @return bool
      */
     public function hasTheme(Theme $theme){
-        return $this->themes->exists($theme);
+        return $this->themes->contains($theme);
     }
 
     /**
@@ -332,7 +339,7 @@ class Etape
     }
 
     public function hasTag(Tag $tag){
-        return $this->tag->exists($tag);
+        return $this->tag->contains($tag);
     }
     /**
      * @param Tag $tag
@@ -401,7 +408,7 @@ class Etape
 
     public function hasCentreInteret(CentreInteret $centreInteret)
     {
-        return $this->centreInteret->exists($centreInteret);
+        return $this->centreInteret->contains($centreInteret);
     }
 
     public function removeCentreInteret(CentreInteret$centreInteret)
@@ -474,6 +481,53 @@ class Etape
         return $this;
     }
 
+    /**
+     * @param User $users
+     * @return $this
+     */
+    public function addUser(User $users)
+    {
+        if(!$this->hasUser($users)) $this->users[]   = $users;
+
+        return $this;
+    }
+
+    /**
+     * @param User $users
+     */
+    public function removeUser(User $users)
+    {
+        $this->users->removeElement($users);
+    }
+
+    /**
+     * @return ArrayCollection
+     */
+    public function getUsers()
+    {
+        return $this->users;
+    }
+
+    /**
+     * @param ArrayCollection $users
+     * @return Etape
+     */
+    public function setUsers($users)
+    {
+        $this->users = $users;
+
+        return $this;
+    }
+
+
+    /**
+     * @param User $user
+     * @return bool
+     */
+    public function hasUser(User $user)
+    {
+        return $this->users->contains($user);
+    }
 
 
    }

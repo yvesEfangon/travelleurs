@@ -38,6 +38,12 @@ services:
         arguments: ['@service_container']
     trav.utilities:
         class: AppBundle\Service\TravUtilities
+
+    trav.twig_extension:
+        class: AppBundle\Twig\TravExtension
+        arguments: ['@service_container']
+        tags:
+            - { name: twig.extension, priority: 255}
     # Repositories
     trav.repository.address:
         class: AppBundle\Repository\AddressRepository

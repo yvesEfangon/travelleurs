@@ -31,12 +31,7 @@ class Voyage
      */
     private $owner;
 
-    /**
-     *
-     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\User", cascade={"persist"})
-     *
-     */
-    private $participants;
+
     /**
      * @var string
      *
@@ -154,7 +149,6 @@ class Voyage
      */
     public function __construct()
     {
-        $this->participants     = new ArrayCollection();
         $this->themes           = new ArrayCollection();
         $this->spokenLanguages = new ArrayCollection();
         $this->createdOn        = new \DateTime();
@@ -250,47 +244,10 @@ class Voyage
         
         return ($this->owner->getId() == $user->getId());
     }
-    /**
-     * @return ArrayCollection
-     */
-    public function getParticipants()
-    {
-        return $this->participants;
-    }
 
-    /**
-     * @param ArrayCollection $participants
-     * @return Voyage
-     */
-    public function setParticipants(ArrayCollection $participants)
-    {
-        $this->participants = $participants;
 
-        return $this;
-    }
 
-    public function addParticipant(User $participant)
-    {
-        if(!$this->hasParticipant($participant)) $this->participants[]   = $participant;
 
-        return $this;
-    }
-    /**
-     * @param User $participant
-     */
-    public function removeParticipant(User $participant)
-    {
-        $this->participants->removeElement($participant);
-    }
-
-    /**
-     * @param User $participant
-     * @return bool
-     */
-    public function hasParticipant(User $participant)
-    {
-        return $this->participants->exists($participant);
-    }
     /**
      * @return \DateTime
      */

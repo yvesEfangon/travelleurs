@@ -35,6 +35,7 @@ class AppKernel extends Kernel
             new FOS\MessageBundle\FOSMessageBundle(),
             new HWI\Bundle\OAuthBundle\HWIOAuthBundle(),
             new Knp\Bundle\PaginatorBundle\KnpPaginatorBundle(),
+            new Bazinga\Bundle\JsTranslationBundle\BazingaJsTranslationBundle()
 
         );
 

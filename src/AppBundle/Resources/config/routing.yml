@@ -115,6 +115,15 @@ trav_index_voyage:
     defaults:
         _controller: AppBundle:Voyage:index
         _locale: '%locale%'
+trav_view_voyage:
+    path: /{_locale}/voyage/view/{id}
+    defaults:
+        _controller: AppBundle:Voyage:viewVoyage
+        _locale: '%locale%'
+    requirements:
+        id: '\d+'
+        _locale: '%regex.local%'
+
 trav_add_image:
     path: /{_locale}/myprofile/image/add
     defaults:
@@ -122,6 +131,22 @@ trav_add_image:
         _locale: '%locale%'
     requirements:
         _locale: '%regex.local%'
+trav_register_inetape:
+    path: /{_locale}/voyage/etape/register/{id}
+    defaults:
+        _controller: AppBundle:Voyage:register
+        _locale: '%locale%'
+    requirements:
+        _locale: '%regex.local%'
+        id: '\d+'
+trav_unregister_inetape:
+    path: /{_locale}/voyage/etape/unregister/{id}
+    defaults:
+        _controller: AppBundle:Voyage:unregister
+        _locale: '%locale%'
+    requirements:
+        _locale: '%regex.local%'
+        id: '\d+'
 
 root:
     path: /{_locale}

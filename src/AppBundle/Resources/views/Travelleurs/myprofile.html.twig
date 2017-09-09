@@ -29,8 +29,7 @@
         <ul class="nav nav-stacked _menu-insite-active well well-lg">
             <li role="presentation" class="active">
                <a href="{{ path('trav_myprofile') }}"  data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" class="dropdown-toggle trav-secondary-color">
-                   <span class="badge"><i class="fa fa-user"></i></span>
-                   {{ 'trav.my.profile'|trans }} <span class="fa fa-caret-down pull-right"></span>
+                   <h6 class="trav-primary-color">{{ 'trav.my.profile'|trans }} <i class="fa fa-caret-down pull-right"></i></h6>
                 </a>
                 <ul class="dropdown-menu dropdown-menu-insite">
                     <li>
@@ -46,8 +45,7 @@
             <li role="presentation" class="dropdown">
                 <a class="dropdown-toggle trav-primary-color" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
 
-                    <span class="badge"><i class="fa fa-plane"></i></span>
-                    {{ 'trav.mytravels'|trans }} <span class="fa fa-caret-down pull-right"></span>
+                    <h6 class="trav-primary-color">{{ 'trav.mytravels'|trans }}<i class="fa fa-caret-down pull-right"></i></h6>
                 </a>
                 <ul class="dropdown-menu dropdown-menu-insite">
                    <li>
@@ -70,18 +68,6 @@
                     </li>
                 </ul>
             </li>
-            <li role="presentation">
-                <a href="#" class="trav-primary-color">
-                    <span class="badge"><i class="fa fa-gears"></i></span>
-                    {{ 'trav.myactivities'|trans }}
-                </a>
-            </li>
-           <li role="presentation">
-               <a href="#" class="trav-primary-color">
-                   <span class="badge"><i class="fa fa-map"></i></span>
-                   {{ 'Trip planner' }}
-               </a>
-           </li>
 
         </ul>
   {% endblock %}

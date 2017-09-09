@@ -18,7 +18,7 @@ class VoyageRepository extends \Doctrine\ORM\EntityRepository
         if(!isset($criteria['user']) && !isset($criteria['voyage'])) return array();
 
         $query  = $this->createQueryBuilder('v');
-        $query->join('v.participants','p');
+        $query->join('AppBundle:Etape','e','WITH','v.id=e.voyage_id');
 
         if(isset($criteria['user']) && $criteria['user'] != ''){
             $user   = $criteria['user'];

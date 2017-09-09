@@ -32,6 +32,7 @@ profile:
         birthdate: 'Your birthdate'
         gender: 'Gender'
         languages: 'Spoken languages'
+        personal_info: 'Personal data'
 change_password:
     submit: 'Change password'
     flash:

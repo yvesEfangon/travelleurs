@@ -355,6 +355,34 @@
                 <source>trav.results</source>
                 <target>Result(s)</target>
             </trans-unit>
+            <trans-unit id="trav_voyage_themes">
+                <source>trav.voyage.themes</source>
+                <target>Travel themes</target>
+            </trans-unit>
+            <trans-unit id="trav_spoken_languages">
+                <source>trav.spoken.languages</source>
+                <target>Spoken languages</target>
+            </trans-unit>
+            <trans-unit id="trav_edit_action">
+                <source>trav.edit.action</source>
+                <target>Edit</target>
+            </trans-unit>
+            <trans-unit id="trav_numberof_travelers">
+                <source>trav.numberof.travelers</source>
+                <target>Max number of travelers</target>
+            </trans-unit>
+            <trans-unit id="trav_annonce_description">
+                <source>trav.annonce.description</source>
+                <target>Describe your travel</target>
+            </trans-unit>
+            <trans-unit id="trav_persons_registered">
+                <source>trav.persons.registered</source>
+                <target>Persons registered</target>
+            </trans-unit>
+            <trans-unit id="trav_you_arenot_allow_toaccess">
+                <source>trav.you.arenot.allow.toaccess</source>
+                <target>You are not allow to perform this action</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

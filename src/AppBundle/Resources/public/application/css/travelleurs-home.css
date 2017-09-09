@@ -181,6 +181,9 @@ height: auto;
 
     font-size: 1.2em;
 }
+
+.ui-datepicker-next>span{color:#351c75 !important; background-image: url("../../../../../../bundles/app/vendor/jquery-ui-1.12.1.custom/images/ui-icons_444444_256x240.png") !important;}
+.ui-datepicker-prev>span{ background-image: url("../../../../../../bundles/app/vendor/jquery-ui-1.12.1.custom/images/ui-icons_444444_256x240.png") !important;}
 .trav-secondary-border{border: 1px #DF5D3A }
 #trav-header ul li:hover a:hover, #nav ul li:hover span {
     background: #fff ;

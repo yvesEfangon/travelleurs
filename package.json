@@ -1,0 +1,17 @@
+{
+  "name": "travelleurs.co",
+  "version": "0.0.1",
+  "devDependencies": {
+    "grunt": "~0.4.5",
+    "grunt-contrib-jshint": "~0.10.0",
+    "grunt-contrib-nodeunit": "~0.4.1",
+    "grunt-contrib-uglify": "~0.5.0",
+    "gulp": "^3.9.1",
+    "gulp-bower": "0.0.13",
+    "gulp-notify": "^3.0.0",
+    "gulp-ruby-sass": "^2.1.1"
+  },
+  "dependencies": {
+    "bazinga-translator": "^2.6.5"
+  }
+}

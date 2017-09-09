@@ -20,9 +20,6 @@ class VoyageController extends Controller
         if(!$user) $this->redirect($this->generateUrl('homepage'));
         $repo           = $this->getDoctrine()->getRepository('AppBundle:Voyage');
         $voyages        = $repo->findBy(['owner' => $user]);
-        $parcticipant   = $repo->findVoyageUsersById(['user' => $user]);
-
-        $voyages        = array_merge($voyages,$parcticipant);
 
         return $this->render(
             'AppBundle:Voyage:index.html.twig',
@@ -162,11 +159,22 @@ private function getVoyageEditForm2(Voyage $voyage)
      */
     public function editAction(Voyage $voyage, Request $request)
     {
+        $this->get('session')->getFlashBag()->clear();
+
         if (!$this->container->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_FULLY')) {
             return $this->redirect($this->generateUrl('fos_user_security_login'));
         }
 
-        $this->get('session')->getFlashBag()->clear();
+        $user       = $this->getUser();
+
+        $voyage_user    = $voyage->getOwner();
+
+        if($user->getId() != $voyage_user->getId()){
+            $this->get('session')->getFlashBag()->add('danger',$this->get('translator.default')->trans('trav.you.arenot.allow.toaccess'));
+            return $this->redirect($this->generateUrl('trav_myprofile'));
+        }
+
+
 
         $formVoyage    = $this->getVoyageEditForm($voyage);
         $repo           = $this->getDoctrine()->getRepository('AppBundle:Etape');
@@ -187,6 +195,7 @@ private function getVoyageEditForm2(Voyage $voyage)
                 if($formEtape->isValid()){
                     $dataEtape  = $formEtape->getData();
                     $dataEtape->setVoyage($voyage);
+                    $dataEtape->addUser($user);
 
                     $lieuArrivee    = $dataEtape->getLieuArrivee();
 
@@ -194,6 +203,8 @@ private function getVoyageEditForm2(Voyage $voyage)
                     $lieuDepart     = $dataEtape->getLieuDepart();
                     $_em->persist($lieuDepart);
                     $_em->persist($dataEtape);
+
+                    $_em->flush();
                 }
             }
 
@@ -202,6 +213,7 @@ private function getVoyageEditForm2(Voyage $voyage)
                 $formVoyage->handleRequest($request);
                 if($formVoyage->isValid()){
                     $_em->persist($voyage);
+                    $_em->flush();
                 }
             }
 
@@ -210,10 +222,13 @@ private function getVoyageEditForm2(Voyage $voyage)
                 if($formVoyage2->isValid()){
                     $voyage->setPublished(true);
                     $_em->persist($voyage);
-                }
+                    $_em->flush();
+
+                    return $this->redirect($this->generateUrl('trav_index_voyage'));
+                 }
             }
 
-            $_em->flush();
+
 
             return $this->redirect(
                 $this->generateUrl('trav_edit_voyage', ['id' => $voyage->getId()])
@@ -279,7 +294,7 @@ private function getVoyageEditForm2(Voyage $voyage)
         $form   = $this->createForm(
             'AppBundle\Form\SearchVoyageCompleteType',null,[
             'action'=> $this->generateUrl('trav_search_form'),
-            'method'=> 'POST',
+            'method'=> 'GET',
             'attr'=> ['class'=>'form-horizontal']
         ]);
         $reqData   = $request->request;
@@ -302,7 +317,6 @@ private function getVoyageEditForm2(Voyage $voyage)
         }else{
             $data = $reqData->all();
             $data    = @$data['search_voyage_index'];
-
             $form->setData($data);
         }
 
@@ -332,5 +346,57 @@ private function getVoyageEditForm2(Voyage $voyage)
             ]
         );
 
+    }
+
+    /**
+     * @param Etape $etape
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     */
+    public function registerAction(Etape $etape){
+        if (!$this->container->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_FULLY')) {
+            return $this->redirect($this->generateUrl('fos_user_security_login'));
+        }
+
+        $user   = $this->getUser();
+        $etape->addUser($user);
+
+        $_em    = $this->getDoctrine()->getManager();
+
+        $_em->persist($etape);
+
+        $_em->flush();
+
+
+    }
+
+    /**
+     * @param Etape $etape
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     */
+    public function unregisterAction(Etape $etape){
+        if (!$this->container->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_FULLY')) {
+            return $this->redirect($this->generateUrl('fos_user_security_login'));
+        }
+
+        $user   = $this->getUser();
+        $etape->removeUser($user);
+        
+        $_em    = $this->getDoctrine()->getManager();
+        $_em->persist($etape);
+        
+        $_em->flush();
+
+    }
+
+    public function viewVoyageAction(Voyage $voyage){
+        $etapes = $this->get('trav.repository.etape')->findBy(['voyage' => $voyage]);
+
+        return $this->render(
+            'AppBundle:Voyage:view.voyage.html.twig',
+            [
+                'voyage' => $voyage,
+                'etapes' => $etapes
+            ]
+        );
     }
 }

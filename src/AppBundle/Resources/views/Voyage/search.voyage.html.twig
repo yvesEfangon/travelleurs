@@ -108,29 +108,41 @@
                         <h6 class="text-left trav-secondary-color"><i class="fa fa-map-signs"></i>&nbsp;<small>{{ voyage.owner_address }} </small></h6>
                     </div>
 
-                    <div class="col-lg-5 col-sm-5 col-xs-5 col-md-5">
+                    <div class="col-lg-5 col-sm-5 col-xs-5 col-md-5 text-left">
+                        {%  set members= voyage.e_id|etape_members%}
+
                             <h6 class="text-left">
                             <i class="fa fa-map-marker"></i>&nbsp;{{ 'trav.destination'|trans }}: <span class="trav-primary-color">{{ voyage.lieuArrivee_address }}</span>  - <small class="text-success">{{ voyage.distance|round(2) }}&nbsp;km(s)</small>
                             </h6>
                         <h6 class="trav-secondary-color text-left">
                             <i class="fa fa-calendar"></i>&nbsp;{{ voyage.e_dateArrivee|date('Y/m/d') }}&nbsp;<i class="fa fa-caret-right"></i>&nbsp;{{ voyage.e_dateFinSejour|date('Y/m/d') }}
                         </h6>
+                        <small class="text-left trav-secondary-color"> {{ members|length }} {{ 'trav.persons.registered'|trans }}</small>
                     </div>
                     <div class="col-lg-1 col-sm-1 col-xs-2 col-md-1 pull-right"><i class="manage_arrow trav-primary-color fa fa-arrow-circle-left pull-right"></i></div>
                 </div>
+
                 <div id="cv_{{ voyage.e_id }}" class="collapse set-responsive row w3-padding-left w3-padding-right w3-padding-12 blue-travelleurs-border">
-                    <div class="col-lg-5 col-md-5 col-sm-5">
-                        <p>{{ 'trav.from'|trans }}:  {{ voyage.lieuDepart_address }}<br>
-                            <small class="text-success">{{ 'trav.on'|trans }}: {{ voyage.e_dateDepart|date('Y/m/d') }} </small></p>
+                    <div class="row ">
+                        <div class="col-lg-5 col-md-5 col-sm-5">
+                            <p>{{ 'trav.from'|trans }}:  {{ voyage.lieuDepart_address }}<br>
+                                <small class="text-success">{{ 'trav.on'|trans }}: {{ voyage.e_dateDepart|date('Y/m/d') }} </small></p>
+                        </div>
+                        <div class="col-lg-5 col-md-5 col-sm-5">
+                            <p>{{ 'trav.to'|trans }}:  {{ voyage.lieuArrivee_address }}<br>
+                                <small class="text-success">{{ 'trav.on'|trans }}: {{ voyage.e_dateArrivee|date('Y/m/d') }}, {{ 'trav.leaving.on'|trans }}: {{ voyage.e_dateFinSejour|date('Y/m/d') }}</small></p>
+                        </div>
+                        <div class="col-lg-2 col-md-2 col-sm-2">
+                           <i class="fa fa-envelope-o trav-primary-color"></i>&nbsp;<i class="fa fa-facebook-square"></i>
+                        </div>
                     </div>
-                    <div class="col-lg-5 col-md-5 col-sm-5">
-                        <p>{{ 'trav.to'|trans }}:  {{ voyage.lieuArrivee_address }}<br>
-                            <small class="text-success">{{ 'trav.on'|trans }}: {{ voyage.e_dateArrivee|date('Y/m/d') }}, {{ 'trav.leaving.on'|trans }}: {{ voyage.e_dateFinSejour|date('Y/m/d') }}</small></p>
-                    </div>
-                    <div class="col-lg-2 col-md-2 col-sm-2">
-                       <i class="fa fa-envelope-o"></i>&nbsp;<i class="fa fa-facebook-square"></i>
+                    <div class="row w3-margin-12">
+                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-6">
+                            <a href="{{ path('trav_view_voyage',{'id':voyage.e_id}) }}"><i class="fa fa-folder-open"></i></a>
+                        </div>
                     </div>
                 </div>
+
             </div>
             {% set i=i+1 %}
         {% endfor %}
