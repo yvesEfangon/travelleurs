@@ -177,6 +177,9 @@ height: auto;
 .blue-travelleurs-border{border: 1px #351c75 solid;}
 .blue-travelleurs-text{
     color: #351c75;}
+.w3-border-trav, .w3-hover-border-trav:hover {
+    border-color: #351c75;
+}
 #trav-header {
 
     font-size: 1.2em;
