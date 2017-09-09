@@ -258,6 +258,14 @@
                 <source>FEMALE</source>
                 <target>FEMALE</target>
             </trans-unit>
+            <trans-unit id="trav_upload_picture">
+                <source>trav.upload.picture</source>
+                <target>Upload the picture</target>
+            </trans-unit>
+            <trans-unit id="trav_my_location">
+                <source>trav.my.location</source>
+                <target>My location</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

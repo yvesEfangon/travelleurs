@@ -25,15 +25,12 @@ services:
         factory: ['@doctrine', 'getRepository']
         arguments: ['AppBundle:Address']
 
-    trav.repository.userdata:
-        class: AppBundle\Repository\UserDataRepository
-        factory: ['@doctrine', 'getRepository']
-        arguments: ['AppBundle:UserData']
-    trav.repository.country:
-        class: AppBundle\Repository\CountriesRepository
-        factory: ['@doctrine', 'getRepository']
-        arguments: ['AppBundle:Countries']
 
     trav.repo.address.manipulator:
-            class: AppBundle\RepositoryManipulat\AddressRepoManipulator
-            arguments: ['@service_container']
+        class: AppBundle\RepositoryManipulat\AddressRepoManipulator
+        arguments: ['@service_container']
+
+    tra.twig.app_extension:
+        class: AppBundle\Twig\Extension\AppExtension
+        tags:
+            - {name: twig.extension}

@@ -16,11 +16,13 @@ class ImageType extends AbstractType
             'imageFile',
             VichImageType::class,
             [
-                'required' => false,
+                'required' => true,
                 'allow_delete' => true,
+                'label' => ' ',
+                'label_attr' => ['class' => 'hidden'],
             ]
             )
-        ->add('submit',SubmitType::class,['label' => 'Add']);
+        ->add('submit',SubmitType::class,['label' => 'trav.upload.picture']);
     }
 
 

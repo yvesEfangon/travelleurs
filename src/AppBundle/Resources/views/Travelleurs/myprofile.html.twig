@@ -16,7 +16,7 @@
     {#{{ path('trav_index_voyage',{'_locale': app.request.locale}) }}#}
 </div>
 <div class="row w3-margin-48">
-    <div class="col-lg-3 col-md-3 col-xs-3 well well-sm">
+    <div class="col-lg-3 col-md-3 col-xs-3 w3-card-4">
         <ul class="nav nav-stacked _menu-insite-active">
             <li role="presentation" class="active">
                <a href="{{ path('trav_showmyprofile') }}" target="central-profile-frame" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" class="dropdown-toggle trav-secondary-color">
@@ -76,19 +76,10 @@
 
         </ul>
     </div>
-    <div class="col-lg-9 col-md-9 col-xs-9 embed-responsive embed-responsive-16by9">
+    <div class="col-lg-9 col-md-9 col-xs-9 embed-responsive embed-responsive-16by9 w3-card-4">
         <iframe src="{{ path('trav_showmyprofile') }}" name="central-profile-frame" id="central-profile-frame" class="embed-responsive-item"></iframe>
     </div>
-   {# <div class="col-lg-2 col-md-2 col-xs-2">
-        <div class="list-group">
-            <a href="#" class="list-group-item active">
-                {{ 'trav.my.favourites'|trans|upper }}
-            </a>
-            <a href="{{ path('trav_index_voyage') }}" class="list-group-item">{{ 'trav.mytravels'|trans }}</a>
-            <a href="#" class="list-group-item">{{ 'trav.myactivities'|trans }}</a>
-            <a href="#" class="list-group-item">Trip planner</a>
-        </div>
-    </div>#}
+
 </div>
 {% endblock %}
 

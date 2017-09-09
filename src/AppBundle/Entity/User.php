@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use FOS\MessageBundle\Model\ParticipantInterface;
 use Doctrine\ORM\Mapping as ORM;
@@ -101,11 +102,82 @@ class User extends BaseUser implements ParticipantInterface
      *@ORM\OneToOne(targetEntity="AppBundle\Entity\Image",cascade={"persist"})
      */
     private $photoProfile;
+
+    /**
+     * @var bool
+     *
+     * @ORM\Column(name="fumeur", type="boolean")
+     */
+    private $fumeur;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="bio", type="text")
+     */
+    private $bio;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="marital_status", type="string", length=20)
+     */
+    private $maritalStatus;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="degre_conversation", type="string", length=20)
+     */
+    private $degreConversation;
+
+    /**
+     * @var ArrayCollection
+     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\ActivitesSportives", cascade={"persist"})
+     */
+    private $activities;
+
+    /**
+     * @var ArrayCollection
+     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\CausesSociales",cascade={"persist"})
+     */
+    private $causes_sociales;
+
+    /**
+     * @var ArrayCollection
+     *
+     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Hobbie",cascade={"persist"})
+     *
+     */
+    private $hobbies;
+
+    /**
+     * @var ArrayCollection
+     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Phobbie",cascade={"persist"})
+     */
+    private $phobbies;
+
+    /**
+     * @var ArrayCollection
+     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Langue",cascade={"persist"})
+     */
+    private $langues;
     /**
      * Get id
      *
      * @return int
      */
+    public function __construct()
+    {
+        parent::__construct();
+
+        $this->activities       = new ArrayCollection();
+        $this->causes_sociales  = new ArrayCollection();
+        $this->hobbies      = new ArrayCollection();
+        $this->phobbies     = new ArrayCollection();
+        $this->langues      = new ArrayCollection();
+    }
+
     public function getId()
     {
         return $this->id;
@@ -347,6 +419,178 @@ class User extends BaseUser implements ParticipantInterface
 
         return $this;
     }
+
+    /**
+     * @return boolean
+     */
+    public function isFumeur()
+    {
+        return $this->fumeur;
+    }
+
+    /**
+     * @param boolean $fumeur
+     * @return User
+     */
+    public function setFumeur($fumeur)
+    {
+        $this->fumeur = $fumeur;
+        
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getBio()
+    {
+        return $this->bio;
+    }
+
+    /**
+     * @param string $bio
+     * @return User
+     */
+    public function setBio($bio)
+    {
+        $this->bio = $bio;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getMaritalStatus()
+    {
+        return $this->maritalStatus;
+    }
+
+    /**
+     * @param string $maritalStatus
+     * @return User
+     */
+    public function setMaritalStatus($maritalStatus)
+    {
+        $this->maritalStatus = $maritalStatus;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getDegreConversation()
+    {
+        return $this->degreConversation;
+    }
+
+    /**
+     * @param string $degreConversation
+     * @return User
+     */
+    public function setDegreConversation($degreConversation)
+    {
+        $this->degreConversation = $degreConversation;
+
+        return $this;
+    }
+
+    /**
+     * @return ArrayCollection
+     */
+    public function getActivities()
+    {
+        return $this->activities;
+    }
+
+    /**
+     * @param ArrayCollection $activities
+     * @return User
+     */
+    public function setActivities($activities)
+    {
+        $this->activities = $activities;
+
+        return $this;
+    }
+
+    /**
+     * @return ArrayCollection
+     */
+    public function getCausesSociales()
+    {
+        return $this->causes_sociales;
+    }
+
+    /**
+     * @param ArrayCollection $causes_sociales
+     * @return User
+     */
+    public function setCausesSociales($causes_sociales)
+    {
+        $this->causes_sociales = $causes_sociales;
+
+        return $this;
+    }
+
+    /**
+     * @return ArrayCollection
+     */
+    public function getHobbies()
+    {
+        return $this->hobbies;
+    }
+
+    /**
+     * @param ArrayCollection $hobbies
+     * @return User
+     */
+    public function setHobbies($hobbies)
+    {
+        $this->hobbies = $hobbies;
+
+        return $this;
+    }
+
+    /**
+     * @return ArrayCollection
+     */
+    public function getPhobbies()
+    {
+        return $this->phobbies;
+    }
+
+    /**
+     * @param ArrayCollection $phobbies
+     * @return User
+     */
+    public function setPhobbies($phobbies)
+    {
+        $this->phobbies = $phobbies;
+
+        return $this;
+    }
+
+    /**
+     * @return ArrayCollection
+     */
+    public function getLangues()
+    {
+        return $this->langues;
+    }
+
+    /**
+     * @param ArrayCollection $langues
+     * @return User
+     */
+    public function setLangues($langues)
+    {
+        $this->langues = $langues;
+
+        return $this;
+    }
+
 
 
 

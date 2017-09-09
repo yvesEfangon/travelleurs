@@ -270,6 +270,14 @@
                 <source>NO</source>
                 <target>NON</target>
             </trans-unit>
+            <trans-unit id="trav_upload_picture">
+                <source>trav.upload.picture</source>
+                <target>Charger l'image</target>
+            </trans-unit>
+            <trans-unit id="trav_my_location">
+                <source>trav.my.location</source>
+                <target>Ma localisation</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>
