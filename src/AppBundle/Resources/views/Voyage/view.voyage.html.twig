@@ -1,0 +1,13 @@
+{% extends 'AppBundle::base.html.twig' %}
+
+{% block content %}
+    <div class="w3-margin-64">
+        <div class="row w3-margin-4">
+            <h1>
+            {% for th in voyage.themes %}
+                <span class="badge badge-dark">{{ th.libelle|trans }}</span>
+            {% endfor %}
+            </h1>
+        </div>
+    </div>
+{% endblock %}

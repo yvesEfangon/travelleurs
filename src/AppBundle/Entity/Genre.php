@@ -27,9 +27,9 @@ class Genre
     private    $id;
 
     /**
-     * @ORM\Column(name="genre",type="string", length=10)
+     * @ORM\Column(name="name",type="string", length=50)
      */
-    private $genre;
+    private $name;
 
     /**
      * @return mixed
@@ -52,21 +52,29 @@ class Genre
     /**
      * @return mixed
      */
-    public function getGenre()
+    public function getName()
     {
-        return $this->genre;
+        return $this->name;
     }
 
     /**
-     * @param mixed $genre
+     * @param mixed $name
      * @return Genre
      */
-    public function setGenre($genre)
+    public function setName($name)
     {
-        $this->genre = $genre;
+        $this->name = $name;
         return $this;
     }
 
-    
+    /**
+     *
+     */
+    function __toString()
+    {
+        // TODO: Implement __toString() method.
+        return $this->getName();
+    }
+
 
 }

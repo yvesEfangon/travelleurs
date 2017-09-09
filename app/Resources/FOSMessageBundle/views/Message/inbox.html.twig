@@ -1,0 +1,24 @@
+{% extends 'FOSMessageBundle::layout.html.twig' %}
+{% block title %}{{ 'Inbox' }} - {{ parent() }}{% endblock %}
+
+{% block fos_message_content %}
+<div class="panel">
+    <h4 class="panel-heading trav-secondary-bg-color w3-text-white">{% trans from 'FOSMessageBundle' %}INBOX{% endtrans %}</h4>
+    <div class="panel-body">
+
+        <a data-toggle="modal" href="{{ url('fos_message_thread_new' )}}" data-target="#myModal" class="btn btn-primary"><i class="fa fa-pencil"></i> {% trans from 'FOSMessageBundle' %}send_new{% endtrans %}</a>
+
+
+{% include 'FOSMessageBundle:Message:threads_list.html.twig' with {'threads': threads} %}
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+        </div>
+    </div>
+</div>
+{% endblock %}

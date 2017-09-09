@@ -31,12 +31,7 @@ class Voyage
      */
     private $owner;
 
-    /**
-     *
-     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\User", cascade={"persist"})
-     *
-     */
-    private $participants;
+
     /**
      * @var string
      *
@@ -87,56 +82,79 @@ class Voyage
     private $ownerIsAlone;
 
     /**
-     * @var string
+     * @var integer
      *
-     * @ORM\Column(name="genre_voyageurs", type="string", length=20)
+     * @ORM\Column(name="genre_voyageur", type="integer", nullable=true)
      */
     private $genreVoyageurs;
 
     /**
      * @var boolean
      *
-     * @ORM\Column(name="smocker_allowed", type="boolean")
+     * @ORM\Column(name="smocker_allowed", type="boolean", nullable=true)
      */
     private $smockerAllowed;
 
     /**
-     * @var string
+     * @var Collection
      *
-     * @ORM\Column(name="type_de_voyage", type="string", length=20, nullable=true)
+     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Theme", cascade={"persist"})
      */
-    private $typeDeVoyage;
+    private $themes;
+
 
     /**
      * @var boolean
      *
-     * @ORM\Column(name="strict_criteria", type="boolean")
+     * @ORM\Column(name="strict_criteria", type="boolean", nullable=true)
      */
     private $strict_criteria;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="currency", type="string", length=20)
+     * @ORM\Column(name="currency", type="string", length=20, nullable=true)
      */
     private $currency;
 
     /**
      * @var double
      *
-     * @ORM\Column(name="budget", type="float")
+     * @ORM\Column(name="budget", type="float", nullable=true)
      */
     private $budget;
 
+    /**
+     * @var Collection
+     *
+     * @ORM\ManyToMany(targetEntity ="AppBundle\Entity\Langue", cascade={"persist"})
+     */
+    private $spokenLanguages;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="age_maxi", type="integer", nullable=true)
+     */
+    private $ageMax;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="age_min", type="integer", nullable=true)
+     */
+    private $ageMin;
     /**
      * Voyage constructor.
      */
     public function __construct()
     {
-        $this->participants     = new ArrayCollection();
-
+        $this->themes           = new ArrayCollection();
+        $this->spokenLanguages = new ArrayCollection();
         $this->createdOn        = new \DateTime();
         $this->published        = 0;
+        $this->ageMax           = 70;
+        $this->ageMin           = 18;
     }
 
     /**
@@ -226,47 +244,10 @@ class Voyage
         
         return ($this->owner->getId() == $user->getId());
     }
-    /**
-     * @return ArrayCollection
-     */
-    public function getParticipants()
-    {
-        return $this->participants;
-    }
 
-    /**
-     * @param ArrayCollection $participants
-     * @return Voyage
-     */
-    public function setParticipants(ArrayCollection $participants)
-    {
-        $this->participants = $participants;
 
-        return $this;
-    }
 
-    public function addParticipant(User $participant)
-    {
-        if(!$this->hasParticipant($participant)) $this->participants[]   = $participant;
 
-        return $this;
-    }
-    /**
-     * @param User $participant
-     */
-    public function removeParticipant(User $participant)
-    {
-        $this->participants->removeElement($participant);
-    }
-
-    /**
-     * @param User $participant
-     * @return bool
-     */
-    public function hasParticipant(User $participant)
-    {
-        return $this->participants->exists($participant);
-    }
     /**
      * @return \DateTime
      */
@@ -359,7 +340,7 @@ class Voyage
     }
 
     /**
-     * @return string
+     * @return integer
      */
     public function getGenreVoyageurs()
     {
@@ -367,7 +348,7 @@ class Voyage
     }
 
     /**
-     * @param string $genreVoyageurs
+     * @param integer $genreVoyageurs
      * @return Voyage
      */
     public function setGenreVoyageurs($genreVoyageurs)
@@ -395,22 +376,48 @@ class Voyage
     }
 
     /**
-     * @return string
+     * @return Collection
      */
-    public function getTypeDeVoyage()
+    public function getThemes()
     {
-        return $this->typeDeVoyage;
+        return $this->themes;
     }
 
     /**
-     * @param string $typeDeVoyage
+     * @param Collection $themes
      * @return Voyage
      */
-    public function setTypeDeVoyage($typeDeVoyage)
+    public function setThemes($themes)
     {
-        $this->typeDeVoyage = $typeDeVoyage;
+        $this->themes = $themes;
+
         return $this;
     }
+
+    public function removeTheme(Theme $theme)
+    {
+        $this->themes->removeElement($theme);
+    }
+
+    /**
+     * @param Theme $theme
+     * @return bool
+     */
+    public function hasTheme(Theme $theme)
+    {
+        return $this->themes->exists($theme);
+    }
+
+    /**
+     * @param $theme
+     * @return Voyage
+     */
+   public function addTheme($theme)
+   {
+        if(!$this->hasTheme($theme)) $this->themes[] = $theme;
+
+        return $this;
+   }
 
     /**
      * @return boolean
@@ -467,6 +474,82 @@ class Voyage
         $this->budget = $budget;
         return $this;
     }
+
+    public function hasSpokenLanguage(Langue $langue)
+    {
+        return $this->spokenLanguages->contains($langue);
+    }
+
+    public function addSpokenLanguage(Langue $langue)
+    {
+        if(!$this->hasSpokenLanguage($langue)) $this->spokenLanguages[] = $langue;
+
+        return $this;
+    }
+
+    public function removeSpokenLanguage(Langue $langue){
+        if($this->hasSpokenLanguage($langue)) $this->spokenLanguages->removeElement($langue);
+
+        return $this;
+    }
+
+    /**
+     * @return Collection
+     */
+    public function getSpokenLanguages()
+    {
+        return $this->spokenLanguages;
+    }
+
+    /**
+     * @param Collection $spokenLanguages
+     * @return Voyage
+     */
+    public function setSpokenLanguages($spokenLanguages)
+    {
+        $this->spokenLanguages = $spokenLanguages;
+
+        return $this;
+    }
+
+    /**
+     * @return int
+     */
+    public function getAgeMax()
+    {
+        return $this->ageMax;
+    }
+
+    /**
+     * @param int $ageMax
+     * @return Voyage
+     */
+    public function setAgeMax($ageMax)
+    {
+        $this->ageMax = $ageMax;
+
+        return $this;
+    }
+
+    /**
+     * @return int
+     */
+    public function getAgeMin()
+    {
+        return $this->ageMin;
+    }
+
+    /**
+     * @param int $ageMin
+     * @return Voyage
+     */
+    public function setAgeMin($ageMin)
+    {
+        $this->ageMin = $ageMin;
+
+        return $this;
+    }
+
 
 
 }

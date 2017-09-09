@@ -90,6 +90,8 @@ class ProfileController extends BaseController
 
             $dispatcher->dispatch(FOSUserEvents::PROFILE_EDIT_COMPLETED, new FilterUserResponseEvent($user, $request, $response));
 
+            $response       = $this->redirect($this->generateUrl('trav_myprofile'));
+
             return $response;
         }
 

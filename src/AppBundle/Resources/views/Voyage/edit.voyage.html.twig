@@ -1,54 +1,58 @@
-{% for type, flashes in app.session.flashBag.all() %}
-    {% for flash in flashes %}
-        <div class="alert alert-{{ type }}">
-            {{ flash }}
-        </div>
-    {% endfor %}
-{% endfor %}
+
+{% extends "AppBundle:Travelleurs:myprofile.html.twig" %}
+
+{% block secondContent %}
+ <div class="panel" >
+        <h4 class="panel-heading trav-secondary-bg-color w3-text-white">{{ 'trav.add.travel'|trans|upper }}</h4>
+        <div class="panel-body">
 <div class="well well-sm">
     {{ form_start(formVoyage) }}
 
     <div class="row">
         <div class="col-lg-4 col-md-4 col-xs-4"><span class="w3-badge w3-jumbo w3-padding trav-secondary-bg-color">1</span></div>
-        <div class="col-lg-4 col-md-4 col-xs-4 center-block"><p class="text-center">{{ 'trav.creation'|trans }}</p></div>
+        <div class="col-lg-4 col-md-4 col-xs-4 center-block"><h4 class="trav-primary-color text-center">{{ 'trav.creation'|trans }}</h4></div>
         <div class="col-lg-4 col-md-4 col-xs-4">
             <i class="fa fa-pencil-square fa-3x pull-right"></i>
         </div>
     </div>
     <div id="trav-creation">
         <div class="row">
-            <div class="col-lg-6 col-md-6 col-xs-6">
-                {{ 'trav_how_will_you_travel'|trans }}
+            <div class="col-lg-3 col-md-3 col-xs-6">
+                <h6>{{ 'trav_how_will_you_travel'|trans }}</h6>
                 {{ form_widget(formVoyage.ownerIsAlone) }}
             </div>
-            <div class="col-lg-6 col-md-6 col-xs-6">
-                {{ 'trav.travelers.genre'|trans }}
-                {{ form_widget(formVoyage.genreVoyageurs) }}
+
+            <div  class="col-lg-3 col-md-3 col-xs-6">
+               <h6> {{ 'trav.voyage.themes'|trans }}</h6>
+                {{ form_widget(formVoyage.themes) }}
+            </div>
+            <div class="col-lg-3 col-md-3 col-xs-6">
+                <h6>{{ 'trav.spoken.languages'|trans }}</h6>
+                {{ form_widget(formVoyage.spokenLanguages) }}
+            </div>
+            <div class="col-lg-3 col-md-3 col-xs-6">
+                <h6>{{ 'trav.numberof.travelers'|trans }}</h6>
+                {{ form_widget(formVoyage.numberOfParticipants) }}
             </div>
         </div>
-        <div class="row">
-            <div class="col-lg-6 col-md-6 col-xs-6">
-                {{ 'trav.smocker.allowed'|trans }}
-                {{ form_widget(formVoyage.smockerAllowed) }}
-            </div>
-            <div class="col-lg-6 col-md-6 col-xs-6">
-                {{ 'trav.show.to.perfect.match'|trans }}
-                {{ form_widget(formVoyage.strict_criteria) }}
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-lg-6 col-md-6 col-xs-6">
-                {{ 'trav.estimated.budget'|trans }}
+        <div class="row w3-margin-12">
+            <div class="col-lg-3 col-md-3 col-xs-6">
+                <h6>{{ 'trav.estimated.budget'|trans }}</h6>
                 {{ form_widget(formVoyage.budget) }}
             </div>
-            <div class="col-lg-6 col-md-6 col-xs-6">
-                {{ 'trav.currency'|trans }}
+            <div class="col-lg-2 col-md-2 col-xs-6">
+                <h6>{{ 'trav.currency'|trans }}</h6>
                 {{ form_widget(formVoyage.currency) }}
             </div>
+            <div class="col-lg-3 col-lg-3 col-xs-6">
+                <h6>{{ 'trav.show.to.perfect.match'|trans }}</h6>
+                {{ form_widget(formVoyage.strict_criteria) }}
+            </div>
+            <div class="col-lg-4 col-md-4 col-xs-6 w3-padding-32">
+                <input class="btn btn-lg btn-block trav-secondary-bg-color w3-text-white" type="submit" value="{{ 'trav.edit.action'|trans }}">
+            </div>
         </div>
-        <div class="row w3-margin-12 w3-center">
-            <input class="w3-center btn btn-lg trav-secondary-bg-color w3-text-white" type="submit" value="{{ 'trav.save.action'|trans }}">
-        </div>
+
     </div>
     {{ form_end(formVoyage) }}
 </div>
@@ -56,203 +60,140 @@
 <div class="well well-sm">
     <div class="row">
         <div class="col-lg-4 col-md-4 col-xs-4"><span class="w3-badge w3-jumbo w3-padding trav-secondary-bg-color">2</span></div>
-        <div class="col-lg-4 col-md-4 col-xs-4 center-block"><p class="text-center">{{ 'trav.details'|trans }}</p></div>
+        <div class="col-lg-4 col-md-4 col-xs-4 center-block"><h4 class="trav-primary-color text-center">{{ 'trav.destination'|trans }}s</h4></div>
         <div class="col-lg-4 col-md-4 col-xs-4">
             <i class="fa fa-list fa-3x pull-right"></i>
         </div>
     </div>
     <div class="row">
         {% if ExistingEtapes is defined and ExistingEtapes|length>0 %}
-            <table class="table">
-                <thead class="thead-inverse">
-                    <tr>
-                        <th>
-                            {{ 'trav.departure'|trans }}
-                        </th>
-                        <th>
-                            {{ 'trav.arrival'|trans }}
-                        </th>
-                        <th>
 
-                        </th>
-                    </tr>
-                </thead>
+                {% set i=1 %}
             {% for etape in ExistingEtapes %}
-                <tr>
-                    <td>
-                        <p>{{ 'trav.from'|trans }}:  {{ etape.lieuDepart.address }}<br>
-                        <small class="text-success">{{ 'trav.on'|trans }}: {{ etape.dateDepart|date('Y/m/d') }}</small></p>
-                    </td>
-                    <td>
-                        <p>{{ 'trav.to'|trans }}:  {{ etape.lieuArrivee.address }}<br>
-                        <small class="text-success">{{ 'trav.on'|trans }}: {{ etape.dateArrivee|date('Y/m/d') }}</small></p>
-                    </td>
-                    <td>
-                        <a title="Delete" href="{{ path('trav_remove_etape',{'id':etape.id}) }}"><i class="text-danger fa fa-times-circle"></i></a>
-                    </td>
-                </tr>
+                 <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12 w3-margin-top w3-margin-left">
+                    <div type="button" id="btn_etape_{{ etape.id }}" onclick="openOneTab(this)" class="w3-btn-block w3-white blue-travelleurs-border w3-round row" data-toggle="collapse" data-target="#{{ etape.id }}">
+                        <div class="col-lg-1 col-sm-1 col-xs-1 col-md-1 pull-left"><span class="badge trav-primary-bg-color">{{ i }}</span></div>
+
+                        <div class="text-uppercase trav-primary-color col-lg-9 col-sm-9 col-md-9 col-xs-9" id="display_etape_{{ etape.id }}">
+                            {{ 'trav.from'|trans }}:  {{ etape.lieuDepart.address }} <i class="fa fa-plane"></i> {{ 'trav.to'|trans }}:  {{ etape.lieuArrivee.address }}
+                        </div>
+
+                        <div class="col-lg-2 col-sm-2 col-xs-2 col-md-2 pull-right"><i class="manage_arrow trav-primary-color fa fa-arrow-circle-left"></i></div>
+                    </div>
+                    <div id="{{ etape.id }}" class="collapse row w3-padding-left w3-padding-right w3-padding-12">
+                         <div class="col-lg-5 col-md-5 col-sm-5">
+                            <p>{{ 'trav.from'|trans }}:  {{ etape.lieuDepart.address }}<br>
+                            <small class="text-success">{{ 'trav.on'|trans }}: {{ etape.dateDepart|date('Y/m/d') }} </small></p>
+                        </div>
+                        <div class="col-lg-5 col-md-5 col-sm-5">
+                            <p>{{ 'trav.to'|trans }}:  {{ etape.lieuArrivee.address }}<br>
+                            <small class="text-success">{{ 'trav.on'|trans }}: {{ etape.dateArrivee|date('Y/m/d') }}, {{ 'trav.leaving.on'|trans }}: {{ etape.dateFinSejour|date('Y/m/d') }}</small></p>
+                        </div>
+                        <div class="col-lg-2 col-md-2 col-sm-2">
+                              <a title="Delete" href="{{ path('trav_remove_etape',{'id':etape.id}) }}" class="btn btn-block btn-danger"><i class="fa fa-times-circle"></i></a>
+                        </div>
+                    </div>
+                </div>
+                {% set i=i+1 %}
             {% endfor %}
             </table>
         {% endif %}
     </div>
     {{ form_start(formEtape) }}
-    <div class="row">
-        <div class="col-lg-6 col-md-6 col-xs-6">
-            {{ 'trav.departure.city'|trans }}
+    <div class="row w3-margin-12">
+        <div class="col-lg-4 col-md-4 col-xs-4">
+            <h6>{{ 'trav.departure.city'|trans }}</h6>
             {{ form_widget(formEtape.lieuDepart.address) }}
         </div>
-        <div class="col-lg-6 col-md-6 col-xs-6">
-            {{ 'trav.arrival.city'|trans }}
+        <div class="col-lg-8 col-md-8 col-xs-8 col-sm-8">
+            <h6>{{ 'trav.arrival.city'|trans }}</h6>
             {{ form_widget(formEtape.lieuArrivee.address) }}
         </div>
     </div>
     <div class="row">
-        <div class="col-lg-6 col-md-6 col-xs-6">
-            {{ 'trav.departure.date'|trans }}
+        <div class="col-lg-4 col-md-4 col-xs-4">
+            <h6>{{ 'trav.departure.date'|trans }}</h6>
             {{ form_widget(formEtape.dateDepart) }}
         </div>
-        <div class="col-lg-6 col-md-6 col-xs-6">
-            {{ 'trav.arrival.date'|trans }}
+        <div class="col-lg-8 col-md-8 col-xs-8">
+            <div class="col-lg-6 col-md-6 col-xs-6">
+            <h6>{{ 'trav.arrival.date'|trans }}</h6>
             {{ form_widget(formEtape.dateArrivee) }}
+            </div>
+            <div class="col-lg-6 col-md-6 col-xs-6">
+            <h6>{{ 'trav.leaving.date'|trans }}</h6>
+            {{ form_widget(formEtape.dateFinSejour) }}
+            </div>
         </div>
     </div>
-    <div class="row w3-margin-12 w3-center">
-        <input class="w3-center btn btn-lg trav-secondary-bg-color w3-text-white" type="submit" value="{{ 'trav.add.action'|trans }}">
+    <div class="row">
+        <div class="col-lg-4 col-md-4 col-xs-6 w3-padding-32 pull-right">
+        <button class="w3-center btn btn-lg btn-block trav-secondary-bg-color w3-text-white" type="submit">
+            <i class="fa fa-plus fa-lg"></i> {{ 'trav.add.action'|trans }}
+        </button>
+
+        </div>
     </div>
+
    <div class="hidden">
        {{ form_rest(formEtape) }}
    </div>
     {{ form_end(formEtape) }}
 </div>
 
-{{ include('AppBundle::default-scripts.js.twig') }}
-<script>
-var autocompleteEdit1;
-var autocompleteEdit2;
+<div class="well well-sm">
+    <div class="row">
+        <div class="col-lg-4 col-md-4 col-xs-4"><span class="w3-badge w3-jumbo w3-padding trav-secondary-bg-color">3</span></div>
+        <div class="col-lg-4 col-md-4 col-xs-4 center-block"><h4 class="trav-primary-color text-center">{{ 'trav.publication'|trans }}</h4></div>
+        <div class="col-lg-4 col-md-4 col-xs-4">
+            <i class="fa fa-share-alt-square fa-3x pull-right"></i>
+        </div>
+    </div>
+    {{ form_start(formVoyage2) }}
+    <div class="row">
+        <div class="col-lg-2 col-md-2 col-xs-3">
+            <h6>{{ 'trav.travelers.genre'|trans }}</h6>
+            {{ form_widget(formVoyage2.genreVoyageurs) }}
+        </div>
+        <div class="col-lg-2 col-md-2 col-xs-3">
+            <h6>{{ 'trav.smocker.allowed'|trans }}</h6>
+            {{ form_widget(formVoyage2.smockerAllowed) }}
+        </div>
+        <div class="col-lg-3 col-md-3 col-xs-6">
+            <h6>{{ 'trav.travelers.agerange'|trans }}</h6>
+            <div id="slider-range" class="row trav-secondary-bg-color"> </div>
+            <div class="row w3-margin-top">
+                <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
+                    {{ form_widget(formVoyage2.ageMin,{ 'attr' : {'class': 'trav-secondary-color form-control'} }) }}
+                </div>
 
-function initAutocompleteEtape() {
-// Create the autocompleteProfile object, restricting the search to geographical
-// location types.
-    autocompleteEdit1 = new google.maps.places.Autocomplete(
-                    (document.getElementById('app_bundle_etape_type_lieuDepart_address')),
-                    {types: ['geocode']}
-                    );
-    autocompleteEdit2 = new google.maps.places.Autocomplete(
-                    (document.getElementById('app_bundle_etape_type_lieuArrivee_address')),
-                    {types: ['geocode']}
-                    );
+                <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
+                    {{ form_widget(formVoyage2.ageMax,{ 'attr' : {'class': 'trav-secondary-color form-control'} }) }}
+                </div>
+            </div>
 
-// When the user selects an address from the dropdown, populate the address
-// fields in the form.
-    autocompleteEdit1.addListener('place_changed',fillInAddressEtape1);
-    autocompleteEdit2.addListener('place_changed',fillInAddressEtape2);
-}
+        </div>
+    <div class="col-lg-5 col-md-5 col-xs-6">
+        <h6>{{ 'trav.annonce.description'|trans }}</h6>
+        {{ form_widget(formVoyage2.annonce,{ 'attr' : {'class': 'trav-secondary-color form-control'} }) }}
+    </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-4 col-md-4 col-xs-6 w3-padding-32 pull-right">
+           <button class="w3-center btn btn-lg btn-block trav-secondary-bg-color w3-text-white" type="submit">
+            <i class="fa fa-share-alt fa-lg"></i> {{ 'trav.publish'|trans }}
+        </button>
 
-function fillInAddressEtape1() {
-// Get the place details from the autocompleteProfile object.
-var place = autocompleteEdit1.getPlace();
+        </div>
+    </div>
+    {{ form_end(formVoyage2) }}
 
-if(place){
+</div>
+{% endblock %}
 
-document.getElementById('app_bundle_etape_type_lieuDepart_lat').value= place.geometry.location.lat();
-document.getElementById('app_bundle_etape_type_lieuDepart_lng').value = place.geometry.location.lng();
-
-if(place.place_id)
-document.getElementById('app_bundle_etape_type_lieuDepart_placeId').value    = place.place_id;
-
-var addressComponent    = place.address_components;
-var locality,administrative_area,country;
-
-for (var i = 0; i < addressComponent.length; i++){
-    var value = addressComponent[i];
-    var types = value.types;
-    var type0 = types[0];
-    switch (type0){
-        case 'locality':
-        locality = value.long_name;
-        break;
-        case 'administrative_area_level_1':
-        administrative_area = value.long_name;
-        break;
-        case 'country':
-        country = value.long_name;
-        break;
-    }
-
-}
-
-document.getElementById('app_bundle_etape_type_lieuDepart_locality').value = locality;
-document.getElementById('app_bundle_etape_type_lieuDepart_administrative_area').value =administrative_area;
-document.getElementById('app_bundle_etape_type_lieuDepart_country').value = country;
-
-
-}else{
-window.alert("No details available for input: '" + place.name + "'");
-return;
-}
-}
-
-function fillInAddressEtape2() {
-// Get the place details from the autocompleteProfile object.
-var place = autocompleteEdit2.getPlace();
-//console.log(autocompleteProfile);
-if(place){
-
-document.getElementById('app_bundle_etape_type_lieuArrivee_lat').value= place.geometry.location.lat();
-document.getElementById('app_bundle_etape_type_lieuArrivee_lng').value = place.geometry.location.lng();
-
-if(place.place_id)
-document.getElementById('app_bundle_etape_type_lieuArrivee_placeId').value    = place.place_id;
-
-var addressComponent    = place.address_components;
-var locality,administrative_area,country;
-
-for (var i = 0; i < addressComponent.length; i++){
-    var value = addressComponent[i];
-    var types = value.types;
-    var type0 = types[0];
-    switch (type0){
-        case 'locality':
-        locality = value.long_name;
-        break;
-        case 'administrative_area_level_1':
-        administrative_area = value.long_name;
-        break;
-        case 'country':
-        country = value.long_name;
-        break;
-    }
-
-}
-
-document.getElementById('app_bundle_etape_type_lieuArrivee_locality').value = locality;
-document.getElementById('app_bundle_etape_type_lieuArrivee_administrative_area').value =administrative_area;
-document.getElementById('app_bundle_etape_type_lieuArrivee_country').value = country;
-
-
-}else{
-window.alert("No details available for input: '" + place.name + "'");
-return;
-}
-}
-
-// Bias the autocompleteProfile object to the user's geographical location,
-// as supplied by the browser's 'navigator.geolocation' object.
-function geolocateProfil() {
-if (navigator.geolocation) {
-navigator.geolocation.getCurrentPosition(function(position) {
-var geolocation = {
-lat: position.coords.latitude,
-lng: position.coords.longitude
-};
-var circle = new google.maps.Circle({
-center: geolocation,
-radius: position.coords.accuracy
-});
-    autocompleteEdit1.setBounds(circle.getBounds());
-    autocompleteEdit2.setBounds(circle.getBounds());
-});
-}
-}
-</script>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBYZqbrjgb550hqzFuZT0I5v5IFaZ4ouKw&libraries=places&callback=initAutocompleteEtape"    async defer></script>
+    {% block inline_js %}
+    {{ parent() }}
+    <script>
+        sliderAgeRange(18, 70,"#app_bundle_voyage_part2type_ageMax","#app_bundle_voyage_part2type_ageMin")
+    </script>
+    {% endblock %}

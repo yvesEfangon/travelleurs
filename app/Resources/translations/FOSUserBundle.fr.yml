@@ -26,6 +26,12 @@ profile:
         submit: 'Mettre à jour'
     flash:
         updated: 'Le profil a été mis à jour'
+    your:
+        location: 'Votre localisation'
+        birthdate: 'Votre date de naissance'
+        gender: 'Genre'
+        languages: 'Langues parlées'
+        personal_info: 'Informations personnelles'
 change_password:
     submit: 'Modifier le mot de passe'
     flash:
@@ -68,3 +74,5 @@ form:
     password_confirmation: Vérification
     new_password: 'Nouveau mot de passe'
     new_password_confirmation: Vérification
+    firstname: Prénom
+    name: Nom

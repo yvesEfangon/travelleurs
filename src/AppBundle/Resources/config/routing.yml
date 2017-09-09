@@ -42,12 +42,14 @@ trav_faq:
     requirements:
         _locale: '%regex.local%'
 trav_search_form:
-    path: /{_locale}/search/
+    path: /{_locale}/voyage/search/{page}
     defaults:
-        _controller: AppBundle:Default:search
+        _controller: AppBundle:Voyage:search
         _locale: '%locale%'
+        page: 1
     requirements:
         _locale: '%regex.local%'
+        page: '\d+'
 trav_myprofile:
     path: /{_locale}/myprofile/
     defaults:
@@ -80,7 +82,7 @@ trav_add_profile_image:
         _locale: '%regex.local%'
 
 trav_edit_voyage:
-    path: /{_locale}/voyage/edit/{id}
+    path: /{_locale}/myprofile/voyage/edit/{id}
     defaults:
         _controller: AppBundle:Voyage:edit
     requirements:
@@ -88,7 +90,7 @@ trav_edit_voyage:
         _locale: '%regex.local%'
 
 trav_add_voyage:
-    path: /{_locale}/voyage/add
+    path: /{_locale}/myprofile/voyage/add
     defaults:
         _controller: AppBundle:Voyage:add
     requirements:
@@ -109,16 +111,43 @@ trav_remove_voyage:
         _locale: '%regex.local%'
         id: '\d+'
 trav_index_voyage:
-    path: /{_locale}/voyage/list
+    path: /{_locale}/myprofile/voyage/list
     defaults:
         _controller: AppBundle:Voyage:index
         _locale: '%locale%'
+trav_view_voyage:
+    path: /{_locale}/voyage/view/{id}
+    defaults:
+        _controller: AppBundle:Voyage:viewVoyage
+        _locale: '%locale%'
+    requirements:
+        id: '\d+'
+        _locale: '%regex.local%'
+
 trav_add_image:
-    path: /{_locale}/image/add
+    path: /{_locale}/myprofile/image/add
     defaults:
         _controller: AppBundle:Image:add
+        _locale: '%locale%'
     requirements:
         _locale: '%regex.local%'
+trav_register_inetape:
+    path: /{_locale}/voyage/etape/register/{id}
+    defaults:
+        _controller: AppBundle:Voyage:register
+        _locale: '%locale%'
+    requirements:
+        _locale: '%regex.local%'
+        id: '\d+'
+trav_unregister_inetape:
+    path: /{_locale}/voyage/etape/unregister/{id}
+    defaults:
+        _controller: AppBundle:Voyage:unregister
+        _locale: '%locale%'
+    requirements:
+        _locale: '%regex.local%'
+        id: '\d+'
+
 root:
     path: /{_locale}
     defaults:

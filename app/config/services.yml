@@ -12,25 +12,75 @@ services:
 
     app.form.profile:
         class: AppBundle\Form\ProfileType
-        arguments: [%fos_user.model.user.class%]
+        arguments: [%fos_user.model.user.class%,'@service_container']
         tags:
             - {name: form.type, alias: app_user_profile}
+    app.form.voyage:
+        class: AppBundle\Form\VoyageType
+        arguments: ['@service_container']
+        tags:
+            - {name: form.type, alias: voyage_form}
+    app.form.voyage2:
+        class: AppBundle\Form\VoyagePart2Type
+        arguments: ['@service_container']
+        tags:
+            - {name: form.type, alias: voyage_form2}
+    app.form.search.voyage:
+        class: AppBundle\Form\SearchVoyageCompleteType
+        arguments: ['@service_container']
+        tags:
+            - {name: form.type, alias: search_voyage}
 
     trav.fileuploader:
         class: AppBundle\Service\FileUploader
+    trav.form.methods:
+        class: AppBundle\Service\FormServices
+        arguments: ['@service_container']
+    trav.utilities:
+        class: AppBundle\Service\TravUtilities
 
+    trav.twig_extension:
+        class: AppBundle\Twig\TravExtension
+        arguments: ['@service_container']
+        tags:
+            - { name: twig.extension, priority: 255}
     # Repositories
     trav.repository.address:
         class: AppBundle\Repository\AddressRepository
         factory: ['@doctrine', 'getRepository']
         arguments: ['AppBundle:Address']
 
+    trav.repository.etape:
+        class: AppBundle\Repository\EtapeRepository
+        factory: ['@doctrine', 'getRepository']
+        arguments: ['AppBundle:Etape']
+
+    trav.repository.userdata:
+        class: AppBundle\Repository\UserDataRepository
+        factory: ['@doctrine', 'getRepository']
+        arguments: ['AppBundle:UserData']
+    trav.repository.country:
+        class: AppBundle\Repository\CountriesRepository
+        factory: ['@doctrine', 'getRepository']
+        arguments: ['AppBundle:Countries']
 
     trav.repo.address.manipulator:
-        class: AppBundle\RepositoryManipulat\AddressRepoManipulator
-        arguments: ['@service_container']
+            class: AppBundle\RepositoryManipulat\AddressRepoManipulator
+            arguments: ['@service_container']
 
-    tra.twig.app_extension:
-        class: AppBundle\Twig\Extension\AppExtension
-        tags:
-            - {name: twig.extension}
+    trav.repo.etape.manipulator:
+            class: AppBundle\RepositoryManipulator\EtapeRepoManipulator
+            arguments: ['@service_container']
+
+    trav.repository.genre:
+        class: AppBundle\Repository\GenreRepository
+        factory: ['@doctrine', 'getRepository']
+        arguments: ['AppBundle:Genre']
+    hwi_oauth.user.provider.entity:
+            class: HWI\Bundle\OAuthBundle\Security\Core\User\OAuthUserProvider
+
+    my.oauth_aware.user_provider.service:
+        class: HWI\Bundle\OAuthBundle\Security\Core\User\FOSUBUserProvider
+        arguments:
+            - '@fos_user.user_manager'
+            - ['pass properties as array']

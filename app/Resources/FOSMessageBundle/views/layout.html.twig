@@ -1,0 +1,24 @@
+{% extends '@App/base.html.twig' %}
+
+
+    {% block title %}
+        Travelleurs.co
+    {% endblock %}
+
+{% block banner %}
+{% endblock %}
+{% block content %}
+    <div class="clearfix container-fluid center-block w3-margin-64">
+        {% include 'AppBundle:Default:searchform.profile.html.twig' %}
+    </div>
+{% endblock %}
+{% block secondMenu %}
+        <ul class="nav nav-stacked _menu-insite-active well well-lg w3-margin-4">
+            <li role="presentation"> <a href="{{ url('fos_message_inbox') }}"><i class="fa fa-envelope-open"></i> {% trans from 'FOSMessageBundle' %}inbox{% endtrans %}</a></li>
+            <li role="presentation"><a href="{{ url('fos_message_sent') }}"><i class="fa fa-send"></i> {% trans from 'FOSMessageBundle' %}sent{% endtrans %}</a></li>
+            <li role="presentation"><a href="{{ url('fos_message_deleted') }}"><i class="fa fa-times-rectangle"></i> {% trans from 'FOSMessageBundle' %}deleted{% endtrans %}</a></li>
+        </ul>
+{% endblock %}
+{% block secondContent %}
+        {% block fos_message_content %}{% endblock %}
+{% endblock %}

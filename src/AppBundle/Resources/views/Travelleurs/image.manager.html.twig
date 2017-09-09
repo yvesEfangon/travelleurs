@@ -1,48 +1,43 @@
-{% for type, flashes in app.session.flashBag.all() %}
-    {% for flash in flashes %}
-        <div class="alert alert-{{ type }}">
-            {{ flash }}
-        </div>
-    {% endfor %}
-{% endfor %}
 
-<div class="well well-sm w3-padding-12 w3-margin-12">
-<div class="row w3-margin-bottom text-center">{{ 'trav.my.profile'|trans|upper }}</div>
-    <div class="row w3-border-trav w3-margin-bottom">
+{% extends "AppBundle:Travelleurs:myprofile.html.twig" %}
+
+{% block secondContent %}
+    <div class="panel" >
+    <h4 class="panel-heading trav-secondary-bg-color w3-text-white">{{ 'trav.my.pictures'|trans|upper }}</h4>
+    <div class="panel-body">
+    <div class="row w3-padding-12 w3-margin-12 w3-border">
        {{ form_start(form) }}
-       <div class="col-lg-10 col-md-10 col-xs-12">
-           {{ form_widget(form.imageFile,{'class':'btn btn-default btn-file'}) }}
+       <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
+           {{ form_widget(form.imageFile) }}
        </div>
-        <div class="col-lg-2 col-md-2 col-xs-12">
-            <button class="btn-danger btn" type="submit" name="app_bundle_image_type[submit]"><i class="fa fa-upload"></i> {{ 'trav.upload.picture'|trans }}</button>
+        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+            {{ form_widget(form.submit,{'attr': {'class': 'trav-secondary-bg-color btn btn-lg btn-block w3-text-white'}}) }}
         </div>
         <div class="hidden">{{ form_rest(form) }}</div>
 
         {{ form_end(form) }}
     </div>
-    <div class="row">
+    <div class="row w3-padding-12 w3-margin-12 w3-border">
         {% if albums is defined and albums|length>0 %}
             {% for album in albums %}
-
                 {% for img in album.images  %}
-
                     <div class="gallery" onclick="document.getElementById({{ img.id }}).style.display='block'">
-                        <img src="{{ vich_uploader_asset(img,'imageFile') }}" alt="{{ img.image }}" class="w3-border w3-padding w3-hover-grayscale"  width="300" height="200">
+                        <img src="{{ vich_uploader_asset(img,'imageFile') }}" alt="{{ img.image }}" class="w3-border w3-padding onclick-evt"  width="300" height="200">
                     </div>
 
-                    <div id="{{ img.id }}" class="w3-modal w3-animate-opacity">
-                        <div class="w3-modal-content" style="max-width:600px">
-                            <header class="w3-container trav-secondary-color">
+                    <div id="{{ img.id }}" class="w3-modal">
+                        <div class="w3-modal-content">
+                            <header class="w3-container trav-secondary-bg-color w3-text-white">
                                <span onclick="document.getElementById({{ img.id }}).style.display='none'"
-                                     class="w3-button w3-xlarge w3-hover-red w3-display-topright"><i class="fa fa-window-close fa-lg"></i></span>
-                                <h2>Modal Header</h2>
+                                     class="w3-button w3-display-topright"><i class="text-danger fa fa-close fa-lg"></i></span>
+                                <h2>{{ 'trav.set.profile.picture'|trans }}</h2>
                             </header>
-                            <div class="w3-container text-center">
-                                <img src="{{ vich_uploader_asset(img,'imageFile') }}" alt="{{ img.image }}" class="rounded mx-auto d-block img-thumbnail" >
+                            <div class="w3-container">
+                                <img src="{{ vich_uploader_asset(img,'imageFile') }}" alt="{{ img.image }}" class="w3-opacity-min" >
 
                             </div>
-                            <footer class="w3-container text-center">
-                                <a href="{{ path('trav_add_profile_image',{'id':img.id}) }}" class="btn btn-danger"><i class="fa fa-check fa-lg"></i> Set Profile img</a>
+                            <footer class="w3-container trav-secondary-bg-color w3-text-white">
+                                <a href="{{ path('trav_add_profile_image',{'id':img.id}) }}" class="btn btn-default">{{ 'trav.select.this'|trans }}</a>
                             </footer>
                         </div>
                     </div>
@@ -50,6 +45,7 @@
             {% endfor %}
         {% endif %}
     </div>
-
+    </div>
 </div>
-{{ include('AppBundle::default-scripts.js.twig') }}
+
+{% endblock %}

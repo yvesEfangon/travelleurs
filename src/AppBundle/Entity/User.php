@@ -28,6 +28,12 @@ class User extends BaseUser implements ParticipantInterface
 
     /**
      * @var string
+     *  @ORM\Column(name="genre", type="integer", nullable=true)
+     */
+    private $genre;
+
+    /**
+     * @var string
      *
      * @ORM\Column(name="name", type="string", length=255, nullable=true)
      */
@@ -92,7 +98,7 @@ class User extends BaseUser implements ParticipantInterface
     /**
      * @var string
      *
-     * @ORM\Column(name="place_id", type="string", nullable=false)
+     * @ORM\Column(name="place_id", type="string", nullable=true)
      */
     private $placeId;
 
@@ -104,30 +110,37 @@ class User extends BaseUser implements ParticipantInterface
     private $photoProfile;
 
     /**
+     * @var Collection
+     *
+     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Langue", cascade={"persist"})
+     */
+    private $languages;
+
+    /**
      * @var bool
      *
-     * @ORM\Column(name="fumeur", type="boolean")
+     * @ORM\Column(name="fumeur", type="boolean", nullable=true)
      */
     private $fumeur;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="bio", type="text")
+     * @ORM\Column(name="bio", type="text", nullable=true)
      */
     private $bio;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="marital_status", type="string", length=20)
+     * @ORM\Column(name="marital_status", type="string", length=100, nullable=true)
      */
     private $maritalStatus;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="degre_conversation", type="string", length=20)
+     * @ORM\Column(name="degre_conversation", type="string", length=100, nullable=true)
      */
     private $degreConversation;
 
@@ -135,13 +148,13 @@ class User extends BaseUser implements ParticipantInterface
      * @var ArrayCollection
      * @ORM\ManyToMany(targetEntity="AppBundle\Entity\ActivitesSportives", cascade={"persist"})
      */
-    private $activities;
+    private $sportActivities;
 
     /**
      * @var ArrayCollection
      * @ORM\ManyToMany(targetEntity="AppBundle\Entity\CausesSociales",cascade={"persist"})
      */
-    private $causes_sociales;
+    private $causesSociales;
 
     /**
      * @var ArrayCollection
@@ -157,31 +170,46 @@ class User extends BaseUser implements ParticipantInterface
      */
     private $phobbies;
 
-    /**
-     * @var ArrayCollection
-     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Langue",cascade={"persist"})
-     */
-    private $langues;
+    public function __construct()
+    {
+        $this->languages    = new ArrayCollection();
+        $this->phobbies     = new ArrayCollection();
+        $this->hobbies      = new ArrayCollection();
+        $this->causesSociales   = new ArrayCollection();
+        $this->sportActivities  = new ArrayCollection();
+
+    }
+
     /**
      * Get id
      *
      * @return int
      */
-    public function __construct()
-    {
-        parent::__construct();
-
-        $this->activities       = new ArrayCollection();
-        $this->causes_sociales  = new ArrayCollection();
-        $this->hobbies      = new ArrayCollection();
-        $this->phobbies     = new ArrayCollection();
-        $this->langues      = new ArrayCollection();
-    }
-
     public function getId()
     {
         return $this->id;
     }
+
+    /**
+     * @return integer
+     */
+    public function getGenre()
+    {
+        return $this->genre;
+    }
+
+
+    /**
+     * @param integer $genre
+     * @return User
+     */
+    public function setGenre($genre)
+    {
+        $this->genre    = $genre;
+
+        return $this;
+    }
+
 
     /**
      * Set name
@@ -233,21 +261,6 @@ class User extends BaseUser implements ParticipantInterface
         return in_array($role, $this->getRoles());
     }
 
-    /**
-     * @return mixed
-     */
-    public function getUserData()
-    {
-        return $this->userData;
-    }
-
-    /**
-     * @param mixed $userData
-     */
-    public function setUserData($userData)
-    {
-        $this->userData = $userData;
-    }
 
     /**
      * @return string
@@ -421,21 +434,49 @@ class User extends BaseUser implements ParticipantInterface
     }
 
     /**
-     * @return boolean
+     * @return Collection
      */
-    public function isFumeur()
+    public function getLanguages()
     {
-        return $this->fumeur;
+        return $this->languages;
     }
 
     /**
-     * @param boolean $fumeur
+     * @param Collection $languages
      * @return User
      */
-    public function setFumeur($fumeur)
+    public function setLanguages($languages)
     {
-        $this->fumeur = $fumeur;
-        
+        $this->languages = $languages;
+
+        return $this;
+    }
+
+    /**
+     * @param Langue $langue
+     * @return bool
+     */
+    public function hasLanguage(Langue $langue){
+        return $this->languages->contains($langue);
+    }
+
+    /**
+     * @param Langue $langue
+     * @return $this
+     */
+    public function addLanguage(Langue $langue){
+        if(!$this->hasLanguage($langue)) $this->languages[]   = $langue;
+
+        return $this;
+    }
+
+    /**
+     * @param Langue $langue
+     * @return $this
+     */
+    public function removeLangue(Langue $langue){
+        if($this->hasLanguage($langue)) $this->languages->removeElement($langue);
+
         return $this;
     }
 
@@ -459,20 +500,20 @@ class User extends BaseUser implements ParticipantInterface
     }
 
     /**
-     * @return string
+     * @return ArrayCollection
      */
-    public function getMaritalStatus()
+    public function getCausesSociales()
     {
-        return $this->maritalStatus;
+        return $this->causesSociales;
     }
 
     /**
-     * @param string $maritalStatus
+     * @param ArrayCollection $causesSociales
      * @return User
      */
-    public function setMaritalStatus($maritalStatus)
+    public function setCausesSociales($causesSociales)
     {
-        $this->maritalStatus = $maritalStatus;
+        $this->causesSociales = $causesSociales;
 
         return $this;
     }
@@ -497,43 +538,39 @@ class User extends BaseUser implements ParticipantInterface
     }
 
     /**
-     * @return ArrayCollection
+     * @return bool
      */
-    public function getActivities()
+    public function isFumeur()
     {
-        return $this->activities;
+        return $this->fumeur;
     }
 
     /**
-     * @param ArrayCollection $activities
+     * @param bool $fumeur
      * @return User
      */
-    public function setActivities($activities)
+    public function setFumeur($fumeur)
     {
-        $this->activities = $activities;
+        $this->fumeur = $fumeur;
+
+        return $this;
+    }
+    public function hasElement(ArrayCollection $Object, $elt){
+        return $Object->contains($elt);
+    }
+
+    public function addElement(ArrayCollection $Object, $elt)
+    {
+        if(!$this->hasElement($Object,$elt)) $Object[]  = $elt;
 
         return $this;
     }
 
-    /**
-     * @return ArrayCollection
-     */
-    public function getCausesSociales()
-    {
-        return $this->causes_sociales;
-    }
-
-    /**
-     * @param ArrayCollection $causes_sociales
-     * @return User
-     */
-    public function setCausesSociales($causes_sociales)
-    {
-        $this->causes_sociales = $causes_sociales;
+    public function removeElement(ArrayCollection $Object,$elt){
+        if(!$this->hasElement($Object,$elt)) $Object->removeElement($elt);
 
         return $this;
     }
-
     /**
      * @return ArrayCollection
      */
@@ -549,6 +586,93 @@ class User extends BaseUser implements ParticipantInterface
     public function setHobbies($hobbies)
     {
         $this->hobbies = $hobbies;
+
+        return $this;
+    }
+
+    /**
+     * @param Hobbie $hobbie
+     * @return User
+     */
+    public function addHobbie(Hobbie $hobbie){
+      return $this->addElement($this->hobbies,$hobbie);
+    }
+
+    /**
+     * @param Hobbie $hobbie
+     * @return User
+     */
+    public function removeHobbie(Hobbie $hobbie){
+        return $this->removeElement($this->hobbies, $hobbie);
+    }
+
+    /**
+     * @param Phobbie $phobbie
+     * @return User
+     */
+    public function addPhobbie(Phobbie $phobbie){
+        return $this->addElement($this->phobbies, $phobbie);
+    }
+
+    /**
+     * @param Phobbie $phobbie
+     * @return User
+     */
+    public function removePhobbie(Phobbie $phobbie)
+    {
+        return $this->removeElement($this->phobbies, $phobbie);
+    }
+
+    /**
+     * @param CausesSociales $causesSociale
+     * @return User
+     */
+    public function addCauseSociale(CausesSociales $causesSociale)
+    {
+        return $this->addElement($this->causesSociales, $causesSociale);
+    }
+
+    /**
+     * @param CausesSociales $causeSociale
+     * @return User
+     */
+    public function removeCauseSociale(CausesSociales $causeSociale)
+    {
+        return $this->removeElement($this->causesSociales, $causeSociale);
+    }
+
+    /**
+     * @param ActivitesSportives $act
+     * @return User
+     */
+    public function addSportActivity(ActivitesSportives $act)
+    {
+        return $this->addElement($this->sportActivities,$act);
+    }
+
+    /**
+     * @param ActivitesSportives $act
+     * @return User
+     */
+    public function removeSportActivity(ActivitesSportives $act)
+    {
+        return $this->removeElement($this->sportActivities, $act);
+    }
+    /**
+     * @return string
+     */
+    public function getMaritalStatus()
+    {
+        return $this->maritalStatus;
+    }
+
+    /**
+     * @param string $maritalStatus
+     * @return User
+     */
+    public function setMaritalStatus($maritalStatus)
+    {
+        $this->maritalStatus = $maritalStatus;
 
         return $this;
     }
@@ -575,23 +699,21 @@ class User extends BaseUser implements ParticipantInterface
     /**
      * @return ArrayCollection
      */
-    public function getLangues()
+    public function getSportActivities()
     {
-        return $this->langues;
+        return $this->sportActivities;
     }
 
     /**
-     * @param ArrayCollection $langues
+     * @param ArrayCollection $sportActivities
      * @return User
      */
-    public function setLangues($langues)
+    public function setSportActivities($sportActivities)
     {
-        $this->langues = $langues;
+        $this->sportActivities = $sportActivities;
 
         return $this;
     }
-
-
 
 
 

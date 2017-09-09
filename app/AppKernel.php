@@ -32,7 +32,11 @@ class AppKernel extends Kernel
             new FOS\RestBundle\FOSRestBundle(),
             new JMS\SerializerBundle\JMSSerializerBundle(),
             new Vich\UploaderBundle\VichUploaderBundle(),
-           // new FOS\MessageBundle\FOSMessageBundle(),
+            new FOS\MessageBundle\FOSMessageBundle(),
+            new HWI\Bundle\OAuthBundle\HWIOAuthBundle(),
+            new Knp\Bundle\PaginatorBundle\KnpPaginatorBundle(),
+            new Bazinga\Bundle\JsTranslationBundle\BazingaJsTranslationBundle()
+
         );
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {

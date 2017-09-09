@@ -1,48 +1,56 @@
 {% trans_default_domain 'FOSUserBundle' %}
 
-<div class="panel panel-default" >
-    <div class="panel-heading">Personal informations</div>
+<div class="panel" >
+    <h4 class="panel-heading trav-secondary-bg-color w3-text-white">{{ 'profile.your.personal_info'|trans|upper }}</h4>
     <div class="panel-body">
         {{ form_start(form, { 'action': path('fos_user_profile_edit'), 'attr': { 'class': 'fos_user_profile_edit' } }) }}
         <div class="w3-padding row">
-
-                <div  class="col-lg-3 col-md-3 col-xs-6">
-                    {{ form_label(form.username) }}
-                    {{ form_widget(form.username) }}
-                </div>
-                <div class="col-lg-3 col-md-3 col-xs-6">
-                    {{ form_label(form.email) }}
-                    {{ form_widget(form.email) }}
-                </div>
-
-                <div  class="col-lg-3 col-md-3 col-xs-6">
-                    {{ form_label(form.firstname) }}
-                    {{ form_widget(form.firstname) }}
-                </div>
-                <div class="col-lg-3 col-md-3 col-xs-6">
-                    {{ form_label(form.name) }}
-                    {{ form_widget(form.name) }}
-                </div>
+            <div class="col-lg-2 col-md-2 col-xs-3">
+                <h6>{{ 'profile.your.gender'|trans }}*</h6>
+                {{ form_widget(form.genre) }}
+            </div>
+            <div  class="col-lg-5 col-md-3 col-xs-6">
+                <h6>{{ 'form.firstname'|trans }}*</h6>
+                {{ form_widget(form.firstname) }}
+            </div>
+            <div class="col-lg-5 col-md-3 col-xs-6">
+                <h6>{{ 'form.name'|trans }}*</h6>
+                {{ form_widget(form.name) }}
+            </div>
         </div>
-
+        <div class="row">
+            <div  class="col-lg-4 col-md-4 col-xs-6">
+                <h6>{{ 'form.username'|trans }}*</h6>
+                {{ form_widget(form.username) }}
+            </div>
+            <div class="col-lg-4 col-md-4 col-xs-6">
+                {{'form.email'|trans }}*
+                {{ form_widget(form.email) }}
+            </div>
+            <div class="col-lg-4 col-md-4 col-xs-6">
+                <h6>{{ 'profile.your.languages'|trans }}</h6>
+                {{ form_widget(form.languages) }}
+            </div>
+        </div>
         <div class="w3-padding row">
-            <div  class="col-lg-6 col-md-6 col-xs-6">
-                {{ 'trav.location'|trans }}
+            <div  class="col-lg-4 col-md-4 col-xs-6">
+                <h6>{{ 'profile.your.location'|trans }}</h6>
                 {{ form_widget(form.address) }}
             </div>
             <div class="col-lg-3 col-md-3 col-xs-6">
-                {{ 'trav.birthdate'|trans }}
+                <h6>{{ 'profile.your.birthdate'|trans }}</h6>
                 {{ form_widget(form.birthdate) }}
             </div>
             <div class="col-lg-3 col-md-3 col-xs-6">
-                {{ 'trav.current.password'|trans }}
+                <h6>{{ 'form.current_password'|trans }}</h6>
                 {{ form_widget(form.current_password) }}
+            </div>
+            <div class="col-lg-2 col-md-2 col-xs-6 w3-padding-32 row center-block">
+                <input class="btn btn-primary btn-block" type="submit" value="{{ 'profile.edit.submit'|trans }}" />
             </div>
         </div>
 
-        <div class="w3-padding row center-block">
-            <input class="btn btn-primary" type="submit" value="{{ 'profile.edit.submit'|trans }}" />
-        </div>
+
        <div class="hidden">
            {{ form_rest(form) }}
        </div>

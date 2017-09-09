@@ -11,21 +11,11 @@ class TravelleursController extends Controller
 {
     public function myprofileAction()
     {
-
-
-        //Formulaire de recherche
-        $form   = $this->createForm(SearchVoyageIndexType::class,null,[
-            'action'=> $this->generateUrl('trav_search_form'),
-            'method'=> 'POST',
-            'attr'=> ['class'=>'form-horizontal']
-        ]);
-
-
+        $user       = $this->getUser();
 
         return $this->render('AppBundle:Travelleurs:myprofile.html.twig',
             [
-                'form_search'=>$form->createView(),
-
+                'user' => $this->getUser()
             ]);
     }
 

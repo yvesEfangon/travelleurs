@@ -182,6 +182,18 @@
                 <source>trav.mixte</source>
                 <target>Mixte</target>
             </trans-unit>
+            <trans-unit id="trav_genre_female">
+                <source>trav.genre.female</source>
+                <target>FEMININ</target>
+            </trans-unit>
+            <trans-unit id="trav_genre_male">
+                <source>trav.genre.male</source>
+                <target>MASCULIN</target>
+            </trans-unit>
+            <trans-unit id="trav_genre_mixte">
+                <source>trav.genre.mixte</source>
+                <target>MIXTE</target>
+            </trans-unit>
             <trans-unit id="trav_alone">
                 <source>trav.alone</source>
                 <target>Seul</target>
@@ -270,13 +282,117 @@
                 <source>NO</source>
                 <target>NON</target>
             </trans-unit>
-            <trans-unit id="trav_upload_picture">
-                <source>trav.upload.picture</source>
-                <target>Charger l'image</target>
+            <trans-unit id="trav_please_select">
+                <source>trav.please.select</source>
+                <target>Selectionner</target>
             </trans-unit>
-            <trans-unit id="trav_my_location">
-                <source>trav.my.location</source>
-                <target>Ma localisation</target>
+            <trans-unit id="trav_your_location">
+                <source>trav.your.location</source>
+                <target>Votre localisation</target>
+            </trans-unit>
+            <trans-unit id="trav_from">
+                <source>trav.from</source>
+                <target>De</target>
+            </trans-unit>
+            <trans-unit id="trav_to">
+                <source>trav.to</source>
+                <target>à</target>
+            </trans-unit>
+            <trans-unit id="trav_on">
+                <source>trav.on</source>
+                <target>Le</target>
+            </trans-unit>
+            <trans-unit id="trav_departure_city">
+                <source>trav.departure.city</source>
+                <target>Depart</target>
+            </trans-unit>
+            <trans-unit id="trav_arrival_city">
+                <source>trav.arrival.city</source>
+                <target>Arrivée</target>
+            </trans-unit>
+            <trans-unit id="trav_arrival_date">
+                <source>trav.arrival.date</source>
+                <target>Date d'arrivée</target>
+            </trans-unit>
+            <trans-unit id="trav_departure_date">
+                <source>trav.departure.date</source>
+                <target>Date de départ</target>
+            </trans-unit>
+            <trans-unit id="trav_publish">
+                <source>trav.publish</source>
+                <target>Publier</target>
+            </trans-unit>
+            <trans-unit id="trav_add_action">
+                <source>trav.add.action</source>
+                <target>Ajouter</target>
+            </trans-unit>
+            <trans-unit id="trav_add_travel">
+                <source>trav.add.travel</source>
+                <target>Ajouter un voyage</target>
+            </trans-unit>
+            <trans-unit id="trav_leaving_date">
+                <source>trav.leaving.date</source>
+                <target>Fin de séjour</target>
+            </trans-unit>
+            <trans-unit id="trav_leaving_on">
+                <source>trav.leaving.on</source>
+                <target>Jusqu'au</target>
+            </trans-unit>
+             <trans-unit id="trav_travelers_agerange">
+                <source>trav.travelers.agerange</source>
+                <target>Age des travelleurs (years)</target>
+            </trans-unit>
+            <trans-unit id="trav_km_around">
+                <source>trav.km.around</source>
+                <target>Km(s) autour</target>
+            </trans-unit>
+            <trans-unit id="trav_showall">
+                <source>trav.showall</source>
+                <target>--Tout voir--</target>
+            </trans-unit>
+            <trans-unit id="trav_organised_by">
+                <source>trav.organised.by</source>
+                <target>Organisé par</target>
+            </trans-unit>
+            <trans-unit id="trav_yourself">
+                <source>trav.yourself</source>
+                <target>Vous</target>
+            </trans-unit>
+            <trans-unit id="trav_destination">
+                <source>trav.destination</source>
+                <target>Destination</target>
+            </trans-unit>
+            <trans-unit id="trav_results">
+                <source>trav.results</source>
+                <target>Resultat(s)</target>
+            </trans-unit>
+             <trans-unit id="trav_voyage_themes">
+                <source>trav.voyage.themes</source>
+                <target>Themes du voyage</target>
+            </trans-unit>
+            <trans-unit id="trav_spoken_languages">
+                <source>trav.spoken.languages</source>
+                <target>Langues parlées</target>
+            </trans-unit>
+            <trans-unit id="trav_edit_action">
+                <source>trav.edit.action</source>
+                <target>Modifier</target>
+            </trans-unit>
+            <trans-unit id="trav_numberof_travelers">
+                <source>trav.numberof.travelers</source>
+                <target>Nombre max de co-voyageurs</target>
+            </trans-unit>
+            <trans-unit id="trav_annonce_description">
+                <source>trav.annonce.description</source>
+                <target>Decrire votre voyage</target>
+            </trans-unit>
+             <trans-unit id="trav_persons_registered">
+                <source>trav.persons.registered</source>
+                <target>Participant(s)</target>
+            </trans-unit>
+            <trans-unit id="trav_you_arenot_allow_toaccess">
+                <source>trav.you.arenot.allow.toaccess</source>
+                <target>Vous n'êtes pas autorisé à effectuer cette action</target>
             </trans-unit>
         </body>
     </file>
