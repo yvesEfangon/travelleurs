@@ -1,13 +1,99 @@
 {% extends 'AppBundle::base.html.twig' %}
-
 {% block content %}
-    <div class="w3-margin-64">
-        <div class="row w3-margin-4">
-            <h1>
-            {% for th in voyage.themes %}
-                <span class="badge badge-dark">{{ th.libelle|trans }}</span>
-            {% endfor %}
-            </h1>
+    {%  set members= currentEtape.id|etape_members%}
+    <div class="w3-margin-64 w3-padding-left w3-padding-right">
+        <div type="button" id="btn_voyage_{{ currentEtape.id }}" class="btn w3-white blue-travelleurs-border w3-round row set-responsive">
+
+           <div class="col-lg-2 col-sm-2 col-xs-2 col-md-2 text-center">
+               <i class="fa fa-plane fa-3x trav-primary-color"></i>
+           </div>
+           <div class="col-lg-5 col-sm-5 col-xs-5 col-md-5 text-left">
+
+                <h4 class="text-left">
+                    <i class="fa fa-map-marker"></i>&nbsp;{{ 'trav.destination'|trans }}: <span class="trav-primary-color">{{ currentEtape.lieuArrivee.address }}</span>
+                </h4>
+                <h6 class="trav-secondary-color text-left">
+                    <i class="fa fa-calendar"></i>&nbsp;{{ currentEtape.dateArrivee|date('Y/m/d') }}&nbsp;<i class="fa fa-caret-right"></i>&nbsp;{{ currentEtape.dateFinSejour|date('Y/m/d') }}
+                </h6>
+               <small class="text-left trav-secondary-color"><i class="fa fa-users"></i> {{ members|length }} {{ 'trav.persons.registered'|trans }}</small>
+            </div>
+            <div class="col-lg-5 col-sm-5 col-xs-5 col-md-5 text-left">
+                {% if is_granted('IS_AUTHENTICATED_FULLY') and app.user.id != voyage.owner.id %}
+                    {% if members| isregistered_inetape %}
+                        <a class="btn btn-lg trav-secondary-bg-color w3-text-white" href="{{ path('trav_unregister_inetape',{'id':currentEtape.id}) }}">{{ 'trav.unregistration.submit'|trans }}</a>
+                    {% else %}
+                        <a class="btn btn-lg trav-primary-bg-color w3-text-white" href="{{ path('trav_register_inetape',{'id':currentEtape.id}) }}">{{ 'trav.registration.submit'|trans }}</a>
+                    {% endif %}
+
+                {% endif %}
+
+            </div>
         </div>
+    </div>
+{% endblock %}
+{% block secondMenu %}
+
+<div class="row w3-margin-left w3-pagging-left">
+    {% if voyage.owner.photoProfile is defined and  voyage.owner.photoProfile is not null %}
+        <img src="{{ vich_uploader_asset(voyage.owner.photoProfile,'imageFile') }}" alt="{{ voyage.owner.username }}" class="w3-border w3-circle"  style="width:100%;max-width:20px">
+    {% else %}
+        {% image '@AppBundle/Resources/public/images/avatar.jpg' %}
+        <img class="w3-border w3-circle" src="{{ asset_url }}" alt="Avatar" style="width:100%;max-width:50px;"  />
+        {% endimage %}
+    {% endif %}
+    <h6 class="text-left"><small class="w3-block text-success">{{ 'trav.organised.by'|trans }}: {{ voyage.owner.username }}</small></h6>
+    <h6 class="text-left"><small class="w3-block text-danger">{{ 'trav.created.on'|trans }}: {{ voyage.createdOn|date('Y/m/d') }}</small></h6>
+</div>
+{% endblock %}
+{% block secondContent %}
+    <div class="well well-sm ">
+        <div class="row w3-margin-4">
+            <div class="col-lg-2 col-md-2 col-sm-2">
+                <h4>{{ 'trav.details'|trans }}</h4>
+            </div>
+            <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
+                <ul class="list-group">
+                    {% for etape in etapes %}
+                        {%  set reg= etape.id|etape_members%}
+                        <li class="list-group-item">
+                            <span class="badge"><i class="fa fa-user"></i> {{ reg|length }}</span>
+                            <i class="fa fa-map-o trav-primary-color"></i> <span class="trav-primary-color">{{ etape.lieuDepart.address }}</span>&nbsp;<i class="fa fa-fighter-jet"></i>&nbsp;<span class="trav-primary-color">{{ etape.lieuArrivee.address }}</span>
+                            <i class="fa fa-minus fa-lg"></i>
+                            <i class="fa fa-calendar trav-secondary-color"></i>&nbsp;
+                            <span class="trav-secondary-color">{{ etape.dateDepart|date('Y/m/d') }}</span>
+                            &nbsp;<i class="fa fa-clock-o"></i>&nbsp;
+                            <span class="trav-secondary-color">{{ etape.dateArrivee|date('Y/m/d') }}</span>
+                            &nbsp;&nbsp;
+                            <a href="{{ path('trav_view_voyage',{'etape_id':etape.id}) }}" ><i class="fa fa-external-link"></i></a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+        <div class="row w3-margin-12">
+            <h4>
+                {{ 'trav.voyage.themes'|trans }}:
+            {% for th in voyage.themes %}
+                <span class="label label-default">#{{ th.libelle|trans }}</span>
+            {% endfor %}
+            </h4>
+        </div>
+        <div class="row w3-margin-12">
+
+            <h4>
+                {{ 'trav.spoken.languages'|trans }}:
+            {% for lg in voyage.spokenLanguages %}
+                <span class="label label-default">#{{ lg.code|trans }}</span>
+            {% endfor %}
+            </h4>
+        </div>
+
+        <div class="row w3-margin-12">
+            <h4>{{ 'trav.estimated.budget'|trans }}: {{ voyage.budget }}&nbsp;{{ voyage.currency }}</h4>
+        </div>
+        <div class="row w3-margin-12">
+            <h4>{{ 'trav.travelers.agerange'|trans }}: {{ voyage.ageMin }}&nbsp;<i class="fa fa-caret-right"></i>&nbsp;{{ voyage.ageMax }}</h4>
+        </div>
+
     </div>
 {% endblock %}

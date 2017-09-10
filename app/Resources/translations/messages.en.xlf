@@ -142,6 +142,10 @@
                 <source>trav.registration.submit</source>
                 <target>Register</target>
             </trans-unit>
+            <trans-unit id="trav_unregistration_submit">
+                <source>trav.unregistration.submit</source>
+                <target>Unregister</target>
+            </trans-unit>
             <trans-unit id="trav_my_actions">
                 <source>trav.my.actions</source>
                 <target>My actions</target>

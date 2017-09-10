@@ -31,7 +31,10 @@ class VoyageController extends Controller
 
     public function addAction(Request $request){
         $this->get('session')->getFlashBag()->clear();
-
+        
+        if (!$this->container->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_FULLY')) {
+            return $this->redirect($this->generateUrl('fos_user_security_login'));
+        }
         $voyage = new Voyage();
         $form   = $this->getVoyageForm($voyage);
 
@@ -366,6 +369,14 @@ private function getVoyageEditForm2(Voyage $voyage)
 
         $_em->flush();
 
+        return $this->redirect(
+            $this->generateUrl(
+                'trav_view_voyage',
+                [
+                    'etape_id' => $etape->getId()
+                ]
+            )
+        );
 
     }
 
@@ -386,16 +397,30 @@ private function getVoyageEditForm2(Voyage $voyage)
         
         $_em->flush();
 
+        return $this->redirect(
+            $this->generateUrl(
+                'trav_view_voyage',
+                [
+                    'etape_id' => $etape->getId()
+                ]
+            )
+        );
+
     }
 
-    public function viewVoyageAction(Voyage $voyage){
+    public function viewVoyageAction($etape_id){
+        $etape          = $this->get('trav.repository.etape')->find($etape_id);
+        $voyage         = $etape->getVoyage();
+        $currentEtape   = $etape;
+
         $etapes = $this->get('trav.repository.etape')->findBy(['voyage' => $voyage]);
 
         return $this->render(
             'AppBundle:Voyage:view.voyage.html.twig',
             [
                 'voyage' => $voyage,
-                'etapes' => $etapes
+                'etapes' => $etapes,
+                'currentEtape' => $currentEtape
             ]
         );
     }

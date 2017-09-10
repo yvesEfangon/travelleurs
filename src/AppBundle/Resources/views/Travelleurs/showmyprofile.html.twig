@@ -18,7 +18,7 @@
     <div class="col-lg-8 col-md-8 col-xs-8">
         <div class="list-group">
             <a class="list-group-item">{{ 'trav.my.location'|trans }}: {{ user.address }} </a>
-            <a class="list-group-item">{{ 'trav.my.age'|trans }}: {{ user.birthdate|age }}</a>
+            <a class="list-group-item">{{ 'trav.my.age'|trans }}: {{ user.birthdate|date('Y-m-d') }}</a>
         </div>
     </div>
 </div>

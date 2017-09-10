@@ -55,10 +55,10 @@ services:
         factory: ['@doctrine', 'getRepository']
         arguments: ['AppBundle:Etape']
 
-    trav.repository.userdata:
-        class: AppBundle\Repository\UserDataRepository
+    trav.repository.voyage:
+        class: AppBundle\Repository\VoyageRepository
         factory: ['@doctrine', 'getRepository']
-        arguments: ['AppBundle:UserData']
+        arguments: ['AppBundle:Voyage']
     trav.repository.country:
         class: AppBundle\Repository\CountriesRepository
         factory: ['@doctrine', 'getRepository']

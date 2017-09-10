@@ -6,12 +6,17 @@
     "grunt-contrib-jshint": "~0.10.0",
     "grunt-contrib-nodeunit": "~0.4.1",
     "grunt-contrib-uglify": "~0.5.0",
-    "gulp": "^3.9.1",
+    "gulp": "github:gulpjs/gulp#4.0",
     "gulp-bower": "0.0.13",
+    "gulp-image": "^3.0.0",
     "gulp-notify": "^3.0.0",
-    "gulp-ruby-sass": "^2.1.1"
+    "gulp-ruby-sass": "^2.1.1",
+    "gulp-sass": "^3.1.0"
   },
   "dependencies": {
     "bazinga-translator": "^2.6.5"
+  },
+  "scripts": {
+    "gulp": "./node_modules/gulp/bin/gulp.js"
   }
 }

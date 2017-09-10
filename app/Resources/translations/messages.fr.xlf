@@ -140,7 +140,11 @@
             </trans-unit>
              <trans-unit id="trav_registration_submit">
                 <source>trav.registration.submit</source>
-                <target>Créer un Compte</target>
+                <target>S'inscrire</target>
+            </trans-unit>
+            <trans-unit id="trav_unregistration_submit">
+                <source>trav.unregistration.submit</source>
+                <target>Se désinscrire</target>
             </trans-unit>
             <trans-unit id="trav_my_actions">
                 <source>trav.my.actions</source>

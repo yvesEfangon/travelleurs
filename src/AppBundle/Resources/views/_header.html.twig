@@ -10,7 +10,7 @@
                 <span class="icon-bar"></span>
             </button>
             <a href="{{ path('homepage',{'_locale': current}) }}" class="navbar-brand" >
-                {% image '@AppBundle/Resources/public/images/logo-travelleurs-trans.png' %}
+                {% image '@AppBundle/Resources/public/assets/application/images/logo-travelleurs-trans.png' %}
                 <img class="img-responsive" src="{{ asset_url }}" alt="Travelleurs.co"  />
                 {% endimage %}
             </a>
@@ -41,41 +41,10 @@
                 </li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="{{ path('homepage',{'_locale': current}) }}" class="fa fa-home fa-lg"></a></li>
-                <li><a href="{{ path('trav_search_form',{'_locale': current}) }}" class="fa fa-search fa-lg"></a></li>
-                <!--li><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                        {{ 'trav.ourstory'|trans }}&nbsp;<i class="fa fa-caret-down"></i>
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li>
-                            <a href="{{ path('trav_aboutus') }}">{{ 'trav.aboutus'|trans }}</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('trav_contact',{'_locale': current}) }}">
-                                {{ 'trav.contact'|trans }}
-                            </a>
-                        </li>
-                        <li>
-                            <a href="{{ path('trav_faq',{'_locale': current}) }}">
-                                {{ 'trav.faq'|trans }}
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-                <li><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                        {{ 'trav.exclusivities'|trans }}&nbsp;<i class="fa fa-caret-down"></i>
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li>
-                            <a href="{{ path('trav_bonplan',{'_locale': current}) }}">{{ 'trav.bonplan'|trans }}</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('trav_marketplace',{'_locale': current}) }}">
-                                {{ 'trav.marketplace'|trans }}
-                            </a>
-                        </li>
-                    </ul>
-                </li-->
+                <li><a title="{{ 'trav.home'|trans }}" href="{{ path('homepage',{'_locale': current}) }}" class="fa fa-home fa-lg"></a></li>
+                <li><a title="{{ 'Search'|trans }}" href="{{ path('trav_search_form',{'_locale': current}) }}"><i class="fa fa-search fa-lg"></i></a></li>
+                <li><a title="{{ 'trav.add.travel'|trans }}" href="{{ path('trav_add_voyage',{'_locale': current}) }}" ><i class="fa fa-plus"></i>&nbsp;{{ 'trav.add.travel'|trans }}</a></li>
+
                 {% if is_granted('IS_AUTHENTICATED_FULLY') %}
                     <li>
                         <a href="{{ path('fos_message_inbox') }}"><i class="fa fa-envelope-o fa-lg w3-circle"></i></a>

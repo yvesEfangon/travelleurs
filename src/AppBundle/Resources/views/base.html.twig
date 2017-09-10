@@ -11,29 +11,24 @@
     <!--link rel="icon" href="../../favicon.ico"-->
 
     <title>{% block title %}Travelleurs.co{% endblock %}</title>
-
+    <!-- '@AppBundle/Resources/public/css/std/bootstrap.min.css'
+    '@AppBundle/Resources/public/vendor/jquery-ui-1.12.1.custom/jquery-ui.min.css'
+    '@AppBundle/Resources/public/vendor/jquery-ui-1.12.1.custom/jquery-ui.theme.min.css'
     <!-- Bootstrap core CSS -->
 
     {% stylesheets
-    '@AppBundle/Resources/public/css/std/bootstrap.min.css'
-    '@AppBundle/Resources/public/vendor/jquery-ui-1.12.1.custom/jquery-ui.min.css'
-    '@AppBundle/Resources/public/vendor/jquery-ui-1.12.1.custom/jquery-ui.theme.min.css'
-    '@AppBundle/Resources/public/css/std/w3.css'
-    '@AppBundle/Resources/public/css/std/flag-icon.min.css'
-
+    'css/bootstrap.css'
+    'css/font-awesome.css'
+    'css/jquery-ui.css'
+    '@AppBundle/Resources/public/vendor/css/w3.css'
 
     filter='cssrewrite' %}
     <link rel="stylesheet" href="{{ asset_url }}">
     {% endstylesheets %}
 
-    {% stylesheets  filter='cssrewrite'
-        '@font_awesome_css'
-    %}
-    <link rel="stylesheet" href="{{ asset_url }}">
-    {% endstylesheets %}
 
 
-    {% stylesheets '@AppBundle/Resources/public/css/app/travelleurs-home.css' filter='cssrewrite' output='css/__zyrkovx.css' %}
+    {% stylesheets '@AppBundle/Resources/public/application/css/travelleurs-home.css' filter='cssrewrite' output='css/__zyrkovx.css' %}
     <link rel="stylesheet" href="{{ asset_url }}" media="screen" type="text/css">
     {% endstylesheets %}
 
@@ -196,29 +191,37 @@
 {% endjavascripts %}
 <![endif]-->
     {% javascripts
-    '@AppBundle/Resources/public/js/std/jquery-2.0.0.min.js'
-    '@AppBundle/Resources/public/vendor/jquery-ui-1.12.1.custom/jquery-ui.js'
-    '@AppBundle/Resources/public/js/std/jquery.dropotron.min.js'
-    '@AppBundle/Resources/public/js/std/bootstrap.min.js'
-    '@AppBundle/Resources/public/js/std/underscore-min.js'
-    '@AppBundle/Resources/public/js/std/backbone-min.js'
-    '@AppBundle/Resources/public/js/std/skel.min.js'
-    '@AppBundle/Resources/public/js/std/util.js'
-    '@AppBundle/Resources/public/js/std/main.js'
-    '@AppBundle/Resources/public/js/app/travelleurs-generic.js'
-
+    'js/jquery.min.js'
+    'js/jquery-ui.min.js'
+    'js/bootstrap.js'
+    '@AppBundle/Resources/public/assets/application/js/application-js.js'
 %}
 <script src="{{ asset_url }}"></script>
 {% endjavascripts %}
         <script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
 <script src="{{ path('fos_js_routing_js', { callback: 'fos.Router.setData' }) }}"></script>
 
+    <!-- Cmd: php bin/console bazinga:js-translation:dump -->
 {% block inline_js %}
     <script>
         initJS();
     </script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBYZqbrjgb550hqzFuZT0I5v5IFaZ4ouKw&libraries=places&callback=initAutoCompleteMaps"    async defer></script>
 {% endblock %}
+<!--
+'@AppBundle/Resources/public/assets/vendor/js/vendor-js.js'
+'@AppBundle/Resources/public/vendor/js/jquery-2.0.0.min.js'
+    '@AppBundle/Resources/public/vendor/jquery-ui-1.12.1.custom/jquery-ui.js'
+    '@AppBundle/Resources/public/vendor/js/jquery.dropotron.min.js'
+    '@AppBundle/Resources/public/js/std/bootstrap.min.js'
+    '@AppBundle/Resources/public/vendor/js/underscore-min.js'
+    '@AppBundle/Resources/public/vendor/js/backbone-min.js'
+    '@AppBundle/Resources/public/vendor/js/skel.min.js'
+    '@AppBundle/Resources/public/vendor/js/util.js'
+    '@AppBundle/Resources/public/vendor/js/main.js'
+    '@AppBundle/Resources/public/application/js/travelleurs-generic.js'
+
+-->
 </body>
 </html>
 

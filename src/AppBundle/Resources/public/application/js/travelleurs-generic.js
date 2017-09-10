@@ -21,11 +21,7 @@
                 return false;
             }
         });
-
-        jQuery("#central-profile-frame").load(function () {
-            $(this).contents().find('body').append('<scr' + 'ipt type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></scr' + 'ipt>');
-        });
-
+        
         jQuery(".trav-datepicker").datepicker({dateFormat: 'yy-mm-dd'});
     })
 

@@ -82,7 +82,7 @@ trav_add_profile_image:
         _locale: '%regex.local%'
 
 trav_edit_voyage:
-    path: /{_locale}/myprofile/voyage/edit/{id}
+    path: /{_locale}/voyage/edit/{id}
     defaults:
         _controller: AppBundle:Voyage:edit
     requirements:
@@ -90,7 +90,7 @@ trav_edit_voyage:
         _locale: '%regex.local%'
 
 trav_add_voyage:
-    path: /{_locale}/myprofile/voyage/add
+    path: /{_locale}/voyage/add
     defaults:
         _controller: AppBundle:Voyage:add
     requirements:
@@ -111,17 +111,17 @@ trav_remove_voyage:
         _locale: '%regex.local%'
         id: '\d+'
 trav_index_voyage:
-    path: /{_locale}/myprofile/voyage/list
+    path: /{_locale}/voyage/list
     defaults:
         _controller: AppBundle:Voyage:index
         _locale: '%locale%'
 trav_view_voyage:
-    path: /{_locale}/voyage/view/{id}
+    path: /{_locale}/voyage/view/{etape_id}
     defaults:
         _controller: AppBundle:Voyage:viewVoyage
         _locale: '%locale%'
     requirements:
-        id: '\d+'
+        etape_id: '\d+'
         _locale: '%regex.local%'
 
 trav_add_image:
