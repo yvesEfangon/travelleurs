@@ -2,9 +2,30 @@
 {% extends "AppBundle:Travelleurs:myprofile.html.twig" %}
 
 {% block secondContent %}
+    <ul class="nav nav-tabs set-responsive">
+        <li class="trav-active-tab">
+            <a href="#">
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                        <span class="w3-badge trav-secondary-bg-color">1</span>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                        <span class="trav-primary-color text-center">{{ 'trav.creation'|trans }}</span>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                        <i class="fa fa-caret-right fa-3x"></i>
+                    </div>
+                </div>
 
+
+            </a>
+        </li>
+        <li><a href="#">Menu 1</a></li>
+        <li><a href="#">Menu 2</a></li>
+        <li><a href="#">Menu 3</a></li>
+    </ul>
 <div class="panel" >
-<h4 class="panel-heading trav-secondary-bg-color w3-text-white">{{ 'trav.add.travel'|trans|upper }}</h4>
+<div class="panel-heading trav-secondary-bg-color w3-text-white">{{ 'trav.add.travel'|trans|upper }}</div>
 <div class="panel-body">
     <div class="well well-sm">
         {{ form_start(formCreation) }}

@@ -140,15 +140,17 @@ assetic:
     use_controller: false
     filters:
       cssrewrite: ~
-      less:
-         node: /usr/bin/node
-         node_paths: [/usr/local/lib/node, /usr/local/lib/node_modules]
+      lessphp:
+          apply_to: ".less$"
+          file: %kernel.root_dir%/../vendor/oyejorge/less.php/lessc.inc.php
+          formatter: "compressed"
+          preserve_comments: false
     assets:
       font_awesome_css:
           inputs:
               - "%kernel.root_dir%/../vendor/components/font-awesome/less/font-awesome.less"
           filters:
-              - less
+              - lessphp
               - cssrewrite
           output: "css/font-awesome.css"
       font_awesome_fonts_eot:
@@ -183,7 +185,7 @@ assetic:
           inputs:
               - "%kernel.root_dir%/../vendor/components/jqueryui/themes/base/jquery-ui.min.css"
           filters:
-              - less
+              - lessphp
               - cssrewrite
           output: "css/jquery-ui.css"
       images_jquery_ui1:
@@ -211,7 +213,7 @@ assetic:
           inputs:
               - "%kernel.root_dir%/../vendor/twbs/bootstrap/less/bootstrap.less"
           filters:
-              - less
+              - lessphp
               - cssrewrite
           output: "css/bootstrap.css"
       bootstrap_js:
