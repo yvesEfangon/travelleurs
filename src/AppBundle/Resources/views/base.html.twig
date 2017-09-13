@@ -11,27 +11,17 @@
     <!--link rel="icon" href="../../favicon.ico"-->
 
     <title>{% block title %}Travelleurs.co{% endblock %}</title>
-    <!-- '@AppBundle/Resources/public/css/std/bootstrap.min.css'
-    '@AppBundle/Resources/public/vendor/jquery-ui-1.12.1.custom/jquery-ui.min.css'
-    '@AppBundle/Resources/public/vendor/jquery-ui-1.12.1.custom/jquery-ui.theme.min.css'
-    <!-- Bootstrap core CSS -->
+
 
     {% stylesheets
     'css/bootstrap.css'
     'css/font-awesome.css'
     'css/jquery-ui.css'
     '@AppBundle/Resources/public/vendor/css/w3.css'
-
-    filter='cssrewrite' %}
+    '@AppBundle/Resources/public/css/travelleurs-home.css'
+    filter='cssrewrite' output='css/app.css' %}
     <link rel="stylesheet" href="{{ asset_url }}">
     {% endstylesheets %}
-
-
-
-    {% stylesheets '@AppBundle/Resources/public/application/css/travelleurs-home.css' filter='cssrewrite' output='css/__zyrkovx.css' %}
-    <link rel="stylesheet" href="{{ asset_url }}" media="screen" type="text/css">
-    {% endstylesheets %}
-
 
 
 
@@ -189,12 +179,13 @@
 %}
 <script src="{{ asset_url }}"></script>
 {% endjavascripts %}
-<![endif]-->
+<!--[END IF] -->
+
     {% javascripts
     'js/jquery.min.js'
     'js/jquery-ui.min.js'
     'js/bootstrap.js'
-    '@AppBundle/Resources/public/assets/application/js/application-js.js'
+    '@AppBundle/Resources/public/js/travelleurs-generic.js'
 %}
 <script src="{{ asset_url }}"></script>
 {% endjavascripts %}
