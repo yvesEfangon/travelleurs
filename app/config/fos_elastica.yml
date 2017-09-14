@@ -1,9 +1,54 @@
-services:
-#    acme.demo.example:
-#        class:     Acme\DemoBundle\Example
-#        arguments: ["@service_id", "plain_value", "%parameter%"]
-#        calls:
-#            - [setService, ["@service_id"]]
-#        tags:
-#            - { name: twig.extension }
-#            - { name: kernel.event_listener, event: kernel.exception, method: onKernelException }
+fos_elastica:
+    default_manager: orm
+    clients:
+        default: { host: localhost, port: 9200 }
+    serializer:
+        serializer: jms_serializer
+    indexes:
+        travelleurs:
+            types:
+                etape:
+                    mappings: ~
+                    persistence:
+                        # the driver can be orm, mongodb, phpcr or propel
+                        # listener and finder are not supported by
+                        # propel and should be removed
+                        driver: orm
+                        model: AppBundle\Entity\Etape
+                        provider: ~
+                        finder: ~
+                        listener: ~
+                lieu:
+                    mappings: ~
+                    persistence:
+                        # the driver can be orm, mongodb, phpcr or propel
+                        # listener and finder are not supported by
+                        # propel and should be removed
+                        driver: orm
+                        model: AppBundle\Entity\Lieu
+                        provider: ~
+                        finder: ~
+                        listener: ~
+                voyage:
+                    mappings: ~
+                    persistence:
+                        # the driver can be orm, mongodb, phpcr or propel
+                        # listener and finder are not supported by
+                        # propel and should be removed
+                        driver: orm
+                        model: AppBundle\Entity\Voyage
+                        provider: ~
+                        finder: ~
+                        listener: ~
+                user:
+                    mappings: ~
+                    persistence:
+                        # the driver can be orm, mongodb, phpcr or propel
+                        # listener and finder are not supported by
+                        # propel and should be removed
+                        driver: orm
+                        model: AppBundle\Entity\User
+                        provider: ~
+                        finder: ~
+                        listener: ~
+

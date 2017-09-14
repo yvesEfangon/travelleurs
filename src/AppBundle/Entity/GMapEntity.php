@@ -18,6 +18,8 @@ use Doctrine\ORM\Mapping as ORM;
 abstract class GMapEntity
 {
     /**
+     * 
+     *
      * @var string
      *
      * @ORM\Column(name="address", type="string", length=255, nullable=true)
@@ -25,6 +27,8 @@ abstract class GMapEntity
     protected $address;
 
     /**
+     * 
+     *
      * @var string
      *
      * @ORM\Column(name="locality", type="string", length=255, nullable=true)
@@ -32,6 +36,8 @@ abstract class GMapEntity
     protected $locality;
 
     /**
+     * 
+     *
      * @var string
      *
      * @ORM\Column(name="administrative_area", type="string", length=255, nullable=true)
@@ -39,6 +45,8 @@ abstract class GMapEntity
     protected $administrativeArea;
 
     /**
+     * 
+     *
      * @var string
      *
      * @ORM\Column(name="country", type="string", length=255, nullable=true)
@@ -46,6 +54,8 @@ abstract class GMapEntity
     protected $country;
 
     /**
+     * 
+     *
      * @var float     Latitude of the position
      *
      * @ORM\Column(name="lat", type="float", nullable=true)
@@ -53,18 +63,25 @@ abstract class GMapEntity
     protected $lat;
 
     /**
+     * 
+     *
      * @var float     Longitude of the position
      *
      * @ORM\Column(name="lng", type="float", nullable=true)
      */
     protected $lng;
 
+
     /**
+     * 
+     *
      * @var string
      *
      * @ORM\Column(name="place_id", type="string", nullable=false)
      */
     protected $placeId;
+
+
 
     /**
      * @param $address
@@ -190,6 +207,9 @@ abstract class GMapEntity
 
         return $this;
     }
+
+
+
 
 
 

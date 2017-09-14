@@ -15,7 +15,8 @@
   },
   "dependencies": {
     "bazinga-translator": "^2.6.5",
-    "less": "^2.7.2"
+    "less": "^2.7.2",
+    "npm-4": "^2.1.1"
   },
   "scripts": {
     "gulp": "./node_modules/gulp/bin/gulp.js"

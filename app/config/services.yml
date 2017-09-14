@@ -59,10 +59,6 @@ services:
         class: AppBundle\Repository\VoyageRepository
         factory: ['@doctrine', 'getRepository']
         arguments: ['AppBundle:Voyage']
-    trav.repository.country:
-        class: AppBundle\Repository\CountriesRepository
-        factory: ['@doctrine', 'getRepository']
-        arguments: ['AppBundle:Countries']
 
     trav.repo.address.manipulator:
             class: AppBundle\RepositoryManipulat\AddressRepoManipulator

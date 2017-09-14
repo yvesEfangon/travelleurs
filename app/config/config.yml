@@ -2,6 +2,7 @@ imports:
     - { resource: parameters.yml }
     - { resource: security.yml }
     - { resource: services.yml }
+    - { resource: fos_elastica.yml }
     - { resource: "@AppBundle/Resources/config/admin.yml" }
 
 # Put parameters here that don't need to change on each machine where the app is deployed
@@ -364,3 +365,5 @@ knp_paginator:
     template:
         pagination: AppBundle:Default:pagination.sliding.html.twig     # KnpPaginatorBundle:Pagination:sliding.html.twig sliding pagination controls template
         sortable: KnpPaginatorBundle:Pagination:sortable_link.html.twig # sort link template
+
+

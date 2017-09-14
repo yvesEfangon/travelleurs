@@ -4,6 +4,7 @@ namespace AppBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * Etape
@@ -45,6 +46,8 @@ class Etape
     private $nbreCovoyageurs;
 
     /**
+     * @Groups({"elastica"})
+     *
      * @var \DateTime
      *
      * @ORM\Column(name="date_depart", type="datetime", nullable=true)
@@ -59,6 +62,8 @@ class Etape
     private $dateArrivee;
 
     /**
+     * @Groups({"elastica"})
+     *
      * @var \DateTime
      *
      * @ORM\Column(name="date_fin_sejour", type="datetime", nullable=true)
@@ -72,6 +77,8 @@ class Etape
     private $createdOn;
 
     /**
+     * @Groups({"elastica"})
+     *
      * @var Lieu
      *
      * @ORM\OneToOne(targetEntity="AppBundle\Entity\Lieu", cascade={"persist"})
@@ -79,6 +86,8 @@ class Etape
     private $lieuDepart;
 
     /**
+     * @Groups({"elastica"})
+     *
      * @var Lieu
      *
      * @ORM\OneToOne(targetEntity="AppBundle\Entity\Lieu", cascade={"persist"})
