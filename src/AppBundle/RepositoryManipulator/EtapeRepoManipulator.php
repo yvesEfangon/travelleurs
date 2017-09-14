@@ -3,6 +3,7 @@
 namespace AppBundle\RepositoryManipulator;
 
 use AppBundle\Entity\Etape;
+use Elastica\Query;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 
@@ -41,7 +42,10 @@ class EtapeRepoManipulator
 
         $parameters     = [];
 
+
         if($lat == '' || $lng== '') return null;
+
+        $elasticSearch  = $this->container->get('fos_elastica.index_manager');
 
         $query  = $this->container->get('trav.repository.etape')->createQueryBuilder('e')
             ->join('e.lieuArrivee','lieuArrivee')

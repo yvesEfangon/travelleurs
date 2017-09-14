@@ -5,6 +5,7 @@ namespace AppBundle\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use JMS\Serializer\Annotation as Serializer;
 
 /**
  * Voyage
@@ -31,11 +32,11 @@ class Voyage
      */
     private $owner;
 
-
     /**
      * @var string
      *
-     * @ORM\Column(name="photo", type="string", length=255, nullable=true)
+     *@ORM\OneToOne(targetEntity="AppBundle\Entity\Image",cascade={"persist"})
+     *
      */
     private $photo;
 
@@ -132,6 +133,8 @@ class Voyage
     private $spokenLanguages;
 
     /**
+     * @Serializer\Groups({"elastica"})
+     *
      * @var integer
      *
      * @ORM\Column(name="age_maxi", type="integer", nullable=true)
@@ -139,6 +142,8 @@ class Voyage
     private $ageMax;
 
     /**
+     * @Serializer\Groups({"elastica"})
+     *
      * @var integer
      *
      * @ORM\Column(name="age_min", type="integer", nullable=true)

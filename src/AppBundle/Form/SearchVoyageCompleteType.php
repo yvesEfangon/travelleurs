@@ -168,7 +168,12 @@ class SearchVoyageCompleteType extends AbstractType
 
     public function configureOptions(OptionsResolver $resolver)
     {
-
+        $resolver->setDefaults(
+            [
+                'data_class' => 'AppBundle\Model\MainSearch',
+                'csrf_protection' => false
+            ]
+        );
     }
 
     public function getName()

@@ -7,6 +7,7 @@ use Doctrine\Common\Collections\Collection;
 use FOS\MessageBundle\Model\ParticipantInterface;
 use Doctrine\ORM\Mapping as ORM;
 use FOS\UserBundle\Model\User as BaseUser;
+use JMS\Serializer\Annotation as Serializer;
 
 /**
  * User
@@ -27,6 +28,8 @@ class User extends BaseUser implements ParticipantInterface
     protected $id;
 
     /**
+     *@Serializer\Groups({"elastica"})
+     *
      * @var string
      *  @ORM\Column(name="genre", type="integer", nullable=true)
      */
@@ -40,6 +43,8 @@ class User extends BaseUser implements ParticipantInterface
     private $name;
 
     /**
+     *@Serializer\Groups({"elastica"})
+     *
      * @var string
      *
      * @ORM\Column(name="firstname", type="string", length=255, unique=false, nullable=true)
@@ -54,6 +59,8 @@ class User extends BaseUser implements ParticipantInterface
     private $birthdate;
 
     /**
+     *@Serializer\Groups({"elastica"})
+     *
      * @var string
      *
      * @ORM\Column(name="address", type="string", length=255, nullable=true)
@@ -61,6 +68,8 @@ class User extends BaseUser implements ParticipantInterface
     private $address;
 
     /**
+     *@Serializer\Groups({"elastica"})
+     *
      * @var string
      *
      * @ORM\Column(name="locality", type="string", length=255, nullable=true)
@@ -68,6 +77,8 @@ class User extends BaseUser implements ParticipantInterface
     private $locality;
 
     /**
+     *@Serializer\Groups({"elastica"})
+     *
      * @var string
      *
      * @ORM\Column(name="administrative_area", type="string", length=255, nullable=true)
@@ -75,6 +86,8 @@ class User extends BaseUser implements ParticipantInterface
     private $administrativeArea;
 
     /**
+     *@Serializer\Groups({"elastica"})
+     *
      * @var string
      *
      * @ORM\Column(name="country", type="string", length=255, nullable=true)
@@ -82,6 +95,8 @@ class User extends BaseUser implements ParticipantInterface
     private $country;
 
     /**
+     *@Serializer\Groups({"elastica"})
+     *
      * @var float     Latitude of the position
      *
      * @ORM\Column(name="lat", type="float", nullable=true)
@@ -89,6 +104,8 @@ class User extends BaseUser implements ParticipantInterface
     private $lat;
 
     /**
+     *@Serializer\Groups({"elastica"})
+     *
      * @var float     Longitude of the position
      *
      * @ORM\Column(name="lng", type="float", nullable=true)
@@ -98,18 +115,31 @@ class User extends BaseUser implements ParticipantInterface
     /**
      * @var string
      *
+     * @ORM\Column(name="geo_location", type="string", length=100, nullable=true)
+     * @Serializer\Groups({"elastica"})
+     */
+    private $geoLocation;
+
+    /**
+     *
+     *
+     * @var string
+     *
      * @ORM\Column(name="place_id", type="string", nullable=true)
+     * @Serializer\Groups({"elastica"})
      */
     private $placeId;
 
     /**
-     * @var string
+     * @var Image
      *
      *@ORM\OneToOne(targetEntity="AppBundle\Entity\Image",cascade={"persist"})
      */
     private $photoProfile;
 
     /**
+     *
+     *
      * @var Collection
      *
      * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Langue", cascade={"persist"})
@@ -178,6 +208,17 @@ class User extends BaseUser implements ParticipantInterface
         $this->causesSociales   = new ArrayCollection();
         $this->sportActivities  = new ArrayCollection();
 
+    }
+
+    /**
+     *
+     * @ORM\PrePersist
+     */
+    public function initGeoLocation(){
+        $this->geoLocation =
+            number_format(str_replace(",", ".", $this->getLat()), 8, '.', '')
+            .",".
+            number_format(str_replace(",", ".", $this->getLng()), 8, '.', '');
     }
 
     /**
@@ -711,6 +752,25 @@ class User extends BaseUser implements ParticipantInterface
     public function setSportActivities($sportActivities)
     {
         $this->sportActivities = $sportActivities;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getGeoLocation()
+    {
+        return $this->geoLocation;
+    }
+
+    /**
+     * @param string $geoLocation
+     * @return User
+     */
+    public function setGeoLocation($geoLocation)
+    {
+        $this->geoLocation = $geoLocation;
 
         return $this;
     }
