@@ -139,12 +139,13 @@ assetic:
     debug:          '%kernel.debug%'
     use_controller: false
     filters:
+      cssrewrite: ~
       lessphp:
-          file: "%kernel.root_dir%/../vendor/oyejorge/less.php/lessc.inc.php"
+          file: %kernel.root_dir%/../vendor/oyejorge/less.php/lessc.inc.php
           apply_to: ".less$"
           formatter: "compressed"
           preserve_comments: false
-      cssrewrite: ~
+      jsqueeze: ~
     assets:
       font_awesome_css:
           inputs:
