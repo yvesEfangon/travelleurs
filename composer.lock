@@ -4042,16 +4042,16 @@
         },
         {
             "name": "sonata-project/doctrine-orm-admin-bundle",
-            "version": "3.1.6",
+            "version": "3.1.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sonata-project/SonataDoctrineORMAdminBundle.git",
-                "reference": "2eb055a821b618b41b351b8594396c8dea45dd1e"
+                "reference": "b06d0103572c0c35fea2b6b59b9e939818b10d64"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sonata-project/SonataDoctrineORMAdminBundle/zipball/2eb055a821b618b41b351b8594396c8dea45dd1e",
-                "reference": "2eb055a821b618b41b351b8594396c8dea45dd1e",
+                "url": "https://api.github.com/repos/sonata-project/SonataDoctrineORMAdminBundle/zipball/b06d0103572c0c35fea2b6b59b9e939818b10d64",
+                "reference": "b06d0103572c0c35fea2b6b59b9e939818b10d64",
                 "shasum": ""
             },
             "require": {
@@ -4120,7 +4120,7 @@
                 "generator",
                 "sonata"
             ],
-            "time": "2017-07-05T08:58:56+00:00"
+            "time": "2017-09-14T10:48:58+00:00"
         },
         {
             "name": "sonata-project/easy-extends-bundle",
@@ -4255,24 +4255,24 @@
         },
         {
             "name": "sonata-project/notification-bundle",
-            "version": "3.1.0",
+            "version": "3.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sonata-project/SonataNotificationBundle.git",
-                "reference": "13ebbe89598299d90a90080850cc54e63ee20c60"
+                "reference": "e27bbc238ca1d8bd1144570e193e60a71106cf1c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sonata-project/SonataNotificationBundle/zipball/13ebbe89598299d90a90080850cc54e63ee20c60",
-                "reference": "13ebbe89598299d90a90080850cc54e63ee20c60",
+                "url": "https://api.github.com/repos/sonata-project/SonataNotificationBundle/zipball/e27bbc238ca1d8bd1144570e193e60a71106cf1c",
+                "reference": "e27bbc238ca1d8bd1144570e193e60a71106cf1c",
                 "shasum": ""
             },
             "require": {
                 "php": "^5.3 || ^7.0",
                 "sonata-project/core-bundle": "^3.0",
-                "sonata-project/datagrid-bundle": "^2.2",
+                "sonata-project/datagrid-bundle": "^2.2.1",
                 "sonata-project/doctrine-extensions": "^1.0",
-                "sonata-project/easy-extends-bundle": "^2.1",
+                "sonata-project/easy-extends-bundle": "^2.2",
                 "symfony/config": "^2.3.9 || ^3.0",
                 "symfony/console": "^2.3 || ^3.0",
                 "symfony/dependency-injection": "^2.3.3 || ^3.0",
@@ -4342,7 +4342,7 @@
                 "page",
                 "sonata"
             ],
-            "time": "2017-02-03T09:24:39+00:00"
+            "time": "2017-09-14T11:00:36+00:00"
         },
         {
             "name": "sonata-project/seo-bundle",
