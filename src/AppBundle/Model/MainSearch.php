@@ -18,10 +18,8 @@ class MainSearch
     protected $locality;
     protected $country;
     protected $administrative_area;
-    protected $dateDepart1;
-    protected $dateDepart2;
-    protected $dateFinSejour1;
-    protected $dateFinSejour2;
+    protected $dateDepart;
+    protected $dateFinSejour;
     protected $genreVoyageurs;
     protected $ageMax;
     protected $ageMin;
@@ -144,75 +142,39 @@ class MainSearch
     /**
      * @return mixed
      */
-    public function getDateDepart1()
+    public function getDateDepart()
     {
-        return $this->dateDepart1;
+        return $this->dateDepart;
     }
 
     /**
      * @param mixed $dateDepart1
      * @return MainSearch
      */
-    public function setDateDepart1($dateDepart1)
+    public function setDateDepart($dateDepart)
     {
-        $this->dateDepart1 = $dateDepart1;
+        $this->dateDepart = $dateDepart;
 
         return $this;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getDateDepart2()
-    {
-        return $this->dateDepart2;
-    }
 
-    /**
-     * @param mixed $dateDepart2
-     * @return MainSearch
-     */
-    public function setDateDepart2($dateDepart2)
-    {
-        $this->dateDepart2 = $dateDepart2;
-
-        return $this;
-    }
 
     /**
      * @return mixed
      */
-    public function getDateFinSejour1()
+    public function getDateFinSejour()
     {
-        return $this->dateFinSejour1;
+        return $this->dateFinSejour;
     }
 
     /**
      * @param mixed $dateFinSejour1
      * @return MainSearch
      */
-    public function setDateFinSejour1($dateFinSejour1)
+    public function setDateFinSejour($dateFinSejour)
     {
-        $this->dateFinSejour1 = $dateFinSejour1;
-
-        return $this;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getDateFinSejour2()
-    {
-        return $this->dateFinSejour2;
-    }
-
-    /**
-     * @param mixed $dateFinSejour2
-     * @return MainSearch
-     */
-    public function setDateFinSejour2($dateFinSejour2)
-    {
-        $this->dateFinSejour2 = $dateFinSejour2;
+        $this->dateFinSejour = $dateFinSejour;
 
         return $this;
     }

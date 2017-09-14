@@ -3,6 +3,7 @@
 namespace AppBundle\RepositoryManipulator;
 
 use AppBundle\Entity\Etape;
+use AppBundle\Model\MainSearch;
 use Elastica\Query;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
@@ -44,8 +45,6 @@ class EtapeRepoManipulator
 
 
         if($lat == '' || $lng== '') return null;
-
-        $elasticSearch  = $this->container->get('fos_elastica.index_manager');
 
         $query  = $this->container->get('trav.repository.etape')->createQueryBuilder('e')
             ->join('e.lieuArrivee','lieuArrivee')
@@ -105,6 +104,26 @@ class EtapeRepoManipulator
             ->orderBy($sort, $direction);
 
         return $query;
+    }
+
+    public function mainSearch(MainSearch $search){
+
+        if($search->getLat() == null || $search->getLng() == null) return null;
+
+        $geoQuery   = new Query\GeoDistance('location',['lat' => $search->getLat(), 'long' => $search->getLng()],$search->getDistance().'km');
+
+        
+        $ageQuery      = new Query\BoolQuery();
+        $ageQuery->addMust('dateFinSejour',
+            [
+                'gte' => \Elastica\Util::convertDate($search->getDateDepart()),
+                'lte' => \Elastica\Util::convertDate($search->getDateFinSejour())
+            ]
+        );
+        //Pour terminer: http://obtao.com/blog/2014/09/classer-et-paginer-avec-elasticsearch-et-symfony/
+        // Ensuite: https://stackoverflow.com/questions/18975381/foselasticabundle-and-geo-distance-find
+        //Et enfin: https://www.google.fr/search?client=ubuntu&hs=B4f&q=foselastica+GeoDistance&oq=foselastica+GeoDistance&gs_l=psy-ab.3...2960.2960.0.3172.1.1.0.0.0.0.61.61.1.1.0....0...1.1.64.psy-ab..0.0.0.iZFkNCL5RZ4
+        $query->setFieldQuery('');
     }
 
 }

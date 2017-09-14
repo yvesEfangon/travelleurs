@@ -1,6 +1,7 @@
 <?php
 
 namespace AppBundle\Repository;
+use AppBundle\Model\MainSearch;
 
 /**
  * EtapeRepository
@@ -12,65 +13,47 @@ class EtapeRepository extends \Doctrine\ORM\EntityRepository
 {
 
 
-    public function searchVoyagesByAddress($request){
-        $address        = @$request['address'];
-        $locality       = @$request['locality'];
-        $lat            = @$request['lat'];
-        $lng            = @$request['lng'];
-        $adminArea      = @$request['administrative_area_3'];
-        $country        = @$request['country'];
-        $ageMaxi        = @$request['ageMax'];
-        $ageMini        = @$request['ageMin'];
-        $dateSejour1    = @$request['dateFinSejour1'];
-        $dateSejour2    = @$request['dateFinSejour2'];
-        $smockerAllowed = @$request['smockerAllowed'];
-        $genreVoyageurs = @$request['genreVoyageurs'];
+    /**
+     * @param $entityAlias
+     * @return \Doctrine\ORM\QueryBuilder
+     */
+    public function createSearchQueryBuilder($entityAlias)
+    {
 
-        $parameters     = [];
-
-        if($lat == '' || $lng== '') return null;
-
-        $query  = $this->createQueryBuilder('e')
+        $queryBuilder   = $this->createQueryBuilder($entityAlias)
             ->join('e.lieuArrivee','lieuArrivee')
-            ->join('e.lieuDepart','lieuDepart')
-            ->join('e.voyage','voyage')
-            ->select('lieuArrivee')
-            ->select('lieuDepart')
-            ->select('voyage')
-            ->select(
-                '(
-                    ACOS(
-                        SIN(:lat * PI() / 180) * 
-                        SIN(lieuArrivee.lat * PI() / 180) + 
-                        COS(:lat * PI() / 180) * 
-                        COS(lieuArrivee.lat * PI() / 180) * 
-                        COS((:lon – lieuArrivee.lon) * PI() / 180)
-                        ) * 
-                    180 / PI()
-                ) 
-                * 60 * 1.1515 AS `distance`,  '
-            )
-        ;
+                ->join($entityAlias.'.lieuDepart','lieuDepart')
+                ->join($entityAlias.'.voyage','voyage')
+                ->join('AppBundle:User', 'owner', 'WITH', 'voyage.owner=owner.id')
+                ->leftJoin('AppBundle:Image', 'image', 'WITH', 'owner.photoProfile=image.id')
+                ->addSelect('lieuArrivee')
+                ->addSelect('lieuDepart')
+                ->addSelect('voyage')
+                ->addSelect('owner')
+                ->addSelect('image')
+            ;
 
-        $parameters['lat']  = $lat;
-        $parameters['lng']  = $lng;
+        return $queryBuilder;
+    }
 
-        $query->where('voyage.published = :published');
-        $parameters['published']    = 1;
+    public function mainSearch(MainSearch $data){
+        
+        if($data->getLat() == null || $data->getLng() == null) return null;
 
-
-        if($locality != ''){
-            $parameters     = $
-            $query->orWhere('lieuArrivee.locality LIKE :locality');
-            $parameters['locality'] = $locality;
-        }
-
-        if($country != ''){
-            $query->orWhere('lieuArrivee.country LIKE :country');
-            $parameters['country']  = $country;
-        }
-
-
-
+       $query   = $this->createSearchQueryBuilder('etape')
+           ->addSelect('lieuArrivee')
+           ->addSelect('lieuDepart')
+           ->addSelect('voyage')
+           ->addSelect('owner')
+           ->addSelect('image')
+           ->addSelect(
+               '
+                    ST_Distance(
+                            POINT(lieuArrivee.lat,lieuArrivee.lng),
+                            POINT(:lat, :lng)
+                    ) * 3.14/ 180 * 6371 as distance '
+           );
+        
+        
     }
 }

@@ -22,7 +22,7 @@ class ElasticaToMainSearch extends AbstractElasticaToModelTransformer
      *
      * @return array of objects or arrays
      */
-    protected function findByIdentifiers(array $identifierValues, $hydrate)
+    protected function findByIdentifiers(array $identifierValues, $hydrate=true)
     {
         if (empty($identifierValues)) {
             return array();
@@ -40,7 +40,7 @@ class ElasticaToMainSearch extends AbstractElasticaToModelTransformer
             ->join('etape.lieuDepart','lieuDepart')
         ;
         /* @var $qb \Doctrine\ORM\QueryBuilder */
-        $qb->where($qb->expr()->in('a.'.$this->options['identifier'], ':values'))
+        $qb->where($qb->expr()->in('etape.'.$this->options['identifier'], ':values'))
             ->setParameter('values', $identifierValues);
 
         return $qb->getQuery()->setHydrationMode($hydrationMode)->execute();
