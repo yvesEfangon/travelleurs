@@ -110,20 +110,70 @@ class EtapeRepoManipulator
 
         if($search->getLat() == null || $search->getLng() == null) return null;
 
-        $geoQuery   = new Query\GeoDistance('location',['lat' => $search->getLat(), 'long' => $search->getLng()],$search->getDistance().'km');
+        $boolQuery      = new Query\BoolQuery();
 
-        
-        $ageQuery      = new Query\BoolQuery();
-        $ageQuery->addMust('dateFinSejour',
+        $geoQuery   = new Query\GeoDistance('location',['lat' => $search->getLat(), 'lon' => $search->getLng()],$search->getDistance().'km');
+
+        $boolQuery->addFilter($geoQuery);
+
+        if($search->getDateDepart() != null && $search->getDateFinSejour() != null){
+            $dateRange  = new Query\Range(
+                'dateFinSejour',
+                [
+                    'gte' => \Elastica\Util::convertDate($search->getDateDepart()),
+                    'lte' => \Elastica\Util::convertDate($search->getDateFinSejour())
+                ]
+                );
+            $boolQuery->addFilter($dateRange);
+        }
+
+
+        if($search->getAgeMin() != null){
+            $queryAgeMin = new Query\Range(
+                'ageMin',
+                [
+                    'gte' => $search->getAgeMin()
+                ]
+            );
+
+            $boolQuery->addFilter($queryAgeMin);
+        }
+
+        if($search->getAgeMax() != null){
+           $queryAgeMax = new Query\Range(
+               'ageMax',
+               [
+                   'lte' => $search->getAgeMax()
+               ]
+           );
+
+           $boolQuery->addFilter($queryAgeMax);
+        }
+
+
+        if($search->getGenreVoyageurs() != null){
+            $queryGenre = new Query\Match();
+            $queryGenre->setFieldQuery('genreVoyageurs', $search->getGenreVoyageurs());
+
+        }
+
+        $query      = new \Elastica\Query($boolQuery);
+        $query->setSort(
             [
-                'gte' => \Elastica\Util::convertDate($search->getDateDepart()),
-                'lte' => \Elastica\Util::convertDate($search->getDateFinSejour())
+                $search->getSort() => ['order' => $search->getDirection()]
             ]
         );
+
+        return $query;
+
+       // $finder     = $this->container->get('fos_elastica.index.travelleurs.etape');
+
+        //return $finder->search($query);
+
         //Pour terminer: http://obtao.com/blog/2014/09/classer-et-paginer-avec-elasticsearch-et-symfony/
         // Ensuite: https://stackoverflow.com/questions/18975381/foselasticabundle-and-geo-distance-find
         //Et enfin: https://www.google.fr/search?client=ubuntu&hs=B4f&q=foselastica+GeoDistance&oq=foselastica+GeoDistance&gs_l=psy-ab.3...2960.2960.0.3172.1.1.0.0.0.0.61.61.1.1.0....0...1.1.64.psy-ab..0.0.0.iZFkNCL5RZ4
-        $query->setFieldQuery('');
+
     }
 
 }

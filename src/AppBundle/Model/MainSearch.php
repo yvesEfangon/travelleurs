@@ -3,6 +3,8 @@
 namespace AppBundle\Model;
 
 
+use Symfony\Component\HttpFoundation\Request;
+
 /**
  * Created by PhpStorm.
  * User: Yves Efangon
@@ -18,12 +20,118 @@ class MainSearch
     protected $locality;
     protected $country;
     protected $administrative_area;
+    protected $placeId;
     protected $dateDepart;
     protected $dateFinSejour;
     protected $genreVoyageurs;
     protected $ageMax;
     protected $ageMin;
     protected $distance;
+    protected $sort;
+    protected $budget;
+
+    // définit l'ordre de tri par défaut
+    protected $direction = 'desc';
+
+    // une proprité "virtuelle" pour ajouter un champ select
+    protected $sortSelect;
+
+    // le numéro de page par défault
+    protected $page = 1;
+
+    // le nombre d'items par page
+    protected $perPage = 10;
+
+    public function __construct()
+    {
+
+        $this->initSortSelect();
+    }
+
+    // autres getters et setters
+
+    public function handleRequest(Request $request)
+    {
+        $this->setPage($request->get('page', 1));
+        $this->setSort($request->get('sort', 'createdOn'));
+        $this->setDirection($request->get('direction', 'desc'));
+    }
+
+    public function getPage()
+    {
+        return $this->page;
+    }
+
+
+    public function setPage($page)
+    {
+        if ($page != null) {
+            $this->page = $page;
+        }
+
+        return $this;
+    }
+
+    public function getPerPage()
+    {
+        return $this->perPage;
+    }
+
+    public function setPerPage($perPage=null)
+    {
+        if($perPage != null){
+            $this->perPage = $perPage;
+        }
+
+        return $this;
+    }
+
+    public function setSortSelect($sortSelect)
+    {
+        if ($sortSelect != null) {
+            $this->sortSelect =  $sortSelect;
+        }
+    }
+
+    public function getSortSelect()
+    {
+        return $this->sort.' '.$this->direction;
+    }
+
+    public function initSortSelect()
+    {
+        $this->sortSelect = $this->sort.' '.$this->direction;
+    }
+
+    public function getSort()
+    {
+        return $this->sort;
+    }
+
+    public function setSort($sort)
+    {
+        if ($sort != null) {
+            $this->sort = $sort;
+            $this->initSortSelect();
+        }
+
+        return $this;
+    }
+
+    public function getDirection()
+    {
+        return $this->direction;
+    }
+
+    public function setDirection($direction)
+    {
+        if ($direction != null) {
+            $this->direction = $direction;
+            $this->initSortSelect();
+        }
+
+        return $this;
+    }
 
     /**
      * @return mixed
@@ -142,6 +250,26 @@ class MainSearch
     /**
      * @return mixed
      */
+    public function getPlaceId()
+    {
+        return $this->placeId;
+    }
+
+    /**
+     * @param mixed $placeId
+     * @return MainSearch
+     */
+    public function setPlaceId($placeId)
+    {
+        $this->placeId = $placeId;
+
+        return $this;
+    }
+
+
+    /**
+     * @return mixed
+     */
     public function getDateDepart()
     {
         return $this->dateDepart;
@@ -251,6 +379,25 @@ class MainSearch
     public function setDistance($distance)
     {
         $this->distance = $distance;
+
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getBudget()
+    {
+        return $this->budget;
+    }
+
+    /**
+     * @param mixed $budget
+     * @return MainSearch
+     */
+    public function setBudget($budget)
+    {
+        $this->budget = $budget;
 
         return $this;
     }

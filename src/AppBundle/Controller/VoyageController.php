@@ -8,6 +8,7 @@ use AppBundle\Entity\Voyage;
 use AppBundle\Form\SearchVoyageCompleteType;
 use AppBundle\Form\SearchVoyageIndexType;
 use AppBundle\Form\VoyageType;
+use AppBundle\Model\MainSearch;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -293,9 +294,10 @@ private function getVoyageEditForm2(Voyage $voyage)
 
     public function searchAction(Request $request, $page){
 
+        $mainSearch = new MainSearch();
         //Formulaire de recherche
         $form   = $this->createForm(
-            'AppBundle\Form\SearchVoyageCompleteType',null,[
+            'AppBundle\Form\SearchVoyageCompleteType',$mainSearch,[
             'action'=> $this->generateUrl('trav_search_form'),
             'method'=> 'GET',
             'attr'=> ['class'=>'form-horizontal']
@@ -311,30 +313,55 @@ private function getVoyageEditForm2(Voyage $voyage)
         {
             if($form->isValid()){
                 $data   = $form->getData();
+                $data->handleRequest($request);
+               /* if ($request->request->get('sort') && $request->request->get('direction')) {
+                    $data->setSort($request->request->get('sort'));
+                    $data->setDirection($request->request->get('direction'));
+                    //$sort = $request->request->get('sort');
+                    //$direction = $request->request->get('direction');
+                }*/
 
-                if ($request->request->get('sort') && $request->request->get('direction')) {
-                    $sort = $request->request->get('sort');
-                    $direction = $request->request->get('direction');
-                }
+                //$form->setData($data);
             }
         }else{
             $data = $reqData->all();
             $data    = @$data['search_voyage_index'];
+            $newSearch  = new MainSearch();
+
+            $newSearch->setLat($data['lat']);
+            $newSearch->setLng($data['lng']);
+            $newSearch->setDistance(500);
+
             $form->setData($data);
         }
 
-        $searchQuery    = $this->get('trav.repo.etape.manipulator')->searchVoyagesByAddress
-        (
-            $data,
-            $sort,
-            $direction
-        );
+//        $searchQuery    = $this->get('trav.repo.etape.manipulator')->searchVoyagesByAddress
+//        (
+//            $data,
+//            $sort,
+//            $direction
+//        );
         //var_dump($searchQuery->getDQL());die();
+
+        $searchQuery    = $this->get('trav.repo.etape.manipulator')->mainSearch($form->getData());
+        $finder         = $this->get('fos_elastica.finder.travelleurs.etape');
+
+
         $pagination = null;
 
-        if(null != $searchQuery) {
+        /*if(null != $searchQuery) {
             $pagination = $paginator->paginate(
                 $searchQuery->getQuery()->getScalarResult(),
+                $request->request->getInt('page', $page),
+                $this->getParameter('limit_per_page'),
+                array('distinct' => true)
+            );
+        } */
+
+        if(null != $searchQuery) {
+            $results = $finder->createPaginatorAdapter($searchQuery);
+            $pagination = $paginator->paginate(
+                $results,
                 $request->request->getInt('page', $page),
                 $this->getParameter('limit_per_page'),
                 array('distinct' => true)

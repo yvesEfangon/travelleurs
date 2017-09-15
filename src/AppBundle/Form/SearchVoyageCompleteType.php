@@ -108,21 +108,9 @@ class SearchVoyageCompleteType extends AbstractType
                     'choice_translation_domain' => 'messages',
                 ]
             )
+
             ->add(
-                'smockerAllowed',
-                ChoiceType::class,
-                [
-                    'choices' => [
-                        'trav.yes' => 1,
-                        'trav.no' => 0
-                    ],
-                    'placeholder' => 'trav.showall',
-                    'required' => false,
-                    'expanded' => false
-                ]
-            )
-            ->add(
-                'dateFinSejour1',
+                'dateDepart',
                 DateType::class,
                 [
                     'required' => false,
@@ -132,7 +120,7 @@ class SearchVoyageCompleteType extends AbstractType
                 ]
             )
             ->add(
-                'dateFinSejour2',
+                'dateFinSejour',
                 DateType::class,
                 [
                     'required' => false,

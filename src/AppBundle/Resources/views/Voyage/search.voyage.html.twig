@@ -23,11 +23,11 @@
         <div class="row w3-margin-12">
             <div class="col-lg-6 col-sm-6 col-md-6 col-xs-6">
                 <h6>{{ 'trav.from'|trans }}</h6>
-                {{ form_widget(form.dateFinSejour1) }}
+                {{ form_widget(form.dateDepart) }}
             </div>
             <div class="col-lg-6 col-sm-6 col-md-6 col-xs-6">
                 <h6>{{ 'trav.to'|trans }}</h6>
-                {{ form_widget(form.dateFinSejour2) }}
+                {{ form_widget(form.dateFinSejour) }}
             </div>
         </div>
         <div class="row w3-margin-12 w3-padding-left w3-padding-right">
@@ -48,10 +48,6 @@
             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
                 <h6> {{ 'trav.travelers.genre'|trans }}</h6>
                 {{ form_widget(form.genreVoyageurs) }}
-            </div>
-            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-                <h6>{{ 'trav.smocker.allowed'|trans }}</h6>
-                {{ form_widget(form.smockerAllowed) }}
             </div>
 
         </div>
