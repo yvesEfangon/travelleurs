@@ -175,6 +175,10 @@ height: auto;
 #trav-logo{max-width: 50px;}
 .blue-travelleurs-bg{background-color: #351c75;}
 .blue-travelleurs-border{border: 1px #351c75 solid;}
+.trav-primary-border{border: 1px #351c75 solid;}
+.trav-primary-tab-border{border: 1px #351c75 solid;}
+.trav-secondary-tab-border{border: 1px #DF5D3A solid;}
+.trav-secondary-border{border: 1px #DF5D3A solid;}
 .blue-travelleurs-text{
     color: #351c75;}
 .w3-border-trav, .w3-hover-border-trav:hover {

@@ -3,13 +3,31 @@
 
 {% block secondContent %}
 
-    <ul class="nav nav-tabs">
-        <li class="active"><a href="#"><span class="w3-badge trav-secondary-bg-color">1</span></a></li>
-        <li><a href="#">Menu 1</a></li>
-        <li><a href="#">Menu 2</a></li>
-        <li><a href="#">Menu 3</a></li>
-    </ul>
+    <div class="w3-bar w3-light-grey row" style="width: 100%">
+        <div class="col-lg-3 trav-secondary-tab-border" onclick="openTabAddVoyage('crud-step-1')"><span class="w3-badge w3-jumbo trav-secondary-bg-color w3-padding">1</span> {{ 'trav.creation'|trans }}</div>
+        <div class="col-lg-3" onclick="openTabAddVoyage('crud-step-2')">Paris</div>
+        <div class="col-lg-3" onclick="openTabAddVoyage('crud-step-3')">Tokyo</div>
+        <div class="col-lg-3" onclick="openTabAddVoyage('crud-step-4')">Tokyo</div>
+    </div>
 
+    <div id="crud-step-1" class="step-tab">
+        <h2>Step 1</h2>
+        <p>London is the capital of England.</p>
+    </div>
+
+    <div id="crud-step-2" class="step-tab" style="display:none">
+        <h2>Step 2</h2>
+        <p>Paris is the capital of France.</p>
+    </div>
+
+    <div id="crud-step-3" class="step-tab" style="display:none">
+        <h2>Step 3</h2>
+        <p>Tokyo is the capital of Japan.</p>
+    </div>
+    <div id="crud-step-4" class="step-tab" style="display:none">
+        <h2>Step 4</h2>
+        <p>Tokyo is the capital of Japan.</p>
+    </div>
 
     <div class="panel" >
 <h4 class="panel-heading trav-secondary-bg-color w3-text-white">{{ 'trav.add.travel'|trans|upper }}</h4>

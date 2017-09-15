@@ -28,16 +28,16 @@ class Lieu extends GMapEntity
     /**
      * @var string
      *
-     * @ORM\Column(name="geo_location", type="string", length=100, nullable=true)
+     * @ORM\Column(name="location", type="string", length=100, nullable=true)
      */
-    private $geoLocation;
+    private $location;
 
     /**
      *
      * @ORM\PrePersist
      */
-    public function initGeoLocation(){
-        $this->geoLocation =
+    public function initLocation(){
+        $this->location =
             number_format(str_replace(",", ".", $this->getLat()), 8, '.', '')
             .",".
             number_format(str_replace(",", ".", $this->getLng()), 8, '.', '');
@@ -64,22 +64,24 @@ class Lieu extends GMapEntity
     }
 
     /**
-     * @return mixed
+     * @return string
      */
-    public function getGeoLocation()
+    public function getLocation()
     {
-        return $this->geoLocation;
+        return $this->location;
     }
 
     /**
-     * @param mixed $geoLocation
-     * @return GMapEntity
+     * @param string $location
+     * @return Lieu
      */
-    public function setGeoLocation($geoLocation)
+    public function setLocation($location)
     {
-        $this->geoLocation = $geoLocation;
+        $this->location = $location;
 
         return $this;
     }
+
+
 }
 

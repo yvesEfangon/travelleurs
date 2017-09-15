@@ -54,6 +54,15 @@ function resetActive(event, percent, step) {
     showCurrentStepInfo(step);
 }
 
+function openTabAddVoyage(tabName) {
+    var i;
+    var x = document.getElementsByClassName("step-tab");
+    for (i = 0; i < x.length; i++) {
+        x[i].style.display = "none";
+    }
+    document.getElementById(tabName).style.display = "block";
+}
+
 function hideSteps() {
     $("div").each(function () {
         if ($(this).hasClass("activeStepInfo")) {

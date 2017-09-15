@@ -30,6 +30,7 @@ class AppKernel extends Kernel
             new App\UserBundle\AppUserBundle(),
             new FOS\JsRoutingBundle\FOSJsRoutingBundle(),
             new FOS\RestBundle\FOSRestBundle(),
+            new FOS\CommentBundle\FOSCommentBundle(),
             new JMS\SerializerBundle\JMSSerializerBundle(),
             new Vich\UploaderBundle\VichUploaderBundle(),
             new FOS\MessageBundle\FOSMessageBundle(),

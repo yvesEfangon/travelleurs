@@ -4,6 +4,7 @@ namespace AppBundle\Twig;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\DependencyInjection\ContainerInterface;
+use Symfony\Component\Intl\Intl;
 
 class TravExtension extends \Twig_Extension
 {
@@ -24,6 +25,7 @@ class TravExtension extends \Twig_Extension
         return [
             new \Twig_SimpleFilter('etape_members', array($this, 'membersEtapeFilter')),
             new \Twig_SimpleFilter('isregistered_inetape', array($this, 'isRegisteredInEtape')),
+            new \Twig_SimpleFilter('countryName', array($this, 'countryName')),
         ];
     }
 
@@ -42,6 +44,10 @@ class TravExtension extends \Twig_Extension
         $user   = $this->container->get('security.token_storage')->getToken()->getUser();
 
         return $users->contains($user);
+    }
+
+    public function countryName($countryCode){
+        return Intl::getRegionBundle()->getCountryName($countryCode);
     }
 
 }

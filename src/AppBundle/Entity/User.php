@@ -163,6 +163,13 @@ class User extends BaseUser implements ParticipantInterface
     /**
      * @var string
      *
+     * @ORM\Column(name="nationality", type="string", length=100, nullable=true)
+     */
+    private $nationality;
+
+    /**
+     * @var string
+     *
      * @ORM\Column(name="marital_status", type="string", length=100, nullable=true)
      */
     private $maritalStatus;
@@ -771,6 +778,25 @@ class User extends BaseUser implements ParticipantInterface
     public function setGeoLocation($geoLocation)
     {
         $this->geoLocation = $geoLocation;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getNationality()
+    {
+        return $this->nationality;
+    }
+
+    /**
+     * @param string $nationality
+     * @return User
+     */
+    public function setNationality($nationality)
+    {
+        $this->nationality = $nationality;
 
         return $this;
     }
