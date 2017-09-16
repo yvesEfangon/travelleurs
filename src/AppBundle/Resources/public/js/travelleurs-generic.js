@@ -23,6 +23,8 @@
         });
         
         jQuery(".trav-datepicker").datepicker({dateFormat: 'yy-mm-dd'});
+
+        jQuery('.trav-multiselect').multiselect();
     })
 
 }
@@ -54,13 +56,32 @@ function resetActive(event, percent, step) {
     showCurrentStepInfo(step);
 }
 
-function openTabAddVoyage(tabName) {
-    var i;
-    var x = document.getElementsByClassName("step-tab");
-    for (i = 0; i < x.length; i++) {
-        x[i].style.display = "none";
-    }
-    document.getElementById(tabName).style.display = "block";
+function openTabAddVoyage(tabName, currentDiv) {
+
+    jQuery(".step-tab").each(function () {
+        var $this = jQuery(this);
+        if($this.hasClass('show')) $this.removeClass('show').addClass('hidden');
+    });
+
+    jQuery('.tab-manager').each(function () {
+        jQuery(this).removeClass('w3-text-white').removeClass('trav-secondary-bg-color');
+    });
+    jQuery(tabName).addClass('show').removeClass('hidden');
+    jQuery(currentDiv).addClass('w3-text-white').addClass('trav-secondary-bg-color');
+
+
+}
+
+function travCheckBoxes(){
+    var nameRoot = $(this).attr('name'); // "refSchedSearchData[ages][]";
+
+    nameRoot = nameRoot.substring(0,nameRoot.lastIndexOf('['));
+
+    var group = 'input[type=checkbox][name^="' + nameRoot + '"]';
+
+    var checked = $(this).prop('checked') ? true : false;
+
+    $(group).prop('checked', checked);
 }
 
 function hideSteps() {

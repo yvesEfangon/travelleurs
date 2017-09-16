@@ -77,6 +77,7 @@ assetic:
       bootstrap_css:
           inputs:
               - "%kernel.root_dir%/../vendor/twbs/bootstrap/less/bootstrap.less"
+              - "%kernel.root_dir%/../src/AppBundle/Resources/public/vendor/bootstrap-multiselect/dist/less/bootstrap-multiselect.less"
           filters:
               - lessphp
               - cssrewrite
@@ -95,6 +96,7 @@ assetic:
               - "%kernel.root_dir%/../vendor/twbs/bootstrap/js/scrollspy.js"
               - "%kernel.root_dir%/../vendor/twbs/bootstrap/js/tab.js"
               - "%kernel.root_dir%/../vendor/twbs/bootstrap/js/transition.js"
+              - "%kernel.root_dir%/../src/AppBundle/Resources/public/vendor/bootstrap-multiselect/dist/js/bootstrap-multiselect.js"
           output: js/bootstrap.js
       fonts_glyphicons_eot:
           inputs:

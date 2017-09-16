@@ -49,7 +49,8 @@ class VoyageType extends AbstractType
                     'multiple' => true,
                     'required' => true,
                     'translation_domain' => 'messages',
-                    'choice_translation_domain' => 'messages'
+                    'choice_translation_domain' => 'messages',
+                    'attr' => ['class' => 'trav-multiselect']
                 ])
             ->add(
                 'spokenLanguages',

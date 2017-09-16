@@ -1451,7 +1451,7 @@
                 "notification",
                 "user-to-user"
             ],
-            "time": "2016-02-04T14:23:04+00:00"
+            "time": "2016-02-04 14:23:04"
         },
         {
             "name": "friendsofsymfony/message-bundle",
