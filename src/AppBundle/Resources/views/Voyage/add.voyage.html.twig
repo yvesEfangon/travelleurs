@@ -2,21 +2,15 @@
 {% extends "AppBundle:Travelleurs:myprofile.html.twig" %}
 
 {% block secondContent %}
-
-    <div class="w3-bar w3-light-grey row trav-cursor-div">
-        <div class="col-lg-3 tab-manager w3-card-2" onclick="openTabAddVoyage('#crud-step-1',this)" id="cursor-tab-1">
-            <span class="trav-badge">1</span>&nbsp;
-            {{ 'trav.creation'|trans }}&nbsp;
-            <i class="fa fa-caret-right fa-2x pull-right"></i>
+    {# https://css-tricks.com/triangle-breadcrumbs/#}
+        <div class="row">
+            <ul class="steps steps-5">
+                <li  onclick="openTabAddVoyage('#crud-step-1',this)" id="cursor-tab-1"><a href="#" title=""><em>1/4: {{ 'trav.creation'|trans }}</em><span>Et nequ a quam turpis duisi</span></a></li>
+                <li onclick="openTabAddVoyage('#crud-step-2',this)" ><a href="#" title=""><em>2/4: {{ 'trav.destination'|trans }}</em><span>Et nequ a quam turpis duisi</span></a></li>
+                <li onclick="openTabAddVoyage('#crud-step-3',this)" ><a href="#" title=""><em>3/4: Cotravelleurs</em><span>Et nequ a quam turpis duisi</span></a></li>
+                <li  onclick="openTabAddVoyage('#crud-step-4',this)"><a href="#" title=""><em>4/4: {{ 'trav.publication'|trans }}</em><span>Et nequ a quam turpis duisi</span></a></li>
+            </ul>
         </div>
-        <div class="col-lg-3 tab-manager w3-card-2" onclick="openTabAddVoyage('#crud-step-2',this)">
-            <span class="trav-badge">2</span>&nbsp;
-            {{ 'trav.details'|trans }}
-            <i class="fa fa-plane fa-2x pull-right"></i>
-        </div>
-        <div class="col-lg-3 tab-manager w3-card-2" onclick="openTabAddVoyage('#crud-step-3',this)">Tokyo</div>
-        <div class="col-lg-3 tab-manager w3-card-2" onclick="openTabAddVoyage('#crud-step-4',this)">Tokyo</div>
-    </div>
 
     <div id="crud-step-1" class="step-tab row show trav-secondary-border w3-padding-left w3-padding-right w3-padding-4">
         {{ form_start(formCreation) }}

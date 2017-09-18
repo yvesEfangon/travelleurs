@@ -64,10 +64,10 @@ function openTabAddVoyage(tabName, currentDiv) {
     });
 
     jQuery('.tab-manager').each(function () {
-        jQuery(this).removeClass('w3-text-white').removeClass('trav-secondary-bg-color');
+        jQuery(this).addClass('text-default').removeClass('trav-secondary-color');
     });
     jQuery(tabName).addClass('show').removeClass('hidden');
-    jQuery(currentDiv).addClass('w3-text-white').addClass('trav-secondary-bg-color');
+    jQuery(currentDiv).find('div').eq(0).removeClass('text-default').addClass('trav-secondary-color');
 
 
 }
