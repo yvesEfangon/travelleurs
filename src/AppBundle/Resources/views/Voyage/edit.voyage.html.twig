@@ -2,70 +2,61 @@
 {% extends "AppBundle:Travelleurs:myprofile.html.twig" %}
 
 {% block secondContent %}
- <div class="panel" >
-        <h4 class="panel-heading trav-secondary-bg-color w3-text-white">{{ 'trav.add.travel'|trans|upper }}</h4>
-        <div class="panel-body">
-<div class="well well-sm">
-    {{ form_start(formVoyage) }}
-
-    <div class="row">
-        <div class="col-lg-4 col-md-4 col-xs-4"><span class="w3-badge w3-jumbo w3-padding trav-secondary-bg-color">1</span></div>
-        <div class="col-lg-4 col-md-4 col-xs-4 center-block"><h4 class="trav-primary-color text-center">{{ 'trav.creation'|trans }}</h4></div>
-        <div class="col-lg-4 col-md-4 col-xs-4">
-            <i class="fa fa-pencil-square fa-3x pull-right"></i>
+<div class="row">
+            <ul class="steps steps-5">
+                <li class="current tab-manager" onclick="openTabAddVoyage('#crud-step-1',this)" id="cursor-tab-1"><a href="#" title=""><em>1/4: {{ 'trav.creation'|trans }}</em><span>Et nequ a quam turpis duisi</span></a></li>
+                <li class="uncomplete tab-manager" onclick="openTabAddVoyage('#crud-step-2',this)" ><a href="#" title=""><em>2/4: {{ 'trav.destination'|trans }}</em><span>Et nequ a quam turpis duisi</span></a></li>
+                <li class="uncomplete tab-manager" onclick="openTabAddVoyage('#crud-step-3',this)" ><a href="#" title=""><em>3/4: Cotravelleurs</em><span>Et nequ a quam turpis duisi</span></a></li>
+                <li class="uncomplete tab-manager"   onclick="openTabAddVoyage('#crud-step-4',this)"><a href="#" title=""><em>4/4: {{ 'trav.publication'|trans }}</em><span>Et nequ a quam turpis duisi</span></a></li>
+            </ul>
         </div>
+
+    <div id="crud-step-1" class="step-tab row show trav-secondary-border w3-padding-left w3-padding-right w3-padding-4">
+        {{ form_start(formVoyage) }}
+
+        <div id="trav-creation" class="w3-padding-12 w3-padding-left w3-padding-right">
+            <div class="row w3-border-4 w3-border-blue">
+                <div class="col-lg-3 col-md-3 col-xs-6">
+                    <h6>{{ 'trav_how_will_you_travel'|trans }}</h6>
+                    {{ form_widget(formVoyage.ownerIsAlone) }}
+                </div>
+                <div class="col-lg-3 col-md-3 col-xs-6">
+                    <h6>{{ 'trav.voyage.themes'|trans }}</h6>
+
+                    {{ form_widget(formVoyage.themes) }}
+                </div>
+                <div class="col-lg-3 col-md-3 col-xs-6">
+                    <h6>{{ 'trav.spoken.languages'|trans }}</h6>
+                    {{ form_widget(formVoyage.spokenLanguages) }}
+
+                </div>
+                <div class="col-lg-3 col-md-3 col-xs-6">
+                    <h6>{{ 'trav.numberof.travelers'|trans }}</h6>
+                    {{ form_widget(formVoyage.numberOfParticipants) }}
+                </div>
+            </div>
+            <div class="row w3-margin-12">
+                <div class="col-lg-3 col-md-3 col-xs-6">
+                    <h6>{{ 'trav.estimated.budget'|trans }}</h6>
+                    {{ form_widget(formVoyage.budget) }}
+                </div>
+                <div class="col-lg-2 col-md-2 col-xs-6">
+                    <h6>{{ 'trav.currency'|trans }}</h6>
+                    {{ form_widget(formVoyage.currency) }}
+                </div>
+                <div class="col-lg-3 col-lg-3 col-xs-6">
+                    <h6>{{ 'trav.show.to.perfect.match'|trans }}</h6>
+                    {{ form_widget(formVoyage.strict_criteria) }}
+                </div>
+                <div class="col-lg-4 col-md-4 col-xs-6 w3-padding-32">
+                    <input class="btn btn-lg btn-block trav-secondary-bg-color w3-text-white" type="submit" value="{{ 'trav.save.action'|trans }}">
+                </div>
+            </div>
+        </div>
+        {{ form_end(formVoyage) }}
     </div>
-    <div id="trav-creation">
-        <div class="row">
-            <div class="col-lg-3 col-md-3 col-xs-6">
-                <h6>{{ 'trav_how_will_you_travel'|trans }}</h6>
-                {{ form_widget(formVoyage.ownerIsAlone) }}
-            </div>
-
-            <div  class="col-lg-3 col-md-3 col-xs-6">
-               <h6> {{ 'trav.voyage.themes'|trans }}</h6>
-                {{ form_widget(formVoyage.themes) }}
-            </div>
-            <div class="col-lg-3 col-md-3 col-xs-6">
-                <h6>{{ 'trav.spoken.languages'|trans }}</h6>
-                {{ form_widget(formVoyage.spokenLanguages) }}
-            </div>
-            <div class="col-lg-3 col-md-3 col-xs-6">
-                <h6>{{ 'trav.numberof.travelers'|trans }}</h6>
-                {{ form_widget(formVoyage.numberOfParticipants) }}
-            </div>
-        </div>
-        <div class="row w3-margin-12">
-            <div class="col-lg-3 col-md-3 col-xs-6">
-                <h6>{{ 'trav.estimated.budget'|trans }}</h6>
-                {{ form_widget(formVoyage.budget) }}
-            </div>
-            <div class="col-lg-2 col-md-2 col-xs-6">
-                <h6>{{ 'trav.currency'|trans }}</h6>
-                {{ form_widget(formVoyage.currency) }}
-            </div>
-            <div class="col-lg-3 col-lg-3 col-xs-6">
-                <h6>{{ 'trav.show.to.perfect.match'|trans }}</h6>
-                {{ form_widget(formVoyage.strict_criteria) }}
-            </div>
-            <div class="col-lg-4 col-md-4 col-xs-6 w3-padding-32">
-                <input class="btn btn-lg btn-block trav-secondary-bg-color w3-text-white" type="submit" value="{{ 'trav.edit.action'|trans }}">
-            </div>
-        </div>
-
-    </div>
-    {{ form_end(formVoyage) }}
-</div>
-
-<div class="well well-sm">
-    <div class="row">
-        <div class="col-lg-4 col-md-4 col-xs-4"><span class="w3-badge w3-jumbo w3-padding trav-secondary-bg-color">2</span></div>
-        <div class="col-lg-4 col-md-4 col-xs-4 center-block"><h4 class="trav-primary-color text-center">{{ 'trav.destination'|trans }}s</h4></div>
-        <div class="col-lg-4 col-md-4 col-xs-4">
-            <i class="fa fa-list fa-3x pull-right"></i>
-        </div>
-    </div>
-    <div class="row">
+    <div id="crud-step-2" class="step-tab row hidden trav-secondary-border w3-padding-left w3-padding-right w3-padding-4" >
+         <div class="row">
         {% if ExistingEtapes is defined and ExistingEtapes|length>0 %}
 
                 {% set i=1 %}
@@ -96,7 +87,6 @@
                 </div>
                 {% set i=i+1 %}
             {% endfor %}
-            </table>
         {% endif %}
     </div>
     {{ form_start(formEtape) }}
@@ -139,56 +129,54 @@
        {{ form_rest(formEtape) }}
    </div>
     {{ form_end(formEtape) }}
-</div>
-
-<div class="well well-sm">
-    <div class="row">
-        <div class="col-lg-4 col-md-4 col-xs-4"><span class="w3-badge w3-jumbo w3-padding trav-secondary-bg-color">3</span></div>
-        <div class="col-lg-4 col-md-4 col-xs-4 center-block"><h4 class="trav-primary-color text-center">{{ 'trav.publication'|trans }}</h4></div>
-        <div class="col-lg-4 col-md-4 col-xs-4">
-            <i class="fa fa-share-alt-square fa-3x pull-right"></i>
-        </div>
     </div>
-    {{ form_start(formVoyage2) }}
-    <div class="row">
-        <div class="col-lg-2 col-md-2 col-xs-3">
-            <h6>{{ 'trav.travelers.genre'|trans }}</h6>
-            {{ form_widget(formVoyage2.genreVoyageurs) }}
-        </div>
-        <div class="col-lg-2 col-md-2 col-xs-3">
-            <h6>{{ 'trav.smocker.allowed'|trans }}</h6>
-            {{ form_widget(formVoyage2.smockerAllowed) }}
-        </div>
-        <div class="col-lg-3 col-md-3 col-xs-6">
-            <h6>{{ 'trav.travelers.agerange'|trans }}</h6>
-            <div id="slider-range" class="row trav-secondary-bg-color"> </div>
-            <div class="row w3-margin-top">
-                <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
-                    {{ form_widget(formVoyage2.ageMin,{ 'attr' : {'class': 'trav-secondary-color form-control'} }) }}
-                </div>
 
-                <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
-                    {{ form_widget(formVoyage2.ageMax,{ 'attr' : {'class': 'trav-secondary-color form-control'} }) }}
-                </div>
+    <div id="crud-step-3" class="step-tab row hidden trav-secondary-border w3-padding-left w3-padding-right w3-padding-4">
+        {{ form_start(formVoyage2) }}
+        <div class="row">
+            <div class="col-lg-2 col-md-2 col-xs-3">
+                <h6>{{ 'trav.travelers.genre'|trans }}</h6>
+                {{ form_widget(formVoyage2.genreVoyageurs) }}
             </div>
+            <div class="col-lg-2 col-md-2 col-xs-3">
+                <h6>{{ 'trav.smocker.allowed'|trans }}</h6>
+                {{ form_widget(formVoyage2.smockerAllowed) }}
+            </div>
+            <div class="col-lg-3 col-md-3 col-xs-6">
+                <h6>{{ 'trav.travelers.agerange'|trans }}</h6>
+                <div id="slider-range" class="row trav-secondary-bg-color"> </div>
+                <div class="row w3-margin-top">
+                    <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
+                        {{ form_widget(formVoyage2.ageMin,{ 'attr' : {'class': 'trav-secondary-color form-control'} }) }}
+                    </div>
 
+                    <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
+                        {{ form_widget(formVoyage2.ageMax,{ 'attr' : {'class': 'trav-secondary-color form-control'} }) }}
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-lg-5 col-md-5 col-xs-6">
+                <h6>{{ 'trav.annonce.description'|trans }}</h6>
+                {{ form_widget(formVoyage2.annonce,{ 'attr' : {'class': 'trav-secondary-color form-control'} }) }}
+            </div>
         </div>
-    <div class="col-lg-5 col-md-5 col-xs-6">
-        <h6>{{ 'trav.annonce.description'|trans }}</h6>
-        {{ form_widget(formVoyage2.annonce,{ 'attr' : {'class': 'trav-secondary-color form-control'} }) }}
-    </div>
-    </div>
-    <div class="row">
-        <div class="col-lg-4 col-md-4 col-xs-6 w3-padding-32 pull-right">
-           <button class="w3-center btn btn-lg btn-block trav-secondary-bg-color w3-text-white" type="submit">
-            <i class="fa fa-share-alt fa-lg"></i> {{ 'trav.publish'|trans }}
-        </button>
+        <div class="row">
+            <div class="col-lg-4 col-md-4 col-xs-6 w3-padding-32 pull-right">
+                <button class="w3-center btn btn-lg btn-block trav-secondary-bg-color w3-text-white" type="submit">
+                    <i class="fa fa-share-alt fa-lg"></i> {{ 'trav.publish'|trans }}
+                </button>
 
+            </div>
         </div>
-    </div>
-    {{ form_end(formVoyage2) }}
+        {{ form_end(formVoyage2) }}
 
-</div>
+    </div>
+    <div id="crud-step-4" class="step-tab row hidden trav-secondary-border w3-padding-left w3-padding-right w3-padding-4">
+        <h2>Step 4</h2>
+        <p>Tokyo is the capital of Japan.</p>
+    </div>
+
 {% endblock %}
 
     {% block inline_js %}

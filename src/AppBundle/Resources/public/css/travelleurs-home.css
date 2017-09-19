@@ -170,6 +170,9 @@ height: auto;
 .trav-primary-bg-color{background-color:#351c75 !important;}
 .trav-secondary-color{color: #DF5D3A !important;}
 .trav-secondary-bg-color{background-color: #DF5D3A !important;}
+.trav-secondary-bg-color:hover{
+    background-color: #BF5D3B !important;
+}
 .trav-third-color{color: #EFAE51 !important;}
 .trav-third-bg-color{background-color: #EFAE51;}
 #trav-logo{max-width: 50px;}
@@ -377,12 +380,16 @@ height: auto;
 .steps li::after { border-left-color: #5cb85c; }
 
 /* Current */
-.steps li.current { background-color: #DF5D3A; }
-.steps li.current::after { border-left-color: #DF5D3A; }
+.steps li.current { background-color: #DF5D3A !important; }
+.steps li.current::after { border-left-color: #DF5D3A !important; }
 
-/* Following */
+/* Uncomplete */
+.steps li.uncomplete { background-color: #777; }
+.steps li.uncomplete::after { border-left-color: #777; }
+
+/* Following
 .steps li.current ~ li { background-color: #EBEBEB; }
-.steps li.current ~ li::after { border-left-color: #EBEBEB; }
+.steps li.current ~ li::after { border-left-color: #EBEBEB; }*/
 
 /* Hover for completed and current */
 .steps li:hover {background-color: #696}

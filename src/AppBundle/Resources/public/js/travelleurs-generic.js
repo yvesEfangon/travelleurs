@@ -64,12 +64,10 @@ function openTabAddVoyage(tabName, currentDiv) {
     });
 
     jQuery('.tab-manager').each(function () {
-        jQuery(this).addClass('text-default').removeClass('trav-secondary-color');
+        jQuery(this).removeClass('current');//.removeClass('trav-secondary-color');
     });
     jQuery(tabName).addClass('show').removeClass('hidden');
-    jQuery(currentDiv).find('div').eq(0).removeClass('text-default').addClass('trav-secondary-color');
-
-
+    jQuery(currentDiv).addClass('current');//removeClass('uncomplete'). .addClass('trav-secondary-color');
 }
 
 function travCheckBoxes(){

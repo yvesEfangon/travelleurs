@@ -5,10 +5,10 @@
     {# https://css-tricks.com/triangle-breadcrumbs/#}
         <div class="row">
             <ul class="steps steps-5">
-                <li  onclick="openTabAddVoyage('#crud-step-1',this)" id="cursor-tab-1"><a href="#" title=""><em>1/4: {{ 'trav.creation'|trans }}</em><span>Et nequ a quam turpis duisi</span></a></li>
-                <li onclick="openTabAddVoyage('#crud-step-2',this)" ><a href="#" title=""><em>2/4: {{ 'trav.destination'|trans }}</em><span>Et nequ a quam turpis duisi</span></a></li>
-                <li onclick="openTabAddVoyage('#crud-step-3',this)" ><a href="#" title=""><em>3/4: Cotravelleurs</em><span>Et nequ a quam turpis duisi</span></a></li>
-                <li  onclick="openTabAddVoyage('#crud-step-4',this)"><a href="#" title=""><em>4/4: {{ 'trav.publication'|trans }}</em><span>Et nequ a quam turpis duisi</span></a></li>
+                <li class="current tab-manager" onclick="openTabAddVoyage('#crud-step-1',this)" id="cursor-tab-1"><a href="#" title=""><em>1/4: {{ 'trav.creation'|trans }}</em><span>Et nequ a quam turpis duisi</span></a></li>
+                <li class="uncomplete tab-manager" ><a href="#" title=""><em>2/4: {{ 'trav.destination'|trans }}</em><span>Et nequ a quam turpis duisi</span></a></li>
+                <li class="uncomplete tab-manager" ><a href="#" title=""><em>3/4: Cotravelleurs</em><span>Et nequ a quam turpis duisi</span></a></li>
+                <li class="uncomplete tab-manager" ><a href="#" title=""><em>4/4: {{ 'trav.publication'|trans }}</em><span>Et nequ a quam turpis duisi</span></a></li>
             </ul>
         </div>
 
@@ -55,7 +55,6 @@
             </div>
         </div>
         {{ form_end(formCreation) }}
-
     </div>
     <div id="crud-step-2" class="step-tab row hidden trav-secondary-border w3-padding-left w3-padding-right w3-padding-4" >
         <h2>Step 2</h2>
