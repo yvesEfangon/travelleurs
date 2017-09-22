@@ -79,6 +79,16 @@ doctrine:
 
     orm:
         auto_generate_proxy_classes: "%kernel.debug%"
+        auto_mapping: true
+        metadata_cache_driver: apc
+        result_cache_driver:
+            type: memcache
+            host: localhost
+            port: 11211
+            instance_class: Memcache
+        query_cache_driver:
+            type: service
+            id:
         default_entity_manager: default
         entity_managers:
             default:
@@ -256,3 +266,15 @@ fos_comment:
         model:
             comment: AppBundle\Entity\Comment
             thread: AppBundle\Entity\ThreadsComment
+doctrine_cache:
+    aliases:
+        apc_cache: trav_apc_cache
+    providers:
+        trav_apc_cache:
+            type: apc
+            namespace: trav_apc_cache_ns
+            aliases:
+                - apc_cache
+        trav_apc_query_cache:
+            namespace: query_cache_ns
+            apc: ~

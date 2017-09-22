@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "e80cdcff347caf6aefbcbb0ac203f9f4",
+    "content-hash": "016ecc49163b2ef354a5f79624387f75",
     "packages": [
         {
             "name": "cocur/slugify",
@@ -1451,7 +1451,7 @@
                 "notification",
                 "user-to-user"
             ],
-            "time": "2016-02-04 14:23:04"
+            "time": "2016-02-04T14:23:04+00:00"
         },
         {
             "name": "friendsofsymfony/message-bundle",
