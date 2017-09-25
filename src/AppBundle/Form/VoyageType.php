@@ -25,6 +25,9 @@ class VoyageType extends AbstractType
         $this->container = $container;
     }
 
+    public function solution(){
+
+    }
 
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
@@ -38,6 +41,7 @@ class VoyageType extends AbstractType
                     'trav.couple' => 'COUPLE',
                     'trav.friends' => 'FRIENDS'
                 ],
+                
                 'label' => 'trav_how_will_you_travel'
             ]
         )
@@ -52,18 +56,7 @@ class VoyageType extends AbstractType
                     'choice_translation_domain' => 'messages',
                     'attr' => ['class' => 'trav-multiselect']
                 ])
-            ->add(
-                'spokenLanguages',
-                EntityType::class,
-                [
-                    'class' => 'AppBundle\Entity\Langue',
-                    'choice_label' => 'code',
-                    'expanded' => false,
-                    'multiple' => true,
-                    'required' => true
-                ]
-            )
-
+            
             ->add(
                 'strict_criteria',
                 ChoiceType::class,

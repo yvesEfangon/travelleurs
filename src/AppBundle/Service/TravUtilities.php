@@ -48,7 +48,7 @@ class TravUtilities
         $par_d2 = uniqid('y');
 
 
-        if ($date1 != '' && $date2 != '') {
+        if ($date1 instanceof \DateTime && $date2 instanceof \DateTime) {
             $diff       = $this->dateDiff($date1, $date2);
 
             if ($diff === false) {
@@ -66,10 +66,10 @@ class TravUtilities
 
             $parameters[$par_d1]    = $date1;
             $parameters[$par_d2]    = $date2;
-        } elseif ($date1 != '' && $date2 == '') {
+        } elseif ($date1  && !$date2 ) {
             $queryBuilder->andWhere('TO_DAYS('.$field_name.') = TO_DAYS(:'.$par_d1.')');
             $parameters[$par_d1]    = $date1;
-        } elseif ($date2 != '' && $date1=='') {
+        } elseif ($date2 && !$date1) {
             $queryBuilder->andWhere('TO_DAYS('.$field_name.') = TO_DAYS(:'.$par_d2.')');
             $parameters[$par_d2]    = $date2;
         }

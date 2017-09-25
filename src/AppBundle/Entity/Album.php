@@ -39,7 +39,7 @@ class Album
     /**
      * @var string
      *
-     * @ORM\Column(name="nom_album", type="string", length=100, nullable=false, unique=true)
+     * @ORM\Column(name="nom_album", type="string", length=100, nullable=false, unique=false)
      */
     private $nomAlbum;
 
@@ -67,7 +67,7 @@ class Album
     {
         $this->createdOn = new \DateTime();
         $this->modifiedOn = new \DateTime();
-        $this->nomAlbum     = 'Default';
+        $this->nomAlbum     = 'My Album';
         $this->images       = new ArrayCollection();
     }
 
