@@ -27,20 +27,17 @@
 {% endblock %}
 {% block secondMenu %}
         <ul class="nav nav-stacked _menu-insite-active well well-lg">
-            <li role="presentation" class="active">
-               <a href="{{ path('trav_myprofile') }}"  data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" class="dropdown-toggle trav-secondary-color">
-                   <h6 class="trav-primary-color">{{ 'trav.my.profile'|trans }} <i class="fa fa-caret-down pull-right"></i></h6>
+            <li>
+                <a href="{{ path('trav_myprofile') }}" >
+                    <i class="fa fa-user"></i>&nbsp;
+                    {{ 'trav.my.profile'|trans }}
                 </a>
-                <ul class="dropdown-menu dropdown-menu-insite">
-                    <li>
-                        <a href="{{ path('trav_myprofile') }}"  >
-                            <i class="fa fa-eye"></i> {{ 'trav.show'|trans }}
-                        </a>
-                    </li>
-                    <li>
-                        <a href="{{ path('fos_user_profile_edit') }}"  ><i class="fa fa-pencil"></i> {{ 'trav.edit'|trans }}</a>
-                    </li>
-                </ul>
+            </li>
+            <li>
+                <a href="{{ path('trav_index_voyage') }}">
+                    <i class="fa fa-plane"></i>&nbsp;
+                    {{ 'trav.mytravels'|trans }}
+                </a>
             </li>
             <li role="presentation" class="dropdown">
                 <a class="dropdown-toggle trav-primary-color" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
@@ -48,12 +45,7 @@
                     <h6 class="trav-primary-color">{{ 'trav.mytravels'|trans }}<i class="fa fa-caret-down pull-right"></i></h6>
                 </a>
                 <ul class="dropdown-menu dropdown-menu-insite">
-                   <li>
-                       <a href="{{ path('trav_index_voyage') }}" >
-                           <i class="fa fa-plane"></i>&nbsp;
-                           {{ 'trav.mytravels'|trans }}
-                       </a>
-                   </li>
+
                     <li>
                         <a href="{{ path('trav_add_voyage') }}" >
                             <i class="fa fa-plus-square-o"></i>&nbsp;
@@ -73,7 +65,7 @@
   {% endblock %}
 {% block secondContent %}
     <div class="panel" >
-        <h4 class="panel-heading trav-secondary-bg-color w3-text-white">{{ 'trav.my.profile'|trans|upper }}</h4>
+        <h4 class="panel-heading trav-secondary-bg-color w3-text-white">{{ 'trav.my.profile'|trans|upper }}<a class="pull-right" href="{{ path('fos_user_profile_edit') }}" ><i class="fa fa-pencil"></i></a></h4>
         <div class="panel-body">
             <div class="row">
                 <div class="col-lg-4 col-md-4 col-xs-4">

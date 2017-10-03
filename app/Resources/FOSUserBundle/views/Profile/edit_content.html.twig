@@ -4,9 +4,9 @@
     <h4 class="panel-heading trav-secondary-bg-color w3-text-white">{{ 'profile.your.personal_info'|trans|upper }}</h4>
     <div class="panel-body">
         {{ form_start(form, { 'action': path('fos_user_profile_edit'), 'attr': { 'class': 'fos_user_profile_edit' } }) }}
-        <div class="w3-padding row">
+        <div class="row">
             <div class="col-lg-2 col-md-2 col-xs-3">
-                <h6>{{ 'profile.your.gender'|trans }}*</h6>
+                <h6>{{ 'profile.your.gender'|trans }}</h6>
                 {{ form_widget(form.genre) }}
             </div>
             <div  class="col-lg-5 col-md-3 col-xs-6">
@@ -14,33 +14,71 @@
                 {{ form_widget(form.firstname) }}
             </div>
             <div class="col-lg-5 col-md-3 col-xs-6">
-                <h6>{{ 'form.name'|trans }}*</h6>
+                <h6>{{ 'form.name'|trans }}</h6>
                 {{ form_widget(form.name) }}
             </div>
         </div>
-        <div class="row">
+        <div class="row w3-margin-top">
             <div  class="col-lg-4 col-md-4 col-xs-6">
-                <h6>{{ 'form.username'|trans }}*</h6>
+                <h6>{{ 'form.username'|trans }}</h6>
                 {{ form_widget(form.username) }}
             </div>
             <div class="col-lg-4 col-md-4 col-xs-6">
-                {{'form.email'|trans }}*
+                <h6>{{'form.email'|trans }}</h6>
                 {{ form_widget(form.email) }}
+            </div>
+            <div class="col-lg-3 col-md-3 col-xs-6">
+                <h6>{{ 'profile.your.birthdate'|trans }}</h6>
+                {{ form_widget(form.birthdate) }}
+            </div>
+
+        </div>
+        <div class="row w3-margin-top">
+            <div  class="col-lg-4 col-md-4 col-xs-6">
+                <h6>{{ 'profile.your.location'|trans }}</h6>
+                {{ form_widget(form.address) }}
+            </div>
+            <div class="col-lg-4 col-md-4 col-xs-6">
+                <h6>{{ 'profile.your.nationality'|trans }}</h6>
+                {{ form_widget(form.nationality) }}
             </div>
             <div class="col-lg-4 col-md-4 col-xs-6">
                 <h6>{{ 'profile.your.languages'|trans }}</h6>
                 {{ form_widget(form.languages) }}
             </div>
         </div>
-        <div class="w3-padding row">
-            <div  class="col-lg-4 col-md-4 col-xs-6">
-                <h6>{{ 'profile.your.location'|trans }}</h6>
-                {{ form_widget(form.address) }}
+
+        <div class="row w3-margin-top">
+            <div class="col-lg-4 col-md-4 col-xs-6">
+                <h6>{{ 'trav.do.you.smock'|trans }}</h6>
+                {{ form_widget(form.fumeur) }}
             </div>
-            <div class="col-lg-3 col-md-3 col-xs-6">
-                <h6>{{ 'profile.your.birthdate'|trans }}</h6>
-                {{ form_widget(form.birthdate) }}
+            <div class="col-lg-4 col-md-4 col-xs-6">
+                <h6>{{ 'trav.your.hobbies'|trans }}</h6>
+                {{ form_widget(form.hobbies) }}
             </div>
+            <div class="col-lg-4 col-md-4 col-xs-6">
+                <h6>{{ 'trav.causes.sociales'|trans }}</h6>
+                {{ form_widget(form.causesSociales) }}
+            </div>
+        </div>
+        <div class="row w3-margin-top">
+            <div class="col-lg-4 col-md-4 col-xs-6">
+                <h6>{{ 'trav.conversation.degree'|trans }}</h6>
+                {{ form_widget(form.degreConversation) }}
+            </div>
+            <div class="col-lg-4 col-md-4 col-xs-6">
+                <h6>{{ 'trav.sports'|trans }}</h6>
+                {{ form_widget(form.sportActivities) }}
+            </div>
+        </div>
+
+
+
+
+
+        <div class="w3-margin-top row">
+
             <div class="col-lg-3 col-md-3 col-xs-6">
                 <h6>{{ 'form.current_password'|trans }}</h6>
                 {{ form_widget(form.current_password) }}

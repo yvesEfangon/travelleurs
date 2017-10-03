@@ -2,6 +2,7 @@
 
 namespace AppBundle\Form;
 
+use AppBundle\Entity\User;
 use FOS\UserBundle\Form\Type\ProfileFormType as BaseType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\DependencyInjection\ContainerInterface;
@@ -75,6 +76,14 @@ class ProfileType extends BaseType
             ]
         )
         ->add(
+            'nationality',
+            CountryType::class,
+            [
+                'placeholder' => '____Select____'
+            ]
+
+        )
+        ->add(
             'address',
             TextType::class,
             [
@@ -129,16 +138,69 @@ class ProfileType extends BaseType
                 [
                     'class' => 'AppBundle\Entity\Langue',
                     'choice_label' => 'code',
+                    'choice_value' => 'id',
                     'expanded' => false,
                     'multiple' => true,
-                    'required' => true
+                    'required' => false,
+                    'attr' => ['class' => 'trav-multiselect']
+                ]
+            )
+            ->add(
+                'sportActivities',
+                EntityType::class,
+                [
+                    'class' => 'AppBundle\Entity\ActivitesSportives',
+                    'choice_label' => 'activite',
+                    'choice_value' => 'id',
+                    'expanded' => false,
+                    'multiple' => true,
+                    'required' => false,
+                    'attr' => ['class' => 'trav-multiselect']
                 ]
             )
             ->add(
                 'nationality',
-                CountryType::class,
+                CountryType::class
+            )
+            ->add(
+                'fumeur',
+                ChoiceType::class,
                 [
-
+                    'choices' => [
+                        'trav.yes' => 1,
+                        'trav.no' => 0
+                    ],
+                    'label' => 'trav_do_you_smock'
+                ]
+            )
+            ->add(
+                'hobbies',
+                EntityType::class,
+                [
+                    'class' => 'AppBundle\Entity\Hobbie',
+                    'choice_label' => 'name',
+                    'choice_value' => 'id',
+                    'placeholder' => '___SELECT___',
+                    'attr' => ['class' => 'trav-multiselect'],
+                    'multiple' => true
+                ]
+            )
+            ->add(
+                'degreConversation',
+                ChoiceType::class,
+                [
+                    'choices' => ['trav.niveau.carpe' => 1, 'trav.niveau2' => 2]
+                ]
+            )
+            ->add(
+                'causesSociales',
+                EntityType::class,
+                [
+                    'class' => 'AppBundle\Entity\CausesSociales',
+                    'choice_label' => 'intitule_cause',
+                    'choice_value' => 'id',
+                    'attr' => ['class' => 'trav-multiselect'],
+                    'multiple' => true
                 ]
             )
         ;
@@ -164,5 +226,13 @@ class ProfileType extends BaseType
         
     }
 
+    public function configureOptions(OptionsResolver $resolver)
+    {
+        $resolver->setDefaults(
+            [
+                'data_class' => User::class
+            ]
+        );
+    }
 
 }

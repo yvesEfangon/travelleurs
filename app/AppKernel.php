@@ -39,6 +39,8 @@ class AppKernel extends Kernel
             new Bazinga\Bundle\JsTranslationBundle\BazingaJsTranslationBundle(),
             new FOS\ElasticaBundle\FOSElasticaBundle(),
             new Doctrine\Bundle\DoctrineCacheBundle\DoctrineCacheBundle(),
+            new Liip\MonitorBundle\LiipMonitorBundle(),
+            new Lsw\MemcacheBundle\LswMemcacheBundle(),
 
         );
 

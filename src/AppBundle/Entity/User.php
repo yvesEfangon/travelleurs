@@ -207,8 +207,18 @@ class User extends BaseUser implements ParticipantInterface
      */
     private $phobbies;
 
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="profession", type="string", length=255, nullable=true)
+     */
+    private $profession;
+
+
+
     public function __construct()
     {
+        parent::__construct();
         $this->languages    = new ArrayCollection();
         $this->phobbies     = new ArrayCollection();
         $this->hobbies      = new ArrayCollection();
@@ -799,6 +809,22 @@ class User extends BaseUser implements ParticipantInterface
         $this->nationality = $nationality;
 
         return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getProfession()
+    {
+        return $this->profession;
+    }
+
+    /**
+     * @param string $profession
+     */
+    public function setProfession($profession)
+    {
+        $this->profession = $profession;
     }
 
 
