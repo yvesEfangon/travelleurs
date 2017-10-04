@@ -1,6 +1,8 @@
 <?php
 
 namespace AppBundle\Repository;
+use AppBundle\Entity\User;
+use AppBundle\Entity\Voyage;
 use AppBundle\Model\MainSearch;
 
 /**
@@ -55,5 +57,36 @@ class EtapeRepository extends \Doctrine\ORM\EntityRepository
            );
         
         
+    }
+
+
+    /**
+     * @param Voyage $voyage
+     * @return array
+     */
+    public function getEtapesByVoyage(Voyage $voyage)
+    {
+        $query  = $this->createQueryBuilder('e')
+            ->where('e.voyage_id = :id')
+            ;
+        $query->setParameter('id', $voyage->getId());
+
+        return $query->getQuery()->getResult();
+    }
+
+    /**
+     * @param User $user
+     * @return array
+     */
+    public function getEtapeByUser(User $user){
+        $query  = $this->createQueryBuilder('e')
+            ->select('e')
+            ->join('AppBundle:Voyage','v','WITH','e.voyage=v.id')
+            ->where('v.owner = :owner_id')
+            ->setParameter('owner_id', $user->getId())
+            ->orderBy('e.dateFinSejour','desc')
+        ;
+
+        return $query->getQuery()->getResult();
     }
 }

@@ -19,13 +19,17 @@ class VoyageController extends Controller
         $user       = $this->getUser();
 
         if(!$user) $this->redirect($this->generateUrl('homepage'));
+        
         $repo           = $this->getDoctrine()->getRepository('AppBundle:Voyage');
+        
         $voyages        = $repo->findBy(['owner' => $user]);
+        $etapes         = $this->getDoctrine()->getRepository('AppBundle:Etape')->getEtapeByUser($user);
 
         return $this->render(
             'AppBundle:Voyage:index.html.twig',
             [
-                'voyages' => $voyages
+                'voyages' => $voyages,
+                'etapes' => $etapes
             ]
             );
     }

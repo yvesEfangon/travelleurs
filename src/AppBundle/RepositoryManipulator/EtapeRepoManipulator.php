@@ -105,7 +105,7 @@ class EtapeRepoManipulator
 
         return $query;
     }
-
+    
     public function mainSearch(MainSearch $search){
 
         if($search->getLat() == null || $search->getLng() == null) return null;

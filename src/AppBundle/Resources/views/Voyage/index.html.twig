@@ -2,75 +2,42 @@
 {% extends "AppBundle:Travelleurs:myprofile.html.twig" %}
 
 {% block secondContent %}
-    <div class="panel" >
-        <h4 class="panel-heading trav-secondary-bg-color w3-text-white">{{ 'trav.travels.list'|trans|upper }}</h4>
-        <div class="panel-body">
-        <div class="row text-center center-block">
-                   {% if voyages is defined and voyages is not null and voyages|length>0 %}
-                        <table class="table table-bordered">
-                                <tr>
-                                    <th>
-                                        {{ 'trav.created.on'|trans }}
-                                    </th>
-                                    <th>
-                                        {{ 'trav_how_will_you_travel'|trans }}
-                                    </th>
-                                    <th>
-                                        {{ 'trav.travelers.genre'|trans }}
-                                    </th>
-                                    <th>
-                                        {{ 'trav.smocker.allowed'|trans }}
-                                    </th>
-                                    <th>
-                                        {{ 'trav.estimated.budget'|trans }}
-                                    </th>
-                                    <th>
-                                        {{ 'trav.publication'|trans }}
-                                    </th>
-                                    <th>
+    <div class="row text-center"> <h3 class="text-default text-center title-page">{{ 'trav.travels.list'|trans|upper }} <small><a class="btn btn-link" href="{{ path('trav_add_voyage') }}"><i class="fa fa-plus"></i> {{ 'trav.add.travel'|trans }}</a></small></h3> </div>
 
-                                    </th>
-                                </tr>
-                                {% for v in voyages %}
-                                    <tr>
-                                        <td>
-                                            <a href="{{ path('trav_edit_voyage',{'id': v.id}) }}" target="_self">{{ v.createdOn|date('Y-m-d h:m:s') }}&nbsp;<i class="fa fa-external-link"></i></a>
-                                        </td>
-                                        <td>
-                                            {{ v.ownerIsAlone|trans }}
-                                        </td>
-                                        <td>
-                                            {{ v.genreVoyageurs|trans }}
-                                        </td>
-                                        <td>
-                                            {% if v.smockerAllowed == 1 %}
-                                                {{ 'YES'|trans }}
-                                            {% else %}
-                                                {{ 'NO'|trans }}
-                                            {% endif %}
-                                        </td>
-                                        <td>
-                                            {{ v.budget }}&nbsp;{{ v.currency }}
-                                        </td>
-                                        <td>
-                                            {% if v.published == 1 %}
-                                                <i class="text-success fa fa-check-circle fa-lg"></i>
-                                            {% else %}
-                                                <i class="text-danger fa fa-ban fa-lg"></i>
-                                            {% endif %}
-                                        </td>
-                                        <td>
-                                            <a href="{{ path('trav_remove_voyage', {'id':v.id}) }}"><i class="text-danger fa fa-times-circle"></i></a>
-                                        </td>
-                                    </tr>
-                                {% endfor %}
-                            </table>
-                    {% else %}
-                        <p class="alert alert-success center-block">{{ 'You.dont.have.any.scheduled.travel'|trans }}</p>
-                    {% endif %}
+
+    {% if etapes is defined and etapes is not null and etapes|length>0 %}
+        {% for e in etapes %}
+            {% set difference = date(e.dateFinSejour).diff(date('now')) %}
+            {% set leftDays = difference.days %}
+
+            <div class="w3-card-4 w3-margin-top">
+
+                <header class="w3-container">
+                   <div class="row">
+                       <div class="col-lg-6 col-md-6 col-xs-6 col-sm-6">
+                        <h4><i class="fa fa-map-marker"></i> {{ e.lieuArrivee.address }}<br><small>{{ 'trav.from'|trans }} {{ e.dateDepart|date('l jS F Y') }} {{ 'trav.to'|trans }} {{ e.dateFinSejour|date('l jS F Y') }}</small></h4>
+                       </div>
+                       <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                            {% if leftDays <100 and leftDays >0 %}
+                                <h5 class="text-warning pull-right">{{ 'trav.ongoing'|trans }}<br><small class="text-warning"> {{ leftDays }} {{ 'trav.days'|trans }}</small></h5>
+                            {% endif %}
+                       </div>
+                   </div>
+                </header>
+
+                <div class="w3-container">
+                    <p>Lorem ipsum...</p>
+                </div>
+
+                <footer class="w3-container">
+                    <h5>{{ e.voyage.annonce }}</h5>
+                </footer>
 
             </div>
-        </div>
-    </div>
-</div>
+
+        {% endfor %}
+
+    {% else %}
+        <p class="alert alert-success center-block">{{ 'You.dont.have.any.scheduled.travel'|trans }}</p>
+    {% endif %}
 {% endblock %}

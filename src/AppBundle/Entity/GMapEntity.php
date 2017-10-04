@@ -146,7 +146,7 @@ abstract class GMapEntity
     public function setLat($lat)
     {
         if (is_string($lat)) {
-            $lat = floatval($lat);
+            $lat = (float)$lat;
         }
         $this->lat = $lat;
     }
@@ -165,7 +165,7 @@ abstract class GMapEntity
     public function setLng($lng)
     {
         if (is_string($lng)) {
-            $lng = floatval($lng);
+            $lng = (float)$lng;
         }
         $this->lng = $lng;
     }
