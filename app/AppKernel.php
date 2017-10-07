@@ -40,8 +40,6 @@ class AppKernel extends Kernel
             new FOS\ElasticaBundle\FOSElasticaBundle(),
             new Doctrine\Bundle\DoctrineCacheBundle\DoctrineCacheBundle(),
             new Liip\MonitorBundle\LiipMonitorBundle(),
-            new Lsw\MemcacheBundle\LswMemcacheBundle(),
-
         );
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {

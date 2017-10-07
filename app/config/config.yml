@@ -10,8 +10,6 @@ imports:
 parameters:
     app.path.user_images: /uploads/images/users
     app.path.voyage_images: /uploads/images/voyages
-    memcache_host: 127.0.0.1
-    memcache_port: 11211
 
 # http://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 
@@ -262,23 +260,4 @@ fos_comment:
 liip_monitor:
     enable_controller: true
     checks:
-        php_extensions: [apc, xdebug, memcache]
-#lsw_memcache:
-#    session:
-#        pool: default
-#    pools:
-#        default:
-#            servers:
-#                - { host: localhost, tcp_port: 11211 }
-#    doctrine:
-#        metadata_cache:
-#            pool: default
-#            entity_manager: default          # the name of your entity_manager connection
-#            document_manager: default        # the name of your document_manager connection
-#        result_cache:
-#            pool: default
-#            entity_manager: [default, read]  # you may specify multiple entity_managers
-#            prefix: "result_"                # you may specify a prefix for the entries
-#        query_cache:
-#            pool: default
-#            entity_manager: default
+        php_extensions: [apc, xdebug]

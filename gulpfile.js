@@ -17,7 +17,7 @@ var  autoprefixer = require('autoprefixer');
 var  mqpacker     = require('css-mqpacker');
 var image = require('gulp-image');
 var bazinga  = require('bazinga-translator');
-
+var runSequence = require('gulp-sequence');
 /*With bower */
 var   sass = require('gulp-sass');
 var   notify = require("gulp-notify");
@@ -57,3 +57,4 @@ gulp.task('watch', function() {
 });
 // 'icons', 'css-vendor2','css-concat','css-application',
 gulp.task('default', gulp.series('images'));
+gulp.task('images', runSequence(['images']));
